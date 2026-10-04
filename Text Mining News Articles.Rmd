@@ -9,7 +9,6 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Sort Dataset
 
 ```{r}
 #Load Packages
@@ -23,10 +22,11 @@ csv_file <- "all-the-news-2-1.csv"
  
 pattern <- regex(
   "self[- ]driving|driverless|autonomous (car|vehicle|truck|driving)|robo[- ]?taxi|waymo|tesla'?s? autopilot",
-  ignore_case = TRUE)
+  ignore_case = TRUE) # AI-generated code: Uses a regex pattern to identify text related to self-driving cars 
 
 
 keep_self_driving <- function(chunk, pos) {
+   # filters inserted text to contain the defined regex pattern in title or article
   chunk %>% filter(str_detect(title, pattern) | str_detect(article, pattern))
 }
 
@@ -34,18 +34,18 @@ subset_allnews <- read_csv_chunked(
   csv_file,
   DataFrameCallback$new(keep_self_driving),
   chunk_size = 100000,
-  col_types = cols(.default = "c")
+  col_types = cols(.default = "c")  # make every column default to a character type
 )
  
 
 subset_allnews_clean <- subset_allnews %>%
   mutate(
-    date        = as_date(substr(date, 1, 10)),          # "2018-03-19 00:00:00" date
+    date        = as_date(substr(date, 1, 10)),          # "YEAR-MONTH-DAY 00:00:00" date
     title_match = str_detect(title, pattern),            # TRUE if the title mentions the topic
-    body_hits   = str_count(article, pattern),           # how many times the article mentions it
-    word_count  = str_count(article, "\\S+")             # rough article length
+    body_hits   = str_count(article, pattern),           # how many times the article mentions the pattern
+    word_count  = str_count(article, "\\S+")             # rough article length not including white space
   ) %>%
-  filter(title_match | body_hits >= 3) %>%               # about the topic
+  filter(title_match | body_hits >= 3) %>%               
   filter(word_count >= 150) %>%               
   distinct(title, .keep_all = TRUE)                      # remove duplicate articles
 
@@ -57,7 +57,7 @@ count(subset_allnews_clean, publication, sort = TRUE)
 
 
 ```{r}
-self_driving <- read.csv("self_driving_articles.csv")
+self_driving <- read_csv("self_driving_articles.csv")
 ```
 
 
