@@ -50,11 +50,8 @@ subset_allnews_clean <- subset_allnews %>%
   distinct(title, .keep_all = TRUE)                      # remove duplicate articles
 
  
-nrow(subset_allnews_clean)
-count(subset_allnews_clean, publication, sort = TRUE)
-#write_csv(subset_allnews_clean, "self_driving_articles.csv")
+write_csv(subset_allnews_clean, "self_driving_articles.csv") #Convert dataframe to csv 
 ```
-
 
 ```{r}
 self_driving <- read_csv("self_driving_articles.csv")
