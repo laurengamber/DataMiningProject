@@ -16,6 +16,9 @@ example also requires an API key. The R Markdown file uses R packages
 `tidyverse` and `lubridate`, which are managed separately from this Python
 environment.
 Lecture Proposal: 
-- Lauren and Laura will create an interactive R Shiny app activity
 
+- Lauren
+
+- Lauren and Laura will create an interactive R Shiny app activity
+  
 Final Project 
