@@ -10,34 +10,28 @@
 \maketitle
 
 \subsection*{Problem and Motivation}
-In recent years, technology has advanced to the point where self-driving cars are becoming a viable alternative to human-driven cars. Public opinion remains divided on self-driving cars. Additionally, most people form their opinions on this topic by reading news articles. News articles are abundant, with multiple new sources writing multiple articles on the same topic over time. These data remain largely unstructured and vast; as a result, it is difficult for the public to identify themes across news sources. Thus, our project aims to identify hidden themes across news sources in articles about self-driving cars.      
+In recent years, technology has advanced to the point where self-driving cars are becoming a viable alternative to human-driven cars. Public opinion remains divided on self-driving cars. Additionally, most people form their opinions on this topic by reading news articles. News articles are abundant, with multiple new sources writing multiple articles on the same topic over time. These data remain largely unstructured and vast; as a result, the public finds it difficult to identify themes across news sources. Thus, our project aims to identify hidden themes across news sources in articles about self-driving cars using topic modeling.       
 
 
 \subsection*{Data and Availability}
-Our proposed dataset is the "All the news" dataset, available as open-source on Kaggle. This dataset includes 2.79 million English news articles from January 2016 to April 2020. We filtered the 2.79 million news articles to 7,337 articles that discuss self-driving cars. We saved this subset as a new CSV file.
+Our proposed dataset is a filtered version of the "All the news" dataset, available as open-source on Kaggle. The full version of the dataset includes 2.79 million English news articles from January 2016 to April 2020. We filtered the 2.79 million news articles to 7,337 articles that discuss self-driving cars using a regex text pattern. We saved this subset as a new csv file, "self\_driving\_articles.csv". 
 
-To do: describe features of data- what each column means 
-
-The challenge with these data
+The self-driving csv file has 7,337 rows (each row being one observation of an article about self-driving cars within the "All the news" dataset). Additionally, it has 11 unique attributes, which are article ID (numeric), date (date string), author (text), article title (text), article body (text), URL (text), section (text), section (text), publication (text), title match (logical boolean), body hits (integer), and word count (integer). Our target attributes are article body and publication. Textual data pose a challenge because of ......
+Additionally, these data have missing values. 
 
 
 
 \subsection*{Proposed Approach}
 
-We will be comparing a modern vs classical topic modeling pipeline.
+We will compare a modern vs. classical topic modeling pipeline. Topic modeling generally follows the pipeline:
 \begin{itemize}
+\item Data Preprocessing
 
-\item Data Preprocessing: Prepare the raw text by removing whitespace, lowercasing, and removing extra spaces.
- 
-\item Document Embeddings: using Sentence Transformers 
+\item 
 
-\item Dimensionality Reduction through Uniform Manifold Approximation and Projection
+\item 
 
-\item Clustering through HDBSCAN
-
-\item c-TF-IDF Representation
-
-We will be using packages to complete this topic modeling pipeline. 
+\item
 
 \end{itemize}
 
@@ -49,10 +43,9 @@ We will be using packages to complete this topic modeling pipeline.
 
 
 \subsection*{Scope and Feasibility}
-Our target dataset contains 2.79 million news articles. To account for time and hardware limitations, we decided to filter these articles to a topic that provides an article count large enough to yield insight, but small enough to remain in scope.
+Our target dataset contains 2.79 million news articles. To account for time and hardware limitations, we decided to filter these articles to a topic with an article count large enough to yield insight but small enough to remain in scope.
 
-
-For the group project workflow, we are using a GitHub repo and a shared Overleaf project. For dividing group responsibilities, Lauren will write about the theory behind the text-mining topic-modeling pipeline and data visualizations in R. Laura will do a classical topic-modeling pipeline. Mary Kate will do a modern topic-modeling pipeline. 
+For the group project workflow, we are using a GitHub repo and a shared Overleaf project. To divide responsibilities, Lauren will write about the theory behind the text-mining topic-modeling pipeline and perform data visualizations in R. Laura will cover a classical topic-modeling pipeline. Mary Kate will do a modern topic-modeling pipeline. Together, we will do 
 
 \subsection*{References}
 https://www.kaggle.com/datasets/davidmckinley/all-the-news-dataset/data
