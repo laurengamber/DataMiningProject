@@ -1,0 +1,24 @@
+[project]
+name = "data-mining-project"
+version = "0.1.0"
+description = "Notebook environment for text clustering and topic modeling"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "bertopic",
+    "datamapplot",
+    "datasets",
+    "hdbscan",
+    "ipykernel",
+    "jupyterlab",
+    "matplotlib",
+    "numpy",
+    "openai",
+    "pandas",
+    "sentence-transformers",
+    "transformers",
+    "umap-learn",
+    "wordcloud",
+]
+
+[tool.uv]
+package = false
