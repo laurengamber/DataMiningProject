@@ -1,5 +1,18 @@
 ## 10/5 Meeting
 
+### Final Lecture
+- Lauren will do Foundations and Classical Preprocessing
+- Mary Cate will do Classical Modeling and Modern Methods
+- Laura will do LDA Deep Dive
+- Lauren and Laura will create an interactive R Shiny app activity
+
+### Final Project 
+- Laura will do a classical pipeline for text mining hidden themes in Python
+- Mary Cate will do a modern pipeline for text mining hidden themes in Python
+- Lauren will do theory writing and data visualization in R.
+
+
+
 ### Python notebook setup
 
 Install [uv](https://docs.astral.sh/uv/) if needed, then run:
@@ -16,9 +29,3 @@ example also requires an API key. The R Markdown file uses R packages
 `tidyverse` and `lubridate`, which are managed separately from this Python
 environment.
 Lecture Proposal: 
-
-- Lauren
-
-- Lauren and Laura will create an interactive R Shiny app activity
-  
-Final Project 
