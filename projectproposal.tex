@@ -23,18 +23,22 @@ The challenge with these data
 
 
 \subsection*{Proposed Approach}
-
-This is unsupervised learning
+We will be following the BERTopic Pipeline in Python.
 \begin{itemize}
 
-\item Data Preprocessing
-We will need to perform text indexing through tokenization, stemming, Stop-Word Removal, and Term Weighting. 
+\item Data Preprocessing: Prepare the raw text by removing whitespace, lowercasing, and removing extra spaces.
+ 
+\item Document Embeddings: using Sentence Transformers 
 
-\item Data Processing and Analysis
+\item Dimensionality Reduction through Uniform Manifold Approximation and Projection
 
-\item Data Visualization
+\item Clustering through HDBSCAN
+
+\item c-TF-IDF Representation
+
+We will be using packages to complete this topic modeling pipeline. 
+
 \end{itemize}
-
 
 
 \subsection*{Evaluation Plan}
@@ -44,11 +48,12 @@ We will need to perform text indexing through tokenization, stemming, Stop-Word 
 
 
 \subsection*{Scope and Feasibility}
+Our target dataset contains 2.79 million news articles. To account for time and physical hardware limitations, we decided to filter these articles to a topic that would provide use with an article count large enough to gain insight from, but small enough to remain in scope.
 
 
-For the group project workflow, we are using a GitHub repo and a shared Overleaf project. 
+For the group project workflow, we are using a GitHub repo and a shared Overleaf project. For division of group responsibilities, Lauren will write about the theory behind the BERTopic modeling pipeline and data visualizations in R. Laura will write the code for data ingestion and processing... and Mary Kate will ....
 
-
-
+\subsection*{References}
+https://www.kaggle.com/datasets/davidmckinley/all-the-news-dataset/data
 
 \end{document}
