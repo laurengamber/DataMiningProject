@@ -13,13 +13,13 @@
 
 
 \subsection*{Problem and Motivation}
-In recent years, technology has advanced to the point where self-driving cars are becoming a viable alternative to human-driven cars. Public opinion remains divided on self-driving cars. Additionally, most people form their opinions on this topic by reading news articles. News articles are abundant, with multiple new sources writing multiple articles on the same topic over time. These data remain largely unstructured and vast; as a result, the public finds it difficult to identify themes across news sources. Thus, our project aims to address this problem by identifying hidden themes across news sources in articles about self-driving cars using topic modeling.       
+In recent years, technology has advanced to the point where self-driving cars are becoming a viable alternative to human-driven cars. Public opinion about self-driving cars remains divided. Additionally, many people form their opinions on this topic by reading news articles. News articles are abundant, with a diverse set of news sources reporting on the same topics. These data remain largely unstructured and vast; as a result, the public may find it difficult to identify themes across various news sources. Thus, our project aims to address this problem by using topic modeling to identify hidden themes across many news sources.      
 
 
 \subsection*{Data and Availability}
-Our proposed dataset is a filtered version of the "All the news" dataset \parencite{mckinley2021}, available as open-source on Kaggle. The full version of the dataset includes 2.79 million English news articles from January 2016 to April 2020. We filtered the 2.79 million news articles to 7,337 articles that discuss self-driving cars using a regex text pattern. We saved this subset as a new csv file, "self\_driving\_articles.csv". 
+Our proposed dataset is a filtered version of the "All the news" dataset \parencite{mckinley2021}, available as open-source on Kaggle. The full version of the dataset includes 2.79 million English news articles from January 2016 to April 2020. We used a regex text pattern to identify 7,337 articles that discuss self-driving cars within this dataset. This subset of data is available in our GitHub repository as "self\_driving\_articles.csv". 
 
-The self-driving csv file has 7,337 rows (each row being one observation of an article about self-driving cars within the "All the news" dataset). Additionally, it has 11 unique attributes, which are article ID (numeric), date (date string), author (text), article title (text), article body (text), URL (text), section (text), section (text), publication (text), title match (logical boolean), body hits (integer), and word count (integer). Our target attributes are article body and publication. Textual data pose challenges because of filler words, subjectivity, high dimensionality, and inconsistency. Additionally, these data have missing values. 
+The self-driving article subset has 7,337 records (each record being one observation of an article about self-driving cars within the "All the news" dataset). Additionally, it has 11 unique attributes, which are article ID (numeric), date (date string), author (text), article title (text), article body (text), URL (text), section (text), section (text), publication (text), title match (logical boolean), body hits (integer), and word count (integer). Our target attributes are article body and publication. Textual data pose challenges because of filler words, subjectivity, high dimensionality, and inconsistency. Additionally, these data may have missing values. 
 
 
 \subsection*{Proposed Approach}
@@ -30,23 +30,25 @@ For classical modeling \parencite{qamar2024}, we will follow a pipeline of: (1) 
 
 For modern modeling \parencite{alammar2024, kumari2026}, we will follow a pipeline of: (1) Data Preprocessing, (2) Document Embedding, (3) Dimensionality Reduction, (4) Document Clustering, (5) Topic Representation, and Interpretation.
 
-This project will demonstrate learning from the course by adapting it to a challenging problem, as the tools required in these pipelines are techniques we learned in class.
+This project will demonstrate learning from the course by adapting it to a challenging problem, as the tools required in these pipelines are techniques from class content.
 
 \subsection*{Evaluation Plan}  
 
+Our comparison between the two pipelines will include topic quality, computational efficiency, and interpretability.
+
 Topic modeling for textual data is an unsupervised learning technique and is subjective; thus, no single metric tells us whether our approach is successful.
 
-So, we plan to do evaluation checks at each stage of the classical and modern pipelines. For example, for document clustering in the modern pipeline, we will use the Silhouette score to evaluate the clusters.
+As part of our comparison, we plan to complete evaluation checks at each stage of the classical and modern pipelines. For example, we will use the Silhouette score to evaluate the clusters for document clustering in the modern pipeline.
 
-To evaluate the performance of the entire pipeline, we plan to use topic coherence. And, do human evaluation by reading a random sample of articles and comparing them to the selected topics. Lastly, we will create a heat map of Jaccard similarity to compare the chosen topics between the classical and modern pipelines. 
+To evaluate the results of each pipeline, we plan to use topic coherence. We will also complete human evaluation by reading a random sample of articles and comparing them to the selected topics. Lastly, we will create a heat map of Jaccard similarity to compare the chosen topics between the classical and modern pipelines. 
 
 
 \subsection*{Scope and Feasibility}
-A challenge was that the entire dataset contains 2.79 million news articles. So, to account for time and hardware limitations, we decided to filter these articles to a single topic, self-driving cars, as that has an article count large enough to yield insight but small enough to remain in scope for this project. 
+Our first challenge was that the entire dataset contains 2.79 million news articles. To account for time and hardware limitations, we decided to filter these articles to the single topic of self-driving cars, to produce an article count large enough to yield insight but small enough to remain in scope for this project. 
 
-For the group project workflow, we are using a GitHub repo and a shared Overleaf project. To divide responsibilities, Lauren will write about the theory behind the text-mining topic-modeling pipelines and perform data visualizations in R. Laura will cover a classical topic-modeling pipeline and evaluation. Mary Kate will do a modern topic-modeling pipeline and evaluation. Together, we will compare the two pipelines. 
+For the group project workflow, we are using a GitHub repo and a shared Overleaf project. To divide responsibilities, Lauren will write about the theory behind the text-mining topic-modeling pipelines and perform data visualizations in R. Laura will use Python to create a classical topic-modeling pipeline and evaluation. Mary Kate will complete a modern topic-modeling pipeline and evaluation. Together, we will compare the two pipelines. 
 
-We plan to meet biweekly for the rest of the semester. A rough timeline of our project:
+We plan to meet biweekly for the remainder of the semester. A rough timeline of our project:
 \begin{itemize}
     
 \item Oct 21st: Aiming to have half of both pipelines done. Background research on methods in progress.
