@@ -29,3 +29,7 @@ example also requires an API key. The R Markdown file uses R packages
 `tidyverse` and `lubridate`, which are managed separately from this Python
 environment.
 Lecture Proposal: 
+
+### Modern project workflow
+
+Mary Kate’s implementation is in three numbered [project notebooks](modern-methods/project/notebooks/README.md): corpus and full-text embeddings, BERTopic experiments, and modern/classical evaluation. Run them in order; model selection, topic naming, and two-person evaluation use explicit human review files. Laura’s classical export contract and project milestones are documented there.

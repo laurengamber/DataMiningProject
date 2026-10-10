@@ -1,0 +1,40 @@
+{
+  "rows": 7337,
+  "source_columns": 15,
+  "publications": 25,
+  "date_min": "2016-01-01",
+  "date_max": "2020-03-26",
+  "duplicate_bodies": 5,
+  "missing": {
+    "article_id": 0,
+    "X1": 0,
+    "Unnamed: 0": 0,
+    "date": 0,
+    "year": 0,
+    "month": 0,
+    "day": 0,
+    "author": 1381,
+    "title": 0,
+    "article": 0,
+    "url": 0,
+    "section": 3668,
+    "publication": 0,
+    "title_match": 0,
+    "body_hits": 0,
+    "word_count": 0,
+    "text": 0,
+    "duplicate_body": 0,
+    "measured_word_count": 0,
+    "word_count_difference": 0
+  },
+  "word_count_mismatches": 0,
+  "word_quantiles": {
+    "0.0": 150.0,
+    "0.25": 330.0,
+    "0.5": 496.0,
+    "0.75": 819.0,
+    "0.9": 1283.0,
+    "0.99": 5572.560000000042,
+    "1.0": 28048.0
+  }
+}
