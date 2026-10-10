@@ -15,6 +15,6 @@ class PipelineSmoke(unittest.TestCase):
             model,metrics=fit_run(df,x,Path(temp),15,10)
             self.assertGreaterEqual(metrics['topic_count'],2)
             self.assertEqual(model.topic_embeddings_.shape[1],384)
-            exported=pd.read_csv(Path(temp)/'output/modern/runs/n15_c10_s42/assignments.csv')
+            exported=pd.read_csv(Path(temp)/'Results/modern/runs/n15_c10_s42/assignments.csv')
             self.assertEqual(len(exported),80)
             self.assertEqual(exported.topic_id.tolist(),model.topics_)

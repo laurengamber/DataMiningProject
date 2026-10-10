@@ -11,4 +11,4 @@ if __name__ == '__main__':
             print(metrics,flush=True)
     _,finalists=shortlist(root)
     print(finalists.to_string(index=False))
-    print('Complete output/modern/selection_review.csv, then resume notebook 02.')
+    print('Complete selection_review/selection_review.csv, then resume notebook 02.')

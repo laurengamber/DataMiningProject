@@ -17,9 +17,9 @@ These are exploratory results, not a selected final model. Silhouette excludes o
 
 ## Required next inputs
 
-1. Read representative articles for the three shortlisted runs and fill both 1–5 rating columns plus notes in `output/modern/selection_review.csv`.
+1. Read representative articles for the three shortlisted runs and fill both 1–5 rating columns plus notes in `selection_review/selection_review.csv`.
 2. Resume notebook 02 at model selection. It runs seeds 7 and 21 and representation comparisons, then creates `topic_labels.csv` for manual labels and evidence notes.
-3. Run notebook 03 for selected-model evaluation and publication exports. Supply Laura’s four classical artifacts under `output/classical/` to enable joint comparison.
+3. Run notebook 03 for selected-model evaluation and publication exports. Supply Laura’s four classical artifacts under `Results/classical/` to enable joint comparison.
 4. Two team members complete the independent review CSVs, then rerun the human evaluation cells.
 
 No human ratings, final topic names, or classical results have been fabricated. Final selected-model evaluation and downstream notebook cells remain pending these inputs. See `notebooks/README.md` for execution commands, handoff schemas, limitations, and deadlines.

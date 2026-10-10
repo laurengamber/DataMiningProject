@@ -21,7 +21,7 @@ def clean_text(text):
     return re.sub(r'\s+', ' ', html.unescape(text)).strip()
 
 def audit_corpus(root):
-    root = Path(root); out = root/'output/modern'; out.mkdir(parents=True, exist_ok=True)
+    root = Path(root); out = root/'Results/modern'; out.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(root.parent.parent/'self_driving_articles.csv')
     assert df.X1.notna().all() and df.X1.is_unique, 'Article IDs must be unique'
     df.insert(0, 'article_id', df.X1.astype(str))
@@ -59,14 +59,14 @@ def embed_corpus(df, root, pilot=False):
     import torch
     from sentence_transformers import SentenceTransformer
     from huggingface_hub import model_info
-    root=Path(root); cache=root/'output/modern/cache'; cache.mkdir(parents=True,exist_ok=True)
+    root=Path(root); cache=root/'Results/modern/cache'; cache.mkdir(parents=True,exist_ok=True)
     download_start=time.perf_counter()
     # Resolve mutable model name to an immutable revision and include it in cache identity.
     revision_path=cache/'model_revision.json'
     if revision_path.exists():
         revision=json.loads(revision_path.read_text())['revision']
     else:
-        pointer_path=root/'output/modern/embedding_pointer.json'
+        pointer_path=root/'Results/modern/embedding_pointer.json'
         revision=json.loads(pointer_path.read_text())['manifest']['revision'] if pointer_path.exists() else model_info(MODEL).sha
         write_json(revision_path,dict(model=MODEL,revision=revision))
     device='mps' if torch.backends.mps.is_available() else 'cpu'
@@ -106,12 +106,12 @@ def embed_corpus(df, root, pilot=False):
     timing_path=folder/'timings.json'
     previous=json.loads(timing_path.read_text()) if timing_path.exists() else {}
     write_json(timing_path,dict(first_execution=previous.get('first_execution',previous or timing),latest_execution=timing))
-    if not pilot: write_json(root/'output/modern/embedding_pointer.json',dict(folder=str(folder.relative_to(root)),manifest=manifest))
+    if not pilot: write_json(root/'Results/modern/embedding_pointer.json',dict(folder=str(folder.relative_to(root)),manifest=manifest))
     return arr, folder
 
 def load_inputs(root):
-    root=Path(root); df=pd.read_csv(root/'output/modern/corpus.csv',dtype={'article_id':str})
-    pointer=json.loads((root/'output/modern/embedding_pointer.json').read_text()); m=pointer['manifest']
+    root=Path(root); df=pd.read_csv(root/'Results/modern/corpus.csv',dtype={'article_id':str})
+    pointer=json.loads((root/'Results/modern/embedding_pointer.json').read_text()); m=pointer['manifest']
     if m['article_ids'] != df.article_id.tolist() or m['text_hash'] != digest(df.text.tolist()): raise ValueError('Corpus/cache mismatch')
     arr=np.load(root/pointer['folder']/'embeddings.npy'); validate_embeddings(arr,len(df))
     return df,arr
@@ -167,7 +167,7 @@ def fit_run(df,embeddings,root,neighbors=15,cluster_size=50,seed=42):
     from umap import UMAP
     from hdbscan import HDBSCAN
     from sklearn.feature_extraction.text import CountVectorizer
-    run=f'n{neighbors}_c{cluster_size}_s{seed}'; folder=Path(root)/'output/modern/runs'/run; folder.mkdir(parents=True,exist_ok=True)
+    run=f'n{neighbors}_c{cluster_size}_s{seed}'; folder=Path(root)/'Results/modern/runs'/run; folder.mkdir(parents=True,exist_ok=True)
     print(f'{run}: reduction',flush=True)
     start=time.perf_counter()
     reduction=UMAP(n_components=5,n_neighbors=neighbors,min_dist=0,metric='cosine',random_state=seed)
@@ -190,7 +190,7 @@ def fit_run(df,embeddings,root,neighbors=15,cluster_size=50,seed=42):
     return model,metrics
 
 def cached_run(df,embeddings,root,neighbors,cluster_size,seed=42):
-    folder=Path(root)/'output/modern/runs'/f'n{neighbors}_c{cluster_size}_s{seed}'
+    folder=Path(root)/'Results/modern/runs'/f'n{neighbors}_c{cluster_size}_s{seed}'
     path=folder/'manifest.json'
     if path.exists():
         manifest=json.loads(path.read_text())
@@ -216,7 +216,7 @@ def load_model(folder):
     with open(Path(folder)/'model.pkl','rb') as f: return pickle.load(f)  # Trusted local artifacts only.
 
 def shortlist(root):
-    out=Path(root)/'output/modern'; records=[json.loads(p.read_text())['metrics'] for p in (out/'runs').glob('*s42/manifest.json')]
+    out=Path(root)/'Results/modern'; records=[json.loads(p.read_text())['metrics'] for p in (out/'runs').glob('*s42/manifest.json')]
     if not records: raise ValueError('No completed experiments; run the six fits first')
     table=pd.DataFrame(records); table.to_csv(out/'experiments.csv',index=False)
     finalists=table[table.topic_count.ge(2)].sort_values(['coherence','run_id'],ascending=[False,True]).head(3)
@@ -226,7 +226,8 @@ def shortlist(root):
         folder=out/'runs'/run; topics=pd.read_csv(folder/'topics.csv'); evidence=pd.read_csv(folder/'representatives.csv')
         for t in topics[topics.topic_id.ge(0)].nlargest(5,'count').itertuples():
             reviews.append(dict(run_id=run,topic_id=t.topic_id,keywords=t.label,representative_articles=' | '.join(evidence[evidence.topic_id==t.topic_id].article_id.astype(str)),semantic_consistency='',label_specificity='',notes=''))
-    path=out/'selection_review.csv'
+    path=Path(root)/'selection_review/selection_review.csv'
+    path.parent.mkdir(parents=True,exist_ok=True)
     if not path.exists(): pd.DataFrame(reviews).to_csv(path,index=False)
     else:
         existing=pd.read_csv(path)
@@ -236,7 +237,7 @@ def shortlist(root):
     return table,finalists
 
 def select_model(root):
-    out=Path(root)/'output/modern'; table,finalists=shortlist(root); reviews=pd.read_csv(out/'selection_review.csv')
+    out=Path(root)/'Results/modern'; table,finalists=shortlist(root); reviews=pd.read_csv(Path(root)/'selection_review/selection_review.csv')
     scores=['semantic_consistency','label_specificity']
     if reviews.empty or reviews[scores].isna().any().any(): raise ValueError('Complete selection_review.csv with 1–5 ratings before selecting a model')
     if not reviews[scores].apply(lambda s:s.between(1,5)).all().all(): raise ValueError('Ratings must be 1–5')

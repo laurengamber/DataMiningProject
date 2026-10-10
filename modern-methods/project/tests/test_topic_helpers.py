@@ -41,7 +41,7 @@ if __name__=='__main__': unittest.main()
 class CacheAndReviewTests(unittest.TestCase):
     def test_cache_rejects_reordered_corpus(self):
         with tempfile.TemporaryDirectory() as temp:
-            root=Path(temp); out=root/'output/modern'; out.mkdir(parents=True)
+            root=Path(temp); out=root/'Results/modern'; out.mkdir(parents=True)
             df=pd.DataFrame({'article_id':['a','b'],'text':['car','law']})
             df.to_csv(out/'corpus.csv',index=False)
             h.write_json(out/'embedding_pointer.json',{'folder':'cache','manifest':{'article_ids':['b','a'],'text_hash':h.digest(df.text.tolist())}})

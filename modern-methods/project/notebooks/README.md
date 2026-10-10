@@ -1,12 +1,12 @@
 # Mary Kate’s modern pipeline
 
-From the repository root, run `uv sync`, then `uv run jupyter lab`. Execute notebooks 01–03 in order from fresh kernels. Notebook 01 downloads GTE-small and caches all embeddings; notebook 02 runs six fits before pausing for real model-selection ratings. Fill `output/modern/selection_review.csv`, resume notebook 02, then fill `topic_labels.csv`. Notebook 03 evaluates the selected model and reports missing team inputs.
+From the repository root, run `uv sync`, then `uv run jupyter lab`. Execute notebooks 01–03 in order from fresh kernels. Notebook 01 downloads GTE-small and caches all embeddings; notebook 02 runs six fits before pausing for real model-selection ratings. Fill `selection_review/selection_review.csv`, resume notebook 02, then fill `topic_labels.csv`. Notebook 03 evaluates the selected model and reports missing team inputs.
 
 Helpers live in `src/topic_helpers.py`. Run `PYTHONPATH=modern-methods/project uv run python -m unittest discover -s modern-methods/project/tests` from the repository root. Generated large corpus copies, models, and caches are ignored by Git. Keep small tables and figures as reviewable results. Only load trusted local model pickle files.
 
 ## Laura’s handoff
 
-Use `output/modern/corpus.csv`; `article_id` is the original unique X1 converted to a string. Keep the same records, including flagged duplicate bodies. Share the corpus manifest before fitting. Place these files in `output/classical/`:
+Use `Results/modern/corpus.csv`; `article_id` is the original unique X1 converted to a string. Keep the same records, including flagged duplicate bodies. Share the corpus manifest before fitting. Place these files in `Results/classical/`:
 
 - `assignments.csv`: article_id, model (`lda`), run_id, topic_id. Exactly one dominant-topic row per article. Retain LDA mixtures in a separate file.
 - `terms.csv`: topic_id, rank (1-based), term (unigram), weight. At least ten ranked terms per topic where available; consistent tokenizer and English stopwords for comparison.
