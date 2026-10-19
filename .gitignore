@@ -13,9 +13,6 @@ modern-methods/project/Results/comparison/outlier_review.csv
 # Downloaded model cache (contains symbolic links and large files)
 /final-project/modern-methods/Results/modern/cache/
 
-# Generated files larger than 50 MB
+# Generated model binaries and large corpus
 /final-project/modern-methods/Results/modern/corpus.csv
-/final-project/modern-methods/Results/modern/runs/n15_c25_s7/model.pkl
-/final-project/modern-methods/Results/modern/runs/n30_c100_s42/model.pkl
-/final-project/modern-methods/Results/modern/runs/n30_c25_s42/model.pkl
-/final-project/modern-methods/Results/modern/runs/n30_c50_s42/model.pkl
+/final-project/modern-methods/Results/modern/runs/*/model.pkl
