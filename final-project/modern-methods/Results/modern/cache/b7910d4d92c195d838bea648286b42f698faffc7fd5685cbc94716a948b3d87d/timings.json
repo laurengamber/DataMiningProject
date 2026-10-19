@@ -1,0 +1,14 @@
+{
+  "first_execution": {
+    "model_load_download_seconds": 1.4272012909968907,
+    "embedding_seconds": 5.196545250000781,
+    "reused_articles": 0,
+    "device": "mps"
+  },
+  "latest_execution": {
+    "model_load_download_seconds": 0.3894795830019575,
+    "embedding_seconds": 0.06867549999878975,
+    "reused_articles": 200,
+    "device": "mps"
+  }
+}
