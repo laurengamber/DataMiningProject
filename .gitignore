@@ -1,6 +1,7 @@
 .venv/
 .ipynb_checkpoints/
 __pycache__/
+/data
 modern-methods/project/Results/modern/cache/
 modern-methods/project/Results/modern/runs/*/model.pkl
 modern-methods/project/Results/modern/corpus.csv
