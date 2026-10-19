@@ -1,6 +1,7 @@
 .venv/
 .ipynb_checkpoints/
 __pycache__/
+/data
 modern-methods/project/Results/modern/cache/
 modern-methods/project/Results/modern/runs/*/model.pkl
 modern-methods/project/Results/modern/corpus.csv
@@ -8,3 +9,13 @@ modern-methods/project/Results/modern/corpus_review.csv
 modern-methods/project/Results/modern/runs/*/representatives.csv
 modern-methods/project/Results/comparison/review_packet.csv
 modern-methods/project/Results/comparison/outlier_review.csv
+
+# Downloaded model cache (contains symbolic links and large files)
+/final-project/modern-methods/Results/modern/cache/
+
+# Generated files larger than 50 MB
+/final-project/modern-methods/Results/modern/corpus.csv
+/final-project/modern-methods/Results/modern/runs/n15_c25_s7/model.pkl
+/final-project/modern-methods/Results/modern/runs/n30_c100_s42/model.pkl
+/final-project/modern-methods/Results/modern/runs/n30_c25_s42/model.pkl
+/final-project/modern-methods/Results/modern/runs/n30_c50_s42/model.pkl

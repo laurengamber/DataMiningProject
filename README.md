@@ -8,7 +8,7 @@
 
 ### Final Project 
 - Laura will do a classical pipeline for text mining hidden themes in Python
-- Mary Cate will do a modern pipeline for text mining hidden themes in Python
+- Mary Kate will do a modern pipeline for text mining hidden themes in Python
 - Lauren will do theory writing and data visualization in R.
 
 
