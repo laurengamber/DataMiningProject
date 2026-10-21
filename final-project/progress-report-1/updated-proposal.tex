@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{../proposal/references.bib}
+
+\begin{document}
+
+\begin{center}
+    {\Large\bfseries Data Mining Project Proposal}\\[6pt]
+    {\large \bfseries Topic Modeling of News Coverage on Self-Driving Cars} \\[6pt]
+    { \large Laura Banaszewski, Mary Kate Carara, and Lauren Gamber}\\[2pt]
+\end{center}
+
+
+\subsection*{Problem and Motivation}
+News coverage of self-driving cars spans technological development, safety, regulation, and commercial deployment. With many publications reporting on these issues, identifying recurring themes and comparing their coverage requires analyzing a large collection of unstructured text. Topic modeling offers a way to organize these articles into interpretable themes.
+
+Our primary research question is: What themes characterize news coverage of autonomous vehicles from 2016 to 2020, and how does the prevalence of these themes differ across publications? To support this question, we will compare classical and modern topic modeling pipelines and examine how method choice affects the themes identified, their interpretability, and the resulting publication comparisons. Our findings will describe news coverage within the dataset; they will not directly measure public opinion about autonomous vehicles.
+
+
+\subsection*{Data and Availability}
+Our dataset is a filtered version of the ``All the News'' dataset \parencite{mckinley2021}, available on Kaggle. The full dataset includes 2.79 million English news articles from January 2016 to April 2020. We used a regular expression text pattern to identify a subset of 7,337 articles, available in our GitHub repository as ``self\_driving\_articles.csv''. The subset covers 25 publications from January 1, 2016, through March 26, 2020. Each observation represents one article.
+
+The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable.
+
+An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines will use the same documented article set and duplicate-handling policy. We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
+
+
+\subsection*{Proposed Approach}
+We will compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern BERTopic pipeline. Both approaches will use the same articles, with preprocessing appropriate to their representations.
+
+For classical modeling \parencite{qamar2024}, we will follow a pipeline of: (1) Data Preprocessing, (2) Document-term Representation, (3) Topic Model Fitting, (4) Topic Interpretation. We will tokenize article bodies, remove English stopwords, and construct a document-term count matrix for LDA. LDA provides an interpretable baseline through topic word distributions and article topic mixtures. We will compare a small set of topic counts and use the highest-weight topic as each article's dominant topic for publication summaries, while retaining its full topic mixture.
+
+For modern modeling \parencite{alammar2024, kumari2026}, we will follow a pipeline of: (1) Data Preprocessing, (2) Document Embedding, (3) Dimensionality Reduction, (4) Document Clustering, (5) Topic Representation and Interpretation. We will use GTE-small embeddings to represent contextual similarity, UMAP to reduce dimensionality, HDBSCAN to group related articles, and class-based TF-IDF to identify topic keywords within BERTopic. Embedding input will retain sentence context after basic cleaning. Long articles will be embedded in chunks and combined into one article representation. HDBSCAN permits articles to remain unassigned, which we will report explicitly. We will examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
+
+For each pipeline, we will label topics using keywords and representative articles, then create heat maps of topic proportions within each publication. We will report publication sample sizes and the modern model's unassigned proportion alongside these comparisons. Differences will be interpreted descriptively, considering unequal publication and date coverage. This project applies course concepts in text representation, dimensionality reduction, clustering, and unsupervised evaluation to a substantive question about news coverage.
+
+
+\subsection*{Evaluation Plan}
+Our comparison will address topic quality, interpretability, computational efficiency, and the consistency of substantive findings. Since topic modeling is unsupervised, we will combine quantitative measures with human review rather than rely on one score.
+
+We will calculate $c_v$ topic coherence using each topic's top ten unigram terms and a shared reference corpus, tokenizer, and stopword policy. We will report per-topic coherence and its mean, together with topic counts, topic sizes, and the proportion of unassigned articles. Silhouette scores in the original embedding space will provide a supplementary modern clustering diagnostic, excluding unassigned articles and reporting that exclusion.
+
+For human evaluation, two team members will independently review the same 100 randomly selected articles using a fixed random seed after model selection and topic labeling. Using a 1--5 rubric, reviewers will assess whether assigned topic labels describe the articles. They will also inspect representative articles and top words to assess topic consistency and support for each interpretation. We will summarize scores and reviewer agreement, and document ambiguous or unassigned cases. Final evaluation articles will be kept separate from samples used for model selection and naming.
+
+We will create a Jaccard similarity heat map comparing the top ten unigram terms for every pair of classical and modern topics. This will describe lexical agreement without assuming that topic numbers align or that word overlap establishes semantic equivalence. We will exclude the modern model's unassigned group from topic coherence and keyword comparisons while reporting its size separately.
+
+To assess robustness, we will repeat selected configurations with a small set of random seeds and examine changes in topics and publication patterns. We will record preprocessing, embedding, and fitting times on documented hardware, distinguishing initial execution from cached runs. Success will mean producing interpretable themes supported by article evidence and publication comparisons whose limitations and sensitivity to modeling choices are clearly described.
+
+
+\subsection*{Scope and Feasibility}
+Filtering the full dataset to 7,337 articles keeps the project manageable under our time and hardware constraints. We will limit the comparison to LDA and BERTopic, use small parameter searches, and cache embeddings to avoid repeated computation. If topic solutions are too fragmented, we will prioritize configurations that yield themes interpretable through representative articles. The project will remain focused on descriptive topic analysis rather than adding sentiment prediction or causal claims.
+
+For the group project workflow, we are using a GitHub repository and a shared Overleaf project. Lauren will write about the theory behind the text-mining pipelines and perform data visualizations in R. Laura will use Python to create and evaluate the classical pipeline. Mary Kate will complete and evaluate the modern pipeline. Together, we will review topics, compare publication patterns and modeling approaches, and write the report.
+
+We plan to meet every two weeks for the remainder of the semester. A rough timeline of our project:
+\begin{itemize}
+
+\item Oct 21st: Complete the initial data audit, agree on a shared corpus, and develop initial models and embeddings. Background research on methods in progress.
+
+\item Nov 4th: Complete both pipelines, limited parameter comparisons, model selection, and topic labeling. Background research on methods done.
+
+\item Nov 18th: Complete publication comparisons, robustness checks, and quantitative and human evaluation across methods. Report writing in progress.
+
+\item Dec 2nd: Complete report writing, tables, and figures, and put together the presentation.
+
+\end{itemize}
+
+\newpage
+\subsection*{References}
+\printbibliography[heading=none]
+
+\end{document}
