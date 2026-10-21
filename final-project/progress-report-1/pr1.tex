@@ -1,92 +1,133 @@
 \documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
 \usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+\usepackage{amsmath,amssymb}
 \usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
 
-\title{Data Mining Project Proposal 1}
-\author{Laura Banaszewski, Mary Kate Carara, and Lauren Gamber}
-\date{Due: October 25th, 2026}
+\title{Themes in Autonomous Vehicle News Coverage Across Publications, 2016--2020: An LDA and BERTopic Comparison}
+\author{\IEEEauthorblockN{Laura Banaszewski, Mary Kate Carara, and Lauren Gamber}}
 
 \begin{document}
-
 \maketitle
 
-\section*{Title and authors}
-Laura Banaszewski, Mary Kate Carara, and Lauren Gamber
+\begin{abstract}
+This progress report provides a paper blueprint and research plan for analyzing themes in autonomous vehicle news coverage and their prevalence across publications. The available corpus contains 7,337 articles from 25 publications, dated January 2016 through March 2020. We will compare a classical Latent Dirichlet Allocation baseline with a BERTopic pipeline using contextual embeddings, dimensionality reduction, density-based clustering, and topic keyword extraction. Evaluation will combine coherence, independent human review, computational cost, and sensitivity of publication comparisons to modeling choices. Data access, an automated audit, full-corpus embeddings, and exploratory modern fits are complete. Classical analysis, human review, verified model selection, and final interpretation remain planned. The anticipated contribution is a reproducible comparison that connects model quality to the interpretation of news coverage while accounting for unequal publication coverage and unassigned articles.
+\end{abstract}
 
-\section*{Proposed Outline}
+\begin{IEEEkeywords}
+topic modeling, autonomous vehicles, news coverage, LDA, BERTopic
+\end{IEEEkeywords}
 
-\subsection*{Abstract}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\section{Introduction}
+Autonomous-vehicle news covers technological development, safety, regulation, and deployment. Identifying recurring themes can organize this coverage and reveal differences across publications. Individual readings do not provide a reproducible corpus-level summary, while keyword counts can miss relationships between differently worded accounts. Topic modeling provides a way to examine these patterns.
 
-\subsection*{Introduction}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+Our primary research question is: \emph{What themes characterize news coverage of autonomous vehicles from 2016 to 2020, and how does their prevalence differ across publications?} A supporting question asks how choosing LDA versus BERTopic affects theme interpretation and publication-level conclusions. The contribution will be an application and rigorous comparison of existing methods, supported by representative articles and sensitivity checks. The study concerns coverage within this corpus; it does not directly measure public opinion or establish causal effects of reporting.
 
-\subsection*{Related work}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\textbf{Proposed audience.} We propose the Applied Natural Language Processing (ANLP) special track at FLAIRS, whose scope includes contextual representations, applied case studies, and evaluation~\cite{flairs2027}. Our contribution connects these methods to interpretable news themes. PR1 retains the IEEE conference format required by the assignment; an actual FLAIRS submission would follow its own instructions. Alternative venues are compared in the companion document; submission is optional.
 
-\subsection*{Data}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\section{Related Work}
+\subsection{Reviewed foundations and comparison}
+LDA models documents as mixtures of topics and topics as distributions over words~\cite{blei2003}. The reviewed text-mining treatments describe preprocessing, document-term representations, and interpretation of these distributions~\cite{qamar2024,silge2017}. In contrast, the reviewed modern-language-model text describes embedding representations and clustering workflows~\cite{alammar2024}. These approaches offer different analytical views: LDA retains overlapping membership, whereas our contextual clustering pipeline can leave articles unassigned. Neither representation alone determines whether a theme is substantively useful. Our comparison will therefore connect topic words to article evidence and publication summaries, rather than assume a newer representation produces better findings.
 
+\subsection{Planned literature extension}
+The original BERTopic paper~\cite{grootendorst2022}, the coherence framework of R\"oder et al.~\cite{roder2015}, and applied interpretability work by Doogan and Buntine~\cite{doogan2021} have been identified for group review. We will use them to refine the comparison between model structure, automated quality, and human interpretation. We will also review Penmetsa et al.'s autonomous-vehicle news study~\cite{penmetsa2023}, comparing its sentiment-oriented question and data selection with our theme- and publication-oriented analysis. The synthesis will distinguish methodological differences from differences in corpus and purpose. These additions are candidates, not completed group reading; their references are marked accordingly. The companion reading document prioritizes further sources.
 
-\subsection*{Methodology}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\section{Data}
+\subsection{Access, structure, and completed audit}
+The available \texttt{self\_driving\_articles.csv} is derived from David McKinley's All the News dataset on Kaggle~\cite{mckinley2021}, downloaded as \texttt{all-the-news-2-1.csv}. Each observation is an article. The 15 source columns contain two identifiers; date, year, month, and day; author; title; article body; URL; section; publication; title-match indicator; body-hit count; and word count. Bodies supply model input; publication/date support interpretation. There is no supervised target. Code and the subset are in the \href{https://github.com/laurengamber/DataMiningProject}{project repository}~\cite{projectcode}.
 
-\subsection*{Experimental Design}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\textbf{Documented extraction:} The R Markdown workflow~\cite{extractioncode} searches titles and bodies case-insensitively for self-driving/self driving, driverless, autonomous car/vehicle/truck/driving, robo-taxi variants, Waymo, and Tesla Autopilot variants. It retains a title match or at least three body matches, requires at least 150 whitespace-delimited words, parses dates, and keeps the first occurrence of each exact title. Checking the available subset confirms these thresholds and no duplicate titles; full-source re-extraction has not been repeated. Five duplicate bodies remain despite title deduplication.
 
-\subsection*{Results}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+Table~\ref{tab:audit} summarizes the automated audit. Publication sizes range from one to 1,214 articles, so larger sources can dominate pooled results. Missing author and section values do not require imputing model inputs. Long articles motivate chunk-based embedding instead of truncating every article to its opening text.
 
-\subsection*{Discussion}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\begin{table}[t]
+\caption{Completed automated audit. Duplicate bodies count occurrences beyond the first.}
+\label{tab:audit}
+\centering
+\begin{tabular}{@{}lr@{}}
+\toprule
+Property & Observed value \\
+\midrule
+Articles / source columns / publications & 7,337 / 15 / 25 \\
+Date coverage & Jan. 1, 2016--Mar. 26, 2020 \\
+Missing bodies / publications & 0 / 0 \\
+Missing authors / sections & 1,381 / 3,668 \\
+Duplicate article bodies & 5 \\
+Word count: median / maximum & 496 / 28,048 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsection*{Limitations and Responsible Use Considerations}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\subsection{Remaining data checks}
+\textbf{Planned:} Inspect the seeded 30-article sample for relevance, incidental mentions, boilerplate, and malformed text; no human audit is complete. Inspect publication-by-year counts and possible syndicated or near-duplicate stories. Retain all 7,337 articles for the primary comparison, flag duplicates, and assess exact-body deduplication as a sensitivity check. Both pipelines must use matching IDs and a shared manifest. Access is secured; a documented seeded subset shared by both models is the fallback for computing limits. Verify licensing and redistribution conditions before further sharing.
 
-\subsection*{Conclusion}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\section{Methodology}
+\subsection{Classical baseline: LDA}
+\textbf{Confirmed method; analysis planned:} Laura will tokenize and lowercase bodies, remove English stopwords, and construct a document-term count matrix for LDA~\cite{blei2003}. This meaningful baseline provides inspectable topic-word distributions and article-topic mixtures without pretrained contextual representations. A proposed initial grid is $K\in\{10,20,30,50\}$; vocabulary thresholds, priors, convergence settings, and the final grid will be documented before fitting. A shared unigram vocabulary will support comparable keyword evaluation. Retain full topic mixtures, use the largest-weight topic for primary article-count summaries, and compare those with average topic-mixture summaries. No classical analysis has been completed.
 
-\subsection*{References}
-\begin{itemize}[leftmargin =1.5em]
-    \item Item 1
-\end{itemize}
+\subsection{Modern pipeline: BERTopic}
+\textbf{Implemented and explored:} The modern pipeline uses GTE-small embeddings~\cite{gtemodel}, UMAP, HDBSCAN, and class-based TF-IDF within BERTopic~\cite{bertopicsoftware}. Inputs retain sentence structure after basic HTML and whitespace cleaning. Articles are split into chunks of at most 480 tokens; chunk embeddings are combined by token-weighted averaging and normalized into one 384-dimensional article vector. Embeddings are cached.
 
-\section*{Introduction and research questions}
+The exploratory grid uses UMAP neighborhood sizes 15/30, five reduced dimensions, cosine distance, and minimum distance zero. HDBSCAN uses Euclidean distance, minimum cluster sizes 25/50/100, and minimum samples 10. Keyword extraction uses English stopwords and a vocabulary with minimum article frequency five. These choices test whether neighborhood scale and cluster-size requirements yield interpretable themes without excessive fragmentation or exclusion. Final selection and labels require human review. Python notebooks use BERTopic, sentence-transformers, UMAP, HDBSCAN, gensim, and scikit-learn; R will support visualization. Local ARM macOS hardware is available; hardware details, versions, seeds, and cold/cached timings will accompany results in the repository.
 
-\section*{Preliminary related work}
+\section{Experimental Design}
+\subsection{Selection and validation setting}
+Both methods will analyze the same observed corpus with representation-appropriate preprocessing. This is descriptive unsupervised analysis, not prediction against labeled test targets. Separate development material from final human-assessment articles. Freeze configurations and labels, exclude articles already used for selection/naming and their exact duplicates from the assessment pool, then draw 100 eligible articles with a fixed seed. Fitting on the full corpus does not constitute an out-of-sample test; no future-article generalization claim will be made. Publication/date remain metadata rather than modeling features.
 
-\section*{Data understanding and initial audit}
+\subsection{Quantitative and human evidence}
+\textbf{Planned common measures:} Compute $c_v$ coherence for top-ten unigram terms using the same tokenized reference corpus, stopword policy, and documented settings. Report per-topic scores and their unweighted mean, topic counts and sizes, keyword diversity, and vocabulary coverage. Exclude BERTopic's unassigned group from coherence and keyword comparisons while reporting its size. Cosine silhouette in the original embedding space, excluding unassigned articles, is a supplementary modern diagnostic rather than a common measure of model superiority.
 
-\section*{Proposed methodology}
+Two team members will independently assess the same 100 articles for both methods after labels are frozen, concealing model identity where feasible. Rate article/topic fit from 1 (unsupported) through 3 (partially supported) to 5 (clearly supported); define intermediate anchors in the instructions. Record unassigned cases separately instead of forcing ratings. Report rating distributions, exact agreement, and weighted Cohen's kappa for paired ordinal ratings. Review representative articles and top words for topic naming using development material. No human evaluation or label review is complete; existing assistant-suggested selection scores will not count as human evidence.
 
-\section*{Evaluation and validation plan}
+\subsection{Publication comparisons and robustness}
+For publication $p$ and dominant topic $t$, summarize
+\begin{equation}
+\widehat{\pi}_{pt}=\frac{n_{pt}}{n_p},
+\label{eq:proportion}
+\end{equation}
+where $n_p$ includes all eligible articles from publication $p$. BERTopic summaries include an unassigned category. Display sample sizes; provisionally restrict detailed comparisons to publications with at least 50 articles and check sensitivity to that cutoff. Describe sparse sources without ranking them. Compare common date coverage or adequately populated publication-year strata: differences can reflect different events covered rather than editorial preferences.
 
-\section*{Project plan and responsibilities}
+Create a pairwise Jaccard heat map of top-ten term sets, interpreting lexical overlap without aligning topic IDs. Report differences in granularity. Repeat selected configurations with seeds 7/21/42; assess assignment stability on commonly assigned articles and report coverage. Check sensitivity to duplicate removal and unigram versus bigram keyword representation. Handle unequal coverage through within-publication proportions, counts, and sensitivity checks rather than supervised class balancing. Record preprocessing, embedding, fitting, representation, and evaluation times separately. Success means article-supported themes and publication patterns with documented stability and limitations, even if neither pipeline is consistently superior.
 
+\section{Results: Planned Evidence}
+\textbf{Completed exploratory work:} Full-corpus embeddings and six seed-42 modern fits are available. They produced 24--71 topics and 17.1--21.8\% unassigned articles. These ranges motivate a tradeoff between detail and coverage; they do not establish final themes, a preferred model, or a comparison with LDA. Human-confirmed selection remains pending even though downstream files exist.
 
+\textbf{Planned displays:} A model-quality/timing table; a topic-keyword and representative-article table; publication-proportion heat maps using (\ref{eq:proportion}); and a cross-model lexical-overlap heat map. Report human ratings and seed sensitivity alongside automated measures. Populate these after classical fitting, verified selection, and labeling; no anticipated theme or winning method is presented as a finding.
+
+\section{Discussion}
+\textbf{Planned:} Explain which themes and publication patterns persist across methods and which depend on granularity, exclusion, or representation. Support interpretations with article evidence and inspect disagreements. Discuss whether contextual embeddings yield clearer substantive categories at a cost in computation or coverage. Distinguish company- or writing-format clusters from themes that answer the question. These interpretations require human review and cross-method results.
+
+\section{Limitations and Responsible Use}
+Filtering can miss relevant stories and admit incidental mentions; title deduplication can discard distinct revisions. Boilerplate, duplicate bodies, pretrained embedding biases, and uneven date/publication coverage can distort themes. Hard assignments simplify overlapping subjects. Two team reviewers provide limited evidence rather than population-wide judgments. The corpus is neither representative of all news nor a measure of public attitudes; comparisons do not establish publisher bias or causation. Author metadata will not support individual profiling. Verify licensing, minimize quoted text, and share code, identifiers, and permitted derived outputs. Final claims depend on the manual audit and literature review.
+
+\section{Conclusion}
+The paper will characterize autonomous-vehicle news themes and assess how LDA and BERTopic influence interpretation across publications. The audit and exploratory modern fits establish initial feasibility. Classical analysis, independent review, verified selection, and robustness checks remain necessary before substantive conclusions.
+
+\section{Project Plan and Responsibilities}
+Laura leads classical implementation/evaluation; Mary Kate leads the modern pipeline and evaluation integration; Lauren leads theory synthesis and R visualization. All members will interpret topics, contribute to the manuscript, and review both pipelines. Two members will independently rate final articles. Table~\ref{tab:plan} gives the remaining milestones.
+
+\begin{table}[t]
+\caption{Planned milestones and dependencies for 2026.}
+\label{tab:plan}
+\centering
+\begin{tabular}{@{}p{0.14\columnwidth}p{0.78\columnwidth}@{}}
+\toprule
+Date & Deliverable and dependency \\
+\midrule
+Oct. 25 & PR1: consolidate audit, reading plan, evaluation design, and verified completion status. \\
+Nov. 4 & Both pipelines, limited searches, verified selection and labels; common corpus required. \\
+Nov. 18 & Joint metrics, independent review, robustness, and publication comparisons; both model exports and frozen labels required. \\
+Dec. 2 & Manuscript, final displays, and presentation preparation; joint interpretation and full-team review required. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+If computation is limiting, reuse embeddings and narrow the search or use a shared subset. If topics are fragmented, prefer configurations supported by article evidence and disclose selection criteria. If comparisons remain unstable, report uncertainty and narrow publication/date scope. Before PR1 submission, complete manual inspection, review new sources, verify licensing, and obtain group approval of the draft.
+
+\clearpage
+\IEEEtriggeratref{8}
+\bibliographystyle{IEEEtran}
+\bibliography{pr1-references}
 \end{document}
