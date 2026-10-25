@@ -1,6 +1,5 @@
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-\usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
@@ -50,10 +49,10 @@ Bozeman, MT \\
 laura.banaszewski@montana.edu}
 \and
 \IEEEauthorblockN{Mary Kate Carara}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockA{\textit{Department of Mathematical Sciences} \\
+\textit{Montana State University}\\
+Bozeman, MT \\
+connellymarykate@gmail.com}
 }
 
 \date{Due: October 25th, 2026}
@@ -62,9 +61,9 @@ email address or ORCID}
 
 \maketitle
 
-
 \section*{Conference Venues}
-We propose the Applied Natural Language Processing (ANLP) special track of the Florida Artificial Intelligence Research Society (FLAIRS) 40th conference (FLAIRS-40) as our target audience (https://www.flairs-40.info/home). The conference is organized by the Florida Artificial Intelligence Research Society and has been held annually since 1988. The mission of the conference is to present and discuss state of the art artificial intelligence and related research, and the 2027 conference includes a special track for Applied Natural Language Processing (ANLP). The conference website notes that that high-quality submissions from students are traditionally included. 
+
+We propose the applied Natural Language Processing (ANLP) special track of the 2027 Florida Artificial Intelligence Research Society (FLAIRS) conference as our target audience (\cite{flairs2027}). The conference has been held annually since 1988 and provides a forum for presenting and discussing state of the art research in artificial intelligence and related fields. The conference website highlights that high-quality student submissions are traditionally included. 
 
 \section*{Project plan and responsibilities}
 For the group project workflow, we are using a GitHub repository and a shared Overleaf project. Lauren will write about the theory behind the text-mining pipelines and perform data visualizations in R. Laura will use Python to create and evaluate the classical pipeline. Mary Kate will complete and evaluate the modern pipeline. Together, we will review topics, compare publication patterns and modeling approaches, and write the report.
@@ -81,7 +80,7 @@ We plan to meet every two weeks for the remainder of the semester. A rough timel
 \item Dec 2nd: Complete report writing, tables, and figures, and put together the presentation.
 \end{itemize}
 
-\clearpage
+\newpage
 \begin{center}\large\textbf{Proposed Paper Outline}\end{center}
 \noindent\emph{Status legend:} \done~completed;
 \wip~started, partially complete; \planned~not yet started.
@@ -139,6 +138,8 @@ Our work supports three primary research questions:
     \item Topic modeling for news: classical (LDA, NMF) \planned
     \item Topic modeling for news: modern embedding-based
           (e.g., BERTopic) \planned
+    \item Journal article exploring a related topic:  "How is automated and self-driving vehicle technology presented in the news media?" 
+        \cite{penmetsa2023news} \planned     
     \item Gap statement and rationale for comparing pipelines \wip
 \end{itemize}
 
@@ -207,64 +208,103 @@ The modern pipeline follows five stages \parencite{alammar2024, kumari2026}: (1)
 For each pipeline, we label topics using top keywords and representative articles, then produce heat maps of topic proportions within each publication. These comparisons are reported alongside publication sample sizes and the modern model's unassigned proportion. Differences are interpreted descriptively, taking into account unequal publication and date coverage.
 
 \section*{Experimental Design}
-\textbf{Purpose:} 
+\textbf{Purpose:} Describe how we will develop, evaluate and compare the LDA and BERTopic modeling pipelines.
 
 \textbf{Planned content:} 
 \begin{itemize}
-    \item Item 1 \done
-    \item Item 2 \wip
-    \item Item 3 \planned
+    \item Model inputs, metadata and hyperparameters \wip
+    \item  LDA model development and selection plan \wip
+    \item  BERTopic model development and selection plan \wip
+    \item Independent human evaluation plan \wip
+    \item Pipeline comparison\planned
+    \item Definition of success \planned
 \end{itemize}
 
 \textbf{Working draft:}
+
+\begin{enumerate}
+    \item \textbf{Define the shared corpus and experimental settings.} We will use the same article set and duplicate-handling policy for both pipelines. Article bodies will be teh modeling input, while publication and date will remain metadata. We will document preprocessing choices, hyperparameters, and random seeds.
+    \item \textbf{Develop the LDA baseline.} We will construct a document-term count matrix and compare a small set of topic counts. We will retain article-level topic mixtures and use each article's highest-weight topic for publication summaries. 
+    \item \textbf{Develop the BERTopic pipeline.} We will generate GTE-small article embeddings, reduce dimensionality with UMAP, and cluster articles with HDBSCAN. We will compare a limited set of neighborhood sizes and minimum cluser sizes, recording topic counts, sizes and the proportion of unassigned articles.
+    \item \textbf{Select configurations and label topics}.We will consider coherence, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
+    \item \textbf{Independent human evaluation.} Two team members will independently review the same 100 randomly selected articles using a fixed seed. They will rate how well each assigned topic describes the article on a 1–5 scale. We will summarize ratings and reviewer agreement, recording ambiguous and unassigned cases separately.
+    \item \textbf{Compare topics across publications. } or each pipeline, we will calculate the proportion of each publication’s articles assigned to each topic. Heat maps and representative articles will help identify shared themes and differences in thematic emphasis. We will report publication sample sizes, include BERTopic’s unassigned category, and consider unequal date coverage when interpreting differences.
+    \item \textbf{Compare pipeline outputs.} We will compare coherence, keyword diversity, human ratings, computational cost, and topic overlap. We will also examine whether both methods support similar conclusions about publication differences, accounting for differences in topic granularity.
+    \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
+    \item \textbf{Evaluate success and document conclusions}. Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
+\end{enumerate}
 
 \section*{Results}
-\textbf{Purpose:} 
+\textbf{Purpose:} Present the themes, publication patterns, and pipeline comparison supported by the completed analysis.
 
 \textbf{Planned content:} 
 \begin{itemize}
-    \item Item 1 \done
-    \item Item 2 \wip
-    \item Item 3 \planned
+    \item Topic keywords, labels, sizes and representative articles \planned
+    \item Topic proportions across publications, alongside publication sample sizes \planned
+    \item Quantitative and human evaluations \planned
+    \item Agreement and differences between pipelines in themes and publication patterns \planned
+    \item Robustness and uncertainty checks \planned
 \end{itemize}
 
 \textbf{Working draft:}
+Results are pending completion of the experiments and analysis. We will summarize topics using labels, keywords, sizes, and representative articles. For each pipeline, heat maps will show topic proportions within each publication, accompanied by publication sample sizes and BERTopic’s unassigned proportions. 
+
+A comparison table will summarize quantitative metrics, human evaluation, and computational cost. We will examine whether LDA and BERTopic support similar findings about publication patterns, accounting for differences in topic granularity. Robustness results will document sensitivity to random seeds, duplicate handling, and date coverage, highlighting comparisons with limited support.
+
 
 \section*{Discussion}
+\textbf{Purpose:} Interpret the identified themes and publication differences in relation to the research questions, modeling choices, and prior work on AV news coverage.
 \textbf{Planned content:} 
 \begin{itemize}
-    \item Item 1 \done
-    \item Item 2 \wip
-    \item Item 3 \planned
+    \item Interpretation of shared themes and differences in thematic emphasis across publications \planned
+    \item Influence of pipeline choice on substantive findings \planned
+    \item Relationship to prior AV media research \planned
+    \item Implications of evaluation results \planned
+    \item Discussion of robustness and uncertainty \planned 
+    \item Potential extensions and future work \planned
 \end{itemize}
 
 \textbf{Working draft:}
+
+Once the analysis is complete, we will discuss what the identified themes reveal about AV news coverage and how thematic emphasis differs across publications. 
+
+We will examine whether LDA and BERTopic support similar conclusions about publication differences and explain where their findings diverge. Quantitative metrics, human review, and robustness checks will help assess which interpretations are well supported and which remain sensitive to modeling choices.
+
+We will relate these findings to prior studies of AV news coverage and explain the contribution of comparing themes across publications. 
+
 
 \section*{Limitations and Responsible Use Considerations}
-\textbf{Purpose:} Acknowledge and address issues with our data and corpus, methods, and evaluation.
+\textbf{Purpose:} Acknowledge issues and limitations of our corpus, methods, and evaluation.
 
 \textbf{Planned content:} 
 \begin{itemize}
-    \item Uneven coverage/data collection \planned
-    \item Imperfect data filtering \planned
-    \item Event-driven coverage \planned
-    \item Model assumptions \planned
-    \item Human evaluation \planned
+    \item Uneven publication and date coverage \planned
+    \item Imperfect filtering and repeated stories \planned
+    \item Influence of major news events \planned
+    \item Model assumptions and sensitivity \planned
+    \item Limitations of Human evaluation \planned
 \end{itemize}
 
 \textbf{Working draft:}
+The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while duplicate or syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
+
+Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-topic summaries simplify articles containing multiple themes, while BERTopic’s embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
 
 \section*{Conclusion}
-\textbf{Purpose:} 
+\textbf{Purpose:} Summarize the findings about AV news themes and publication differences, explain the contribution of comparing modeling pipelines, and identify remaining work.
 
 \textbf{Planned content:} 
 \begin{itemize}
-    \item Item 1 \done
-    \item Item 2 \wip
-    \item Item 3 \planned
+    \item Main themes and differences across publications \planned
+    \item Influence of pipeline choice on findings \planned
+    \item Remaining analysis and future work \planned
 \end{itemize}
 
 \textbf{Working draft:}
+This study aims to characterize themes in AV news coverage from 2016 to 2020 and compare their prevalence across publications. Applying LDA and BERTopic to a shared corpus will allow us to examine how modeling choices affect the identified themes and publication comparisons.
+
+The final conclusion will summarize the findings supported by quantitative evaluation, human review, and robustness checks, and identify questions that remain unresolved.
+
 
 \newpage
 \section*{References}
