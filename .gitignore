@@ -1,18 +1,3 @@
 .venv/
 .ipynb_checkpoints/
 __pycache__/
-/data
-modern-methods/project/Results/modern/cache/
-modern-methods/project/Results/modern/runs/*/model.pkl
-modern-methods/project/Results/modern/corpus.csv
-modern-methods/project/Results/modern/corpus_review.csv
-modern-methods/project/Results/modern/runs/*/representatives.csv
-modern-methods/project/Results/comparison/review_packet.csv
-modern-methods/project/Results/comparison/outlier_review.csv
-
-# Downloaded model cache (contains symbolic links and large files)
-/final-project/modern-methods/Results/modern/cache/
-
-# Generated model binaries and large corpus
-/final-project/modern-methods/Results/modern/corpus.csv
-/final-project/modern-methods/Results/modern/runs/*/model.pkl
