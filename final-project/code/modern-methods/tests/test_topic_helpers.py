@@ -45,7 +45,7 @@ class CacheAndReviewTests(unittest.TestCase):
             df=pd.DataFrame({'article_id':['a','b'],'text':['car','law']})
             df.to_csv(out/'corpus.csv',index=False)
             h.write_json(out/'embedding_pointer.json',{'folder':'cache','manifest':{'article_ids':['b','a'],'text_hash':h.digest(df.text.tolist())}})
-            with self.assertRaises(ValueError): h.load_inputs(root)
+            with self.assertRaises(ValueError): h.load_inputs(root,out/'corpus.csv')
     def test_review_freeze_rejects_label_changes(self):
         with tempfile.TemporaryDirectory() as temp:
             df=pd.DataFrame({'article_id':['a'],'text':['car road'],'title':['Car']})

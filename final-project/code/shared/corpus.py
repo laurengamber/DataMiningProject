@@ -5,6 +5,8 @@ import pandas as pd
 
 SEED = 42
 DATA = Path(__file__).resolve().parents[2]/'data/self_driving_articles.csv'
+CORPUS_DIR = DATA.parent
+CORPUS = CORPUS_DIR/'corpus.csv'
 
 def write_json(path, value):
     path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
@@ -21,8 +23,8 @@ def clean_text(text):
     text = re.sub(r'</?(?:p|div|span|br|a|strong|em|ul|li|h[1-6]|script|style)\b[^>]*>', ' ', str(text), flags=re.I)
     return re.sub(r'\s+', ' ', html.unescape(text)).strip()
 
-def audit_corpus(root, source=DATA):
-    root = Path(root); out = root/'Results/modern'; out.mkdir(parents=True, exist_ok=True)
+def audit_corpus(out=CORPUS_DIR, source=DATA):
+    out = Path(out); out.mkdir(parents=True, exist_ok=True)
     df = pd.read_csv(source)
     assert df.X1.notna().all() and df.X1.is_unique, 'Article IDs must be unique'
     df.insert(0, 'article_id', df.X1.astype(str))
@@ -44,9 +46,9 @@ def audit_corpus(root, source=DATA):
     write_json(out/'corpus_manifest.json', dict(article_ids=df.article_id.tolist(), corpus_hash=corpus_hash(df)))
     return df, summary
 
-def load_corpus(root):
+def load_corpus(out=CORPUS_DIR):
     """Read the audited corpus and verify it against its manifest."""
-    out = Path(root)/'Results/modern'
+    out = Path(out)
     df = pd.read_csv(out/'corpus.csv', dtype={'article_id':str})
     manifest = json.loads((out/'corpus_manifest.json').read_text())
     if manifest['article_ids'] != df.article_id.tolist() or manifest['corpus_hash'] != corpus_hash(df): raise ValueError('Corpus/manifest mismatch')

@@ -9,10 +9,14 @@ def representation_text(text):
     # Match BERTopic's English keyword preprocessing before fitting a fixed vocabulary.
     return re.sub(r'[^A-Za-z0-9 ]+', '', text.replace('\n',' ').replace('\t',' ')) or 'emptydoc'
 
-def reference_texts(df):
+def analyzer():
+    # Lowercase word tokens without English stopwords; shared by coherence and classical preprocessing.
     from sklearn.feature_extraction.text import CountVectorizer
+    return CountVectorizer(stop_words='english').build_analyzer()
+
+def reference_texts(df):
     from gensim.corpora import Dictionary
-    tokenizer=CountVectorizer(stop_words='english').build_analyzer()
+    tokenizer=analyzer()
     texts=[tokenizer(representation_text(t)) for t in df.text]; return texts,Dictionary(texts)
 
 def coherence(terms,texts,dictionary):
