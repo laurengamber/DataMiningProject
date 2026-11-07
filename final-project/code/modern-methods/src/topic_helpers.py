@@ -5,7 +5,7 @@ import importlib.metadata as metadata
 import numpy as np
 import pandas as pd
 
-# Shared corpus/evaluation code lives in final-project/shared; re-exported for notebooks and tests.
+# Shared corpus/evaluation code lives in final-project/code/shared; re-exported for notebooks and tests.
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from shared.corpus import SEED, write_json, digest, corpus_hash, clean_text, audit_corpus, load_corpus
 from shared.evaluation import (representation_text, reference_texts, coherence, stability, jaccard_table,

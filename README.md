@@ -32,4 +32,4 @@ Lecture Proposal:
 
 ### Modern project workflow
 
-Mary Kate’s implementation is in three numbered [project notebooks](modern-methods/project/notebooks/README.md): corpus and full-text embeddings, BERTopic experiments, and modern/classical evaluation. Run them in order; model selection, topic naming, and two-person evaluation use explicit human review files. Laura’s classical export contract and project milestones are documented there.
+Mary Kate’s implementation is in three numbered [project notebooks](final-project/code/modern-methods/notebooks/README.md): corpus and full-text embeddings, BERTopic experiments, and modern/classical evaluation. Run them in order; model selection, topic naming, and two-person evaluation use explicit human review files. Laura’s classical export contract and project milestones are documented there.

@@ -2,7 +2,7 @@
 
 From the repository root, run `uv sync`, then `uv run jupyter lab`. Execute notebooks 01–03 in order from fresh kernels. Notebook 01 downloads GTE-small and caches all embeddings; notebook 02 runs six fits before pausing for real model-selection ratings. Fill `selection_review/selection_review.csv`, resume notebook 02, then fill `topic_labels.csv`. Notebook 03 evaluates the selected model and reports missing team inputs.
 
-Modern helpers live in `src/topic_helpers.py`; corpus and evaluation code shared with the classical pipeline lives in `final-project/shared/` and is re-exported by `topic_helpers`. Run `PYTHONPATH=modern-methods/project uv run python -m unittest discover -s modern-methods/project/tests` from the repository root. Generated large corpus copies, models, and caches are ignored by Git. Keep small tables and figures as reviewable results. Only load trusted local model pickle files.
+Modern helpers live in `src/topic_helpers.py`; corpus and evaluation code shared with the classical pipeline lives in `final-project/code/shared/` and is re-exported by `topic_helpers`. Run `PYTHONPATH=final-project/code/modern-methods uv run python -m unittest discover -s final-project/code/modern-methods/tests` from the repository root. Generated large corpus copies, models, and caches are ignored by Git. Keep small tables and figures as reviewable results. Only load trusted local model pickle files.
 
 ## Laura’s handoff
 
@@ -29,13 +29,13 @@ The lecture’s logistic regression, word2vec, and fine-tuning examples provide 
 From the repository root:
 
 ```sh
-uv run python modern-methods/project/run_embeddings.py
-uv run python modern-methods/project/run_experiments.py
-uv run python modern-methods/project/verify_notebooks.py
-PYTHONPATH=modern-methods/project uv run python -m unittest discover -s modern-methods/project/tests
+uv run python final-project/code/modern-methods/run_embeddings.py
+uv run python final-project/code/modern-methods/run_experiments.py
+uv run python final-project/code/modern-methods/verify_notebooks.py
+PYTHONPATH=final-project/code/modern-methods uv run python -m unittest discover -s final-project/code/modern-methods/tests
 ```
 
-The experiment script stops at model selection. Resume notebook 02 after filling the ratings. All output paths in this document are relative to `modern-methods/project/`; dependencies remain managed by the repository-level pyproject and lockfile. Cache/model files stay local. Do not commit full article review packets.
+The experiment script stops at model selection. Resume notebook 02 after filling the ratings. All output paths in this document are relative to `final-project/code/modern-methods/`; dependencies remain managed by the repository-level pyproject and lockfile. Cache/model files stay local. Do not commit full article review packets.
 
 Vocabulary filtering uses a fixed vocabulary learned from original articles with `min_df=5`; BERTopic otherwise interprets that threshold over concatenated topic documents, which can fail or hide topic-specific terms. The fixed vocabulary is reused across fits and representations.
 
