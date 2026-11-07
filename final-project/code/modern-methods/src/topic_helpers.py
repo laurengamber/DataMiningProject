@@ -7,7 +7,7 @@ import pandas as pd
 
 # Shared corpus/evaluation code lives in final-project/code/shared; re-exported for notebooks and tests.
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from shared.corpus import SEED, write_json, digest, corpus_hash, clean_text, audit_corpus, load_corpus
+from shared.corpus import SEED, CORPUS, write_json, digest, corpus_hash, clean_text, audit_corpus, load_corpus
 from shared.evaluation import (representation_text, reference_texts, coherence, stability, jaccard_table,
                                validate_classical, publication_exports, review_packets, summarize_reviews)
 
@@ -79,8 +79,8 @@ def embed_corpus(df, root, pilot=False):
     if not pilot: write_json(root/'Results/modern/embedding_pointer.json',dict(folder=str(folder.relative_to(root)),manifest=manifest))
     return arr, folder
 
-def load_inputs(root):
-    root=Path(root); df=pd.read_csv(root/'Results/modern/corpus.csv',dtype={'article_id':str})
+def load_inputs(root, corpus=CORPUS):
+    root=Path(root); df=pd.read_csv(corpus,dtype={'article_id':str})
     pointer=json.loads((root/'Results/modern/embedding_pointer.json').read_text()); m=pointer['manifest']
     if m['article_ids'] != df.article_id.tolist() or m['text_hash'] != digest(df.text.tolist()): raise ValueError('Corpus/cache mismatch')
     arr=np.load(root/pointer['folder']/'embeddings.npy'); validate_embeddings(arr,len(df))

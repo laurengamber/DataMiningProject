@@ -6,5 +6,5 @@ __pycache__/
 /final-project/code/modern-methods/Results/modern/cache/
 
 # Generated model binaries and large corpus
-/final-project/code/modern-methods/Results/modern/corpus.csv
+/final-project/data/corpus.csv
 /final-project/code/modern-methods/Results/modern/runs/*/model.pkl

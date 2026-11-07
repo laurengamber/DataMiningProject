@@ -9,16 +9,8 @@ We tokenize article bodies, remove English stopwords, and build a document-term 
 
 We use **sklearn's `LatentDirichletAllocation`** over gensim's `LdaModel`, because it plugs straight into the same `CountVectorizer` analyzer. 
 
-Code plan
-
-**Step 0: get the corpus.** `corpus.csv` is gitignored and isn't on your machine. Run notebook 01, or call `shared.corpus.audit_corpus()` with `final-project/code/modern-methods` as `root`. It reads `final-project/data/self_driving_articles.csv` and writes `Results/modern/corpus.csv`. Shared helpers live in `final-project/code/shared/`; classical outputs go to `final-project/code/modern-methods/Results/classical/`, where notebook 03 looks.
-
 **Modules and steps:**
 
-1. **`load_corpus`**
-   - Read `corpus.csv` with `article_id` as a string.
-   - Check that the IDs match `corpus_manifest.json`.
-   - Use `shared.corpus.load_corpus`, which does both checks and recomputes the hash.
 2. **`preprocessing.py`**
    - Apply `representation_text`, then the shared analyzer.
    - Add your extra filters: custom stopwords and number-only tokens.
