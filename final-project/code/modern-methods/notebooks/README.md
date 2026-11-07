@@ -2,7 +2,7 @@
 
 From the repository root, run `uv sync`, then `uv run jupyter lab`. Execute notebooks 01–03 in order from fresh kernels. Notebook 01 downloads GTE-small and caches all embeddings; notebook 02 runs six fits before pausing for real model-selection ratings. Fill `selection_review/selection_review.csv`, resume notebook 02, then fill `topic_labels.csv`. Notebook 03 evaluates the selected model and reports missing team inputs.
 
-Helpers live in `src/topic_helpers.py`. Run `PYTHONPATH=modern-methods/project uv run python -m unittest discover -s modern-methods/project/tests` from the repository root. Generated large corpus copies, models, and caches are ignored by Git. Keep small tables and figures as reviewable results. Only load trusted local model pickle files.
+Modern helpers live in `src/topic_helpers.py`; corpus and evaluation code shared with the classical pipeline lives in `final-project/shared/` and is re-exported by `topic_helpers`. Run `PYTHONPATH=modern-methods/project uv run python -m unittest discover -s modern-methods/project/tests` from the repository root. Generated large corpus copies, models, and caches are ignored by Git. Keep small tables and figures as reviewable results. Only load trusted local model pickle files.
 
 ## Laura’s handoff
 
