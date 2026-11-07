@@ -1,0 +1,361 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{amsmath,amssymb}   % amssymb also provides \checkmark and loads amsfonts
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{float}             % needed for [H] placement
+\usepackage{listings}
+\usepackage{csquotes}          % recommended by biblatex
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  frame=single
+}
+
+% Compact lists to help with the 4-page limit
+\setlist{nosep,leftmargin=*}
+
+% Status tags
+\newcommand{\done}{\textcolor{green!40!black}{\textbf{[$\checkmark$ Done]}}}
+\newcommand{\wip}{\textcolor{orange!70!black}{\textbf{[$\circ$ In progress]}}}
+\newcommand{\planned}{\textcolor{blue!60!black}{\textbf{[$\square$ Planned]}}}
+
+\usepackage[style=ieee, backend=biber]{biblatex}
+\addbibresource{../references.bib}
+
+\title{ Topic Modeling of Autonomous Vehicle News Coverage Across Publications, 2016–2020\\
+\large Progress Report 1
+}
+
+\author{\IEEEauthorblockN{Lauren Gamber }
+\IEEEauthorblockA{\textit{Department of Mathematical Sciences} \\
+\textit{Montana State University}\\
+Bozeman, MT \\
+Lauren.Gamber@montana.edu}
+\and
+\IEEEauthorblockN{Laura Banaszewski}
+\IEEEauthorblockA{\textit{Gianforte School of Computing} \\
+\textit{Montana State University}\\
+Bozeman, MT \\
+laura.banaszewski@montana.edu}
+\and
+\IEEEauthorblockN{Mary Kate Carara}
+\IEEEauthorblockA{\textit{Department of Mathematical Sciences} \\
+\textit{Montana State University}\\
+Bozeman, MT \\
+connellymarykate@gmail.com}
+}
+
+\date{Due: October 25th, 2026}
+
+\begin{document}
+
+\maketitle
+
+\section*{Conference Venues}
+We propose the applied Natural Language Processing (ANLP) special track of the 2027 Florida Artificial Intelligence Research Society (FLAIRS) conference as our target audience \cite{flairs2027}. The conference has been held annually since 1988 and provides a forum for presenting and discussing state of the art research in artificial intelligence and related fields. The conference website highlights that high-quality student submissions are traditionally included. 
+
+\section*{Project plan and responsibilities}
+
+For the group project workflow, we are using a GitHub repository and a shared Overleaf project. Lauren will write about the theory behind the text-mining pipelines and perform data visualizations in R. Laura will use Python to create and evaluate the classical pipeline. Mary Kate will complete and evaluate the modern pipeline. Together, we will review topics, compare publication patterns and modeling approaches, and write the report.
+
+\begin{flushleft}\footnotesize
+Data location: \url{https://www.kaggle.com/datasets/davidmckinley/all-the-news-dataset}\\
+Code location: \url{https://github.com/laurengamber/DataMiningProject}
+\end{flushleft}
+
+
+We plan to meet every two weeks for the remainder of the semester. A rough timeline of our project:
+\begin{itemize}
+
+\item Nov 4th: Complete both pipelines, limited parameter comparisons, model selection, and topic labeling. Background research on methods done.
+
+\item Nov 18th: Complete publication comparisons, robustness checks, and quantitative and human evaluation across methods. Report writing in progress.
+
+\item Dec 2nd: Complete report writing, tables, and figures, and put together the presentation.
+\end{itemize}
+
+\textbf{Dependencies and risks.} The corpus is frozen before configurations are
+selected, and configurations are locked before human evaluation. If BERTopic
+runtime is limiting, we will use smaller chunks or a smaller embedding model. Publications
+with fewer than 50 articles will be pooled as ``Other''.
+
+\newpage
+\begin{center}\large\textbf{Proposed Paper Outline}\end{center}
+\noindent\emph{Status legend:} \done~completed;
+\wip~started, partially complete; \planned~not yet started.
+
+\section*{Abstract}
+\textbf{Purpose:} The abstract will give an overview of the themes identified in news coverage of autonomous vehicles from 2016 to 2020, and briefly compare classical and modern topic modeling pipelines.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Problem and motivation \done
+    \item Data and methods \wip
+    \item Thematic findings \planned
+    \item Pipeline comparison \planned
+\end{itemize}
+
+\textbf{Working draft:}
+Autonomous Vehicle news coverage grew rapidly between 2016 and 2020, but its dominant
+themes remain poorly characterized. We apply a classical pipeline and a modern embedding-based pipeline to 7,337 articles from the “All the News” dataset \cite{mckinley2021}, available on Kaggle, comparing topic coherence and interpretability. We identified...
+
+\section*{Introduction}
+\textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in Autonomous Vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Problem \done
+    \item Importance \done
+    \item Gap \done
+    \item Research questions \done
+    \item Contribution \done
+\end{itemize}
+
+\textbf{Working draft:}
+In recent years, autonomous vehicles (AVs) have received extensive news coverage spanning technological development, safety, regulation, and commercial usage. Because news coverage shapes how the public perceives emerging technologies~\cite{christen2007media, anania2018effects}, understanding what this coverage emphasizes matters for researchers, policymakers, and the public. However, AV coverage spans many news outlets and consists of large volumes of unstructured text, making recurring themes difficult to identify. Topic modeling is a method that can identify those themes. 
+
+Recent work has applied topic modeling to AV news~\cite{kang2025unveiling}, but two questions remain open. Prior analyses pooled articles across outlets, so it
+is unknown whether publications differ in which themes they emphasize. In addition, no study has applied classical and embedding-based topic models to the same AV news corpus, so it is unclear whether the reported themes depend on the
+choice of model. We address these gaps with three research questions:
+
+\begin{itemize}
+    \item What themes characterize news coverage of autonomous vehicles from 2016 to 2020?
+    \item How does the prevalence of these themes differ across publications?
+    \item How does the topic modeling model choice affect themes identified? 
+\end{itemize}
+
+We apply LDA and BERTopic to 7,337 AV-related articles from 25 publications in the All the News dataset ~\cite{mckinley2021}. We contribute (i) the first topic-model-based comparison of AV coverage across individual U.S. publications and (ii) a matched evaluation of LDA and BERTopic on the same corpus, testing how the choice of model changes the themes identified.
+
+
+\section*{Related Work}
+
+\textbf{Purpose:} Position our study relative to prior work on Autonomous Vehicle media coverage and topic modeling, and show what distinguishes it.
+
+\textbf{Planned content:}
+\begin{itemize}
+    \item Media coverage and public perception of AVs: why news framing matters \cite{christen2007media, anania2018effects} \done
+    \item Prior analyses of AV news: sentiment-based
+          \cite{penmetsa2023news} vs.\ theme-based
+          \cite{jelinski2021undifferentiated} \done
+    \item Closest prior work: BERTopic applied to AV news \cite{kang2025unveiling} \done
+    \item AV public opinion on social media \cite{bakalos2020} \planned
+    \item Topic modeling for news: classical (LDA, NMF) \cite{blei2003lda} \planned
+    \item Topic modeling for news: modern embedding-based (e.g., BERTopic) \wip
+    \item Gap statement and rationale for comparing pipelines \done
+\end{itemize}
+
+\textbf{Working draft:}
+News media are a major source of information about emerging technologies and can shape public perceptions \cite{christen2007media}. For autonomous vehicles (AVs), this influence appears to start with the headline: Anania et al.~\cite{anania2018effects} found that participants who read positive article titles reported greater willingness to ride in a driverless vehicle than those who read negative ones.
+
+Existing research on AV news coverage in the United States measures sentiment but not themes \cite{penmetsa2023news}. Jelinski et al.~\cite{jelinski2021undifferentiated} examined themes, but only in German coverage. Neither study applies topic modeling.
+
+
+TALK ABOUT LDA AT HIGH LEVEL
+
+TALK ABOUT BERTOPIC IS AT HIGH LEVEL
+
+
+The study closest to ours is Kang et al. \cite{kang2025unveiling}, who applied BERTopic to 11,708 autonomous-vehicle-based news articles published between 2002 and 2021 in the ProQuest ABI/INFORM database. By analyzing paragraphs pooled across outlets, they identified 45 AV topics, showing that the AV news coverage extends beyond safety and performance to battery supply chains, regulatory uncertainty, and infrastructure. 
+
+Kang et al. pooled articles from all outlets, so their results don't investigate whether different publications emphasize different themes. Additionally, no study has fit classical and embedding-based topic models to the same AV news corpus. Because classical and embedding-based topic models differ in interpretability, stability, and cost, it is unclear whether the identified themes reflect model choice or the true topics of AV news coverage. 
+
+Our study addresses both gaps. We compare autonomous vehicle news themes across 25 publications and apply an LDA pipeline and a BERTopic pipeline to the same corpus of news articles.
+
+\section*{Data}
+\textbf{Purpose:} Identify and familiarize reader with the dataset, including its source, structure, and audit.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Identify data \done
+    \item Complete data audit \done
+    \item Perform data filtering \wip
+    \item Data statistics/figures \wip
+\end{itemize}
+
+\textbf{Working draft:}
+Our research utilizes the ``All the News'' dataset \cite{mckinley2021}, available freely on Kaggle. We downloaded the dataset in September of 2026. The full dataset includes 2.79 million English news articles from January 2016 to April 2020. We used a regular expression text pattern to identify a subset of 7,337 articles. The subset covers 25 publications from January 1, 2016, through March 26, 2020. Each observation represents one article. The articles are copyrighted news text used for research only, and the only personal data is author bylines.
+
+% Body
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+self[- ]driving|driverless|autonomous (car|vehicle|truck|driving)|robo[- ]?taxi|waymo|tesla'?s? autopilot
+\end{lstlisting}
+\caption{Case-insensitive regular expression used to identify AV-related articles.}
+\label{fig:regex}
+\end{figure}
+
+The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable.
+
+\begin{table}[H]
+\caption{Corpus summary by publication (N = 7,337 articles). Word counts are article medians.}
+\label{tab:corpus}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrcr}
+\toprule
+\textbf{Publication} & \textbf{Articles} & \textbf{\%} & \textbf{First--Last} & \textbf{Med. words} \\
+\midrule
+TechCrunch          & 1,214 & 16.5 & 2016-01--2020-03 & 433 \\
+CNBC                &   979 & 13.3 & 2016-01--2020-03 & 456 \\
+Reuters             &   854 & 11.6 & 2016-01--2020-03 & 419 \\
+The Verge           &   830 & 11.3 & 2016-01--2020-03 & 505 \\
+Mashable            &   554 &  7.6 & 2016-01--2020-03 & 403 \\
+The New York Times  &   501 &  6.8 & 2016-01--2020-03 & 1,014 \\
+Vox                 &   500 &  6.8 & 2016-01--2020-02 & 678 \\
+Axios               &   360 &  4.9 & 2017-01--2019-12 & 326 \\
+The Hill            &   356 &  4.9 & 2016-01--2020-02 & 735 \\
+Wired               &   249 &  3.4 & 2016-01--2020-03 & 614 \\
+Gizmodo             &   215 &  2.9 & 2016-01--2019-09 & 496 \\
+Business Insider    &   200 &  2.7 & 2016-02--2020-03 & 653 \\
+Other (13 pubs.)    &   525 &  7.2 & 2016-01--2020-03 & 691 \\
+\midrule
+\textbf{Total}      & \textbf{7,337} & \textbf{100} & 2016-01--2020-03 & 496 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The regular expression is shown in Fig.~\ref{fig:regex}. Table~\ref{tab:corpus}
+shows uneven coverage: the four largest publications contribute 52.8\% of
+articles, while 13 publications together contribute 7.2\%. Article length is
+right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
+chunked embeddings.
+
+An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines will use the same documented article set and duplicate-handling policy. We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
+
+If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add ‘AV’ and ‘Uber ATG’) or substitute a comparable public news corpus such as CC-News.
+
+\section*{Methodology}
+
+\textbf{Purpose:} Describe how the topic modeling analysis of self-driving car news coverage is being performed.
+
+\textbf{Planned content:}
+\begin{itemize}
+    \item Corpus construction, data audit, and duplicate handling \done
+    \item Classical pipeline: LDA baseline \cite{blei2003lda} \wip
+    \item Modern pipeline: BERTopic \wip
+    \item Topic labeling and publication comparisons \planned
+\end{itemize}
+
+\textbf{Working draft:}
+\subsection*{Overview}
+We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern BERTopic pipeline. Both pipelines are applied to the same set of 7,337 articles from 25 publications (January 2016 to March 2020), using a shared duplicate-handling policy and preprocessing suited to each representation.
+
+\subsection*{Classical Pipeline (LDA)}
+The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
+
+\subsection*{Modern Pipeline (BERTopic)}
+The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small to capture contextual similarity, reduce dimensionality with UMAP, cluster with HDBSCAN, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
+
+\subsection*{Topic Labeling and Publication Comparison}
+For each pipeline, we label topics using top keywords and representative articles, then produce heat maps of topic proportions within each publication. These comparisons are reported alongside publication sample sizes and the modern model's unassigned proportion. Differences are interpreted descriptively, taking into account unequal publication and date coverage.
+
+\subsection*{Proposed Hyperparameters.} LDA: $K\in\{10,15,20,30\}$, learned $\alpha,\eta$,
+min\_df$=5$, max\_df$=0.5$. BERTopic: UMAP \texttt{n\_neighbors}$\in\{10,15,30\}$
+(5 components, cosine, min\_dist$=0$); HDBSCAN \texttt{min\_cluster\_size}$\in\{20,40,80\}$
+(\texttt{min\_samples}$=10$)...
+
+\section*{Experimental Design}
+\textbf{Purpose:} Describe how we will develop, evaluate and compare the LDA and BERTopic modeling pipelines.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Model inputs, metadata and hyperparameters \wip
+    \item  LDA model development and selection plan \wip
+    \item  BERTopic model development and selection plan \wip
+    \item Independent human evaluation plan \wip
+    \item Pipeline comparison \planned
+    \item Definition of success \planned
+\end{itemize}
+
+\textbf{Working draft:}
+
+\begin{enumerate}
+    \item \textbf{Define the shared corpus and experimental settings.} We will use the same article set and duplicate-handling policy for both pipelines. Article bodies will be the modeling input, while publication and date will remain metadata. We will document preprocessing choices, hyperparameters, and random seeds.
+    \item \textbf{Develop the LDA baseline.} We will construct a document-term count matrix and compare a small set of topic counts. We will retain article-level topic mixtures and use each article's highest-weight topic for publication summaries. 
+    \item \textbf{Develop the BERTopic pipeline.} We will generate GTE-small article embeddings, reduce dimensionality with UMAP, and cluster articles with HDBSCAN. We will compare a limited set of neighborhood sizes and minimum cluster sizes, recording topic counts, sizes and the proportion of unassigned articles.
+    \item \textbf{Select configurations and label topics}. We will consider coherence, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
+    \item \textbf{Independent human evaluation.} Two team members will independently review the same 100 randomly selected articles using a fixed seed. They will rate how well each assigned topic describes the article on a 1–5 scale. We will summarize ratings and reviewer agreement, recording ambiguous and unassigned cases separately.
+    \item \textbf{Compare topics across publications. } For each pipeline, we will calculate the proportion of each publication’s articles assigned to each topic. Heat maps and representative articles will help identify shared themes and differences in thematic emphasis. We will report publication sample sizes, include BERTopic’s unassigned category, and consider unequal date coverage when interpreting differences.
+    \item \textbf{Compare pipeline outputs.} We will compare coherence, keyword diversity, human ratings, computational cost, and topic overlap. We will also examine whether both methods support similar conclusions about publication differences, accounting for differences in topic granularity.
+    \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity to hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
+    \item \textbf{Evaluate success and document conclusions}. Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
+\end{enumerate}
+
+\section*{Results}
+\textbf{Purpose:} Present the themes, publication patterns, and pipeline comparison supported by the completed analysis.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Topic keywords, labels, sizes and representative articles \planned
+    \item Topic proportions across publications, alongside publication sample sizes \planned
+    \item Quantitative and human evaluations \planned
+    \item Agreement and differences between pipelines in themes and publication patterns \planned
+    \item Robustness and uncertainty checks \planned
+\end{itemize}
+
+\textbf{Working draft:} We will summarize topics using labels, keywords, sizes, and representative articles. For each pipeline, heat maps will show topic proportions within each publication, accompanied by publication sample sizes and BERTopic’s unassigned proportions. 
+
+A comparison table will summarize quantitative metrics, human evaluation, and computational cost. We will examine whether LDA and BERTopic support similar findings about publication patterns, accounting for differences in topic granularity. Robustness results will document sensitivity to random seeds, duplicate handling, and date coverage, highlighting comparisons with limited support.
+
+
+\section*{Discussion}
+\textbf{Purpose:} Interpret the identified themes and publication differences in relation to the research questions, modeling choices, and prior work on AV news coverage.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Interpretation of shared themes and differences in thematic emphasis across publications \planned
+    \item Influence of pipeline choice on substantive findings \planned
+    \item Relationship to prior AV media research \planned
+    \item Implications of evaluation results \planned
+    \item Discussion of robustness and uncertainty \planned 
+    \item Potential extensions and future work \planned
+\end{itemize}
+
+\textbf{Working draft:}
+We discuss what the identified themes reveal about AV news coverage and how thematic emphasis differs across publications. 
+
+We examine whether LDA and BERTopic support similar conclusions about publication differences and explain where their findings diverge. Quantitative metrics, human review, and robustness checks help assess which interpretations are well supported and which remain sensitive to modeling choices.
+
+\section*{Limitations and Responsible Use Considerations}
+\textbf{Purpose:} Acknowledge issues and limitations of our corpus, methods, and evaluation.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Uneven publications \planned
+    \item Imperfect filtering and repeated stories \planned
+    \item Influence of major news events \planned
+    \item Model assumptions and sensitivity \planned
+    \item Limitations of Human evaluation \planned
+\end{itemize}
+
+\textbf{Working draft:}
+The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while duplicate or syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
+
+Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-topic summaries simplify articles containing multiple themes, while BERTopic’s embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
+
+\section*{Conclusion}
+\textbf{Purpose:} Summarize the findings about AV news themes and publication differences, explain the contribution of comparing modeling pipelines, and identify remaining work.
+
+\textbf{Planned content:} 
+\begin{itemize}
+    \item Main themes and differences across publications \planned
+    \item Influence of pipeline choice on findings \planned
+    \item Remaining analysis and future work \planned
+\end{itemize}
+
+\textbf{Working draft:}
+This study aims to characterize themes in AV news coverage from 2016 to 2020 and compare their prevalence across publications. Applying LDA and BERTopic to a shared corpus allows us to examine how modeling choices affect the identified themes and publication comparisons.
+
+\newpage
+\section*{References}
+\printbibliography[heading=none]
+
+\end{document}
