@@ -1,10 +1,18 @@
 {
-  "rows": 7337,
+  "rows": 7332,
+  "source_rows": 7337,
   "source_columns": 15,
   "publications": 25,
   "date_min": "2016-01-01",
   "date_max": "2020-03-26",
-  "duplicate_bodies": 5,
+  "duplicate_bodies_dropped": 5,
+  "dropped_article_ids": [
+    "1449843",
+    "1465862",
+    "1798409",
+    "1821156",
+    "1824347"
+  ],
   "missing": {
     "article_id": 0,
     "X1": 0,
@@ -13,11 +21,11 @@
     "year": 0,
     "month": 0,
     "day": 0,
-    "author": 1381,
+    "author": 1379,
     "title": 0,
     "article": 0,
     "url": 0,
-    "section": 3668,
+    "section": 3665,
     "publication": 0,
     "title_match": 0,
     "body_hits": 0,
@@ -32,9 +40,9 @@
     "0.0": 150.0,
     "0.25": 330.0,
     "0.5": 496.0,
-    "0.75": 819.0,
+    "0.75": 818.25,
     "0.9": 1283.0,
-    "0.99": 5572.560000000042,
+    "0.99": 5579.009999999948,
     "1.0": 28048.0
   }
 }

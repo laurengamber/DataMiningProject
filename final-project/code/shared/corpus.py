@@ -32,11 +32,14 @@ def audit_corpus(out=CORPUS_DIR, source=DATA):
     df['date'] = pd.to_datetime(df.date, errors='raise').dt.strftime('%Y-%m-%d')
     df['text'] = df.article.map(clean_text)
     assert df.text.str.len().gt(0).all()
-    df['duplicate_body'] = df.article.duplicated(keep='first')
+    # Drop repeated bodies, keeping the earliest-dated copy; ties keep source order.
+    df['duplicate_body'] = df.sort_values('date', kind='stable').article.duplicated(keep='first').reindex(df.index)
+    dropped = df.loc[df.duplicate_body, 'article_id'].tolist()
+    source_rows = len(df); df = df[~df.duplicate_body].reset_index(drop=True)
     df['measured_word_count'] = df.article.str.split().str.len()
     df['word_count_difference'] = df.measured_word_count - df.word_count
-    summary = dict(rows=len(df), source_columns=15, publications=df.publication.nunique(),
-                   date_min=df.date.min(), date_max=df.date.max(), duplicate_bodies=int(df.duplicate_body.sum()),
+    summary = dict(rows=len(df), source_rows=source_rows, source_columns=15, publications=df.publication.nunique(),
+                   date_min=df.date.min(), date_max=df.date.max(), duplicate_bodies_dropped=len(dropped), dropped_article_ids=dropped,
                    missing=df.isna().sum().to_dict(), word_count_mismatches=int(df.word_count_difference.ne(0).sum()),
                    word_quantiles=df.measured_word_count.quantile([0,.25,.5,.75,.9,.99,1]).to_dict())
     df.to_csv(out/'corpus.csv', index=False)
