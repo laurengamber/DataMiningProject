@@ -6,7 +6,7 @@ Modern helpers live in `src/topic_helpers.py`; corpus and evaluation code shared
 
 ## Laura’s handoff
 
-Use `final-project/data/corpus.csv`; `article_id` is the original unique X1 converted to a string. Keep the same records, including flagged duplicate bodies. Share the corpus manifest before fitting. Place these files in `Results/classical/`:
+Use `final-project/data/corpus.csv`; `article_id` is the original unique X1 converted to a string. Keep the same records; `audit_corpus` has already dropped repeated bodies. Share the corpus manifest before fitting. Place these files in `Results/classical/`:
 
 - `assignments.csv`: article_id, model (`lda`), run_id, topic_id. Exactly one dominant-topic row per article. Retain LDA mixtures in a separate file.
 - `terms.csv`: topic_id, rank (1-based), term (unigram), weight. At least ten ranked terms per topic where available; consistent tokenizer and English stopwords for comparison.

@@ -24,6 +24,8 @@
 \newcommand{\done}{\textcolor{green!40!black}{\textbf{[$\checkmark$ Done]}}}
 \newcommand{\wip}{\textcolor{orange!70!black}{\textbf{[$\circ$ In progress]}}}
 \newcommand{\planned}{\textcolor{blue!60!black}{\textbf{[$\square$ Planned]}}}
+% Red TODO notes; remove every \todo before submission (search for "\todo").
+\newcommand{\todo}[1]{\par\noindent\textcolor{red}{\textbf{TODO:} #1}\par}
 
 \usepackage[style=ieee, backend=biber]{biblatex}
 \addbibresource{../references.bib}
@@ -63,6 +65,13 @@ connellymarykate@gmail.com}
 
 We established a duplicate article handling process of retaining the earliest dated articles, and dropping the others from the dataset. This brings out dataset from 7,337 to 7,332 articles.
 
+\todo{[All] Required section (assignment item 7): include at least one meaningful quantitative result, table, or figure, and label every number as established or preliminary.}
+\todo{[Laura] Add a numbered, captioned table of the six BERTopic configurations (from \texttt{STATUS.md}): neighbors, min.\ cluster size, topics, $c_v$, outlier \%, cosine silhouette. State that these were fit on the 7,337-article corpus before duplicate removal, or rerun on 7,332.}
+\todo{[Laura] Report the selected configuration (n15\_c25\_s42: 70 topics, $c_v=0.701$, 17.1\% unassigned) and seed stability (ARI 0.957 and 0.975 for seeds 7 and 21). Mark it preliminary until topic labels are complete.}
+\todo{[Laura] Add LDA baseline results for $K\in\{10,15,20,30\}$: mean $c_v$, keyword diversity, perplexity, fit time. If not finished, state what is implemented (corpus loading, shared tokenization) and what remains.}
+\todo{[Laura] Report runtime (embedding cold vs.\ cached, fitting) and implementation challenges with attempted solutions, e.g., the repository refactor and the shared corpus manifest.}
+\todo{[All] Fix typo: ``brings out dataset'' $\rightarrow$ ``brings our dataset''.}
+
 
 \begin{center}\large\textbf{Paper Outline 2}\end{center}
 \noindent\emph{Status legend:} \done~completed;
@@ -82,6 +91,8 @@ We established a duplicate article handling process of retaining the earliest da
 \textbf{Working draft:}
 Autonomous Vehicle news coverage grew rapidly between 2016 and 2020, but its dominant
 themes remain poorly characterized. We apply a classical pipeline and a modern embedding-based pipeline to 7,337 articles from the “All the News” dataset \cite{mckinley2021}, available on Kaggle, comparing topic coherence and interpretability. We identified...
+
+\todo{[Lauren] Change 7,337 to 7,332 (after duplicate removal). Name the methods (LDA vs.\ BERTopic with GTE-small, UMAP, HDBSCAN) and the evaluation ($c_v$ coherence, two-reviewer human evaluation, Jaccard topic overlap). Replace ``We identified...'' with clearly labeled preliminary findings and the anticipated contribution, without unsupported claims.}
 
 \section*{Introduction}
 \textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in Autonomous Vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
@@ -108,7 +119,7 @@ choice of model. We address these gaps with three research questions:
     \item How does the topic modeling model choice affect themes identified? 
 \end{itemize}
 
-We apply LDA and BERTopic to 7,337 AV-related articles from 25 publications in the All the News dataset ~\cite{mckinley2021}. We contribute (i) the first topic-model-based comparison of AV coverage across individual U.S. publications and (ii) a matched evaluation of LDA and BERTopic on the same corpus, testing how the choice of model changes the themes identified.
+We apply LDA and BERTopic to 7,332 AV-related articles from 25 publications in the All the News dataset ~\cite{mckinley2021}. We contribute (i) the first topic-model-based comparison of AV coverage across individual U.S. publications and (ii) a matched evaluation of LDA and BERTopic on the same corpus, testing how the choice of model changes the themes identified.
 
 
 \section*{Related Work}
@@ -145,6 +156,8 @@ Kang et al. pooled paragraphs from all sampled outlets, so their results don't i
 
 Our study addresses both gaps. We compare autonomous vehicle news themes across 25 publications and apply an LDA pipeline and a BERTopic pipeline to the same corpus of news articles.
 
+\todo{[All] PR1 feedback: add primary citations for the embedding model (GTE, Li et al.\ 2023), UMAP (McInnes et al.\ 2018), HDBSCAN (Campello et al.\ 2013), and $c_v$ coherence (R\"oder et al.\ 2015) to \texttt{references.bib}. BERTopic is already cited.}
+
 \section*{Data}
 \textbf{Purpose:} Identify and familiarize reader with the dataset, including its source, structure, and audit.
 
@@ -174,7 +187,7 @@ The CSV contains 15 columns: article ID, an additional source index, date, year,
 An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332.
 
 
-TODO: update the table to reflect duplicate drops
+\todo{[Laura] Update the table to reflect duplicate drops (N = 7,332; CNBC and The Hill change). Regenerate from \texttt{data/corpus.csv}.}
 \begin{table}[H]
 \caption{Corpus summary by publication (N = 7,337 articles). Word counts are article medians.}
 \label{tab:corpus}
@@ -210,10 +223,21 @@ articles, while 13 publications together contribute 7.2\%. Article length is
 right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
 chunked embeddings.
 
-TODO: Complete inspection and report on results
+\todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results. Mention the four The Hill 5G-event pages that shared one boilerplate body.}
 We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
 
 If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add ‘AV’ and ‘Uber ATG’) or substitute a comparable public news corpus such as CC-News.
+
+\todo{[All] Add at least one descriptive figure (e.g., articles per month by publication), numbered and captioned. Correct the article-length statistics in the text for N = 7,332.}
+\todo{[All] Assignment item 4 asks for these points; add one or two sentences each:}
+\begin{itemize}
+    \item \todo{Labels and class distribution: unsupervised, no labels; publication distribution is Table~\ref{tab:corpus}.}
+    \item \todo{Missing data: author (1,381) and section (3,668) are missing but unused; no article bodies or publications are missing, so nothing is imputed.}
+    \item \todo{Inclusion/exclusion: regex match in the title or $\geq 3$ body matches; $\geq 150$ words; first occurrence of each title; plus the 5 duplicate bodies dropped (earliest copy kept).}
+    \item \todo{Feature construction: LDA uses unigram bag-of-words counts; BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.}
+    \item \todo{Leakage: the 100 human-evaluation articles are drawn with a fixed seed and kept out of topic labeling; publication and date are metadata only, never model input.}
+    \item \todo{Ethics and licensing: state the Kaggle license terms, that the text is copyrighted (research use only, no redistribution of article text in the repository), and representativeness (25 mostly U.S. digital outlets, uneven coverage).}
+\end{itemize}
 
 \section*{Methodology}
 
@@ -234,8 +258,15 @@ We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern 
 \subsection*{Classical Pipeline (LDA)}
 The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
 
+\todo{[Laura] Give exact preprocessing: punctuation and non-ASCII removal, lowercase word tokens, scikit-learn English stopwords (shared with the coherence reference corpus), custom stopwords, removal of number-only tokens, vocabulary filter (\texttt{min\_df}=5, \texttt{max\_df}=0.5).}
+\todo{[Laura] Add the LDA formulation: $\theta_d \sim \mathrm{Dir}(\alpha)$, $\phi_k \sim \mathrm{Dir}(\eta)$, $z_{dn} \sim \mathrm{Mult}(\theta_d)$, $w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}})$; the dominant topic is $\arg\max_k \theta_{dk}$. Name the implementation (gensim \texttt{LdaModel} with \texttt{alpha='auto', eta='auto'} to match ``learned $\alpha,\eta$''), passes and iterations, and seeds.}
+\todo{[Laura] Briefly justify LDA as the baseline: interpretable mixtures, a standard comparison in the topic-modeling literature, and low cost. Mark each element as implemented or planned.}
+
 \subsection*{Modern Pipeline (BERTopic)}
 The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small to capture contextual similarity, reduce dimensionality with UMAP, cluster with HDBSCAN, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
+
+\todo{[All] PR1 feedback: state how chunks are combined. Articles are split into 480-token chunks; the article vector is the token-count-weighted mean of the chunk embeddings, L2-normalized: $\mathbf{e}_d = \bar{\mathbf{v}}/\lVert\bar{\mathbf{v}}\rVert$ with $\bar{\mathbf{v}} = \sum_j n_j \mathbf{v}_j / \sum_j n_j$.}
+\todo{[All] Add the c-TF-IDF weight $W_{t,c} = \mathrm{tf}_{t,c}\cdot\log(1 + A/f_t)$ and note the fixed unigram vocabulary (\texttt{min\_df}=5). Justify each component (contextual embeddings, density-based clustering with an outlier class).}
 
 \subsection*{Topic Labeling and Publication Comparison}
 For each pipeline, we label topics using top keywords and representative articles, then produce heat maps of topic proportions within each publication. These comparisons are reported alongside publication sample sizes and the modern model's unassigned proportion. Differences are interpreted descriptively, taking into account unequal publication and date coverage.
@@ -244,6 +275,10 @@ For each pipeline, we label topics using top keywords and representative article
 min\_df$=5$, max\_df$=0.5$. BERTopic: UMAP \texttt{n\_neighbors}$\in\{10,15,30\}$
 (5 components, cosine, min\_dist$=0$); HDBSCAN \texttt{min\_cluster\_size}$\in\{20,40,80\}$
 (\texttt{min\_samples}$=10$)...
+
+\todo{[All] Reconcile with the runs actually completed: \texttt{n\_neighbors} $\in\{15,30\}$ and \texttt{min\_cluster\_size} $\in\{25,50,100\}$ (six configurations), not the grids above. Either rerun the proposed grids or update this text. Rename ``Proposed'' to ``Model configurations'' and finish the trailing ``...''.}
+\todo{[All] Add an ``Implementation environment'' paragraph (PR1 feedback asks for computing resources): Python 3.13 with the \texttt{uv} lockfile; bertopic 0.17.4, sentence-transformers 6.1.0, gensim 4.4.0, umap-learn 0.5.12, hdbscan 0.8.44, scikit-learn 1.9.1; Apple-silicon macOS (MPS); repository URL.}
+\todo{[All] List planned comparisons and ablations, e.g., c-TF-IDF vs.\ alternative keyword representations (\texttt{representation\_comparison.csv}), and LDA with vs.\ without custom stopwords.}
 
 \section*{Experimental Design}
 \textbf{Purpose:} Describe how we will develop, evaluate and compare the LDA and BERTopic modeling pipelines.
@@ -271,6 +306,15 @@ min\_df$=5$, max\_df$=0.5$. BERTopic: UMAP \texttt{n\_neighbors}$\in\{10,15,30\}
     \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity to hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
     \item \textbf{Evaluate success and document conclusions}. Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
 \end{enumerate}
+
+\todo{[All] PR1 feedback (duplicates): item 4 still says ``duplicate copies will be excluded from development review'' and Results mentions ``sensitivity to duplicate handling''. Make both consistent with the completed policy (duplicates dropped before modeling).}
+\todo{[All] Data splitting (assignment item 6): state that there is no train/test split because the task is unsupervised description of a fixed corpus; both models are fit on all 7,332 articles. Leakage is controlled by fixing the human-evaluation sample before labeling.}
+\todo{[All] PR1 feedback: define the coherence statistic. $c_v$ (R\"oder et al.) uses the top 10 unigrams per topic, a boolean sliding window of 110 tokens, NPMI with indirect cosine confirmation, and the shared tokenized corpus as reference (gensim \texttt{CoherenceModel}). Report the per-topic values and their mean; BERTopic's $-1$ class is excluded.}
+\todo{[All] PR1 feedback: define topic alignment across methods. Jaccard similarity of top-10 term sets, $J(A,B)=|A\cap B|/|A\cup B|$, for every LDA--BERTopic topic pair, shown as a heat map; report each topic's best match.}
+\todo{[All] PR1 feedback: define reviewer agreement. Exact agreement and quadratic-weighted Cohen's $\kappa$ on the 1--5 ratings, per model, over the same 100 articles (seed 42).}
+\todo{[All] Hyperparameter selection procedure: BERTopic shortlists the top 3 runs by $c_v$, then picks by mean human rating (semantic consistency, label specificity) of the top 5 topics. LDA: select $K$ by $c_v$ plus inspection of topics.}
+\todo{[All] Seeds and uncertainty: grid at seed 42; selected configuration refit with seeds 7 and 21 (ARI for stability). Add bootstrap confidence intervals for mean $c_v$ and for $\kappa$, or state why they are omitted.}
+\todo{[All] Compute resources: hardware, cold vs.\ cached embedding time, and per-stage times from the run manifests.}
 
 \section*{Results}
 \textbf{Purpose:} Present the themes, publication patterns, and pipeline comparison supported by the completed analysis.
@@ -320,6 +364,7 @@ We examine whether LDA and BERTopic support similar conclusions about publicatio
 \end{itemize}
 
 \textbf{Working draft:}
+\todo{[All] Update for the completed duplicate policy: exact duplicate bodies are removed, but near-duplicates and syndicated rewrites may remain.}
 The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while duplicate or syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
 
 Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-topic summaries simplify articles containing multiple themes, while BERTopic’s embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
@@ -336,6 +381,29 @@ Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-to
 
 \textbf{Working draft:}
 This study aims to characterize themes in AV news coverage from 2016 to 2020 and compare their prevalence across publications. Applying LDA and BERTopic to a shared corpus allows us to examine how modeling choices affect the identified themes and publication comparisons.
+
+\begin{center}\large\textbf{Response to Feedback}\end{center}
+\todo{[All] Required section (assignment item 9). Briefly explain how each PR1 comment was addressed and where in the paper:}
+\begin{itemize}
+    \item \todo{Coherence statistic, topic alignment, reviewer agreement, chunk combination: now defined (Experimental Design; Modern Pipeline).}
+    \item \todo{Duplicate handling reconciled: completed; 5 duplicate bodies dropped, earliest copy kept (Data).}
+    \item \todo{Primary citations for BERTopic and GTE, plus computing resources (Related Work; Implementation environment).}
+    \item \todo{Kang et al.\ (2025) discussed and contribution emphasized (Related Work): done.}
+    \item \todo{Major changes: corpus is now 7,332 articles; LDA priors are learned with gensim; actual BERTopic grid differs from the one proposed.}
+\end{itemize}
+
+\begin{center}\large\textbf{Remaining Work}\end{center}
+\todo{[All] Required section (assignment item 10). Give a specific plan to Progress Report 3, covering:}
+\begin{itemize}
+    \item \todo{Experiments: LDA grid and seed runs (Laura); BERTopic rerun on 7,332 articles and topic labels (Mary Kate); joint Jaccard and publication heat maps (all); two-reviewer human evaluation (two members).}
+    \item \todo{Technical problems: corpus hash changed after duplicate removal, so cached embeddings and runs must be regenerated; finalize custom stopwords.}
+    \item \todo{Literature and analysis: primary citations listed above; date-restricted robustness check.}
+    \item \todo{Tables and figures still to produce: LDA results table, Jaccard heat map, publication-proportion heat maps for both models, human-evaluation table.}
+    \item \todo{Responsibilities: Laura, classical pipeline and evaluation; Mary Kate, modern pipeline and evaluation; Lauren, theory writing and R visualizations.}
+    \item \todo{Timeline: Nov 18, seed stability and joint quantitative and human evaluation; Dec 2, report tables, figures, methods and results, presentation. Note any scope changes.}
+\end{itemize}
+
+\todo{[All] Before submitting: one PDF, at most 6 pages excluding references (currently in outline form; convert notes to prose); add the code repository link; number and caption every table and figure; cite data, code, and methods; label preliminary results; remove every \texttt{\textbackslash todo}; delete the stale ``4-page limit'' comment in the preamble.}
 
 \newpage
 \section*{References}
