@@ -67,7 +67,24 @@ We established a duplicate article handling process of retaining the earliest da
 
 \todo{[All] Required section (assignment item 7): include at least one meaningful quantitative result, table, or figure, and label every number as established or preliminary.}
 \todo{[Laura] Add a numbered, captioned table of the six BERTopic configurations (from \texttt{STATUS.md}): neighbors, min.\ cluster size, topics, $c_v$, outlier \%, cosine silhouette. State that these were fit on the 7,337-article corpus before duplicate removal, or rerun on 7,332.}
-\todo{[Laura] Report the selected configuration (n15\_c25\_s42: 70 topics, $c_v=0.701$, 17.1\% unassigned) and seed stability (ARI 0.957 and 0.975 for seeds 7 and 21). Mark it preliminary until topic labels are complete.}
+\textbf{Selected BERTopic configuration (preliminary).} From the three seed-42 runs with the highest $c_v$, we selected UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean reviewer rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). These runs were fit on the 7,337-article corpus before duplicate removal. The selection is preliminary until topic labels are complete.
+
+To check stability, we refit the selected configuration with seeds 7 and 21 and compared each article's topic assignment with the seed-42 run (Table~\ref{tab:stability}). The adjusted Rand index (ARI) is computed over articles assigned to a topic in both runs; outlier agreement is the share of all articles that both runs either assign or leave unassigned. Both ARI values exceed 0.95, so the clustering of assigned articles is largely unchanged across seeds, although 21--23\% of articles are unassigned in at least one of the two runs being compared.
+
+\begin{table}[H]
+\caption{Seed stability of the selected BERTopic configuration (\texttt{n15\_c25}), compared with the seed-42 run. Preliminary.}
+\label{tab:stability}
+\centering
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Seed} & \textbf{ARI} & \textbf{Articles compared} & \textbf{Outlier agreement} \\
+\midrule
+7  & 0.957 & 77.3\% & 91.0\% \\
+21 & 0.975 & 79.2\% & 92.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
 \todo{[Laura] Add LDA baseline results for $K\in\{10,15,20,30\}$: mean $c_v$, keyword diversity, perplexity, fit time. If not finished, state what is implemented (corpus loading, shared tokenization) and what remains.}
 \todo{[Laura] Report runtime (embedding cold vs.\ cached, fitting) and implementation challenges with attempted solutions, e.g., the repository refactor and the shared corpus manifest.}
 
@@ -146,7 +163,7 @@ Bakalos et al. ~\cite{bakalos2020} studied public opinions of autonomous transpo
 
 Topic modeling can identify those themes. Classical models such as Latent Dirichlet Allocation (LDA) ~\cite{blei2003lda} represent each article as a mixture of topics and each topic as a word distribution. LDA shows topics based on how words occur together in articles. LDA assumes a bag-of-words model, meaning it forms topics without considering word order. Non-negative matrix factorization (NMF) ~\cite{lee1999nmf} is another classical topic modeling technique that factors a document-term matrix. These classical models are very interpretable and inexpensive to run. However, they ignore context, and the number of topics has to be chosen in advance. 
 
-Embedding-based models instead represent articles using pretrained language models. BERTopic is one of the most widely known Embedding-based models. BERTopic ~\cite{grootendorst2022bertopic} embeds articles, reduces dimensionality with UMAP, clusters articles with HDBSCAN, and describes each cluster with class-based TF-IDF ~\cite{alammar2024}. An advantage of this type of topic modeling is that the embeddings capture context, so BERTopic can group articles with similar meaning even when they use different words. Additionally, the number of topics comes from clustering. However, BERTopic assigns each article to only one topic and is more computationally expensive. 
+Embedding-based models instead represent articles using pretrained language models. BERTopic is one of the most widely known Embedding-based models. BERTopic ~\cite{grootendorst2022bertopic} embeds articles, reduces dimensionality with UMAP~\cite{mcinnes2018umap}, clusters articles with HDBSCAN~\cite{campello2013hdbscan}, and describes each cluster with class-based TF-IDF ~\cite{alammar2024}. An advantage of this type of topic modeling is that the embeddings capture context, so BERTopic can group articles with similar meaning even when they use different words. Additionally, the number of topics comes from clustering. However, BERTopic assigns each article to only one topic and is more computationally expensive. 
 
 The study closest to ours is Kang et al. \cite{kang2025unveiling}, who applied BERTopic to 11,708 autonomous-vehicle-based news articles published between 2002 and 2021 in the ProQuest ABI/INFORM database. By analyzing paragraphs pooled across outlets, they identified 45 AV topics, showing that the AV news coverage extends beyond safety and performance to battery supply chains, regulatory uncertainty, and infrastructure. 
 
@@ -154,7 +171,6 @@ Kang et al. pooled paragraphs from all sampled outlets, so their results don't i
 
 Our study addresses both gaps. We compare autonomous vehicle news themes across 25 publications and apply an LDA pipeline and a BERTopic pipeline to the same corpus of news articles.
 
-\todo{[All] PR1 feedback: add primary citations for the embedding model (GTE, Li et al.\ 2023), UMAP (McInnes et al.\ 2018), HDBSCAN (Campello et al.\ 2013), and $c_v$ coherence (R\"oder et al.\ 2015) to \texttt{references.bib}. BERTopic is already cited.}
 
 \section*{Data}
 \textbf{Purpose:} Identify and familiarize reader with the dataset, including its source, structure, and audit.
@@ -185,9 +201,8 @@ The CSV contains 15 columns: article ID, an additional source index, date, year,
 An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332.
 
 
-\todo{[Laura] Update the table to reflect duplicate drops (N = 7,332; CNBC and The Hill change). Regenerate from \texttt{data/corpus.csv}.}
 \begin{table}[H]
-\caption{Corpus summary by publication (N = 7,337 articles). Word counts are article medians.}
+\caption{Corpus summary by publication after duplicate removal (N = 7,332 articles). Word counts are article medians.}
 \label{tab:corpus}
 \centering
 \footnotesize
@@ -196,27 +211,27 @@ An initial audit identified missing author and section values and five duplicate
 \toprule
 \textbf{Publication} & \textbf{Articles} & \textbf{\%} & \textbf{First--Last} & \textbf{Med. words} \\
 \midrule
-TechCrunch          & 1,214 & 16.5 & 2016-01--2020-03 & 433 \\
-CNBC                &   979 & 13.3 & 2016-01--2020-03 & 456 \\
+TechCrunch          & 1,214 & 16.6 & 2016-01--2020-03 & 433 \\
+CNBC                &   977 & 13.3 & 2016-01--2020-03 & 456 \\
 Reuters             &   854 & 11.6 & 2016-01--2020-03 & 419 \\
 The Verge           &   830 & 11.3 & 2016-01--2020-03 & 505 \\
 Mashable            &   554 &  7.6 & 2016-01--2020-03 & 403 \\
 The New York Times  &   501 &  6.8 & 2016-01--2020-03 & 1,014 \\
 Vox                 &   500 &  6.8 & 2016-01--2020-02 & 678 \\
 Axios               &   360 &  4.9 & 2017-01--2019-12 & 326 \\
-The Hill            &   356 &  4.9 & 2016-01--2020-02 & 735 \\
+The Hill            &   353 &  4.8 & 2016-01--2020-02 & 737 \\
 Wired               &   249 &  3.4 & 2016-01--2020-03 & 614 \\
 Gizmodo             &   215 &  2.9 & 2016-01--2019-09 & 496 \\
 Business Insider    &   200 &  2.7 & 2016-02--2020-03 & 653 \\
 Other (13 pubs.)    &   525 &  7.2 & 2016-01--2020-03 & 691 \\
 \midrule
-\textbf{Total}      & \textbf{7,337} & \textbf{100} & 2016-01--2020-03 & 496 \\
+\textbf{Total}      & \textbf{7,332} & \textbf{100} & 2016-01--2020-03 & 496 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 The regular expression is shown in Fig.~\ref{fig:regex}. Table~\ref{tab:corpus}
-shows uneven coverage: the four largest publications contribute 52.8\% of
+shows uneven coverage: the four largest publications contribute 52.9\% of
 articles, while 13 publications together contribute 7.2\%. Article length is
 right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
 chunked embeddings.
@@ -294,7 +309,7 @@ English and custom  & 56 & 227.5 & 339.6 & 10,353 \\
 \todo{[Laura] Briefly justify LDA as the baseline: interpretable mixtures, a standard comparison in the topic-modeling literature, and low cost. Mark each element as implemented or planned.}
 
 \subsection*{Modern Pipeline (BERTopic)}
-The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small to capture contextual similarity, reduce dimensionality with UMAP, cluster with HDBSCAN, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
+The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small~\cite{li2023gte} to capture contextual similarity, reduce dimensionality with UMAP~\cite{mcinnes2018umap}, cluster with HDBSCAN~\cite{campello2013hdbscan}, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
 
 \todo{[All] PR1 feedback: state how chunks are combined. Articles are split into 480-token chunks; the article vector is the token-count-weighted mean of the chunk embeddings, L2-normalized: $\mathbf{e}_d = \bar{\mathbf{v}}/\lVert\bar{\mathbf{v}}\rVert$ with $\bar{\mathbf{v}} = \sum_j n_j \mathbf{v}_j / \sum_j n_j$.}
 \todo{[All] Add the c-TF-IDF weight $W_{t,c} = \mathrm{tf}_{t,c}\cdot\log(1 + A/f_t)$ and note the fixed unigram vocabulary (\texttt{min\_df}=5). Justify each component (contextual embeddings, density-based clustering with an outlier class).}
@@ -330,7 +345,7 @@ min\_df$=5$, max\_df$=0.5$. BERTopic: UMAP \texttt{n\_neighbors}$\in\{10,15,30\}
     \item \textbf{Define the shared corpus and experimental settings.} We used the same article set and duplicate-handling policy for both pipelines. Article bodies were the modeling input, while publication and date remained metadata. Preprocessing choices, hyperparameters, and random seeds were documented.
     \item \textbf{Develop the LDA baseline.} We constructed a document-term count matrix and compared a small set of topic counts. We retained article-level topic mixtures and use each article's highest-weight topic for publication summaries. 
     \item \textbf{Develop the BERTopic pipeline.} We generated GTE-small article embeddings, reduced dimensionality with UMAP, and clustered articles with HDBSCAN. We compared a limited set of neighborhood sizes and minimum cluster sizes, recorded topic counts, sizes and the proportion of unassigned articles.
-    \item \textbf{Select configurations and label topics}. We considered coherence, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
+    \item \textbf{Select configurations and label topics}. We considered $c_v$ coherence~\cite{roder2015coherence}, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
     \item \textbf{Independent human evaluation.} Two team members will independently review the same 100 randomly selected articles using a fixed seed. They will rate how well each assigned topic describes the article on a 1–5 scale. We will summarize ratings and reviewer agreement, recording ambiguous and unassigned cases separately.
     \item \textbf{Compare topics across publications. } For each pipeline, we will calculate the proportion of each publication’s articles assigned to each topic. Heat maps and representative articles will help identify shared themes and differences in thematic emphasis. We will report publication sample sizes, include BERTopic’s unassigned category, and consider unequal date coverage when interpreting differences.
     \item \textbf{Compare pipeline outputs.} We will compare coherence, keyword diversity, human ratings, computational cost, and topic overlap. We will also examine whether both methods support similar conclusions about publication differences, accounting for differences in topic granularity.
