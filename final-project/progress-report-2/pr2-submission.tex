@@ -58,6 +58,12 @@ connellymarykate@gmail.com}
 \maketitle
 
 \newpage
+
+\begin{center}\large\textbf{Implementation Progress and Initial Findings}\end{center}
+
+We established a duplicate article handling process of retaining the earliest dated articles, and dropping the others from the dataset. This brings out dataset from 7,337 to 7,332 articles.
+
+
 \begin{center}\large\textbf{Paper Outline 2}\end{center}
 \noindent\emph{Status legend:} \done~completed;
 \wip~started, partially complete; \planned~not yet started.
@@ -69,7 +75,7 @@ connellymarykate@gmail.com}
 \begin{itemize}
     \item Problem and motivation \done
     \item Data and methods \wip
-    \item Thematic findings \planned
+    \item Thematic findings \wip
     \item Pipeline comparison \planned
 \end{itemize}
 
@@ -165,6 +171,10 @@ self[- ]driving|driverless|autonomous (car|vehicle|truck|driving)|robo[- ]?taxi|
 
 The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable.
 
+An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332.
+
+
+TODO: update the table to reflect duplicate drops
 \begin{table}[H]
 \caption{Corpus summary by publication (N = 7,337 articles). Word counts are article medians.}
 \label{tab:corpus}
@@ -200,7 +210,8 @@ articles, while 13 publications together contribute 7.2\%. Article length is
 right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
 chunked embeddings.
 
-An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines will use the same documented article set and duplicate-handling policy. We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
+TODO: Complete inspection and report on results
+We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
 
 If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add ‘AV’ and ‘Uber ATG’) or substitute a comparable public news corpus such as CC-News.
 
@@ -218,7 +229,7 @@ If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add 
 
 \textbf{Working draft:}
 \subsection*{Overview}
-We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern BERTopic pipeline. Both pipelines are applied to the same set of 7,337 articles from 25 publications (January 2016 to March 2020), using a shared duplicate-handling policy and preprocessing suited to each representation.
+We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern BERTopic pipeline. Both pipelines are applied to the same set of 7,332 articles from 25 publications (January 2016 to March 2020), after applying the shared duplicate-handling policy and preprocessing suited to each representation.
 
 \subsection*{Classical Pipeline (LDA)}
 The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
