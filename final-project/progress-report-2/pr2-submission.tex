@@ -116,26 +116,26 @@ We apply LDA and BERTopic to 7,337 AV-related articles from 25 publications in t
           \cite{penmetsa2023news} vs.\ theme-based
           \cite{jelinski2021undifferentiated} \done
     \item Closest prior work: BERTopic applied to AV news \cite{kang2025unveiling} \done
-    \item AV public opinion on social media \cite{bakalos2020} \planned
-    \item Topic modeling for news: classical (LDA, NMF) \cite{blei2003lda} \planned
-    \item Topic modeling for news: modern embedding-based (e.g., BERTopic) \wip
+    \item AV public opinion on social media \cite{bakalos2020} \done
+    \item Topic modeling for news: classical (LDA, NMF) \cite{blei2003lda} \done
+    \item Topic modeling for news: modern embedding-based (e.g., BERTopic) \done
     \item Gap statement and rationale for comparing pipelines \done
 \end{itemize}
 
 \textbf{Working draft:}
 News media are a major source of information about emerging technologies and can shape public perceptions \cite{christen2007media}. For autonomous vehicles (AVs), this influence appears to start with the headline: Anania et al.~\cite{anania2018effects} found that participants who read positive article titles reported greater willingness to ride in a driverless vehicle than those who read negative ones.
 
-Existing research on AV news coverage in the United States measures sentiment but not themes \cite{penmetsa2023news}. Jelinski et al.~\cite{jelinski2021undifferentiated} examined themes, but only in German coverage. Neither study applies topic modeling.
+Penmetsa et al.~\cite{penmetsa2023news} measured sentiment in U.S. AV news coverage but did not identify themes. Jelinski et al.~\cite{jelinski2021undifferentiated} examined themes, but only in German coverage. Neither study applies topic modeling.
 
+Bakalos et al. ~\cite{bakalos2020} studied public opinions of autonomous transportation using sentiment analysis of social media posts. This paper shows how the public feels about AVs but did not identify which themes the news coverage emphasizes.
 
-TALK ABOUT LDA AT HIGH LEVEL
+Topic modeling can identify those themes. Classical models such as Latent Dirichlet Allocation (LDA) ~\cite{blei2003lda} represent each article as a mixture of topics and each topic as a word distribution. LDA shows topics based on how words occur together in articles. LDA assumes a bag-of-words model, meaning it forms topics without considering word order. Non-negative matrix factorization (NMF) ~\cite{lee1999nmf} is another classical topic modeling technique that factors a document-term matrix. These classical models are very interpretable and inexpensive to run. However, they ignore context, and the number of topics has to be chosen in advance. 
 
-TALK ABOUT BERTOPIC IS AT HIGH LEVEL
-
+Embedding-based models instead represent articles using pretrained language models. BERTopic is one of the most widely known Embedding-based models. BERTopic ~\cite{grootendorst2022bertopic} embeds articles, reduces dimensionality with UMAP, clusters articles with HDBSCAN, and describes each cluster with class-based TF-IDF ~\cite{alammar2024}. An advantage of this type of topic modeling is that the embeddings capture context, so BERTopic can group articles with similar meaning even when they use different words. Additionally, the number of topics comes from clustering. However, BERTopic assigns each article to only one topic and is more computationally expensive. 
 
 The study closest to ours is Kang et al. \cite{kang2025unveiling}, who applied BERTopic to 11,708 autonomous-vehicle-based news articles published between 2002 and 2021 in the ProQuest ABI/INFORM database. By analyzing paragraphs pooled across outlets, they identified 45 AV topics, showing that the AV news coverage extends beyond safety and performance to battery supply chains, regulatory uncertainty, and infrastructure. 
 
-Kang et al. pooled articles from all outlets, so their results don't investigate whether different publications emphasize different themes. Additionally, no study has fit classical and embedding-based topic models to the same AV news corpus. Because classical and embedding-based topic models differ in interpretability, stability, and cost, it is unclear whether the identified themes reflect model choice or the true topics of AV news coverage. 
+Kang et al. pooled paragraphs from all sampled outlets, so their results don't investigate whether different publications emphasize different themes. Additionally, no study has fit classical and embedding-based topic models to the same AV news corpus. Because classical and embedding-based topic models differ in interpretability, stability, and cost, it is unclear whether the identified themes reflect model choice or the true topics of AV news coverage. 
 
 Our study addresses both gaps. We compare autonomous vehicle news themes across 25 publications and apply an LDA pipeline and a BERTopic pipeline to the same corpus of news articles.
 
