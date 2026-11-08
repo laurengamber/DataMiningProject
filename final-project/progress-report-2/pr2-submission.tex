@@ -256,7 +256,40 @@ We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern 
 \subsection*{Classical Pipeline (LDA)}
 The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
 
-\todo{[Laura] Give exact preprocessing: punctuation and non-ASCII removal, lowercase word tokens, scikit-learn English stopwords (shared with the coherence reference corpus), custom stopwords, removal of number-only tokens, vocabulary filter (\texttt{min\_df}=5, \texttt{max\_df}=0.5).}
+After removing scikit-learn's English stopwords, number-only tokens, and tokens shorter than three characters, we ranked the remaining tokens by document frequency and inspected the top 100. We removed 40 reporting and filler terms (e.g., \textit{said}, \textit{told}, \textit{according}, \textit{thats}) and 10 terms that appear in 53--88\% of articles because they define the corpus or are generic to it (e.g., \textit{selfdriving}, \textit{autonomous}, \textit{car}, \textit{company}); the full list is in Table~\ref{tab:stopwords}. Table~\ref{tab:tokens} reports article lengths before and after custom stopword removal.
+
+\begin{table}[H]
+\caption{Custom stopwords removed for the LDA pipeline, chosen from the 100 tokens with the highest document frequency.}
+\label{tab:stopwords}
+\centering
+\footnotesize
+\begin{tabular}{@{}p{0.22\columnwidth}p{0.72\columnwidth}@{}}
+\toprule
+\textbf{Group} & \textbf{Terms} \\
+\midrule
+Reporting and filler (40) & said, says, say, told, according, like, just, thats, dont, did, going, think, lot, right, way, make, making, use, used, using, need, want, come, able, called, including, big, long, far, better, end, number, new, time, year, years, week, today, early, earlier \\
+\addlinespace
+Corpus-defining or generic (10) & selfdriving, autonomous, cars, car, vehicles, vehicle, company, companies, companys, technology \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\caption{Tokens per article (N = 7,332) before and after custom stopword removal. Both rows exclude English stopwords, number-only tokens, and tokens shorter than three characters.}
+\label{tab:tokens}
+\centering
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Stopwords removed} & \textbf{Min} & \textbf{Median} & \textbf{Mean} & \textbf{Max} \\
+\midrule
+English only        & 70 & 264.0 & 391.5 & 11,986 \\
+English and custom  & 56 & 227.5 & 339.6 & 10,353 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\todo{[Laura] Give the remaining preprocessing details: punctuation and non-ASCII removal, lowercase word tokens, the shared coherence reference corpus, vocabulary filter (\texttt{min\_df}=5, \texttt{max\_df}=0.5).}
 \todo{[Laura] Add the LDA formulation: $\theta_d \sim \mathrm{Dir}(\alpha)$, $\phi_k \sim \mathrm{Dir}(\eta)$, $z_{dn} \sim \mathrm{Mult}(\theta_d)$, $w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}})$; the dominant topic is $\arg\max_k \theta_{dk}$. Name the implementation (gensim \texttt{LdaModel} with \texttt{alpha='auto', eta='auto'} to match ``learned $\alpha,\eta$''), passes and iterations, and seeds.}
 \todo{[Laura] Briefly justify LDA as the baseline: interpretable mixtures, a standard comparison in the topic-modeling literature, and low cost. Mark each element as implemented or planned.}
 
