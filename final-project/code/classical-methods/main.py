@@ -5,7 +5,11 @@ import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from shared.corpus import CORPUS_DIR, load_corpus
+from shared.evaluation import reference_texts
+
 from preprocessing import tokenize, filter_tokens, analyze_tokens
+from representation import build_dtm
+from lda import run_grid, stability_check
 
 def load(folder=CORPUS_DIR):
     """Return the audited corpus, verified against the shared manifest's IDs and hash."""
@@ -36,13 +40,21 @@ if __name__ == '__main__':
     # Identify any necessary custom stop words
     # analyze_tokens(filtered_tokenized_articles)
 
-    # TODO: pipeline order (each step lives in its own module)
-    #   1. texts, dictionary = reference_texts(df)        # shared coherence reference; build once
-    #   2. X, vectorizer = build_dtm(tokens)               # representation.py
-    #   3. grid = run_grid(X, vocab, texts, dictionary)    # lda.py -> experiments.csv
-    #   4. Choose K by hand from experiments.csv and the top terms; hard-code K_CHOSEN here.
-    #   5. stability_check(X, K_CHOSEN)                    # lda.py -> stability.csv (seeds 7, 21)
-    #   6. theta, assignments = document_topics(model, X)  # interpret.py
+    texts, dictionary = reference_texts(df) # shared coherence reference
+
+    start = time.time()
+    X, vectorizer = build_dtm(filtered_tokenized_articles)
+    end = time.time()
+    print(f"Building the document term matrix took {end-start} seconds")
+
+    # Anaylze different options for k
+    # vocab = vectorizer.get_feature_names_out()
+    # grid = run_grid(X, vocab, texts, dictionary) # creates experiments.csv
+   
+    K_CHOSEN = 40
+    stability_check(X, K_CHOSEN) # Creates stability.csv (seeds 7, 21)
+    
+    # theta, assignments = document_topics(model, X)  # interpret.py
     #   7. Write representatives, then label topics by hand.
     #   8. Export the files and run validate_classical()   # export.py
     # TODO: add a --k flag (argparse) so steps 5-8 can rerun on the chosen K without

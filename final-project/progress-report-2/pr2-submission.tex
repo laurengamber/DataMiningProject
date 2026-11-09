@@ -29,7 +29,7 @@
 \usepackage[style=ieee, backend=biber]{biblatex}
 \addbibresource{../references.bib}
 
-\title{ Topic Modeling of Autonomous Vehicle News Coverage Across Publications, 2016–2020\\
+\title{Topic Modeling of Autonomous Vehicle News Coverage Across Publications, 2016--2020\\
 \large Progress Report 2
 }
 
@@ -62,13 +62,9 @@ connellymarykate@gmail.com}
 
 \begin{center}\large\textbf{Implementation Progress and Initial Findings}\end{center}
 
-\todo{[All] Required section (assignment item 7): include at least one meaningful quantitative result, table, or figure, and label every number as established or preliminary.}
+Since Progress Report 1, we have (i) finalized the corpus by dropping five duplicate article bodies, keeping the earliest-dated copy of each (7,337 to 7,332 articles); (ii) completed the Introduction and Related Work sections; (iii) written shared code for corpus loading, evaluation tokenization, coherence metrics, and the joint comparison; (iv) implemented LDA preprocessing, including a 50-term custom stopword list and the document-term matrix, and fit LDA for seven topic counts; and (v) implemented the full BERTopic pipeline, fit a six-configuration grid, selected a configuration, and checked its seed stability. The BERTopic runs below were fit on all 7,337 articles before duplicate removal and will be rerun on the deduplicated corpus before Progress Report 3.
 
-We established a duplicate article handling process of retaining the earliest dated articles, and dropping the others from the dataset. This brings our dataset from 7,337 to 7,332 articles.
-
-Lauren completed the Introduction and Related Works sections. Laura and Mary Kate worked each worked on their respective pipelines, sharing code for handling the corpus, tokenizing for evaluation, the metrics and the joint comparison. The modern pipeline was run before duplicate handling, and will be run again on the deduped data before the next progress report.
-
-\textbf{BERTopic configuration study (preliminary).} We fit six BERTopic configurations, crossing UMAP \texttt{n\_neighbors} $\in\{15,30\}$ with HDBSCAN \texttt{min\_cluster\_size} $\in\{25,50,100\}$, all with seed 42 (Table~\ref{tab:bertopic-grid}). These runs were fit on the 7,337-article corpus before duplicate removal. Smaller minimum cluster sizes produced more topics (70--71 vs.\ 24) with higher mean $c_v$ coherence and fewer unassigned articles. Cosine silhouette was low for every configuration (0.095--0.130), indicating weak separation between topics in the full embedding space.
+\textbf{BERTopic configuration study (preliminary).} We fit six BERTopic configurations, crossing UMAP \texttt{n\_neighbors} $\in\{15,30\}$ with HDBSCAN \texttt{min\_cluster\_size} $\in\{25,50,100\}$, all with seed 42 (Table~\ref{tab:bertopic-grid}). Smaller minimum cluster sizes produced more topics (70--71 vs.\ 24) with higher mean $c_v$ coherence and fewer unassigned articles. Cosine silhouette was low for every configuration (0.095--0.130), indicating weak separation between topics in the full embedding space.
 
 \begin{table}[H]
 \caption{BERTopic configuration study (seed 42; 7,337 articles before duplicate removal). $c_v$ is the mean over topics, using the top ten unigrams per topic. Unassigned is HDBSCAN's outlier class ($-1$). Silhouette uses cosine distance on the embeddings, excluding unassigned articles. Bold: selected configuration. $^\dagger$Shortlisted for selection review (top three by $c_v$). Preliminary.}
@@ -90,7 +86,7 @@ Lauren completed the Introduction and Related Works sections. Laura and Mary Kat
 \end{tabular}
 \end{table}
 
-\textbf{Selected BERTopic configuration (preliminary).} Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). These runs were fit on the 7,337-article corpus before duplicate removal. Topic labels have not yet been assigned.
+\textbf{Selected BERTopic configuration (preliminary).} Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). Topic labels have not yet been assigned.
 
 To check stability, we refit the selected configuration with seeds 7 and 21 and compared each article's topic assignment with the seed-42 run (Table~\ref{tab:stability}). The adjusted Rand index (ARI) is computed over articles assigned to a topic in both runs; outlier agreement is the share of all articles that both runs either assign or leave unassigned. Both ARI values exceed 0.95, so the clustering of assigned articles is largely unchanged across seeds, although 21--23\% of articles are unassigned in at least one of the two runs being compared.
 
@@ -109,12 +105,11 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 \end{tabular}
 \end{table}
 
-\textbf{Selected LDA configuration (preliminary).} 
-We selected a custom stopword list...
+\textbf{Selected LDA configuration (preliminary).}
+We built a custom stopword list from the 100 tokens with the highest document frequency (Table~\ref{tab:stopwords}).
 
-During the K selection process, we initially used a max_iter value of 20, where max_iter is the  maximum number of passes LDA makes over all the articles while fitting. From this, we initially selected a k value of 40, but during a stability check with  seeds 7 and 21 we found that LDA dominant-topic assignments agreed only moderately with the seed-42 run. 
+During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
 
-\todo{[Laura] Add LDA baseline results for $K\in\{10,15,20,30\}$: mean $c_v$, keyword diversity, perplexity, fit time. If not finished, state what is implemented (corpus loading, shared tokenization) and what remains.}
 \todo{[Laura] Report runtime (embedding cold vs.\ cached, fitting) and implementation challenges with attempted solutions, e.g., the repository refactor and the shared corpus manifest.}
 
 \begin{center}\large\textbf{Paper Outline 2}\end{center}
@@ -133,22 +128,13 @@ During the K selection process, we initially used a max_iter value of 20, where 
 \end{itemize}
 
 \textbf{Working draft:}
-Autonomous Vehicle news coverage grew rapidly between 2016 and 2020, but its dominant
-themes remain poorly characterized. We apply a classical pipeline and a modern embedding-based pipeline to 7,337 articles from the “All the News” dataset \cite{mckinley2021}, available on Kaggle, comparing topic coherence and interpretability. We identified...
+Autonomous vehicle news coverage grew rapidly between 2016 and 2020, but its dominant
+themes remain poorly characterized. We apply a classical pipeline and a modern embedding-based pipeline to 7,332 articles from the ``All the News'' dataset~\cite{mckinley2021}, available on Kaggle, comparing topic coherence and interpretability. We identified...
 
-\todo{[All] Change 7,337 to 7,332 (after duplicate removal). Name the methods (LDA vs.\ BERTopic with GTE-small, UMAP, HDBSCAN) and the evaluation ($c_v$ coherence, two-reviewer human evaluation, Jaccard topic overlap). Replace ``We identified...'' with clearly labeled preliminary findings and the anticipated contribution, without unsupported claims.}
+\todo{[All] Name the methods (LDA vs.\ BERTopic with GTE-small, UMAP, HDBSCAN) and the evaluation ($c_v$ coherence, two-reviewer human evaluation, Jaccard topic overlap). Replace ``We identified...'' with clearly labeled preliminary findings and the anticipated contribution, without unsupported claims.}
 
 \section*{Introduction}
-\textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in Autonomous Vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
-
-\textbf{Planned content:} 
-\begin{itemize}
-    \item Problem \done
-    \item Importance \done
-    \item Gap \done
-    \item Research questions \done
-    \item Contribution \done
-\end{itemize}
+\textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in autonomous vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
 
 \textbf{Working draft:}
 In recent years, autonomous vehicles (AVs) have received extensive news coverage spanning technological development, safety, regulation, and commercial usage. Because news coverage shapes how the public perceives emerging technologies~\cite{christen2007media, anania2018effects}, understanding what this coverage emphasizes matters for researchers, policymakers, and the public. However, AV coverage spans many news outlets and consists of large volumes of unstructured text, making recurring themes difficult to identify. Topic modeling is a method that can identify those themes. 
@@ -160,49 +146,36 @@ choice of model. We address these gaps with three research questions:
 \begin{itemize}
     \item What themes characterize news coverage of autonomous vehicles from 2016 to 2020?
     \item How does the prevalence of these themes differ across publications?
-    \item How does the topic modeling model choice affect themes identified? 
+    \item How does the choice of topic model affect the themes identified?
 \end{itemize}
 
-We apply LDA and BERTopic to 7,332 AV-related articles from 25 publications in the All the News dataset ~\cite{mckinley2021}. We contribute (i) the first topic-model-based comparison of AV coverage across individual U.S. publications and (ii) a matched evaluation of LDA and BERTopic on the same corpus, testing how the choice of model changes the themes identified.
+We apply LDA and BERTopic to 7,332 AV-related articles from 25 publications in the All the News dataset~\cite{mckinley2021}. We contribute (i) the first topic-model-based comparison of AV coverage across individual U.S. publications and (ii) a matched evaluation of LDA and BERTopic on the same corpus, testing how the choice of model changes the themes identified.
 
 
 \section*{Related Work}
 
-\textbf{Purpose:} Position our study relative to prior work on Autonomous Vehicle media coverage and topic modeling, and show what distinguishes it.
-
-\textbf{Planned content:}
-\begin{itemize}
-    \item Media coverage and public perception of AVs: why news framing matters \cite{christen2007media, anania2018effects} \done
-    \item Prior analyses of AV news: sentiment-based
-          \cite{penmetsa2023news} vs.\ theme-based
-          \cite{jelinski2021undifferentiated} \done
-    \item Closest prior work: BERTopic applied to AV news \cite{kang2025unveiling} \done
-    \item AV public opinion on social media \cite{bakalos2020} \done
-    \item Topic modeling for news: classical (LDA, NMF) \cite{blei2003lda} \done
-    \item Topic modeling for news: modern embedding-based (e.g., BERTopic) \done
-    \item Gap statement and rationale for comparing pipelines \done
-\end{itemize}
+\textbf{Purpose:} Position our study relative to prior work on autonomous vehicle media coverage and topic modeling, and show what distinguishes it.
 
 \textbf{Working draft:}
 News media are a major source of information about emerging technologies and can shape public perceptions \cite{christen2007media}. For autonomous vehicles (AVs), this influence appears to start with the headline: Anania et al.~\cite{anania2018effects} found that participants who read positive article titles reported greater willingness to ride in a driverless vehicle than those who read negative ones.
 
 Penmetsa et al.~\cite{penmetsa2023news} measured sentiment in U.S. AV news coverage but did not identify themes. Jelinski et al.~\cite{jelinski2021undifferentiated} examined themes, but only in German coverage. Neither study applies topic modeling.
 
-Bakalos et al. ~\cite{bakalos2020} studied public opinions of autonomous transportation using sentiment analysis of social media posts. This paper shows how the public feels about AVs but did not identify which themes the news coverage emphasizes.
+Bakalos et al.~\cite{bakalos2020} studied public opinion of autonomous transportation using sentiment analysis of social media posts. This work shows how the public feels about AVs but does not identify which themes news coverage emphasizes.
 
-Topic modeling can identify those themes. Classical models such as Latent Dirichlet Allocation (LDA) ~\cite{blei2003lda} represent each article as a mixture of topics and each topic as a word distribution. LDA shows topics based on how words occur together in articles. LDA assumes a bag-of-words model, meaning it forms topics without considering word order. Non-negative matrix factorization (NMF) ~\cite{lee1999nmf} is another classical topic modeling technique that factors a document-term matrix. These classical models are very interpretable and inexpensive to run. However, they ignore context, and the number of topics has to be chosen in advance. 
+Topic modeling can identify those themes. Classical models such as Latent Dirichlet Allocation (LDA)~\cite{blei2003lda} represent each article as a mixture of topics and each topic as a word distribution. LDA infers topics from how words co-occur in articles. LDA assumes a bag-of-words model, meaning it forms topics without considering word order. Non-negative matrix factorization (NMF)~\cite{lee1999nmf} is another classical topic modeling technique that factors a document-term matrix. These classical models are very interpretable and inexpensive to run. However, they ignore context, and the number of topics has to be chosen in advance. 
 
-Embedding-based models instead represent articles using pretrained language models. BERTopic is one of the most widely known Embedding-based models. BERTopic ~\cite{grootendorst2022bertopic} embeds articles, reduces dimensionality with UMAP~\cite{mcinnes2018umap}, clusters articles with HDBSCAN~\cite{campello2013hdbscan}, and describes each cluster with class-based TF-IDF ~\cite{alammar2024}. An advantage of this type of topic modeling is that the embeddings capture context, so BERTopic can group articles with similar meaning even when they use different words. Additionally, the number of topics comes from clustering. However, BERTopic assigns each article to only one topic and is more computationally expensive. 
+Embedding-based models instead represent articles using pretrained language models. BERTopic~\cite{grootendorst2022bertopic} is one of the most widely known embedding-based models. It embeds articles, reduces dimensionality with UMAP~\cite{mcinnes2018umap}, clusters articles with HDBSCAN~\cite{campello2013hdbscan}, and describes each cluster with class-based TF-IDF~\cite{alammar2024}. An advantage of this type of topic modeling is that the embeddings capture context, so BERTopic can group articles with similar meaning even when they use different words. Additionally, the number of topics comes from clustering. However, BERTopic assigns each article to only one topic and is more computationally expensive. 
 
-The study closest to ours is Kang et al. \cite{kang2025unveiling}, who applied BERTopic to 11,708 autonomous-vehicle-based news articles published between 2002 and 2021 in the ProQuest ABI/INFORM database. By analyzing paragraphs pooled across outlets, they identified 45 AV topics, showing that the AV news coverage extends beyond safety and performance to battery supply chains, regulatory uncertainty, and infrastructure. 
+The study closest to ours is Kang et al.~\cite{kang2025unveiling}, who applied BERTopic to 11,708 AV-related news articles published between 2002 and 2021 in the ProQuest ABI/INFORM database. By analyzing paragraphs pooled across outlets, they identified 45 AV topics, showing that the AV news coverage extends beyond safety and performance to battery supply chains, regulatory uncertainty, and infrastructure. 
 
-Kang et al. pooled paragraphs from all sampled outlets, so their results don't investigate whether different publications emphasize different themes. Additionally, no study has fit classical and embedding-based topic models to the same AV news corpus. Because classical and embedding-based topic models differ in interpretability, stability, and cost, it is unclear whether the identified themes reflect model choice or the true topics of AV news coverage. 
+Kang et al. pooled paragraphs from all sampled outlets, so their results do not investigate whether different publications emphasize different themes. Additionally, no study has fit classical and embedding-based topic models to the same AV news corpus. Because classical and embedding-based topic models differ in interpretability, stability, and cost, it is unclear whether the identified themes reflect model choice or the true topics of AV news coverage. 
 
 Our study addresses both gaps. We compare autonomous vehicle news themes across 25 publications and apply an LDA pipeline and a BERTopic pipeline to the same corpus of news articles.
 
 
 \section*{Data}
-\textbf{Purpose:} Identify and familiarize reader with the dataset, including its source, structure, and audit.
+\textbf{Purpose:} Identify and familiarize the reader with the dataset, including its source, structure, and audit.
 
 \textbf{Planned content:} 
 \begin{itemize}
@@ -213,7 +186,7 @@ Our study addresses both gaps. We compare autonomous vehicle news themes across 
 \end{itemize}
 
 \textbf{Working draft:}
-Our research utilizes the ``All the News'' dataset \cite{mckinley2021}, available freely on Kaggle. We downloaded the dataset in September of 2026. The full dataset includes 2.79 million English news articles from January 2016 to April 2020. We used a regular expression text pattern to identify a subset of 7,337 articles. The subset covers 25 publications from January 1, 2016, through March 26, 2020. Each observation represents one article. The articles are copyrighted news text used for research only, and the only personal data is author bylines.
+Our research utilizes the ``All the News'' dataset \cite{mckinley2021}, available freely on Kaggle. We downloaded the dataset in September of 2026. The full dataset includes 2.79 million English news articles from January 2016 to April 2020. We used a regular expression to identify a subset of 7,337 articles. The subset covers 25 publications from January 1, 2016, through March 26, 2020. Each observation represents one article. The articles are copyrighted news text used for research only, and the only personal data is author bylines.
 
 % Body
 \begin{figure}[H]
@@ -227,7 +200,7 @@ self[- ]driving|driverless|autonomous (car|vehicle|truck|driving)|robo[- ]?taxi|
 
 The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable, so the data does not have labels or class distribution; topics are discovered rather than predicted.
 
-An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332. Since author and section are not used for our analysis, we retained articles missing this data.
+An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate bodies, the earliest-dated article is retained and the others are dropped, bringing the article total to 7,332. Since author and section are not used for our analysis, we retained articles missing this data.
 
 
 \begin{table}[H]
@@ -268,9 +241,7 @@ chunked embeddings.
 For feature construction, the classical pipeline (LDA) uses unigram bag-of-words counts, whereas BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.
 
 \todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results.}
-We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
-
-If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add ‘AV’ and ‘Uber ATG’) or substitute a comparable public news corpus such as CC-News.
+We will inspect a random sample for relevance, boilerplate, and malformed text.
 
 \section*{Methodology}
 
@@ -291,9 +262,9 @@ We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern 
 \subsection*{Classical Pipeline (LDA)}
 The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English and custom stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
 
-Tokenization was performed by (1) merging words with apostrophes and hyphens, (2) deleting non-ascii letters, (3) dropping words with less than 3 characters, and (4) lowercasing all words.
+Tokenization was performed by (1) merging words with apostrophes and hyphens, (2) deleting non-ASCII characters, (3) dropping words with fewer than three characters, and (4) lowercasing all words.
 
-After removing scikit-learn's English stopwords, number-only tokens, and tokens shorter than three characters, we ranked the remaining tokens by document frequency and inspected the top 100. We removed 40 reporting and filler terms (e.g., \textit{said}, \textit{told}, \textit{according}, \textit{thats}) and 10 terms that appear in 53--88\% of articles because they define the corpus (e.g., \textit{selfdriving}, \textit{autonomous}, \textit{car}, \textit{company}); the full list is in Table~\ref{tab:stopwords}. Table~\ref{tab:tokens} reports article lengths before and after custom stopword removal.
+After removing scikit-learn's English stopwords, number-only tokens, and tokens shorter than three characters, we ranked the remaining tokens by document frequency and inspected the top 100. We removed 40 reporting and filler terms (e.g., \textit{said}, \textit{told}, \textit{according}, \textit{thats}) and 10 terms that appear in 53--88\% of articles because they define the corpus (e.g., \textit{selfdriving}, \textit{autonomous}, \textit{car}, \textit{company}); the full list is in Table~\ref{tab:stopwords}. Custom stopword removal reduced the median article length from 264 to 227.5 tokens (mean 391.5 to 339.6; range 70--11,986 to 56--10,353).
 
 \begin{table}[H]
 \caption{Custom stopwords removed for the LDA pipeline, chosen from the 100 tokens with the highest document frequency.}
@@ -311,26 +282,11 @@ Corpus-defining or generic (10) & selfdriving, autonomous, cars, car, vehicles, 
 \end{tabular}
 \end{table}
 
-\begin{table}[H]
-\caption{Tokens per article (N = 7,332) before and after custom stopword removal. Both rows exclude English stopwords, number-only tokens, and tokens shorter than three characters.}
-\label{tab:tokens}
-\centering
-\footnotesize
-\begin{tabular}{lrrrr}
-\toprule
-\textbf{Stopwords removed} & \textbf{Min} & \textbf{Median} & \textbf{Mean} & \textbf{Max} \\
-\midrule
-English only        & 70 & 264.0 & 391.5 & 11,986 \\
-English and custom  & 56 & 227.5 & 339.6 & 10,353 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 Once tokenization was complete, we represented each article as unigram counts (not TF-IDF), using scikit-learn's \texttt{CountVectorizer}. We kept terms that appear in at least 5 articles (\texttt{min\_df}$=5$) and in no more than 50\% of articles (\texttt{max\_df}$=0.5$). The resulting document-term matrix had 21,528 terms and is 98.97\% sparse (221 distinct terms per article on average), falling within the expected sparsity range for news articles.
 
-Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored number of topics k for $K\in\{10,20,30,40,50,60,70\}$with seed 42. Since training data will continue to fall as K increases, selecting a K involved analyzing \texttt{c\_v}, perplexity, and diversity, as well as manually reviewing selected topics.
+Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored models with $K\in\{10,20,30,40,50,60,70\}$ topics using seed 42 (Table~\ref{tab:lda-grid}). Because perplexity on the training articles generally falls as $K$ increases, selecting $K$ involved weighing $c_v$, perplexity, and diversity, as well as manually reviewing selected topics.
 
-A stability check with seeds 7 and 21
+\todo{[Laura] Finish the stability-check paragraph (seeds 7 and 21).}
 
 \begin{table}[H]
 \caption{LDA topic-count study (seed 42; 7,332 articles). $c_v$ is the mean over topics, using the top ten unigrams per topic and the shared reference corpus. Perplexity is computed on the training articles (lower is better). Diversity is the share of unique terms among all topics' top ten. Fit is wall-clock training time. Bold: best value in each column. Preliminary.}
@@ -390,8 +346,8 @@ For each pipeline, we label topics using top keywords and representative article
 \textbf{Planned content:} 
 \begin{itemize}
     \item Model inputs, metadata and hyperparameters \wip
-    \item  LDA model development and selection plan \wip
-    \item  BERTopic model development and selection plan \wip
+    \item LDA model development and selection plan \wip
+    \item BERTopic model development and selection plan \wip
     \item Independent human evaluation plan \wip
     \item Pipeline comparison \planned
     \item Definition of success \planned
@@ -400,15 +356,13 @@ For each pipeline, we label topics using top keywords and representative article
 \textbf{Working draft:}
 
 \begin{enumerate}
-    \item \textbf{Define the shared corpus and experimental settings.} We used the same article set and duplicate-handling policy for both pipelines. Article bodies were the modeling input, while publication and date remained metadata. Preprocessing choices, hyperparameters, and random seeds were documented.
-    \item \textbf{Develop the LDA baseline.} We constructed a document-term count matrix and compared a small set of topic counts. We retained article-level topic mixtures and use each article's highest-weight topic for publication summaries. 
-    \item \textbf{Develop the BERTopic pipeline.} We generated GTE-small article embeddings, reduced dimensionality with UMAP, and clustered articles with HDBSCAN. We compared a limited set of neighborhood sizes and minimum cluster sizes, recorded topic counts, sizes and the proportion of unassigned articles.
-    \item \textbf{Select configurations and label topics}. We considered $c_v$ coherence~\cite{roder2015coherence}, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
-    \item \textbf{Independent human evaluation.} Two team members will independently review the same 100 randomly selected articles using a fixed seed. They will rate how well each assigned topic describes the article on a 1–5 scale. We will summarize ratings and reviewer agreement, recording ambiguous and unassigned cases separately.
-    \item \textbf{Compare topics across publications. } For each pipeline, we will calculate the proportion of each publication’s articles assigned to each topic. Heat maps and representative articles will help identify shared themes and differences in thematic emphasis. We will report publication sample sizes, include BERTopic’s unassigned category, and consider unequal date coverage when interpreting differences.
+    \item \textbf{Fit both pipelines.} We fit LDA and BERTopic on the same 7,332 articles as described in the Methodology section, documenting preprocessing choices, hyperparameters, and random seeds. For each candidate configuration we record topic counts, topic sizes, and, for BERTopic, the proportion of unassigned articles.
+    \item \textbf{Select configurations and label topics.} We considered $c_v$ coherence~\cite{roder2015coherence}, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and labels will be finalized before independent human evaluation. Final evaluation articles and duplicate copies will be excluded from development review and topic naming.
+    \item \textbf{Independent human evaluation.} Two team members will independently review the same 100 randomly selected articles using a fixed seed. They will rate how well each assigned topic describes the article on a 1--5 scale. We will summarize ratings and reviewer agreement, recording ambiguous and unassigned cases separately.
+    \item \textbf{Compare topics across publications.} For each pipeline, we will calculate the proportion of each publication's articles assigned to each topic. Heat maps and representative articles will help identify shared themes and differences in thematic emphasis. We will report publication sample sizes, include BERTopic's unassigned category, and consider unequal date coverage when interpreting differences.
     \item \textbf{Compare pipeline outputs.} We will compare coherence, keyword diversity, human ratings, computational cost, and topic overlap. We will also examine whether both methods support similar conclusions about publication differences, accounting for differences in topic granularity.
     \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity to hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
-    \item \textbf{Evaluate success and document conclusions}. Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
+    \item \textbf{Evaluate success and document conclusions.} Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
 \end{enumerate}
 
 \todo{[All] Data splitting (assignment item 6): state that there is no train/test split because the task is unsupervised description of a fixed corpus; both models are fit on all 7,332 articles. Leakage is controlled by fixing the human-evaluation sample before labeling.}
@@ -425,15 +379,11 @@ For each pipeline, we label topics using top keywords and representative article
 \textbf{Planned content:} 
 \begin{itemize}
     \item Topic keywords, labels, sizes and representative articles \planned
-    \item Topic proportions across publications, alongside publication sample sizes \planned
-    \item Quantitative and human evaluations \planned
+    \item Topic proportions across publications, one heat map per pipeline, alongside publication sample sizes \planned
+    \item Quantitative and human evaluations, with a comparison table of metrics, human ratings, and computational cost \planned
     \item Agreement and differences between pipelines in themes and publication patterns \planned
     \item Robustness and uncertainty checks \planned
 \end{itemize}
-
-\textbf{Working draft:} We will summarize topics using labels, keywords, sizes, and representative articles. For each pipeline, heat maps will show topic proportions within each publication, accompanied by publication sample sizes and BERTopic’s unassigned proportions. 
-
-A comparison table will summarize quantitative metrics, human evaluation, and computational cost. We will examine whether LDA and BERTopic support similar findings about publication patterns, accounting for differences in topic granularity. Robustness results will document sensitivity to random seeds, duplicate handling, and date coverage, highlighting comparisons with limited support.
 
 
 \section*{Discussion}
@@ -449,11 +399,6 @@ A comparison table will summarize quantitative metrics, human evaluation, and co
     \item Potential extensions and future work \planned
 \end{itemize}
 
-\textbf{Working draft:}
-We discuss what the identified themes reveal about AV news coverage and how thematic emphasis differs across publications. 
-
-We examine whether LDA and BERTopic support similar conclusions about publication differences and explain where their findings diverge. Quantitative metrics, human review, and robustness checks help assess which interpretations are well supported and which remain sensitive to modeling choices.
-
 \section*{Limitations and Responsible Use Considerations}
 \textbf{Purpose:} Acknowledge issues and limitations of our corpus, methods, and evaluation.
 
@@ -463,13 +408,13 @@ We examine whether LDA and BERTopic support similar conclusions about publicatio
     \item Imperfect filtering and repeated stories \planned
     \item Influence of major news events \planned
     \item Model assumptions and sensitivity \planned
-    \item Limitations of Human evaluation \planned
+    \item Limitations of human evaluation \planned
 \end{itemize}
 
 \textbf{Working draft:}
 The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
 
-Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-topic summaries simplify articles containing multiple themes, while BERTopic’s embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
+Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topic summaries simplify articles containing multiple themes, while BERTopic's embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
 
 \section*{Conclusion}
 \textbf{Purpose:} Summarize the findings about AV news themes and publication differences, explain the contribution of comparing modeling pipelines, and identify remaining work.
@@ -480,9 +425,6 @@ Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-to
     \item Influence of pipeline choice on findings \planned
     \item Remaining analysis and future work \planned
 \end{itemize}
-
-\textbf{Working draft:}
-This study aims to characterize themes in AV news coverage from 2016 to 2020 and compare their prevalence across publications. Applying LDA and BERTopic to a shared corpus allows us to examine how modeling choices affect the identified themes and publication comparisons.
 
 \begin{center}\large\textbf{Response to Feedback}\end{center}
 \todo{[All] Required section (assignment item 9). Briefly explain how each PR1 comment was addressed and where in the paper:}

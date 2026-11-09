@@ -26,12 +26,7 @@ def tokenize(df):
 
 
 def analyze_tokens(tokenized_articles, n=100):
-    """Print the n tokens found in the most articles, to help pick CUSTOM_STOPWORDS by hand.
-
-    Ranked by document frequency (how many articles contain the token), not raw count, since a
-    stopword is a word that shows up everywhere rather than one that is repeated a lot in a few
-    articles. Expects articles that have already been through filter_tokens().
-    """
+    """Print the n tokens found in the most articles, to help pick CUSTOM_STOPWORDS by hand."""
     doc_counts = Counter()
     total_counts = Counter()
     for tokens in tokenized_articles:

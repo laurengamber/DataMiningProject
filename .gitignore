@@ -4,7 +4,7 @@ __pycache__/
 .DS_Store
 
 # Modern pipeline results: embeddings cache, model runs, figures, and tables (regenerate from notebooks 01–03)
-/final-project/code/modern-methods/Results/modern/
+/final-project/code/modern-methods/Results/
 
 # Generated large corpus (regenerate with shared.corpus.audit_corpus)
 /final-project/data/corpus.csv
