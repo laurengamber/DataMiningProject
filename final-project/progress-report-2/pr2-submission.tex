@@ -238,6 +238,15 @@ articles, while 13 publications together contribute 7.2\%. Article length is
 right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
 chunked embeddings.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/monthly_articles.pdf}
+\caption{Monthly AV article counts after duplicate removal (N = 7,332), stacked by publication. The four largest publications are shown separately; the remaining 21 are grouped as Other. March 2020 is a partial month (through March 26).}
+\label{fig:monthly}
+\end{figure}
+
+Monthly volume is also uneven (Fig.~\ref{fig:monthly}). Coverage peaks in 2017 and early 2018, with a maximum of 283 articles in March 2018, and then declines to roughly 100--150 articles per month. The largest peaks are split roughly evenly between the four largest publications and the remaining 21, so they reflect corpus-wide spikes rather than a single outlet. Because individual months can be dominated by a few stories, we treat short-lived topics with caution when comparing publications.
+
 For feature construction, the classical pipeline (LDA) uses unigram bag-of-words counts, whereas BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.
 
 \todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results.}
@@ -348,7 +357,8 @@ where $\mathrm{tf}_{t,c}$ is the frequency of $t$ in class $c$ (normalized by th
 \subsection*{Topic Labeling and Publication Comparison}
 For each pipeline, we label topics using top keywords and representative articles, then produce heat maps of topic proportions within each publication. These comparisons are reported alongside publication sample sizes and the modern model's unassigned proportion. Differences are interpreted descriptively, taking into account unequal publication and date coverage.
 
-\todo{[All] Add an ``Implementation environment'' paragraph (PR1 feedback asks for computing resources): Python 3.13 with the \texttt{uv} lockfile; bertopic 0.17.4, sentence-transformers 6.1.0, gensim 4.4.0, umap-learn 0.5.12, hdbscan 0.8.44, scikit-learn 1.9.1; Apple-silicon macOS (MPS); repository URL.}
+\subsection*{Implementation Environment}
+Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{uv} lockfile: bertopic 0.17.4, sentence-transformers 6.1.0, umap-learn 0.5.12, hdbscan 0.8.44, scikit-learn 1.9.1, and gensim 4.4.0 (used for $c_v$ coherence). Experiments run on an Apple-silicon Mac under macOS; GTE-small embeddings are computed on the GPU through PyTorch's Metal Performance Shaders (MPS) backend, and all other stages run on the CPU. Code, the corpus manifest, and run outputs are available at \url{https://github.com/laurengamber/DataMiningProject}.
 \todo{[All] List planned comparisons and ablations, e.g., c-TF-IDF vs.\ alternative keyword representations (\texttt{representation\_comparison.csv}), and LDA with vs.\ without custom stopwords.}
 
 \section*{Experimental Design}
