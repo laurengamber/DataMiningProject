@@ -13,7 +13,7 @@ from shared.evaluation import coherence, stability
 K_GRID = [10, 20, 30, 40, 50, 60, 70]
 SEEDS = [SEED, 7, 21]
 LEARNING_METHOD = 'batch'
-MAX_ITER = 50
+MAX_ITER = 100
 DOC_TOPIC_PRIOR = None
 TOPIC_WORD_PRIOR = None
 OUT = Path(__file__).resolve().parents[1]/'modern-methods/Results/classical'
