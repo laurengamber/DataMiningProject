@@ -311,8 +311,19 @@ Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored model
 
 
 
-\todo{[Laura] Add the LDA formulation: $\theta_d \sim \mathrm{Dir}(\alpha)$, $\phi_k \sim \mathrm{Dir}(\eta)$, $z_{dn} \sim \mathrm{Mult}(\theta_d)$, $w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}})$; the dominant topic is $\arg\max_k \theta_{dk}$. Name the implementation (gensim \texttt{LdaModel} with \texttt{alpha='auto', eta='auto'} to match ``learned $\alpha,\eta$''), passes and iterations, and seeds.}
-\todo{[Laura] Briefly justify LDA as the baseline: interpretable mixtures, a standard comparison in the topic-modeling literature, and low cost. Mark each element as implemented or planned.}
+\textbf{Model.} LDA~\cite{blei2003lda} treats each article $d$ as a mixture of $K$ topics and each topic $k$ as a distribution over the vocabulary:
+\begin{equation}
+\begin{gathered}
+\theta_d \sim \mathrm{Dir}(\alpha), \qquad \phi_k \sim \mathrm{Dir}(\eta),\\
+z_{dn} \sim \mathrm{Mult}(\theta_d), \qquad w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}}),
+\end{gathered}
+\label{eq:lda}
+\end{equation}
+where $z_{dn}$ is the topic of the $n$th word $w_{dn}$ in article $d$. An article's dominant topic is $\arg\max_k \hat{\theta}_{dk}$, where $\hat{\theta}_d$ is its inferred topic mixture.
+
+\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented (Table~\ref{tab:lda-grid}), as is the seed-stability check (seeds 7 and 21, compared by ARI), which will be rerun for the final $K$. Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
+
+\textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. It is also inexpensive: each fit took 29--68\,s (Table~\ref{tab:lda-grid}) and needs no embedding step.
 
 \subsection*{Modern Pipeline (BERTopic)}
 The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small~\cite{li2023gte} to capture contextual similarity, reduce dimensionality with UMAP~\cite{mcinnes2018umap}, cluster with HDBSCAN~\cite{campello2013hdbscan}, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
@@ -433,7 +444,7 @@ Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topi
     \item \todo{Duplicate handling reconciled: completed; 5 duplicate bodies dropped, earliest copy kept (Data).}
     \item \todo{Primary citations for BERTopic and GTE, plus computing resources (Related Work; Implementation environment).}
     \item \todo{Kang et al.\ (2025) discussed and contribution emphasized (Related Work): done.}
-    \item \todo{Major changes: corpus is now 7,332 articles; LDA priors are learned with gensim; actual BERTopic grid differs from the one proposed.}
+    \item \todo{Major changes: corpus is now 7,332 articles; LDA uses scikit-learn with fixed symmetric priors ($1/K$) instead of the learned priors proposed in PR1; actual BERTopic grid differs from the one proposed.}
 \end{itemize}
 
 \begin{center}\large\textbf{Remaining Work}\end{center}
