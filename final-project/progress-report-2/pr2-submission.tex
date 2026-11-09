@@ -236,6 +236,7 @@ The CSV contains 15 columns: article ID, an additional source index, date, year,
 
 An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate bodies, the earliest-dated article is retained and the others are dropped, bringing the article total to 7,332. Since author and section are not used for our analysis, we retained articles missing this data.
 
+We manually reviewed a random sample of 30 articles (seed 42) for relevance, boilerplate, and malformed text; all 30 were relevant to autonomous vehicles, and none contained boilerplate or malformed text.
 
 \begin{table}[H]
 \caption{Corpus summary by publication after duplicate removal (N = 7,332 articles). Word counts are article medians.}
@@ -283,9 +284,6 @@ Monthly volume is also uneven (Fig.~\ref{fig:monthly}). Coverage peaks in 2017 a
 
 For feature construction, the classical pipeline (LDA) uses unigram bag-of-words counts, whereas BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.
 
-\todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results.}
-We will inspect a random sample for relevance, boilerplate, and malformed text.
-
 \section*{Methodology}
 
 \textbf{Purpose:} Describe how the topic modeling analysis of self-driving car news coverage is being performed.
@@ -327,9 +325,9 @@ Corpus-defining or generic (10) & selfdriving, autonomous, cars, car, vehicles, 
 
 Once tokenization was complete, we represented each article as unigram counts (not TF-IDF), using scikit-learn's \texttt{CountVectorizer}. We kept terms that appear in at least 5 articles (\texttt{min\_df}$=5$) and in no more than 50\% of articles (\texttt{max\_df}$=0.5$). The resulting document-term matrix had 21,528 terms and is 98.97\% sparse (221 distinct terms per article on average), falling within the expected sparsity range for news articles.
 
-Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored models with $K\in\{10,20,30,40,50,60,70\}$ topics using seed 42. Because perplexity on the training articles generally falls as $K$ increases, selecting $K$ involved weighing $c_v$, perplexity, and diversity, as well as manually reviewing selected topics.
+Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored models with $K\in\{10,20,30,40,50,60,70\}$ topics using seed 42. We selected $K$ as 40, which involved weighing $c_v$, perplexity, diversity, and manually reviewing selected topics. 
 
-\todo{[Laura] Finish the stability-check paragraph (seeds 7 and 21).}
+For the selected LDA model ($K=40$, 100 passes), refitting with seeds 7 and 21 gave dominant-topic ARI of 0.32 and 0.36 relative to seed 42. Increasing passes from 20 to 100 raised mean ARI only from 0.31 to 0.34, indicating that the instability reflects sensitivity to initialization rather than incomplete convergence. BERTopic's assignments were more stable (ARI 0.96–0.98), although its ARI excludes articles left unassigned in either run.
 
 \textbf{Model.} LDA~\cite{blei2003lda} treats each article $d$ as a mixture of $K$ topics and each topic $k$ as a distribution over the vocabulary:
 \begin{equation}
