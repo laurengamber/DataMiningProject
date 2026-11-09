@@ -1,21 +1,23 @@
 """Document-term count matrix for LDA."""
+from sklearn.feature_extraction.text import CountVectorizer
 
-# TODO: imports
-#   - time, numpy, and sklearn.feature_extraction.text.CountVectorizer.
+def build_dtm(token_lists, min_df=5, max_df=0.5):
+    """Count pre-tokenized articles into a sparse articles x vocabulary matrix.
 
-# TODO: build_dtm(token_lists, min_df=5, max_df=0.5)
-#   - The articles are already tokenized by preprocessing.tokenize(), so stop CountVectorizer
-#     from re-tokenizing them:
-#         CountVectorizer(analyzer=lambda tokens: tokens, min_df=min_df, max_df=max_df)
-#   - Use counts, not TF-IDF: LDA's generative model assumes integer word counts.
-#   - min_df=5 / max_df=0.5 match the paper's proposed hyperparameters and BERTopic's
-#     vocabulary_min_article_frequency=5. If you change them, update the paper.
-#   - Return (X, vectorizer): X is the sparse articles x vocab matrix, and the vectorizer
-#     carries get_feature_names_out(), which interpret.py needs to map columns back to words.
+    min_df: number of articles a word must appear in to be kept
+    max_df: words in more than 50% of articles are dropped
+    """
 
-# TODO: log matrix statistics (report these in the Methodology section)
-#   - Vocabulary size: len(vectorizer.vocabulary_).
-#   - Sparsity: 1 - X.nnz / (X.shape[0] * X.shape[1]).
-#   - Articles left with an all-zero row after min_df/max_df (should be 0; if not, decide
-#     whether to drop them and document it, because validate_classical() requires every article).
-#   - Seconds taken (manifest stage timing: representation_seconds).
+    # The articles are already tokenized, so pass each token list through unchanged.
+    vectorizer = CountVectorizer(analyzer=lambda tokens: tokens, min_df=min_df, max_df=max_df)
+    # Learns vocabulary from articles, then turns into count matrix
+    X = vectorizer.fit_transform(token_lists)
+
+    n_articles, n_terms = X.shape
+    empty = int((X.getnnz(axis=1) == 0).sum())
+    print(f'Document-term matrix: {n_articles} articles x {n_terms} terms (min_df={min_df}, max_df={max_df})')
+    print(f'Sparsity: {1 - X.nnz / (n_articles * n_terms):.4f}')
+    print(f'Articles with no remaining terms: {empty}')
+    if empty:
+        print('WARNING: some articles have an all-zero row; decide how to handle them before fitting LDA')
+    return X, vectorizer
