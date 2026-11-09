@@ -17,7 +17,6 @@
   frame=single
 }
 
-% Compact lists to help with the 4-page limit
 \setlist{nosep,leftmargin=*}
 
 % Status tags
@@ -109,6 +108,12 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textbf{Selected LDA configuration (preliminary).} 
+We selected a custom stopword list...
+
+During the K selection process, we initially used a max_iter value of 20, where max_iter is the  maximum number of passes LDA makes over all the articles while fitting. From this, we initially selected a k value of 40, but during a stability check with  seeds 7 and 21 we found that LDA dominant-topic assignments agreed only moderately with the seed-42 run. 
+
 \todo{[Laura] Add LDA baseline results for $K\in\{10,15,20,30\}$: mean $c_v$, keyword diversity, perplexity, fit time. If not finished, state what is implemented (corpus loading, shared tokenization) and what remains.}
 \todo{[Laura] Report runtime (embedding cold vs.\ cached, fitting) and implementation challenges with attempted solutions, e.g., the repository refactor and the shared corpus manifest.}
 
@@ -321,9 +326,35 @@ English and custom  & 56 & 227.5 & 339.6 & 10,353 \\
 \end{tabular}
 \end{table}
 
-Once tokenization was complete, scikit-learn's CountVectorizer completed the document-term matrix.
+Once tokenization was complete, we represented each article as unigram counts (not TF-IDF), using scikit-learn's \texttt{CountVectorizer}. We kept terms that appear in at least 5 articles (\texttt{min\_df}$=5$) and in no more than 50\% of articles (\texttt{max\_df}$=0.5$). The resulting document-term matrix had 21,528 terms and is 98.97\% sparse (221 distinct terms per article on average), falling within the expected sparsity range for news articles.
 
-\todo{[Laura] Give the remaining preprocessing details: punctuation and non-ASCII removal, lowercase word tokens, the shared coherence reference corpus, vocabulary filter (\texttt{min\_df}=5, \texttt{max\_df}=0.5).}
+Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored number of topics k for $K\in\{10,20,30,40,50,60,70\}$with seed 42. Since training data will continue to fall as K increases, selecting a K involved analyzing \texttt{c\_v}, perplexity, and diversity, as well as manually reviewing selected topics.
+
+A stability check with seeds 7 and 21
+
+\begin{table}[H]
+\caption{LDA topic-count study (seed 42; 7,332 articles). $c_v$ is the mean over topics, using the top ten unigrams per topic and the shared reference corpus. Perplexity is computed on the training articles (lower is better). Diversity is the share of unique terms among all topics' top ten. Fit is wall-clock training time. Bold: best value in each column. Preliminary.}
+\label{tab:lda-grid}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{rrrrr}
+\toprule
+\textbf{Topics ($K$)} & \textbf{$c_v$} & \textbf{Perplexity} & \textbf{Diversity} & \textbf{Fit (s)} \\
+\midrule
+10 & \textbf{0.651} & 3518 & \textbf{0.830} & 29 \\
+20 & 0.627 & 3354 & 0.765 & 37 \\
+30 & 0.622 & 3323 & 0.720 & 46 \\
+40 & 0.647 & 3309 & 0.698 & 49 \\
+50 & 0.641 & \textbf{3288} & 0.698 & 55 \\
+60 & 0.641 & 3314 & 0.698 & 64 \\
+70 & 0.643 & 3355 & 0.689 & 68 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
 \todo{[Laura] Add the LDA formulation: $\theta_d \sim \mathrm{Dir}(\alpha)$, $\phi_k \sim \mathrm{Dir}(\eta)$, $z_{dn} \sim \mathrm{Mult}(\theta_d)$, $w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}})$; the dominant topic is $\arg\max_k \theta_{dk}$. Name the implementation (gensim \texttt{LdaModel} with \texttt{alpha='auto', eta='auto'} to match ``learned $\alpha,\eta$''), passes and iterations, and seeds.}
 \todo{[Laura] Briefly justify LDA as the baseline: interpretable mixtures, a standard comparison in the topic-modeling literature, and low cost. Mark each element as implemented or planned.}
 
@@ -350,12 +381,6 @@ where $\mathrm{tf}_{t,c}$ is the frequency of $t$ in class $c$ (normalized by th
 \subsection*{Topic Labeling and Publication Comparison}
 For each pipeline, we label topics using top keywords and representative articles, then produce heat maps of topic proportions within each publication. These comparisons are reported alongside publication sample sizes and the modern model's unassigned proportion. Differences are interpreted descriptively, taking into account unequal publication and date coverage.
 
-\subsection*{Proposed Hyperparameters.} LDA: $K\in\{10,15,20,30\}$, learned $\alpha,\eta$,
-min\_df$=5$, max\_df$=0.5$. BERTopic: UMAP \texttt{n\_neighbors}$\in\{10,15,30\}$
-(5 components, cosine, min\_dist$=0$); HDBSCAN \texttt{min\_cluster\_size}$\in\{20,40,80\}$
-(\texttt{min\_samples}$=10$)...
-
-\todo{[All] Reconcile with the runs actually completed: \texttt{n\_neighbors} $\in\{15,30\}$ and \texttt{min\_cluster\_size} $\in\{25,50,100\}$ (six configurations), not the grids above. Either rerun the proposed grids or update this text. Rename ``Proposed'' to ``Model configurations'' and finish the trailing ``...''.}
 \todo{[All] Add an ``Implementation environment'' paragraph (PR1 feedback asks for computing resources): Python 3.13 with the \texttt{uv} lockfile; bertopic 0.17.4, sentence-transformers 6.1.0, gensim 4.4.0, umap-learn 0.5.12, hdbscan 0.8.44, scikit-learn 1.9.1; Apple-silicon macOS (MPS); repository URL.}
 \todo{[All] List planned comparisons and ablations, e.g., c-TF-IDF vs.\ alternative keyword representations (\texttt{representation\_comparison.csv}), and LDA with vs.\ without custom stopwords.}
 
@@ -442,8 +467,7 @@ We examine whether LDA and BERTopic support similar conclusions about publicatio
 \end{itemize}
 
 \textbf{Working draft:}
-\todo{[All] Update for the completed duplicate policy: exact duplicate bodies are removed, but near-duplicates and syndicated rewrites may remain.}
-The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while duplicate or syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
+The corpus may not represent all AV news coverage. Keyword filtering may omit relevant articles or retain irrelevant ones, while syndicated stories may overrepresent particular themes. Unequal publication sizes and date coverage limit comparisons, especially for publications with few articles. Major news events may also produce temporary concentrations of coverage that do not reflect sustained thematic emphasis.
 
 Both pipelines depend on preprocessing and modeling choices. LDA’s dominant-topic summaries simplify articles containing multiple themes, while BERTopic’s embeddings, chunk pooling, and clustering settings may affect topic boundaries and leave articles unassigned. Robustness checks will assess these effects. Human evaluation by two team members provides a limited, subjective assessment.
 
@@ -480,8 +504,6 @@ This study aims to characterize themes in AV news coverage from 2016 to 2020 and
     \item \todo{Responsibilities: Laura, classical pipeline and evaluation; Mary Kate, modern pipeline and evaluation; Lauren, theory writing and R visualizations.}
     \item \todo{Timeline: Nov 18, seed stability and joint quantitative and human evaluation; Dec 2, report tables, figures, methods and results, presentation. Note any scope changes.}
 \end{itemize}
-
-\todo{[All] Before submitting: one PDF, at most 6 pages excluding references (currently in outline form; convert notes to prose); add the code repository link; number and caption every table and figure; cite data, code, and methods; label preliminary results; remove every \texttt{\textbackslash todo}; delete the stale ``4-page limit'' comment in the preamble.}
 
 \newpage
 \section*{References}
