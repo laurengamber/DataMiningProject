@@ -64,10 +64,10 @@ connellymarykate@gmail.com}
 
 Since Progress Report 1, we have (i) finalized the corpus by dropping five duplicate article bodies, keeping the earliest-dated copy of each (7,337 to 7,332 articles); (ii) completed the Introduction and Related Work sections; (iii) written shared code for corpus loading, evaluation tokenization, coherence metrics, and the joint comparison; (iv) implemented LDA preprocessing, including a 50-term custom stopword list and the document-term matrix, and fit LDA for seven topic counts; and (v) implemented the full BERTopic pipeline, fit a six-configuration grid, selected a configuration, and checked its seed stability. The BERTopic runs below were fit on all 7,337 articles before duplicate removal and will be rerun on the deduplicated corpus before Progress Report 3.
 
-\textbf{BERTopic configuration study (preliminary).} We fit six BERTopic configurations, crossing UMAP \texttt{n\_neighbors} $\in\{15,30\}$ with HDBSCAN \texttt{min\_cluster\_size} $\in\{25,50,100\}$, all with seed 42 (Table~\ref{tab:bertopic-grid}). Smaller minimum cluster sizes produced more topics (70--71 vs.\ 24) with higher mean $c_v$ coherence and fewer unassigned articles. Cosine silhouette was low for every configuration (0.095--0.130), indicating weak separation between topics in the full embedding space.
+\textbf{BERTopic Progress.} We fit six BERTopic configurations, crossing UMAP \texttt{n\_neighbors} $\in\{15,30\}$ with HDBSCAN \texttt{min\_cluster\_size} $\in\{25,50,100\}$, all with seed 42 (Table~\ref{tab:bertopic-grid}). Smaller minimum cluster sizes produced more topics (70--71 vs.\ 24) with higher mean $c_v$ coherence and fewer unassigned articles. Cosine silhouette was low for every configuration (0.095--0.130), indicating weak separation between topics in the full embedding space.
 
 \begin{table}[H]
-\caption{BERTopic configuration study (seed 42; 7,337 articles before duplicate removal). $c_v$ is the mean over topics, using the top ten unigrams per topic. Unassigned is HDBSCAN's outlier class ($-1$). Silhouette uses cosine distance on the embeddings, excluding unassigned articles. Bold: selected configuration. $^\dagger$Shortlisted for selection review (top three by $c_v$). Preliminary.}
+\caption{BERTopic configuration study (seed 42; 7,337 articles before duplicate removal).}
 \label{tab:bertopic-grid}
 \centering
 \footnotesize
@@ -86,7 +86,7 @@ Since Progress Report 1, we have (i) finalized the corpus by dropping five dupli
 \end{tabular}
 \end{table}
 
-\textbf{Selected BERTopic configuration (preliminary).} Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). Topic labels have not yet been assigned.
+Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). Topic labels have not yet been assigned.
 
 To check stability, we refit the selected configuration with seeds 7 and 21 and compared each article's topic assignment with the seed-42 run (Table~\ref{tab:stability}). The adjusted Rand index (ARI) is computed over articles assigned to a topic in both runs; outlier agreement is the share of all articles that both runs either assign or leave unassigned. Both ARI values exceed 0.95, so the clustering of assigned articles is largely unchanged across seeds, although 21--23\% of articles are unassigned in at least one of the two runs being compared.
 
@@ -105,8 +105,8 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 \end{tabular}
 \end{table}
 
-\textbf{Selected LDA configuration (preliminary).}
-We built a custom stopword list from the 100 tokens with the highest document frequency (Table~\ref{tab:stopwords}).
+\textbf{LDA Progress}
+Following an analysis of tokens, we built a custom stopword list from the 100 tokens with the highest document frequency (Table~\ref{tab:stopwords}).
 
 During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
 
@@ -321,7 +321,7 @@ z_{dn} \sim \mathrm{Mult}(\theta_d), \qquad w_{dn} \sim \mathrm{Mult}(\phi_{z_{d
 \end{equation}
 where $z_{dn}$ is the topic of the $n$th word $w_{dn}$ in article $d$. An article's dominant topic is $\arg\max_k \hat{\theta}_{dk}$, where $\hat{\theta}_d$ is its inferred topic mixture.
 
-\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented (Table~\ref{tab:lda-grid}), as is the seed-stability check (seeds 7 and 21, compared by ARI), which will be rerun for the final $K$. Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
+\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented (Table~\ref{tab:lda-grid}), as is the seed-stability check (seeds 7 and 21, compared by ARI). Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
 
 \textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. It is also inexpensive: each fit took 29--68\,s (Table~\ref{tab:lda-grid}) and needs no embedding step.
 
