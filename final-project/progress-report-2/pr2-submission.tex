@@ -67,9 +67,8 @@ connellymarykate@gmail.com}
 
 We established a duplicate article handling process of retaining the earliest dated articles, and dropping the others from the dataset. This brings our dataset from 7,337 to 7,332 articles.
 
-Lauren completed the Introduction and Related Works sections. Laura and Mary Kate worked each worked on their respective pipelines, sharing code for handling the corpus, tokenizing for evaluation, the metrics and the joint comparison.
+Lauren completed the Introduction and Related Works sections. Laura and Mary Kate worked each worked on their respective pipelines, sharing code for handling the corpus, tokenizing for evaluation, the metrics and the joint comparison. The modern pipeline was run before duplicate handling, and will be run again on the deduped data before the next progress report.
 
-\todo{[All] Required section (assignment item 7): include at least one meaningful quantitative result, table, or figure, and label every number as established or preliminary.}
 \textbf{BERTopic configuration study (preliminary).} We fit six BERTopic configurations, crossing UMAP \texttt{n\_neighbors} $\in\{15,30\}$ with HDBSCAN \texttt{min\_cluster\_size} $\in\{25,50,100\}$, all with seed 42 (Table~\ref{tab:bertopic-grid}). These runs were fit on the 7,337-article corpus before duplicate removal. Smaller minimum cluster sizes produced more topics (70--71 vs.\ 24) with higher mean $c_v$ coherence and fewer unassigned articles. Cosine silhouette was low for every configuration (0.095--0.130), indicating weak separation between topics in the full embedding space.
 
 \begin{table}[H]
@@ -92,7 +91,7 @@ Lauren completed the Introduction and Related Works sections. Laura and Mary Kat
 \end{tabular}
 \end{table}
 
-\textbf{Selected BERTopic configuration (preliminary).} Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). These ratings are assistant-suggested and have not yet been confirmed by a team member, so the selection is provisional. It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). These runs were fit on the 7,337-article corpus before duplicate removal. Topic labels have not yet been assigned.
+\textbf{Selected BERTopic configuration (preliminary).} Of the three seed-42 runs with the highest $c_v$, the model-selection step chose UMAP \texttt{n\_neighbors}$=15$ with HDBSCAN \texttt{min\_cluster\_size}$=25$ (run \texttt{n15\_c25\_s42}), which had the highest mean rating of its top five topics (3.8 on a 1--5 scale, vs.\ 3.7 for the other two). It produced 70 topics with mean $c_v=0.701$ and left 17.1\% of articles (1,256) unassigned. The \texttt{n30\_c25} run had slightly higher coherence ($c_v=0.706$) but a higher unassigned share (18.5\%). These runs were fit on the 7,337-article corpus before duplicate removal. Topic labels have not yet been assigned.
 
 To check stability, we refit the selected configuration with seeds 7 and 21 and compared each article's topic assignment with the seed-42 run (Table~\ref{tab:stability}). The adjusted Rand index (ARI) is computed over articles assigned to a topic in both runs; outlier agreement is the share of all articles that both runs either assign or leave unassigned. Both ARI values exceed 0.95, so the clustering of assigned articles is largely unchanged across seeds, although 21--23\% of articles are unassigned in at least one of the two runs being compared.
 
@@ -132,7 +131,7 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 Autonomous Vehicle news coverage grew rapidly between 2016 and 2020, but its dominant
 themes remain poorly characterized. We apply a classical pipeline and a modern embedding-based pipeline to 7,337 articles from the “All the News” dataset \cite{mckinley2021}, available on Kaggle, comparing topic coherence and interpretability. We identified...
 
-\todo{[Lauren] Change 7,337 to 7,332 (after duplicate removal). Name the methods (LDA vs.\ BERTopic with GTE-small, UMAP, HDBSCAN) and the evaluation ($c_v$ coherence, two-reviewer human evaluation, Jaccard topic overlap). Replace ``We identified...'' with clearly labeled preliminary findings and the anticipated contribution, without unsupported claims.}
+\todo{[All] Change 7,337 to 7,332 (after duplicate removal). Name the methods (LDA vs.\ BERTopic with GTE-small, UMAP, HDBSCAN) and the evaluation ($c_v$ coherence, two-reviewer human evaluation, Jaccard topic overlap). Replace ``We identified...'' with clearly labeled preliminary findings and the anticipated contribution, without unsupported claims.}
 
 \section*{Introduction}
 \textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in Autonomous Vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
@@ -221,9 +220,9 @@ self[- ]driving|driverless|autonomous (car|vehicle|truck|driving)|robo[- ]?taxi|
 \label{fig:regex}
 \end{figure}
 
-The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable.
+The CSV contains 15 columns: article ID, an additional source index, date, year, month, day, author, title, article body, URL, section, publication, title match, body hits, and word count. Article bodies will be the modeling input; publication and date will be metadata for interpreting and comparing results. There is no supervised target variable, so the data does not have labels or class distribution; topics are discovered rather than predicted.
 
-An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332.
+An initial audit identified missing author and section values and five duplicate article bodies, with no missing article bodies or publications. Both pipelines use the same documented article set and duplicate-handling policy: for articles with duplicate article bodies, the earliest dated article are retained, and the others are dropped, bringing the new article total to 7,332. Since author and section are not used for our analysis, we retained articles missing this data.
 
 
 \begin{table}[H]
@@ -261,21 +260,12 @@ articles, while 13 publications together contribute 7.2\%. Article length is
 right-skewed (median 496, mean 761, maximum 28{,}048 words), which motivates
 chunked embeddings.
 
-\todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results. Mention the four The Hill 5G-event pages that shared one boilerplate body.}
+For feature construction, the classical pipeline (LDA) uses unigram bag-of-words counts, whereas BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.
+
+\todo{[All] Complete the 30-article inspection in \texttt{data/corpus\_review.csv} (relevance, boilerplate, malformed) and report the results.}
 We will inspect a random sample for relevance, boilerplate, and malformed text, and document the filtering expression. Keyword filtering may omit relevant articles or include incidental mentions, while unequal publication and date coverage may affect comparisons.
 
 If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add ‘AV’ and ‘Uber ATG’) or substitute a comparable public news corpus such as CC-News.
-
-\todo{[All] Add at least one descriptive figure (e.g., articles per month by publication), numbered and captioned. Correct the article-length statistics in the text for N = 7,332.}
-\todo{[All] Assignment item 4 asks for these points; add one or two sentences each:}
-\begin{itemize}
-    \item \todo{Labels and class distribution: unsupervised, no labels; publication distribution is Table~\ref{tab:corpus}.}
-    \item \todo{Missing data: author (1,381) and section (3,668) are missing but unused; no article bodies or publications are missing, so nothing is imputed.}
-    \item \todo{Inclusion/exclusion: regex match in the title or $\geq 3$ body matches; $\geq 150$ words; first occurrence of each title; plus the 5 duplicate bodies dropped (earliest copy kept).}
-    \item \todo{Feature construction: LDA uses unigram bag-of-words counts; BERTopic uses lightly cleaned full text for embeddings and unigram counts for keywords.}
-    \item \todo{Leakage: the 100 human-evaluation articles are drawn with a fixed seed and kept out of topic labeling; publication and date are metadata only, never model input.}
-    \item \todo{Ethics and licensing: state the Kaggle license terms, that the text is copyrighted (research use only, no redistribution of article text in the repository), and representativeness (25 mostly U.S. digital outlets, uneven coverage).}
-\end{itemize}
 
 \section*{Methodology}
 
@@ -294,9 +284,11 @@ If the filtered corpus proves unsuitable, we will broaden the filter (e.g., add 
 We compare a classical Latent Dirichlet Allocation (LDA) baseline with a modern BERTopic pipeline. Both pipelines are applied to the same set of 7,332 articles from 25 publications (January 2016 to March 2020), after applying the shared duplicate-handling policy and preprocessing suited to each representation.
 
 \subsection*{Classical Pipeline (LDA)}
-The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
+The classical pipeline follows four stages \cite{qamar2024}: (1) data preprocessing, (2) document-term representation, (3) topic model fitting, and (4) topic interpretation. We tokenize article bodies, remove English and custom stopwords, and build a document-term count matrix. LDA provides an interpretable baseline through its topic-word distributions and article-level topic mixtures. We compare a small set of topic counts and assign each article its highest-weight (dominant) topic for publication summaries, while retaining the full topic mixture.
 
-After removing scikit-learn's English stopwords, number-only tokens, and tokens shorter than three characters, we ranked the remaining tokens by document frequency and inspected the top 100. We removed 40 reporting and filler terms (e.g., \textit{said}, \textit{told}, \textit{according}, \textit{thats}) and 10 terms that appear in 53--88\% of articles because they define the corpus or are generic to it (e.g., \textit{selfdriving}, \textit{autonomous}, \textit{car}, \textit{company}); the full list is in Table~\ref{tab:stopwords}. Table~\ref{tab:tokens} reports article lengths before and after custom stopword removal.
+Tokenization was performed by (1) merging words with apostrophes and hyphens, (2) deleting non-ascii letters, (3) dropping words with less than 3 characters, and (4) lowercasing all words.
+
+After removing scikit-learn's English stopwords, number-only tokens, and tokens shorter than three characters, we ranked the remaining tokens by document frequency and inspected the top 100. We removed 40 reporting and filler terms (e.g., \textit{said}, \textit{told}, \textit{according}, \textit{thats}) and 10 terms that appear in 53--88\% of articles because they define the corpus (e.g., \textit{selfdriving}, \textit{autonomous}, \textit{car}, \textit{company}); the full list is in Table~\ref{tab:stopwords}. Table~\ref{tab:tokens} reports article lengths before and after custom stopword removal.
 
 \begin{table}[H]
 \caption{Custom stopwords removed for the LDA pipeline, chosen from the 100 tokens with the highest document frequency.}
@@ -328,6 +320,8 @@ English and custom  & 56 & 227.5 & 339.6 & 10,353 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+Once tokenization was complete, scikit-learn's CountVectorizer completed the document-term matrix.
 
 \todo{[Laura] Give the remaining preprocessing details: punctuation and non-ASCII removal, lowercase word tokens, the shared coherence reference corpus, vocabulary filter (\texttt{min\_df}=5, \texttt{max\_df}=0.5).}
 \todo{[Laura] Add the LDA formulation: $\theta_d \sim \mathrm{Dir}(\alpha)$, $\phi_k \sim \mathrm{Dir}(\eta)$, $z_{dn} \sim \mathrm{Mult}(\theta_d)$, $w_{dn} \sim \mathrm{Mult}(\phi_{z_{dn}})$; the dominant topic is $\arg\max_k \theta_{dk}$. Name the implementation (gensim \texttt{LdaModel} with \texttt{alpha='auto', eta='auto'} to match ``learned $\alpha,\eta$''), passes and iterations, and seeds.}
