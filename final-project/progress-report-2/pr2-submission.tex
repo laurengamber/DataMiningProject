@@ -108,7 +108,7 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 \textbf{LDA Progress}
 Following an analysis of tokens, we built a custom stopword list from the 100 tokens with the highest document frequency (Table~\ref{tab:stopwords}).
 
-During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
+During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run. Another run where \texttt{max\_iter}$=50$ returned similar results, with ARI raising by only 0.01–0.03.
 
 
 
@@ -238,7 +238,7 @@ chunked embeddings.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\columnwidth]{figures/monthly_articles.pdf}
-\caption{Monthly AV article counts after duplicate removal (N = 7,332), stacked by publication. The four largest publications are shown separately; the remaining 21 are grouped as Other. March 2020 is a partial month (through March 26).}
+\caption{Monthly AV article counts after duplicate removal (N = 7,332), stacked by publication. The four largest publications are shown separately; the remaining 21 are grouped as Other.}
 \label{fig:monthly}
 \end{figure}
 
@@ -441,27 +441,6 @@ Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topi
     \item Main themes and differences across publications \planned
     \item Influence of pipeline choice on findings \planned
     \item Remaining analysis and future work \planned
-\end{itemize}
-
-\begin{center}\large\textbf{Response to Feedback}\end{center}
-\todo{[All] Required section (assignment item 9). Briefly explain how each PR1 comment was addressed and where in the paper:}
-\begin{itemize}
-    \item \todo{Coherence statistic, topic alignment, reviewer agreement, chunk combination: now defined (Experimental Design; Modern Pipeline).}
-    \item \todo{Duplicate handling reconciled: completed; 5 duplicate bodies dropped, earliest copy kept (Data).}
-    \item \todo{Primary citations for BERTopic and GTE, plus computing resources (Related Work; Implementation environment).}
-    \item \todo{Kang et al.\ (2025) discussed and contribution emphasized (Related Work): done.}
-    \item \todo{Major changes: corpus is now 7,332 articles; LDA uses scikit-learn with fixed symmetric priors ($1/K$) instead of the learned priors proposed in PR1; actual BERTopic grid differs from the one proposed.}
-\end{itemize}
-
-\begin{center}\large\textbf{Remaining Work}\end{center}
-\todo{[All] Required section (assignment item 10). Give a specific plan to Progress Report 3, covering:}
-\begin{itemize}
-    \item \todo{Experiments: LDA grid and seed runs (Laura); BERTopic topic labels (Mary Kate); joint Jaccard and publication heat maps (all); two-reviewer human evaluation (two members).}
-    \item \todo{Technical problems: corpus hash changed after duplicate removal, so cached embeddings and runs must be regenerated; finalize custom stopwords.}
-    \item \todo{Literature and analysis: primary citations listed above; date-restricted robustness check.}
-    \item \todo{Tables and figures still to produce: LDA results table, Jaccard heat map, publication-proportion heat maps for both models, human-evaluation table.}
-    \item \todo{Responsibilities: Laura, classical pipeline and evaluation; Mary Kate, modern pipeline and evaluation; Lauren, theory writing and R visualizations.}
-    \item \todo{Timeline: Nov 18, seed stability and joint quantitative and human evaluation; Dec 2, report tables, figures, methods and results, presentation. Note any scope changes.}
 \end{itemize}
 
 \newpage
