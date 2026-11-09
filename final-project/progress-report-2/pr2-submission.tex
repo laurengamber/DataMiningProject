@@ -60,6 +60,17 @@ connellymarykate@gmail.com}
 
 \newpage
 
+\begin{center}\large\textbf{Response to Feedback}\end{center}
+
+This report addresses each comment on Progress Report 1:
+\begin{itemize}
+    \item \textbf{Reproducibility definitions.} The coherence statistic, topic alignment across methods (Eq.~\ref{eq:jaccard}), and reviewer agreement are now defined in Experimental Design; chunk combination is defined in Modern Pipeline (Eq.~\ref{eq:pooling}).
+    \item \textbf{Duplicate handling.} Completed and described consistently: five duplicate bodies were dropped, keeping the earliest-dated copy (7,332 articles; Data). BERTopic runs that predate this step are labeled and will be rerun.
+    \item \textbf{Citations and computing resources.} Primary citations for BERTopic~\cite{grootendorst2022bertopic} and GTE~\cite{li2023gte} were added, and software and hardware are listed under Implementation Environment.
+    \item \textbf{Related 2025 study.} Kang et al.~\cite{kang2025unveiling} is discussed in Related Work, and the Introduction states how our contribution differs.
+\end{itemize}
+Major changes since Progress Report 1: the corpus is now 7,332 articles; LDA uses scikit-learn with fixed symmetric priors ($1/K$) rather than learned priors, over $K\in\{10,\dots,70\}$ instead of $\{10,15,20,30\}$; the BERTopic grid is now \texttt{n\_neighbors}$\in\{15,30\}$ by \texttt{min\_cluster\_size}$\in\{25,50,100\}$; and a held-out train/test split is planned (Experimental Design).
+
 \begin{center}\large\textbf{Implementation Progress and Initial Findings}\end{center}
 
 Since Progress Report 1, we have (i) finalized the corpus by dropping five duplicate article bodies, keeping the earliest-dated copy of each (7,337 to 7,332 articles); (ii) completed the Introduction and Related Work sections; (iii) written shared code for corpus loading, evaluation tokenization, coherence metrics, and the joint comparison; (iv) implemented LDA preprocessing, including a 50-term custom stopword list and the document-term matrix, and fit LDA for seven topic counts; and (v) implemented the full BERTopic pipeline, fit a six-configuration grid, selected a configuration, and checked its seed stability. The BERTopic runs below were fit on all 7,337 articles before duplicate removal and will be rerun on the deduplicated corpus before Progress Report 3.
@@ -108,13 +119,13 @@ To check stability, we refit the selected configuration with seeds 7 and 21 and 
 \textbf{LDA Progress}
 Following an analysis of tokens, we built a custom stopword list from the 100 tokens with the highest document frequency (Table~\ref{tab:stopwords}).
 
-During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
+During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$, but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
 
 
 
 \begin{center}\large\textbf{Remaining Work}\end{center}
 
-Two technical problems must be resolved first. Duplicate removal changed the corpus hash, so BERTopic's cached embeddings and runs must be regenerated on the 7,332-article corpus. LDA dominant-topic assignments agreed only moderately across seeds, so $K$ must be finalized and the stability check repeated before topics are labeled. Table~\ref{tab:plan} lists the work planned through Progress Report 3. The research questions and scope are unchanged.
+One technical problem must be resolved first: duplicate removal changed the corpus hash, so BERTopic's cached embeddings and runs must be regenerated on the 7,332-article corpus. Table~\ref{tab:plan} lists the work planned through Progress Report 3. The research questions and scope are unchanged.
 
 \begin{table}[H]
 \caption{Plan through Progress Report 3.}
@@ -122,18 +133,18 @@ Two technical problems must be resolved first. Duplicate removal changed the cor
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}p{0.56\columnwidth}p{0.24\columnwidth}l@{}}
+\begin{tabular}{@{}p{0.82\columnwidth}l@{}}
 \toprule
-\textbf{Task} & \textbf{Owner} & \textbf{By} \\
+\textbf{Task} & \textbf{By} \\
 \midrule
-Rerun BERTopic grid and seed stability on 7,332 articles; complete selection ratings; finalize configuration & Mary Kate & Nov 18 \\
-Rerun LDA grid at one \texttt{max\_iter}; finalize $K$; repeat stability check & Laura & Nov 18 \\
-Dominant topics, representative articles, and topic labels for both pipelines & Laura, Mary Kate & Nov 18 \\
-Complete the 30-article corpus review and report rates & All & Nov 18 \\
-Jaccard and publication-proportion heat maps & Lauren & Nov 18 \\
-Two-reviewer human evaluation (100 articles) and agreement & Two members & Nov 18 \\
-Date-restricted robustness check & Laura, Mary Kate & Dec 2 \\
-Results, Discussion, and Conclusion drafts; pipeline-comparison table & All & Dec 2 \\
+Rerun BERTopic grid and seed stability on 7,332 articles; complete selection ratings; finalize configuration & Nov 18 \\
+Dominant topics, representative articles, and topic labels for both pipelines & Nov 18 \\
+Complete the 30-article corpus review and report rates & Nov 18 \\
+Jaccard and publication-proportion heat maps & Nov 18 \\
+Two-reviewer human evaluation (100 articles) and agreement & Nov 18 \\
+Train/test split evaluation (held-out perplexity and coherence) & Dec 2 \\
+Date-restricted robustness check & Dec 2 \\
+Results, Discussion, and Conclusion drafts; pipeline-comparison table & Dec 2 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -154,7 +165,7 @@ Results, Discussion, and Conclusion drafts; pipeline-comparison table & All & De
 \end{itemize}
 
 \textbf{Working draft:}
-Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, a two-reviewer human evaluation of topic assignments, and Jaccard overlap between the two models' topic keywords. In preliminary results, the provisionally selected BERTopic configuration produced 70 topics with mean $c_v=0.701$, left 17.1\% of articles unassigned, and was stable across random seeds (ARI $>0.95$); these runs predate duplicate removal. LDA's mean $c_v$ ranged from 0.622 to 0.651 across 10 to 70 topics, and its number of topics is not yet final. Topics have not yet been labeled, so no thematic findings are reported. We anticipate contributing the first topic-model comparison of AV coverage across individual U.S. publications and a matched evaluation of how the choice of topic model changes the themes identified.
+Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, a two-reviewer human evaluation of topic assignments, and Jaccard overlap between the two models' topic keywords. In preliminary results, the provisionally selected BERTopic configuration produced 70 topics with mean $c_v=0.701$, left 17.1\% of articles unassigned, and was stable across random seeds (ARI $>0.95$); these runs predate duplicate removal. LDA has been fit for 10 to 70 topics, and its number of topics is not yet final. Topics have not yet been labeled, so no thematic findings are reported. We anticipate contributing the first topic-model comparison of AV coverage across individual U.S. publications and a matched evaluation of how the choice of topic model changes the themes identified.
 
 \section*{Introduction}
 \textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in autonomous vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
@@ -316,7 +327,7 @@ Corpus-defining or generic (10) & selfdriving, autonomous, cars, car, vehicles, 
 
 Once tokenization was complete, we represented each article as unigram counts (not TF-IDF), using scikit-learn's \texttt{CountVectorizer}. We kept terms that appear in at least 5 articles (\texttt{min\_df}$=5$) and in no more than 50\% of articles (\texttt{max\_df}$=0.5$). The resulting document-term matrix had 21,528 terms and is 98.97\% sparse (221 distinct terms per article on average), falling within the expected sparsity range for news articles.
 
-Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored models with $K\in\{10,20,30,40,50,60,70\}$ topics using seed 42 (Table~\ref{tab:lda-grid}). Because perplexity on the training articles generally falls as $K$ increases, selecting $K$ involved weighing $c_v$, perplexity, and diversity, as well as manually reviewing selected topics.
+Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored models with $K\in\{10,20,30,40,50,60,70\}$ topics using seed 42. Because perplexity on the training articles generally falls as $K$ increases, selecting $K$ involved weighing $c_v$, perplexity, and diversity, as well as manually reviewing selected topics.
 
 \todo{[Laura] Finish the stability-check paragraph (seeds 7 and 21).}
 
@@ -330,7 +341,7 @@ z_{dn} \sim \mathrm{Mult}(\theta_d), \qquad w_{dn} \sim \mathrm{Mult}(\phi_{z_{d
 \end{equation}
 where $z_{dn}$ is the topic of the $n$th word $w_{dn}$ in article $d$. An article's dominant topic is $\arg\max_k \hat{\theta}_{dk}$, where $\hat{\theta}_d$ is its inferred topic mixture.
 
-\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented (Table~\ref{tab:lda-grid}), as is the seed-stability check (seeds 7 and 21, compared by ARI). Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
+\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented, as is the seed-stability check (seeds 7 and 21, compared by ARI). Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
 
 \textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. 
 
@@ -384,6 +395,8 @@ Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{
     \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity to hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
     \item \textbf{Evaluate success and document conclusions.} Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
 \end{enumerate}
+
+\textbf{Data splitting.} Because the goal is to describe a fixed corpus rather than to predict labels, the final models will be fit on all 7,332 articles. To check that topics generalize beyond the articles used to fit them, we will also hold out a 20\% test split, drawn once with seed 42 and stratified by publication and year so that small publications and each period appear in both parts. Each pipeline will be refit on the 80\% training split; we will report LDA's held-out perplexity, compute $c_v$ against the held-out articles as the reference corpus, and assign held-out articles to topics (LDA's \texttt{transform}, BERTopic's \texttt{transform}) to check that topic proportions resemble those of the training split. The 100 human-evaluation articles will be sampled before topic labeling, and topic names will not be based on them, so the human ratings are not influenced by labeling.
 
 \textbf{Coherence.} We will measure topic coherence with $c_v$~\cite{roder2015coherence}, computed with gensim's \texttt{CoherenceModel}, using each topic's ten highest-weighted unigrams. Word and word-pair probabilities are estimated from a boolean sliding window of 110 tokens over a reference corpus. Each top word is represented by a vector of its normalized pointwise mutual information (NPMI) with all ten top words, and a topic's $c_v$ is the mean cosine similarity between each word's vector and the vector of the full top-word set (indirect confirmation). Both pipelines use the same reference corpus: every modeled article, stripped of non-alphanumeric characters, lowercased, and tokenized with scikit-learn's English-stopword analyzer. Top words missing from the reference vocabulary are dropped before scoring, and BERTopic's outlier class ($-1$) is excluded. We will report per-topic values and their mean.
 

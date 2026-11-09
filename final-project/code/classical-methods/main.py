@@ -48,11 +48,11 @@ if __name__ == '__main__':
     print(f"Building the document term matrix took {end-start} seconds")
 
     # Anaylze different options for k
-    vocab = vectorizer.get_feature_names_out()
-    grid = run_grid(X, vocab, texts, dictionary) # creates experiments.csv
+    # vocab = vectorizer.get_feature_names_out()
+    # grid = run_grid(X, vocab, texts, dictionary) # creates experiments.csv
    
-    # K_CHOSEN = 40
-    # stability_check(X, K_CHOSEN) # Creates stability.csv (seeds 7, 21)
+    K_CHOSEN = 40
+    stability_check(X, K_CHOSEN) # Creates stability.csv (seeds 7, 21)
     
     # theta, assignments = document_topics(model, X)  # interpret.py
     #   7. Write representatives, then label topics by hand.
