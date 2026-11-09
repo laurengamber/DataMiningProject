@@ -124,11 +124,11 @@ During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{ma
     \item Problem and motivation \done
     \item Data and methods \done
     \item Thematic findings \wip
-    \item Pipeline comparison \planned
+    \item Pipeline comparison \wip
 \end{itemize}
 
 \textbf{Working draft:}
-Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, a two-reviewer human evaluation of topic assignments, and Jaccard overlap between the two models' topic keywords. In preliminary results, the selected BERTopic configuration produced 70 topics with mean $c_v=0.701$, left 17.1\% of articles unassigned, and was stable across random seeds (ARI $>0.95$); these runs predate duplicate removal. LDA's mean $c_v$ ranged from 0.622 to 0.651 across 10 to 70 topics, and its number of topics is not yet final. Topics have not yet been labeled, so no thematic findings are reported. We anticipate contributing the first topic-model comparison of AV coverage across individual U.S. publications and a matched evaluation of how the choice of topic model changes the themes identified.
+Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, a two-reviewer human evaluation of topic assignments, and Jaccard overlap between the two models' topic keywords.
 
 \section*{Introduction}
 \textbf{Purpose:} The introduction will familiarize the reader with the problem of poorly characterized themes in autonomous vehicle news coverage between 2016 and 2020, and summarize the gaps in prior research. The overall research takeaways from this paper will be summarized.
@@ -356,7 +356,6 @@ For each pipeline, we label topics using top keywords and representative article
 
 \subsection*{Implementation Environment}
 Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{uv} lockfile: bertopic 0.17.4, sentence-transformers 6.1.0, umap-learn 0.5.12, hdbscan 0.8.44, scikit-learn 1.9.1, and gensim 4.4.0 (used for $c_v$ coherence). Experiments run on an Apple-silicon Mac under macOS; GTE-small embeddings are computed on the GPU through PyTorch's Metal Performance Shaders (MPS) backend, and all other stages run on the CPU. Code, the corpus manifest, and run outputs are available at \url{https://github.com/laurengamber/DataMiningProject}.
-\todo{[All] List planned comparisons and ablations, e.g., c-TF-IDF vs.\ alternative keyword representations (\texttt{representation\_comparison.csv}), and LDA with vs.\ without custom stopwords.}
 
 \section*{Experimental Design}
 \textbf{Purpose:} Describe how we will develop, evaluate and compare the LDA and BERTopic modeling pipelines.
@@ -382,13 +381,6 @@ Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{
     \item \textbf{Assess robustness.} We will repeat selected configurations with different random seeds and examine sensitivity to hyperparameter selection. Where article counts permit, we will restrict publication comparisons to shared periods to assess the influence of unequal date coverage. We will assess whether the main themes and publication patterns persist.
     \item \textbf{Evaluate success and document conclusions.} Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
 \end{enumerate}
-
-\todo{[All] Data splitting (assignment item 6): state that there is no train/test split because the task is unsupervised description of a fixed corpus; both models are fit on all 7,332 articles. Leakage is controlled by fixing the human-evaluation sample before labeling.}
-\todo{[All] PR1 feedback: define the coherence statistic. $c_v$ (R\"oder et al.) uses the top 10 unigrams per topic, a boolean sliding window of 110 tokens, NPMI with indirect cosine confirmation, and the shared tokenized corpus as reference (gensim \texttt{CoherenceModel}). Report the per-topic values and their mean; BERTopic's $-1$ class is excluded.}
-\todo{[All] PR1 feedback: define topic alignment across methods. Jaccard similarity of top-10 term sets, $J(A,B)=|A\cap B|/|A\cup B|$, for every LDA--BERTopic topic pair, shown as a heat map.}
-\todo{[All] Hyperparameter selection procedure: BERTopic shortlists the top 3 runs by $c_v$, then picks by mean human rating (semantic consistency, label specificity) of the top 5 topics. LDA: select $K$ by $c_v$ plus inspection of topics.}
-\todo{[All] Seeds and uncertainty: grid at seed 42; selected configuration refit with seeds 7 and 21 (ARI for stability). Add bootstrap confidence intervals for mean $c_v$ and for $\kappa$, or state why they are omitted.}
-\todo{[All] Compute resources: hardware, cold vs.\ cached embedding time, and per-stage times from the run manifests.}
 
 \section*{Results}
 \textbf{Purpose:} Present the themes, publication patterns, and pipeline comparison supported by the completed analysis.
@@ -441,27 +433,6 @@ Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topi
     \item Main themes and differences across publications \planned
     \item Influence of pipeline choice on findings \planned
     \item Remaining analysis and future work \planned
-\end{itemize}
-
-\begin{center}\large\textbf{Response to Feedback}\end{center}
-\todo{[All] Required section (assignment item 9). Briefly explain how each PR1 comment was addressed and where in the paper:}
-\begin{itemize}
-    \item \todo{Coherence statistic, topic alignment, reviewer agreement, chunk combination: now defined (Experimental Design; Modern Pipeline).}
-    \item \todo{Duplicate handling reconciled: completed; 5 duplicate bodies dropped, earliest copy kept (Data).}
-    \item \todo{Primary citations for BERTopic and GTE, plus computing resources (Related Work; Implementation environment).}
-    \item \todo{Kang et al.\ (2025) discussed and contribution emphasized (Related Work): done.}
-    \item \todo{Major changes: corpus is now 7,332 articles; LDA uses scikit-learn with fixed symmetric priors ($1/K$) instead of the learned priors proposed in PR1; actual BERTopic grid differs from the one proposed.}
-\end{itemize}
-
-\begin{center}\large\textbf{Remaining Work}\end{center}
-\todo{[All] Required section (assignment item 10). Give a specific plan to Progress Report 3, covering:}
-\begin{itemize}
-    \item \todo{Experiments: LDA grid and seed runs (Laura); BERTopic topic labels (Mary Kate); joint Jaccard and publication heat maps (all); two-reviewer human evaluation (two members).}
-    \item \todo{Technical problems: corpus hash changed after duplicate removal, so cached embeddings and runs must be regenerated; finalize custom stopwords.}
-    \item \todo{Literature and analysis: primary citations listed above; date-restricted robustness check.}
-    \item \todo{Tables and figures still to produce: LDA results table, Jaccard heat map, publication-proportion heat maps for both models, human-evaluation table.}
-    \item \todo{Responsibilities: Laura, classical pipeline and evaluation; Mary Kate, modern pipeline and evaluation; Lauren, theory writing and R visualizations.}
-    \item \todo{Timeline: Nov 18, seed stability and joint quantitative and human evaluation; Dec 2, report tables, figures, methods and results, presentation. Note any scope changes.}
 \end{itemize}
 
 \newpage
