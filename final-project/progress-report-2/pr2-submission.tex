@@ -110,7 +110,7 @@ We built a custom stopword list from the 100 tokens with the highest document fr
 
 During $K$ selection, we initially set \texttt{max\_iter}$=20$, where \texttt{max\_iter} is the maximum number of passes LDA makes over all the articles while fitting. From these runs we initially selected $K=40$ (Table~\ref{tab:lda-grid}), but a stability check with seeds 7 and 21 showed that LDA dominant-topic assignments agreed only moderately with the seed-42 run.
 
-\todo{[Laura] Report runtime (embedding cold vs.\ cached, fitting) and implementation challenges with attempted solutions, e.g., the repository refactor and the shared corpus manifest.}
+
 
 \begin{center}\large\textbf{Paper Outline 2}\end{center}
 \noindent\emph{Status legend:} \done~completed;
