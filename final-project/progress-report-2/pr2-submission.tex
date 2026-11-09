@@ -332,7 +332,7 @@ where $z_{dn}$ is the topic of the $n$th word $w_{dn}$ in article $d$. An articl
 
 \textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}, \texttt{max\_iter}$=50$). The priors are fixed at scikit-learn's symmetric defaults, $\alpha=\eta=1/K$, rather than learned. Fitting and scoring each $K$ in the grid with seed 42 is implemented (Table~\ref{tab:lda-grid}), as is the seed-stability check (seeds 7 and 21, compared by ARI). Computing $\hat{\theta}_d$ with the fitted model's \texttt{transform}, dominant-topic assignment, and topic labeling are planned.
 
-\textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. It is also inexpensive: each fit took 29--68\,s (Table~\ref{tab:lda-grid}) and needs no embedding step.
+\textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. 
 
 \subsection*{Modern Pipeline (BERTopic)}
 The modern pipeline follows five stages \cite{alammar2024, kumari2026}: (1) data preprocessing, (2) document embedding, (3) dimensionality reduction, (4) document clustering, and (5) topic representation and interpretation. We embed articles with GTE-small~\cite{li2023gte} to capture contextual similarity, reduce dimensionality with UMAP~\cite{mcinnes2018umap}, cluster with HDBSCAN~\cite{campello2013hdbscan}, and extract topic keywords with class-based TF-IDF. Embedding input retains sentence context after basic cleaning, and long articles are embedded in chunks that are combined into a single article representation. Because HDBSCAN allows articles to remain unassigned, we report the unassigned proportion explicitly. We examine a limited set of UMAP neighborhood sizes and HDBSCAN minimum cluster sizes.
@@ -385,8 +385,7 @@ Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{
     \item \textbf{Evaluate success and document conclusions.} Success will mean identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the modeling method. Findings and conclusions will be expanded once experimentation and analysis are complete.
 \end{enumerate}
 
-\todo{[All] Data splitting (assignment item 6): state that there is no train/test split because the task is unsupervised description of a fixed corpus; both models are fit on all 7,332 articles. Leakage is controlled by fixing the human-evaluation sample before labeling.}
-\textbf{Coherence.} We measure topic coherence with $c_v$~\cite{roder2015coherence}, computed with gensim's \texttt{CoherenceModel}, using each topic's ten highest-weighted unigrams. Word and word-pair probabilities are estimated from a boolean sliding window of 110 tokens over a reference corpus. Each top word is represented by a vector of its normalized pointwise mutual information (NPMI) with all ten top words, and a topic's $c_v$ is the mean cosine similarity between each word's vector and the vector of the full top-word set (indirect confirmation). Both pipelines use the same reference corpus: every modeled article, stripped of non-alphanumeric characters, lowercased, and tokenized with scikit-learn's English-stopword analyzer. Top words missing from the reference vocabulary are dropped before scoring, and BERTopic's outlier class ($-1$) is excluded. We report per-topic values and their mean.
+\textbf{Coherence.} We will measure topic coherence with $c_v$~\cite{roder2015coherence}, computed with gensim's \texttt{CoherenceModel}, using each topic's ten highest-weighted unigrams. Word and word-pair probabilities are estimated from a boolean sliding window of 110 tokens over a reference corpus. Each top word is represented by a vector of its normalized pointwise mutual information (NPMI) with all ten top words, and a topic's $c_v$ is the mean cosine similarity between each word's vector and the vector of the full top-word set (indirect confirmation). Both pipelines use the same reference corpus: every modeled article, stripped of non-alphanumeric characters, lowercased, and tokenized with scikit-learn's English-stopword analyzer. Top words missing from the reference vocabulary are dropped before scoring, and BERTopic's outlier class ($-1$) is excluded. We will report per-topic values and their mean.
 
 \textbf{Topic alignment.} To compare topics across pipelines, we represent each topic by the set of its ten highest-weighted terms. For every pair of an LDA topic $A$ and a BERTopic topic $B$, we compute the Jaccard similarity
 \begin{equation}
@@ -394,9 +393,6 @@ J(A,B) = \frac{|A\cap B|}{|A\cup B|},
 \label{eq:jaccard}
 \end{equation}
 which ranges from 0 (no shared terms) to 1 (identical term sets). BERTopic's outlier class is excluded. The resulting matrix will be shown as a heat map, with LDA topics as rows and BERTopic topics as columns, and for each LDA topic we will report its best-matching BERTopic topic.
-\todo{[All] Hyperparameter selection procedure: BERTopic shortlists the top 3 runs by $c_v$, then picks by mean human rating (semantic consistency, label specificity) of the top 5 topics. LDA: select $K$ by $c_v$ plus inspection of topics.}
-\todo{[All] Seeds and uncertainty: grid at seed 42; selected configuration refit with seeds 7 and 21 (ARI for stability). Add bootstrap confidence intervals for mean $c_v$ and for $\kappa$, or state why they are omitted.}
-\todo{[All] Compute resources: hardware, cold vs.\ cached embedding time, and per-stage times from the run manifests.}
 
 \section*{Results}
 \textbf{Purpose:} Present the themes, publication patterns, and pipeline comparison supported by the completed analysis.
@@ -460,16 +456,6 @@ Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topi
 \end{itemize}
 
 \textbf{Required evidence and figures:} summarizes the Results and Discussion; no tables or figures are planned.
-
-\begin{center}\large\textbf{Response to Feedback}\end{center}
-\todo{[All] Required section (assignment item 9). Briefly explain how each PR1 comment was addressed and where in the paper:}
-\begin{itemize}
-    \item \todo{Coherence statistic, topic alignment, reviewer agreement, chunk combination: now defined (Experimental Design; Modern Pipeline).}
-    \item \todo{Duplicate handling reconciled: completed; 5 duplicate bodies dropped, earliest copy kept (Data).}
-    \item \todo{Primary citations for BERTopic and GTE, plus computing resources (Related Work; Implementation environment).}
-    \item \todo{Kang et al.\ (2025) discussed and contribution emphasized (Related Work): done.}
-    \item \todo{Major changes: corpus is now 7,332 articles; LDA uses scikit-learn with fixed symmetric priors ($1/K$) instead of the learned priors proposed in PR1; actual BERTopic grid differs from the one proposed.}
-\end{itemize}
 
 \newpage
 \section*{References}
