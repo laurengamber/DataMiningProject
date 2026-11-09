@@ -294,29 +294,6 @@ Using scikit-learn's \texttt{LatentDirichletAllocation}, we fit and scored model
 
 \todo{[Laura] Finish the stability-check paragraph (seeds 7 and 21).}
 
-\begin{table}[H]
-\caption{LDA topic-count study (seed 42; 7,332 articles). $c_v$ is the mean over topics, using the top ten unigrams per topic and the shared reference corpus. Perplexity is computed on the training articles (lower is better). Diversity is the share of unique terms among all topics' top ten. Fit is wall-clock training time. Bold: best value in each column. Preliminary.}
-\label{tab:lda-grid}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{rrrrr}
-\toprule
-\textbf{Topics ($K$)} & \textbf{$c_v$} & \textbf{Perplexity} & \textbf{Diversity} & \textbf{Fit (s)} \\
-\midrule
-10 & \textbf{0.651} & 3518 & \textbf{0.830} & 29 \\
-20 & 0.627 & 3354 & 0.765 & 37 \\
-30 & 0.622 & 3323 & 0.720 & 46 \\
-40 & 0.647 & 3309 & 0.698 & 49 \\
-50 & 0.641 & \textbf{3288} & 0.698 & 55 \\
-60 & 0.641 & 3314 & 0.698 & 64 \\
-70 & 0.643 & 3355 & 0.689 & 68 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-
-
 \textbf{Model.} LDA~\cite{blei2003lda} treats each article $d$ as a mixture of $K$ topics and each topic $k$ as a distribution over the vocabulary:
 \begin{equation}
 \begin{gathered}
