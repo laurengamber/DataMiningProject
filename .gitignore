@@ -2,6 +2,12 @@
 .ipynb_checkpoints/
 __pycache__/
 .DS_Store
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Cache directories at any depth (e.g., cached embeddings and downloaded models)
+**/cache/
 
 # Modern pipeline results: embeddings cache, model runs, figures, and tables (regenerate from notebooks 01–03)
 /final-project/code/modern-methods/Results/
