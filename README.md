@@ -32,4 +32,10 @@ Lecture Proposal:
 
 ### Modern project workflow
 
-Mary Kate’s implementation is in three numbered [project notebooks](final-project/code/modern-methods/notebooks/README.md): corpus and full-text embeddings, BERTopic experiments, and modern/classical evaluation. Run them in order; model selection, topic naming, and two-person evaluation use explicit human review files. Laura’s classical export contract and project milestones are documented there.
+The three [modern-methods notebooks](final-project/code/modern-methods/notebooks/README.md)
+cover corpus/embeddings, a six-configuration BERTopic study, and publication/evaluation outputs.
+Run them in order. The source dataset is `data/self_driving_articles.csv`; both pipelines use
+the shared deduplicated 7,332-article corpus. Notebook 01 reserves human-evaluation IDs before
+development review. Choose a run with a written rationale, confirm topic labels, and provide
+Laura's exports to enable the joint comparison. Missing team inputs are explicitly pending.
+The notebooks generate PR3 evidence without editing the manuscript.

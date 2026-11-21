@@ -1,0 +1,100 @@
+{
+  "identity": {
+    "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+    "embedding_hash": "cde8e3ae9c2487872a53942b6da8c3471fb3886b4b142810bc7ff8680c2a2b65",
+    "parameters": {
+      "n_neighbors": 15,
+      "min_cluster_size": 100,
+      "seed": 42,
+      "n_components": 5,
+      "min_dist": 0,
+      "umap_metric": "cosine",
+      "min_samples": 10,
+      "cluster_metric": "euclidean",
+      "cluster_selection_method": "eom",
+      "min_article_frequency": 5,
+      "ngram_range": [
+        1,
+        1
+      ],
+      "top_n_words": 10
+    },
+    "vocabulary_hash": "5521f3515495fdacbb65eeeb45cd2df42452bd148f6693941955056c57a69cb8",
+    "implementation_hash": "c06cbf36aca25667677002e3521048b3696a2c94761cc4f15236d6b236344e6f",
+    "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+    "versions": {
+      "bertopic": "0.17.4",
+      "sentence-transformers": "6.1.0",
+      "umap-learn": "0.5.12",
+      "hdbscan": "0.8.44",
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3"
+    }
+  },
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "metrics": {
+    "topic_count": 21,
+    "outlier_fraction": 0.14607201309328968,
+    "coherence": 0.6408052119085109,
+    "vocabulary_coverage": 1.0,
+    "keyword_diversity": 0.5857142857142857,
+    "silhouette_cosine": 0.10499853640794754,
+    "silhouette_status": "ok",
+    "topic_sizes": {
+      "0": 1434,
+      "-1": 1071,
+      "1": 545,
+      "2": 458,
+      "3": 435,
+      "4": 402,
+      "5": 395,
+      "6": 285,
+      "7": 277,
+      "8": 242,
+      "9": 225,
+      "10": 181,
+      "11": 171,
+      "12": 167,
+      "13": 165,
+      "14": 160,
+      "15": 151,
+      "16": 122,
+      "17": 121,
+      "18": 113,
+      "19": 111,
+      "20": 101
+    },
+    "run_id": "n15_c100_s42",
+    "neighbors": 15,
+    "cluster_size": 100,
+    "seed": 42,
+    "fitting_representation_seconds": 8.030060791992582,
+    "evaluation_seconds": 9.859314790926874
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "bertopic": "0.17.4",
+      "sentence-transformers": "6.1.0",
+      "umap-learn": "0.5.12",
+      "hdbscan": "0.8.44",
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3"
+    }
+  },
+  "files": {
+    "assignments.csv": "4f8ade7c66addb4a0c394e25d8073b686f6f07e26a178682289e891d811cbc9d",
+    "terms.csv": "c7f2f69c34ebc2dc6045311be359d873d4d715bfce211116f0db7d73760d147f",
+    "topics.csv": "550b8463c9c9af682711779360fffdc90bd5b3367b311f20d5d519853d015245",
+    "representative_ids.csv": "7da8e5f03740249f5f6e75b86cfeae271bc490c77c9a47e2bbcf6871b2641c5f",
+    "coherence.csv": "75c7b4fab17ef42c11173035d55c8407bc474eb1fda0e623f6f20d4c263caee5",
+    "model.pkl": "d1287200148f5f4fe7ad9ddddb0ac39fa818db6f2b5495b4a51e54f134d92a13"
+  }
+}
