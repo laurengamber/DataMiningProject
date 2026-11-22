@@ -8,7 +8,9 @@ from nbclient import NotebookClient
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--execute", nargs="+", choices=["01", "02", "03"], default=[])
+    parser.add_argument(
+        "--execute", nargs="+", choices=["01", "02", "03", "04"], default=[]
+    )
     parser.add_argument(
         "--skip-embeddings",
         action="store_true",

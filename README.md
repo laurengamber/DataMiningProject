@@ -32,8 +32,9 @@ Lecture Proposal:
 
 ### Modern project workflow
 
-The three [modern-methods notebooks](final-project/code/modern-methods/notebooks/README.md)
-cover corpus/embeddings, a six-configuration BERTopic study, and publication/evaluation outputs.
+The [modern-methods notebooks](final-project/code/modern-methods/notebooks/README.md)
+cover corpus/embeddings, a six-configuration BERTopic study, publication/evaluation outputs,
+and a step-by-step human-review workbook with commented rating-entry cells.
 Run them in order. The source dataset is `data/self_driving_articles.csv`; both pipelines use
 the shared deduplicated 7,332-article corpus. Notebook 01 reserves human-evaluation IDs before
 development review. Choose a run with a written rationale, confirm topic labels, and provide

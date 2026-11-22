@@ -16,6 +16,7 @@ __pycache__/
 /final-project/code/modern-methods/Results/**/representatives.csv
 /final-project/code/modern-methods/Results/**/review_packet.csv
 /final-project/code/modern-methods/Results/**/reviewer_*.csv
+/final-project/code/modern-methods/Results/**/reviewer_*.ipynb
 /final-project/code/modern-methods/Results/**/outlier_review.csv
 /final-project/code/modern-methods/Results/**/review_examples.csv
 

@@ -36,3 +36,9 @@ Fresh-kernel notebook execution covers the real complete-grid/pending-team-input
 `pr3-submission.tex`, the classical implementation, and legacy model artifacts are untouched. The PR3 evidence checklist and completion-plan CSV identify remaining work; team completion dates and PR2 feedback are not invented.
 
 Held-out evaluation and shared-period publication sensitivity remain final-report work. See the [notebook README](notebooks/README.md) for commands, schemas, rubric, interpretation limits, and the rare-stratum issue.
+
+## Guided reviewer notebook
+
+`notebooks/04_human_review.ipynb` now provides the coordinator prerequisite checklist, independent 1–5 rubric, one-item article display, commented answer-entry cells, explicit save/correction controls, resumable progress, and a coordinator-only summary and interpretation section. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
+
+The notebook's default pending-input path executed successfully in a fresh kernel. Five additional tests exercise entry, resuming, corrections, stale edits, packet identity, outliers, separation of reviewer files, the notebook's item-number guard, and compatibility with the existing summary. The full suite now passes 21 tests. The original three analysis notebooks and study results are unchanged by this addition.
