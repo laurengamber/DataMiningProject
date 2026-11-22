@@ -30,12 +30,16 @@ example also requires an API key. The R Markdown file uses R packages
 environment.
 Lecture Proposal: 
 
-### Modern project workflow
+### Final-project code and workflow
+
+All pipeline code is consolidated under [final-project/code](final-project/code/README.md),
+including classical methods, modern methods, shared utilities, comparison, and human review.
 
 The [modern-methods notebooks](final-project/code/modern-methods/notebooks/README.md)
-cover corpus/embeddings, a six-configuration BERTopic study, publication/evaluation outputs,
-and separate [human-review notebooks](final-project/code/human-review/README.md) with commented
-rating-entry cells for reviewer 1 and reviewer 2.
+cover corpus/embeddings, a six-configuration BERTopic study, and modern publication outputs.
+The [comparison notebook](final-project/code/comparison/README.md) handles joint LDA–BERTopic
+evaluation, while the separate [human-review notebooks](final-project/code/human-review/README.md)
+provide commented rating-entry cells for reviewer 1 and reviewer 2.
 Run them in order. The source dataset is `data/self_driving_articles.csv`; both pipelines use
 the shared deduplicated 7,332-article corpus. Notebook 01 reserves human-evaluation IDs before
 development review. Choose a run with a written rationale, confirm topic labels, and provide
