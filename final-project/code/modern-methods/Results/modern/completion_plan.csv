@@ -1,8 +1,6 @@
 remaining_task,reason,responsible_member,expected_output,completion_date
 Confirm modern selection and topic labels,Needed for thematic findings,Mary Kate + team,selection rationale and confirmed labels,Team to confirm
-Run the chosen configuration with seeds 7 and 21,Assess assignment and publication-pattern stability,Mary Kate,"ARI, outlier agreement, topic matches and publication changes",Team to confirm
-Provide classical handoff and frozen labels,Needed for paired comparisons,Laura,four validated exports and reservation attestation,Team to confirm
-Complete independent article ratings,Needed for interpretability evaluation,Two team reviewers,ratings and agreement summary,Team to confirm
-Held-out evaluation with rare-stratum policy,Assess transfer beyond fitted articles,Mary Kate + Laura,training-only fits and held-out metrics,Team to confirm
-Shared-period publication sensitivity,Assess unequal date-coverage effects,Mary Kate + Lauren,date-restricted comparison tables,Team to confirm
-"Interpret findings, feedback, manuscript and figures",Produce a coherent conference paper,All; Lauren coordinates visualization,revised manuscript and feedback response,Team to confirm
+Run chosen configuration with seeds 7 and 21,Assess assignment and publication-pattern stability,Mary Kate,"ARI, outlier agreement, topic matches and publication changes",Team to confirm
+Modern held-out evaluation with rare-stratum policy,Assess transfer beyond fitted articles,Mary Kate,training-only fit and held-out metrics,Team to confirm
+Modern shared-period publication sensitivity,Assess unequal date coverage,Mary Kate + Lauren,date-restricted publication tables,Team to confirm
+Interpret findings and actual feedback,Support manuscript revision,Team,article-supported interpretations,Team to confirm

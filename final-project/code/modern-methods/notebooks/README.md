@@ -4,8 +4,9 @@ Use the repository environment (`uv sync`, then `uv run jupyter lab`) and run th
 
 1. **01_corpus_and_embeddings.ipynb** reconstructs the 7,332-article corpus, reserves the independent review sample, and builds or validates full-text GTE-small embeddings.
 2. **02_modern_topic_modeling.ipynb** runs six BERTopic configurations, exposes their metrics and development examples, accepts a documented team model choice, and runs seeds 7 and 21 for that choice.
-3. **03_evaluation_and_comparison.ipynb** exports publication results for every grid run, selected-model evidence when available, LDA comparisons when supplied, and human evaluation when genuinely completed.
-4. The separate **[reviewer 1](../../human-review/reviewer_1.ipynb)** and **[reviewer 2](../../human-review/reviewer_2.ipynb)** notebooks in `final-project/code/human-review/` guide independent review. Each is preconfigured for its own answer file. The **[review_coordinator.ipynb](../../human-review/review_coordinator.ipynb)** notebook handles packet preparation, progress counts, combined results, and interpretation; it contains no individual rating-entry cells.
+3. **03_evaluation_and_comparison.ipynb** exports modern publication results for every grid run, selected-model topic evidence, and a modern-only PR3 checklist. Its filename is retained for existing execution commands.
+4. **[pipeline_comparison.ipynb](../../comparison/pipeline_comparison.ipynb)** validates both handoffs and compares shared metrics, keyword overlap, publication patterns, runtime, and independent human results. Run it before review to prepare the frozen packet and again after both reviewers finish.
+5. The separate **[reviewer 1](../../human-review/reviewer_1.ipynb)** and **[reviewer 2](../../human-review/reviewer_2.ipynb)** notebooks in `final-project/code/human-review/` guide independent review. Each is preconfigured for its own answer file. The **[review_coordinator.ipynb](../../human-review/review_coordinator.ipynb)** notebook handles packet preparation, progress counts, combined results, and interpretation; it contains no individual rating-entry cells.
 
 The notebooks contain the model construction, experiment loops, and analysis. `src/topic_helpers.py` handles embedding/cache mechanics and common model metrics; `src/artifacts.py` handles validated run artifacts and editable labels. `shared/` contains corpus and cross-pipeline evaluation utilities. The two old command-line entry points now execute the corresponding notebooks, so there is no separate experiment implementation.
 
@@ -14,6 +15,7 @@ From the repository root:
 ```sh
 uv run python final-project/code/modern-methods/verify_notebooks.py
 uv run python final-project/code/modern-methods/verify_notebooks.py --execute 01 02 03
+uv run python final-project/code/modern-methods/verify_notebooks.py --execute comparison
 # Individual notebook defaults save no answers; ratings are entered interactively.
 uv run python final-project/code/modern-methods/verify_notebooks.py --execute reviewer_1 reviewer_2
 PYTHONPATH=final-project/code/modern-methods uv run python -m unittest discover -s final-project/code/modern-methods/tests -v
@@ -32,7 +34,7 @@ Paths below are relative to `final-project/code/modern-methods`:
 - `Results/modern/runs/<run>/`: immutable fit outputs, metrics, per-topic coherence, three nonreserved development examples per topic, inventories, and publication matrices.
 - `Results/modern/selection.json`: the team's editable choice and rationale.
 - `Results/modern/selected/<run>/`: editable labels, selected publication outputs, stability, topic matches, and publication-share changes across seeds.
-- `Results/comparison/<modern-run>/`: validated LDA comparison and independent review outputs.
+- `Results/comparison/<modern-run>/`: validated LDA comparison and independent review outputs, now written by `../../comparison/pipeline_comparison.ipynb`; paths are unchanged to preserve saved answers.
 - `Results/modern/pr3_evidence_checklist.csv` and `completion_plan.csv`: manuscript evidence and remaining-work handoffs. The manuscript itself is never edited.
 
 Run manifests bind the corpus, embedding matrix, vocabulary, configuration, executable fitting/helper code, review reservation, package versions, and artifact checksums. Mismatches fail rather than silently reusing a stale run. To deliberately change an experiment, preserve the old run and its selection/review artifacts outside the active output directory before rerunning. Do not copy legacy pickle files into the current run directory. Only load trusted local model files.
@@ -79,7 +81,7 @@ Use your assigned [reviewer 1](../../human-review/reviewer_1.ipynb) or [reviewer
 
 Both models and their labels must be frozen before creating the paired packet. The same 100 reserved articles appear for both models, in randomized within-article model order. The packets identify the models and are **not blinded**. Two reviewers work independently using `human_review/rubric.txt` and separate `reviewer_1.csv` and `reviewer_2.csv` files. Fill the 1–5 fit rating and true/false relevance/ambiguity flags. Leave outlier fit ratings blank; inspect them qualitatively.
 
-Rerun notebook 03 after both files are complete. It validates the entire roster against the frozen packet, reports means, exact/within-one agreement, quadratic-weighted kappa, and a 1,000-resample paired-article bootstrap interval. Undefined kappa and degenerate resamples are reported explicitly. Missing ratings remain pending. The 100 articles are independent of development review, not held out from unsupervised fitting.
+Rerun [the comparison notebook](../../comparison/pipeline_comparison.ipynb) after both files are complete and enable `RUN_HUMAN_SUMMARY`. It validates the entire roster against the frozen packet, reports means, exact/within-one agreement, quadratic-weighted kappa, and a 1,000-resample paired-article bootstrap interval. Undefined kappa and degenerate resamples are reported explicitly. Missing ratings remain pending. The 100 articles are independent of development review, not held out from unsupervised fitting.
 
 ## Interpretation and PR3 boundaries
 

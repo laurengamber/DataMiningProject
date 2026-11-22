@@ -157,7 +157,7 @@ The corpus contains **10 singleton publication–year groups**. A training-only 
 
 Change coherence to completed tense for the modern grid; retain top-ten unigrams, the common tokenizer/English stopwords, 110-token windows, per-topic values, and outlier exclusion. Keyword diversity is the number of distinct top-ten words divided by the total number of top-ten term entries across non-outlier topics.
 
-Retain `eq:jaccard` and the proposed LDA-row/BERTopic-column heatmap, but mark the comparison pending Laura's validated assignments, terms, topics, and manifest. Do not state that identical modeling vocabularies are required: the comparison shares reference preprocessing and reports coverage, while LDA retains its own custom-stopword and representation choices. Jaccard overlap indicates lexical agreement, not semantic equivalence.
+Use [the comparison notebook](../code/comparison/pipeline_comparison.ipynb) for the shared metrics, publication comparisons, and human-results table. Modern notebook 03 now contains only modern evidence. Retain `eq:jaccard` and the proposed LDA-row/BERTopic-column heatmap, but mark the comparison pending Laura's validated assignments, terms, topics, and manifest. Do not state that identical modeling vocabularies are required: the comparison shares reference preprocessing and reports coverage, while LDA retains its own custom-stopword and representation choices. Jaccard overlap indicates lexical agreement, not semantic equivalence.
 
 ## 6. Preliminary discussion, limitations, and conclusion
 

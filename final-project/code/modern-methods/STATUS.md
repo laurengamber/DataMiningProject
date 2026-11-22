@@ -54,3 +54,11 @@ The full suite passes 22 tests, including six reviewer-workflow tests checking t
 `../human-review/review_coordinator.ipynb` now contains only coordinator work: preparation instructions, packet lookup, aggregate completion counts, explicitly enabled combined results, interpretation notes, and PR3 handoff. Individual article display and answer entry remain in the two reviewer notebooks. Reviewer code and saved outputs, answer files, analysis notebooks, and the manuscript were preserved.
 
 The coordinator notebook executed successfully in a fresh kernel with pending inputs, and the full suite passes 23 tests. The additional coordinator test covers read-only progress, incomplete/missing submissions, explicit summary generation after completion, and unchanged original reviewer files. Use `--execute coordinator`; the old `--execute 04` command remains an alias.
+
+## Joint comparison moved to its own notebook — November 22, 2026
+
+`../comparison/pipeline_comparison.ipynb` now owns the PR2 cross-method evaluation: shared coherence/diversity, top-ten Jaccard overlap and ties, assignment contingency, both publication heatmaps and matched shares, measured runtime context, frozen review packets, and the combined quantitative/human table. Modern notebook 03 now exports only modern inventories, publication results, and its modern evidence/completion tables. Reviewer and coordinator instructions point to the new notebook.
+
+Existing `Results/classical/` and `Results/comparison/<run>/human_review/` paths remain unchanged. The new notebook validates exported artifacts without loading model pickles or embeddings, preserves reviewer answers, and rejects mismatched comparison identities. Use `verify_notebooks.py --execute comparison`. Model selection, LDA exports, confirmed labels, and genuine ratings are still pending; no current joint empirical findings are claimed.
+
+All 28 tests pass. Modern notebook 03 and the new comparison notebook executed in fresh kernels with the actual available inputs. A separate fresh-kernel execution on temporary synthetic exports and ratings exercised the complete comparison path; those fixture ratings were never written to study outputs. The classical implementation, modern fitting helpers, six fitted runs, and PR3 manuscript are unchanged.

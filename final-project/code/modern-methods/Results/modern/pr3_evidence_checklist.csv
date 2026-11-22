@@ -3,9 +3,7 @@ Data / methodology,"Corpus, exclusions, embedding settings",complete,corpus_by_p
 Experimental design / results,Six-configuration study,complete,experiments.csv
 Results / discussion,Team model choice,pending,selection.json
 Results / discussion,Topic labels and article support,pending,selected/<run>/topic_labels.csv; topic_inventory.csv
-Results,Publication comparisons,all grid runs complete; selected interpretation pending,runs/<run>/publication; selected/<run>/publication_proportions.csv
+Results,Publication patterns,all grid runs complete; selected interpretation pending,runs/<run>/publication; selected/<run>/publication_proportions.csv
 Robustness,Selected configuration seeds 7 and 21,pending,selected/<run>/stability.csv; seed_*/publication_changes.csv
-Comparison,LDA quantitative handoff,pending Laura,Results/comparison/<run>
-Evaluation,Independent reviewer ratings,pending,Results/comparison/<run>/human_review
 Limitations,"Corpus bias, coverage, pooling, outliers",documented; team interpretation required,Notebook discussion prompts
 Response to feedback,PR2 feedback,not available in repository,Team must supply actual feedback
