@@ -13,12 +13,18 @@ def main():
         "01": root / "notebooks/01_corpus_and_embeddings.ipynb",
         "02": root / "notebooks/02_modern_topic_modeling.ipynb",
         "03": root / "notebooks/03_evaluation_and_comparison.ipynb",
-        "04": review_root / "04_human_review.ipynb",
+        "coordinator": review_root / "review_coordinator.ipynb",
         "reviewer_1": review_root / "reviewer_1.ipynb",
         "reviewer_2": review_root / "reviewer_2.ipynb",
     }
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--execute", nargs="+", choices=list(notebooks), default=[])
+    parser.add_argument(
+        "--execute",
+        nargs="+",
+        choices=list(notebooks) + ["04"],
+        default=[],
+        help="Notebook selector; 04 remains an alias for coordinator.",
+    )
     parser.add_argument(
         "--skip-embeddings",
         action="store_true",
@@ -28,13 +34,14 @@ def main():
         "--timeout", type=int, default=1800, help="Per-cell timeout in seconds"
     )
     args = parser.parse_args()
+    selected = {"coordinator" if name == "04" else name for name in args.execute}
     for name, path in notebooks.items():
         notebook = nbformat.read(path, as_version=4)
         nbformat.validate(notebook)
         for cell in notebook.cells:
             if cell.cell_type == "code":
                 compile(cell.source, str(path), "exec")
-        if name not in args.execute:
+        if name not in selected:
             print("Validated:", path.name, flush=True)
             continue
         # A failed or partial run must not retain results from unexecuted old cells.

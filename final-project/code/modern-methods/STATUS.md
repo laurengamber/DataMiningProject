@@ -39,12 +39,18 @@ Held-out evaluation and shared-period publication sensitivity remain final-repor
 
 ## Guided reviewer notebook
 
-`../human-review/04_human_review.ipynb` provides the coordinator prerequisite checklist, independent 1–5 rubric, one-item article display, commented answer-entry cells, explicit save/correction controls, resumable progress, and a coordinator-only summary and interpretation section. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
+The individual reviewer notebooks provide the 1–5 rubric, article display, commented answer-entry cells, save/correction controls, and resumable progress. `../human-review/review_coordinator.ipynb` handles preparation, progress counts, combined results, and interpretation. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
 
 The notebook's default pending-input path executed successfully in a fresh kernel. Five additional tests exercise entry, resuming, corrections, stale edits, packet identity, outliers, separation of reviewer files, the notebook's item-number guard, and compatibility with the existing summary. The full suite now passes 21 tests. The original three analysis notebooks and study results are unchanged by this addition.
 
 ## Separate reviewer notebooks — November 22, 2026
 
-Human-review notebooks now live in `../human-review/`. The user's moved `04_human_review.ipynb` is preserved as the shared coordinator/reference notebook. New `reviewer_1.ipynb` and `reviewer_2.ipynb` are preconfigured for their respective answer CSVs and contain only the independent reading, rating, saving, and progress steps. Combined-score and team-interpretation cells remain in the shared notebook.
+Human-review notebooks now live in `../human-review/`. The shared notebook has been renamed and refocused as `review_coordinator.ipynb`. New `reviewer_1.ipynb` and `reviewer_2.ipynb` are preconfigured for their respective answer CSVs and contain only the independent reading, rating, saving, and progress steps. Combined-score and team-interpretation cells remain in the shared notebook.
 
-The full suite passes 22 tests, including six reviewer-workflow tests checking that each new notebook saves only its own reviewer file and resumes existing answers. Both new notebooks executed in fresh kernels with their safe pending-input defaults. The moved shared notebook, existing three analysis notebooks, saved study outputs, and PR3 manuscript were preserved. The validation command now follows the new folder layout and accepts `--execute reviewer_1 reviewer_2`.
+The full suite passes 22 tests, including six reviewer-workflow tests checking that each new notebook saves only its own reviewer file and resumes existing answers. Both new notebooks executed in fresh kernels with their safe pending-input defaults. The existing three analysis notebooks, saved study outputs, and PR3 manuscript were preserved. The validation command now follows the new folder layout and accepts `--execute reviewer_1 reviewer_2`.
+
+## Coordinator notebook refocused — November 22, 2026
+
+`../human-review/review_coordinator.ipynb` now contains only coordinator work: preparation instructions, packet lookup, aggregate completion counts, explicitly enabled combined results, interpretation notes, and PR3 handoff. Individual article display and answer entry remain in the two reviewer notebooks. Reviewer code and saved outputs, answer files, analysis notebooks, and the manuscript were preserved.
+
+The coordinator notebook executed successfully in a fresh kernel with pending inputs, and the full suite passes 23 tests. The additional coordinator test covers read-only progress, incomplete/missing submissions, explicit summary generation after completion, and unchanged original reviewer files. Use `--execute coordinator`; the old `--execute 04` command remains an alias.

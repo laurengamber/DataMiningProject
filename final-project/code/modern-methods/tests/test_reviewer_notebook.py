@@ -121,9 +121,7 @@ class ReviewerNotebookTests(unittest.TestCase):
             load_session(self.folder, "reviewer_3")
 
     def test_notebook_display_save_progress_and_number_guard(self):
-        path = (
-            Path(__file__).resolve().parents[2] / "human-review/04_human_review.ipynb"
-        )
+        path = Path(__file__).resolve().parents[2] / "human-review/reviewer_1.ipynb"
         notebook = json.loads(path.read_text())
         cells = {
             c["metadata"]["tags"][0]: "".join(c["source"])
@@ -161,9 +159,78 @@ class ReviewerNotebookTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "displayed item"):
                 exec(compile(enabled, str(path), "exec"), context)
             exec(compile(cells["progress"], str(path), "exec"), context)
+            self.assertFalse((self.folder / "human_evaluation.csv").exists())
+
+    def test_coordinator_progress_and_summary_preserve_independent_answers(self):
+        path = (
+            Path(__file__).resolve().parents[2]
+            / "human-review/review_coordinator.ipynb"
+        )
+        notebook = json.loads(path.read_text())
+        cells = {
+            c["metadata"]["tags"][0]: "".join(c["source"])
+            for c in notebook["cells"]
+            if c["cell_type"] == "code"
+        }
+        self.assertNotIn("display-item", cells)
+        self.assertNotIn("save-answer", cells)
+        self.assertNotIn("save_answer", cells["setup"])
+        self.assertNotIn("REVIEWER =", cells["configuration"])
+        context = {}
+        before = {
+            r: (self.folder / f"{r}.csv").read_bytes()
+            for r in ["reviewer_1", "reviewer_2"]
+        }
+        with redirect_stdout(StringIO()):
+            exec(compile(cells["setup"], str(path), "exec"), context)
+            context["display"] = lambda *args, **kwargs: None
+            config = cells["configuration"].replace(
+                "PACKET_FOLDER = None", f"PACKET_FOLDER = Path({str(self.folder)!r})"
+            )
+            exec(compile(config, str(path), "exec"), context)
+            exec(compile(cells["progress"], str(path), "exec"), context)
+            self.assertTrue(context["PROGRESS"].completed.eq(0).all())
+            self.assertEqual(
+                set(context["PROGRESS"].columns),
+                {"reviewer", "completed", "total", "remaining", "status"},
+            )
             exec(compile(cells["team-summary"], str(path), "exec"), context)
             exec(compile(cells["team-notes"], str(path), "exec"), context)
+            self.assertIsNone(context["TEAM_SUMMARY"])
             self.assertFalse((self.folder / "human_evaluation.csv").exists())
+            enabled = (
+                cells["team-summary"]
+                .replace(
+                    "BOTH_REVIEWERS_FINISHED = False", "BOTH_REVIEWERS_FINISHED = True"
+                )
+                .replace("RUN_TEAM_SUMMARY = False", "RUN_TEAM_SUMMARY = True")
+            )
+            exec(compile(enabled, str(path), "exec"), context)
+            self.assertIn("pending", context["TEAM_SUMMARY"])
+            for reviewer in before:
+                self.assertEqual(
+                    (self.folder / f"{reviewer}.csv").read_bytes(), before[reviewer]
+                )
+                session = load_session(self.folder, reviewer)
+                for i, row in session["packet"].iterrows():
+                    session = save_answer(
+                        session, i, None if row.topic_id == -1 else 4, False, False
+                    )
+            submitted = {r: (self.folder / f"{r}.csv").read_bytes() for r in before}
+            exec(compile(cells["progress"], str(path), "exec"), context)
+            self.assertTrue(context["PROGRESS"].status.eq("complete").all())
+            exec(compile(enabled, str(path), "exec"), context)
+            self.assertIsInstance(context["TEAM_SUMMARY"], pd.DataFrame)
+            self.assertTrue((self.folder / "human_evaluation.csv").exists())
+            for reviewer in submitted:
+                self.assertEqual(
+                    (self.folder / f"{reviewer}.csv").read_bytes(), submitted[reviewer]
+                )
+            (self.folder / "reviewer_2.csv").unlink()
+            exec(compile(cells["progress"], str(path), "exec"), context)
+            self.assertIn("file pending", context["PROGRESS"].status.tolist())
+            exec(compile(enabled, str(path), "exec"), context)
+            self.assertIsNone(context["TEAM_SUMMARY"])
 
     def test_separate_notebooks_save_only_their_preconfigured_reviewer(self):
         review_root = Path(__file__).resolve().parents[2] / "human-review"
@@ -192,7 +259,8 @@ class ReviewerNotebookTests(unittest.TestCase):
                 exec(compile(config, str(path), "exec"), context)
                 self.assertEqual(context["REVIEWER"], reviewer)
                 self.assertEqual(
-                    context["SESSION"]["path"], (self.folder / f"{reviewer}.csv").resolve()
+                    context["SESSION"]["path"],
+                    (self.folder / f"{reviewer}.csv").resolve(),
                 )
                 other_before = (self.folder / f"{other}.csv").read_bytes()
                 own_before = (self.folder / f"{reviewer}.csv").read_bytes()
