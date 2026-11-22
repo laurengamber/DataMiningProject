@@ -137,7 +137,7 @@ Suggested replacement:
 >
 > After both models and their labels are frozen, two reviewers will independently assess each model's assigned label for the same 100 articles, giving 200 article–model items per reviewer. Fit is scored from 1 (unrelated or misleading) to 5 (clear central-theme fit), with separate flags for article irrelevance and label ambiguity. BERTopic-unassigned items receive no numeric fit rating and are summarized separately. The packets identify the models, so the review is not blinded. We will report reviewer means, exact agreement, agreement within one point, and quadratic-weighted Cohen's kappa with a 95% interval from 1,000 paired-article bootstrap resamples. Undefined kappa values and the number of valid bootstrap resamples will be reported explicitly. The workflow is implemented, but no genuine independent ratings have been collected in the current artifacts.
 
-Use [review_sample.json](../code/modern-methods/Results/modern/review_sample.json) for sampling evidence and [notebook 04](../code/modern-methods/notebooks/04_human_review.ipynb) for the procedure. The reviewer notebook has been exercised with temporary test fixtures; that does not constitute completed human evaluation.
+Use [review_sample.json](../code/modern-methods/Results/modern/review_sample.json) for sampling evidence and [notebook 04](../code/human-review/04_human_review.ipynb) for the procedure. The reviewer notebook has been exercised with temporary test fixtures; that does not constitute completed human evaluation.
 
 ### Seed stability and topic matching
 
@@ -217,7 +217,7 @@ A factual **progress-since-PR2** paragraph can be written now, separately from t
 | Publication figure example | [n30_c25_s42 heatmap PDF](../code/modern-methods/Results/modern/runs/n30_c25_s42/publication/publication_proportions.pdf); exploratory example only, **not** a model-selection decision. Equivalent files exist for each run. |
 | Full topic and publication evidence | Each `Results/modern/runs/<run>/` folder contains `topic_inventory.csv`, `representative_ids.csv`, and `publication/` matrices. Full-text development examples remain local. |
 | Existing monthly corpus figure | [PR2 monthly_articles.pdf](../progress-report-2/figures/monthly_articles.pdf). PR3 currently points to `figures/monthly_articles.pdf`, but there is no corresponding PR3 figure file. Correct the path or copy the figure when editing the manuscript. |
-| Human-review procedure | [04_human_review.ipynb](../code/modern-methods/notebooks/04_human_review.ipynb); describes how to collect real ratings, not evidence that ratings are complete. |
+| Human-review procedure | [04_human_review.ipynb](../code/human-review/04_human_review.ipynb); describes how to collect real ratings, not evidence that ratings are complete. |
 | Status and execution instructions | [STATUS.md](../code/modern-methods/STATUS.md) and [notebook README](../code/modern-methods/notebooks/README.md). |
 | Existing evidence/completion exports | [pr3_evidence_checklist.csv](../code/modern-methods/Results/modern/pr3_evidence_checklist.csv) and [completion_plan.csv](../code/modern-methods/Results/modern/completion_plan.csv). |
 

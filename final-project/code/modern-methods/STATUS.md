@@ -39,6 +39,12 @@ Held-out evaluation and shared-period publication sensitivity remain final-repor
 
 ## Guided reviewer notebook
 
-`notebooks/04_human_review.ipynb` now provides the coordinator prerequisite checklist, independent 1–5 rubric, one-item article display, commented answer-entry cells, explicit save/correction controls, resumable progress, and a coordinator-only summary and interpretation section. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
+`../human-review/04_human_review.ipynb` provides the coordinator prerequisite checklist, independent 1–5 rubric, one-item article display, commented answer-entry cells, explicit save/correction controls, resumable progress, and a coordinator-only summary and interpretation section. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
 
 The notebook's default pending-input path executed successfully in a fresh kernel. Five additional tests exercise entry, resuming, corrections, stale edits, packet identity, outliers, separation of reviewer files, the notebook's item-number guard, and compatibility with the existing summary. The full suite now passes 21 tests. The original three analysis notebooks and study results are unchanged by this addition.
+
+## Separate reviewer notebooks — November 22, 2026
+
+Human-review notebooks now live in `../human-review/`. The user's moved `04_human_review.ipynb` is preserved as the shared coordinator/reference notebook. New `reviewer_1.ipynb` and `reviewer_2.ipynb` are preconfigured for their respective answer CSVs and contain only the independent reading, rating, saving, and progress steps. Combined-score and team-interpretation cells remain in the shared notebook.
+
+The full suite passes 22 tests, including six reviewer-workflow tests checking that each new notebook saves only its own reviewer file and resumes existing answers. Both new notebooks executed in fresh kernels with their safe pending-input defaults. The moved shared notebook, existing three analysis notebooks, saved study outputs, and PR3 manuscript were preserved. The validation command now follows the new folder layout and accepts `--execute reviewer_1 reviewer_2`.

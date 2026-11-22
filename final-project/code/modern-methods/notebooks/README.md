@@ -5,7 +5,7 @@ Use the repository environment (`uv sync`, then `uv run jupyter lab`) and run th
 1. **01_corpus_and_embeddings.ipynb** reconstructs the 7,332-article corpus, reserves the independent review sample, and builds or validates full-text GTE-small embeddings.
 2. **02_modern_topic_modeling.ipynb** runs six BERTopic configurations, exposes their metrics and development examples, accepts a documented team model choice, and runs seeds 7 and 21 for that choice.
 3. **03_evaluation_and_comparison.ipynb** exports publication results for every grid run, selected-model evidence when available, LDA comparisons when supplied, and human evaluation when genuinely completed.
-4. **[04_human_review.ipynb](04_human_review.ipynb)** guides each reviewer through the rubric, one-article display, commented answer-entry cells, safe saving, and progress checks. Its coordinator-only section summarizes completed ratings and provides fill-in interpretation notes.
+4. The separate **[reviewer 1](../../human-review/reviewer_1.ipynb)** and **[reviewer 2](../../human-review/reviewer_2.ipynb)** notebooks in `final-project/code/human-review/` guide independent review. Each is preconfigured for its own answer file. The moved **[04_human_review.ipynb](../../human-review/04_human_review.ipynb)** retains the coordinator/reference workflow and combined-summary section.
 
 The notebooks contain the model construction, experiment loops, and analysis. `src/topic_helpers.py` handles embedding/cache mechanics and common model metrics; `src/artifacts.py` handles validated run artifacts and editable labels. `shared/` contains corpus and cross-pipeline evaluation utilities. The two old command-line entry points now execute the corresponding notebooks, so there is no separate experiment implementation.
 
@@ -14,8 +14,8 @@ From the repository root:
 ```sh
 uv run python final-project/code/modern-methods/verify_notebooks.py
 uv run python final-project/code/modern-methods/verify_notebooks.py --execute 01 02 03
-# Notebook 04 defaults are a safe prerequisite check; ratings are entered interactively.
-uv run python final-project/code/modern-methods/verify_notebooks.py --execute 04
+# Individual notebook defaults save no answers; ratings are entered interactively.
+uv run python final-project/code/modern-methods/verify_notebooks.py --execute reviewer_1 reviewer_2
 PYTHONPATH=final-project/code/modern-methods uv run python -m unittest discover -s final-project/code/modern-methods/tests -v
 ```
 
@@ -75,7 +75,7 @@ Quantitative comparison needs the four valid exports. Human review additionally 
 
 ## Independent human evaluation
 
-Use [notebook 04](04_human_review.ipynb) for the guided reviewer workflow. Set your assigned reviewer ID, display the next unfinished item, fill the rating/flags/notes, and explicitly save the displayed item number. Each reviewer edits only their own file; the helper rejects changed packets, stale edits, and accidental overwrites. The default notebook run does not write ratings or reveal the other reviewer's answers. Save personal copies as `reviewer_1_workbook.ipynb` or `reviewer_2_workbook.ipynb` inside the review folder; these are ignored by Git. Share the answer CSV with the coordinator. To share a blank notebook template, reset edited answer/configuration cells and clear outputs.
+Use your assigned [reviewer 1](../../human-review/reviewer_1.ipynb) or [reviewer 2](../../human-review/reviewer_2.ipynb) notebook for the guided workflow. Its reviewer ID is already set. Display the next unfinished item, fill the rating/flags/notes, and explicitly save the displayed item number. Each reviewer edits only their own file; the helper rejects changed packets, stale edits, and accidental overwrites. The default notebook run does not write ratings or reveal the other reviewer's answers. Save personal copies as `reviewer_1_workbook.ipynb` or `reviewer_2_workbook.ipynb` inside the review folder; these are ignored by Git. Share the answer CSV with the coordinator. To share a blank notebook template, reset edited answer/configuration cells and clear outputs.
 
 Both models and their labels must be frozen before creating the paired packet. The same 100 reserved articles appear for both models, in randomized within-article model order. The packets identify the models and are **not blinded**. Two reviewers work independently using `human_review/rubric.txt` and separate `reviewer_1.csv` and `reviewer_2.csv` files. Fill the 1–5 fit rating and true/false relevance/ambiguity flags. Leave outlier fit ratings blank; inspect them qualitatively.
 
