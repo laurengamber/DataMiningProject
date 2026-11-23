@@ -1,0 +1,64 @@
+topic_id,rank,article_id,title,publication
+0,1,660755,"The long, winding road for driverless cars - Difference Engine",Economist
+0,2,1357652,Self-Driving Cars: The Complete Guide,Wired
+0,3,2675771,"Self-driving cars from Tesla, Google, and others are still not here",Vox
+1,1,546160,Tesla’s Autopilot is supposed to deliver full self-driving,The Verge
+1,2,1133411,"Stuff Elon Musk Said About Tesla Autonomous Cars on Monday, Ranked",Gizmodo
+1,3,567033,Here are Elon Musk’s wildest predictions about Tesla’s self-driving cars,The Verge
+2,1,1341648,Uber Self-Driving Case: Google's Waymo May Not Need a Smoking Gun,Wired
+2,2,1450043,"Google's epic legal battle with Uber over self-driving technology, explained",CNBC
+2,3,1921486,Waymo Alleges Otto Was A Ruse To Help Uber Steal Its Self-Driving Tech,Buzzfeed News
+3,1,546719,Waymo is first to put fully self-driving cars on US roads without a safety driver,The Verge
+3,2,484629,Google’s self-driving car unit becomes Waymo – TechCrunch,TechCrunch
+3,3,546490,Waymo gave me a ride in a car with no driver,The Verge
+4,1,524986,Ford will build an autonomous car without a steering wheel or pedals by 2021,The Verge
+4,2,130247,Ford plans to have a fleet of fully autonomous cars operating in a ride-hail service by 2021,Vox
+4,3,2308500,"Ford’s autonomous vehicles are coming to Austin, Texas",The Verge
+5,1,218059,Man Versus Machine,Vice
+5,2,1335182,Hey Silicon Valley: President Obama Has a To-Do List for You,Wired
+5,3,530462,Flying cars are closer than you think | Verge 2021,The Verge
+6,1,2087273,"Self-Driving Uber Car Kills Pedestrian in Arizona, Where Robots Roam",The New York Times
+6,2,2088188,Uber’s Self-Driving Cars Were Struggling Before Arizona Crash,The New York Times
+6,3,56383,Self-driving Uber car kills Arizona woman crossing street,Reuters
+7,1,1993811,Delphi and Mobileye to Produce System for Self-Driving Cars,The New York Times
+7,2,532449,RPT-Self-driving 'arms race' complicates supplier alliances,Reuters
+7,3,1215831,Self-driving 'arms race' complicates supplier alliances,Reuters
+8,1,2068031,"G.M. Unveils Its Driverless Cars, Aiming to Lead the Pack",The New York Times
+8,2,2598365,GM's Cruise unveils Origin driverless shuttle,CNBC
+8,3,555056,GM’s self-driving unit gets $2.25 billion from SoftBank’s venture fund,The Verge
+9,1,2079697,"With Apple, the Tech Reckoning Gains Momentum: DealBook Briefing",The New York Times
+9,2,2088722,Zuckerberg Breaks His Silence: DealBook Briefing,The New York Times
+9,3,2086745,Oracle’s Ellison Unveils Hydroponic Farming Start-Up: DealBook Briefing,The New York Times
+10,1,542075,"Lyft is now building its own self-driving technology, which is a big deal",The Verge
+10,2,177858,Lyft wants more leverage in the self-driving ecosystem so it’s building its own tech,Vox
+10,3,1458437,Uber CEO Travis Kalanick's war with Lyft for car's future isn't over,CNBC
+11,1,1078023,Baidu leads China’s self-driving charge in Silicon Valley,Reuters
+11,2,1970500,China’s Companies Poised to Take Leap in Developing a Driverless Car,The New York Times
+11,3,341178,Search giant Baidu has driven the most autonomous miles in Beijing – TechCrunch,TechCrunch
+12,1,1231901,"At Uber, a New C.E.O. Shifts Gears",New Yorker
+12,2,535564,Can Uber be saved from itself?,The Verge
+12,3,567805,Uber goes public: everything you need to know about the biggest tech IPO in years,The Verge
+13,1,551428,Toyota starts a new $2.8 billion company to develop self-driving software,The Verge
+13,2,2375864,AUTOSHOW-Toyota's not alone in the slow lane to self-driving cars,CNBC
+13,3,2690261,Toyota steers $400 million to self-driving startup Pony.ai,The Verge
+14,1,1486861,Apple scales back its ambitions for a self-driving car,CNBC
+14,2,2052862,Apple Scales Back Its Ambitions for a Self-Driving Car,The New York Times
+14,3,1998813,Apple Is Said to Be Rethinking Strategy on Self-Driving Cars,The New York Times
+15,1,2069818,Self-Driving Trucks May Be Closer Than They Appear,The New York Times
+15,2,814542,Uber Freight is now hauling cargo with self-driving trucks,Mashable
+15,3,1526226,Uber says it has started using driverless trucks for its freight business,CNBC
+16,1,1341492,Toyota's Self-Driving Cars Get New Lasers to See the World,Wired
+16,2,553205,LIDAR maker Luminar is scaling up and slashing costs in effort to dominate self-driving cars,The Verge
+16,3,317007,RPT-FOCUS-A chaotic market for one sensor stalls self-driving cars,Reuters
+17,1,541104,Volvo taps Nvidia’s hardware to put self-driving cars on the road by 2021,The Verge
+17,2,559815,Volvo’s next generation of cars will use Nvidia’s autonomous car system,The Verge
+17,3,1645318,UPDATE 3-Nvidia boosts self-driving AI business with Volvo trucks deal,CNBC
+18,1,1461315,The future of European transit: Driverless and utilitarian,CNBC
+18,2,2041628,The Future of European Transit: Driverless and Utilitarian,The New York Times
+18,3,797985,Driverless shuttles will beat other autonomous vehicles to the road,Mashable
+19,1,1928645,"My Not Too Fast, Not Too Furious Ride In A Self-Driving Uber",Buzzfeed News
+19,2,2111098,Uber’s Vision of Self-Driving Cars Begins to Blur,The New York Times
+19,3,83576,We rode in a driverless Uber and didn’t die,Vice News
+20,1,1850805,Hillicon Valley: Trump takes flak for not joining anti-extremism pact | Phone carriers largely end sharing of location data | Huawei pushes back on ban | Florida lawmakers demand to learn counties hacked by Russians | Feds bust $100M cybercrime group | TheHill,The Hill
+20,2,1841915,Hillicon Valley: GOP senator wants one agency to run tech probes | Huawei expects to lose $30B in sales from US ban | Self-driving car bill faces tough road ahead | Elon Musk tweets that he 'deleted' his Twitter account | TheHill,The Hill
+20,3,1828997,"Hillicon Valley: Dems pounce on Trump fight with intel leaders | FBI taps new counterintelligence chief | T-Mobile, Sprint tap former FCC Dem commish to sell merger | Dem bill would crack down on robocalls | Family sues over Uber self-driving fatality | TheHill",The Hill

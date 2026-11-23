@@ -1,0 +1,30 @@
+{
+  "first_execution": {
+    "hardware": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "torch": "2.14.1",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.18.0",
+      "numpy": "2.5.3"
+    },
+    "model_load_download_seconds": 0.3063348749419674,
+    "embedding_seconds": 100.67693650000729,
+    "reused_articles": 0,
+    "device": "mps"
+  },
+  "latest_execution": {
+    "hardware": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "torch": "2.14.1",
+      "sentence-transformers": "6.1.0",
+      "transformers": "5.18.0",
+      "numpy": "2.5.3"
+    },
+    "model_load_download_seconds": 0.3063348749419674,
+    "embedding_seconds": 100.67693650000729,
+    "reused_articles": 0,
+    "device": "mps"
+  }
+}

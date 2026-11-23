@@ -1,0 +1,9 @@
+manuscript_section,evidence,status,artifact
+Methodology,Shared corpus and review reservation,complete,corpus_manifest.json; review_sample.json
+Results,Selected modern run,pending team selection,modern/selection.json
+Results,Validated LDA handoff,pending Laura,"classical/{assignments,terms,topics}.csv; manifest.json"
+Results,"Shared metrics, overlap, publication patterns, runtime",pending both models,model_metrics.csv; jaccard.csv; assignment_contingency.csv; matched_publication_proportions.csv; runtime_comparison.csv
+Evaluation,Frozen packet,pending confirmed labels,human_review/review_freeze.json
+Evaluation,Independent reviewer results,Pending frozen labels and complete LDA handoff.,human_review/human_evaluation.csv; pipeline_comparison.csv
+Discussion,Article-supported themes and publication conclusions,pending team interpretation,topic inventories; development representatives; coordinator notes
+Limitations,"Coverage, granularity, outliers, timing boundaries, two reviewers",documented; discuss observed consequences,Notebook captions and interpretation prompts

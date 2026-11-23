@@ -1,0 +1,20 @@
+{
+  "seconds": 2.2446625829907134,
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "bertopic": "0.17.4",
+      "sentence-transformers": "6.1.0",
+      "umap-learn": "0.5.12",
+      "hdbscan": "0.8.44",
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3"
+    }
+  }
+}

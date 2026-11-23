@@ -1,9 +1,16 @@
-"""Run notebook 01's expensive embedding stage with resumable local caches."""
-from pathlib import Path
-from src.topic_helpers import audit_corpus, embed_corpus
+"""Compatibility entry point: execute notebook 01, including the review reservation."""
 
-if __name__ == '__main__':
-    root = Path(__file__).resolve().parent
-    df, _ = audit_corpus()
-    embed_corpus(df.sample(200, random_state=42).sort_index(), root, pilot=True)
-    embed_corpus(df, root)
+import subprocess
+import sys
+from pathlib import Path
+
+if __name__ == "__main__":
+    subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("verify_notebooks.py")),
+            "--execute",
+            "01",
+        ],
+        check=True,
+    )

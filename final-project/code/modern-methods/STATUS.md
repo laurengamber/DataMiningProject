@@ -1,25 +1,64 @@
-# Implementation and execution status
+# Modern analysis status — November 21, 2026
 
-All project notebooks, helpers, tests, and outputs live here. Dependencies remain in the repository-level uv environment.
+The three notebook rewrites are implemented. All three have run in fresh kernels on the corrected 7,332-article corpus. The 7,332 normalized full-text embeddings and all six standard BERTopic seed-42 fits are complete. The shared corpus hash matches the existing manifest exactly.
 
-Completed: corpus audit, 200-article pilot, full 7,337-article embeddings, offline cache reuse, and all six seed-42 experiment fits. All primary topic terms have full coverage in the shared coherence dictionary.
+| Run | Topics | Mean c_v | Unassigned | Cosine silhouette |
+| --- | ---: | ---: | ---: | ---: |
+| n15_c25_s42 | 76 | 0.692 | 20.2% | 0.114 |
+| n15_c50_s42 | 40 | 0.662 | 19.9% | 0.119 |
+| n15_c100_s42 | 21 | 0.641 | 14.6% | 0.105 |
+| n30_c25_s42 | 70 | 0.705 | 18.0% | 0.122 |
+| n30_c50_s42 | 35 | 0.646 | 19.1% | 0.123 |
+| n30_c100_s42 | 24 | 0.630 | 22.2% | 0.134 |
 
-| Neighbors | Minimum cluster size | Topics | c_v coherence | Outliers | Cosine silhouette |
-|---:|---:|---:|---:|---:|---:|
-| 15 | 25 | 70 | 0.701 | 17.1% | 0.095 |
-| 15 | 50 | 39 | 0.661 | 19.2% | 0.126 |
-| 15 | 100 | 24 | 0.635 | 21.0% | 0.111 |
-| 30 | 25 | 71 | 0.706 | 18.5% | 0.121 |
-| 30 | 50 | 34 | 0.652 | 18.0% | 0.120 |
-| 30 | 100 | 24 | 0.632 | 21.8% | 0.130 |
+Full precision, timing, and provenance are in `Results/modern/experiments.csv` and each run's manifest. All top terms have full coverage in the common coherence reference. Silhouette excludes outliers and samples at most 2,000 assigned articles. These are full-corpus exploratory results, not held-out performance.
 
-These are exploratory results, not a selected final model. Silhouette excludes outliers; topic numbers identify clusters within a run and do not align across runs.
+Every grid run has a topic inventory, development examples, size plots, publication counts/proportions for all 25 outlets, and publication figures for the 16 outlets with at least 50 articles. Labels are provisional keyword labels. Results from the old 7,337-article runs are not reused.
 
-## Required next inputs
+## Explicit team decisions and pending inputs
 
-1. Read representative articles for the three shortlisted runs and fill both 1–5 rating columns plus notes in `selection_review/selection_review.csv`.
-2. Resume notebook 02 at model selection. It runs seeds 7 and 21 and representation comparisons, then creates `topic_labels.csv` for manual labels and evidence notes.
-3. Run notebook 03 for selected-model evaluation and publication exports. Supply Laura’s four classical artifacts under `Results/classical/` to enable joint comparison.
-4. Two team members complete the independent review CSVs, then rerun the human evaluation cells.
+The user requested that **model selection remain pending for team article review**. `Results/modern/selection.json` is intentionally unfilled. No automatic selection, final thematic interpretation, or selected-model seed result is claimed.
 
-No human ratings, final topic names, or classical results have been fabricated. Final selected-model evaluation and downstream notebook cells remain pending these inputs. See `notebooks/README.md` for execution commands, handoff schemas, limitations, and deadlines.
+1. Review run metrics and nonreserved representative articles, then record the chosen run, rationale, and team selector in `selection.json`.
+2. Rerun notebook 02 to fit the selected configuration with seeds 7 and 21, export matched publication comparisons, and create its label table.
+3. Confirm topic names with article evidence. Existing human edits are preserved across reruns.
+4. Laura supplies the four LDA exports. Joint human review additionally needs confirmed classical labels and the shared review-reservation attestation.
+5. Two team members independently complete the review packets. Real ratings are not available yet; no independent human scores have been generated.
+
+The 100-article sample is reserved before new development review. Audit-packet IDs and legacy development examples are excluded. Share `Results/modern/review_sample.json` with Laura before topic naming.
+
+## Verification and boundaries
+
+Sixteen tests passed, including a real synthetic-data BERTopic fit/serialization check, exact corpus reconstruction, cache/run rejection, reserved-example separation, label preservation, publication denominators, seed-label permutation, LDA alignment, review freeze/roster validation, outlier exclusions, and degenerate kappa/bootstrap cases. Synthetic fixtures live only in temporary test directories and are not project findings.
+
+Fresh-kernel notebook execution covers the real complete-grid/pending-team-input path. Completed-review behavior is tested with temporary fixtures; no genuine completed team input exists to exercise the final joint notebook branch yet. Publication figure layout was visually inspected.
+
+`pr3-submission.tex`, the classical implementation, and legacy model artifacts are untouched. The PR3 evidence checklist and completion-plan CSV identify remaining work; team completion dates and PR2 feedback are not invented.
+
+Held-out evaluation and shared-period publication sensitivity remain final-report work. See the [notebook README](notebooks/README.md) for commands, schemas, rubric, interpretation limits, and the rare-stratum issue.
+
+## Guided reviewer notebook
+
+The individual reviewer notebooks provide the 1–5 rubric, article display, commented answer-entry cells, save/correction controls, and resumable progress. `../human-review/review_coordinator.ipynb` handles preparation, progress counts, combined results, and interpretation. Each reviewer uses a separate ignored personal workbook and their own answer CSV. No genuine ratings or model selection have been supplied.
+
+The notebook's default pending-input path executed successfully in a fresh kernel. Five additional tests exercise entry, resuming, corrections, stale edits, packet identity, outliers, separation of reviewer files, the notebook's item-number guard, and compatibility with the existing summary. The full suite now passes 21 tests. The original three analysis notebooks and study results are unchanged by this addition.
+
+## Separate reviewer notebooks — November 22, 2026
+
+Human-review notebooks now live in `../human-review/`. The shared notebook has been renamed and refocused as `review_coordinator.ipynb`. New `reviewer_1.ipynb` and `reviewer_2.ipynb` are preconfigured for their respective answer CSVs and contain only the independent reading, rating, saving, and progress steps. Combined-score and team-interpretation cells remain in the shared notebook.
+
+The full suite passes 22 tests, including six reviewer-workflow tests checking that each new notebook saves only its own reviewer file and resumes existing answers. Both new notebooks executed in fresh kernels with their safe pending-input defaults. The existing three analysis notebooks, saved study outputs, and PR3 manuscript were preserved. The validation command now follows the new folder layout and accepts `--execute reviewer_1 reviewer_2`.
+
+## Coordinator notebook refocused — November 22, 2026
+
+`../human-review/review_coordinator.ipynb` now contains only coordinator work: preparation instructions, packet lookup, aggregate completion counts, explicitly enabled combined results, interpretation notes, and PR3 handoff. Individual article display and answer entry remain in the two reviewer notebooks. Reviewer code and saved outputs, answer files, analysis notebooks, and the manuscript were preserved.
+
+The coordinator notebook executed successfully in a fresh kernel with pending inputs, and the full suite passes 23 tests. The additional coordinator test covers read-only progress, incomplete/missing submissions, explicit summary generation after completion, and unchanged original reviewer files. Use `--execute coordinator`; the old `--execute 04` command remains an alias.
+
+## Joint comparison moved to its own notebook — November 22, 2026
+
+`../comparison/pipeline_comparison.ipynb` now owns the PR2 cross-method evaluation: shared coherence/diversity, top-ten Jaccard overlap and ties, assignment contingency, both publication heatmaps and matched shares, measured runtime context, frozen review packets, and the combined quantitative/human table. Modern notebook 03 now exports only modern inventories, publication results, and its modern evidence/completion tables. Reviewer and coordinator instructions point to the new notebook.
+
+Existing `Results/classical/` and `Results/comparison/<run>/human_review/` paths remain unchanged. The new notebook validates exported artifacts without loading model pickles or embeddings, preserves reviewer answers, and rejects mismatched comparison identities. Use `verify_notebooks.py --execute comparison`. Model selection, LDA exports, confirmed labels, and genuine ratings are still pending; no current joint empirical findings are claimed.
+
+All 28 tests pass. Modern notebook 03 and the new comparison notebook executed in fresh kernels with the actual available inputs. A separate fresh-kernel execution on temporary synthetic exports and ratings exercised the complete comparison path; those fixture ratings were never written to study outputs. The classical implementation, modern fitting helpers, six fitted runs, and PR3 manuscript are unchanged.
