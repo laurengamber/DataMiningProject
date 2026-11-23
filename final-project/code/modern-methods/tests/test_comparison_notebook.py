@@ -250,6 +250,22 @@ class ComparisonNotebookTests(unittest.TestCase):
         self.assertIsNotNone(self.ctx["comparison_metrics"])
         self.assertIsNone(self.ctx["review_folder"])
 
+    def test_publication_tables_retain_zero_count_classical_topics(self):
+        topics = pd.read_csv(self.lda / "topics.csv")
+        topics.loc[len(topics)] = {"topic_id": 21, "label": "Zero-count topic", "count": 0}
+        topics.to_csv(self.lda / "topics.csv", index=False)
+        terms = pd.read_csv(self.lda / "terms.csv")
+        extra = terms.loc[terms.topic_id.eq(10)].assign(topic_id=21)
+        pd.concat([terms, extra]).to_csv(self.lda / "terms.csv", index=False)
+        self.load_models()
+        self.run_cell("overlap")
+        self.run_cell("publications")
+        counts, proportions = self.ctx["publication_tables"]["classical"]
+        self.assertTrue(counts[21].eq(0).all())
+        self.assertTrue(proportions[21].eq(0).all())
+        self.assertEqual(counts.sum(axis=1).tolist(), [60])
+        self.assertEqual(proportions.sum(axis=1).tolist(), [1.0])
+
     def test_invalid_supplied_handoffs_raise(self):
         manifest = json.loads((self.lda / "manifest.json").read_text())
         for mutation in [

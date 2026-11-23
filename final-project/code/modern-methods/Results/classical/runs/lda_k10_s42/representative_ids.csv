@@ -1,0 +1,31 @@
+topic_id,rank,article_id,title,publication,topic_probability,dominant_topic
+0,1,2448440,Jaguar Land Rover put eyes on self-driving cars to measure human trust,Business Insider,0.9953356945428339,0
+0,2,512733,Google's self-driving cars rack up 3 million simulated miles every day,The Verge,0.9909970810043526,0
+0,3,1096200,Ford Is Testing Its Autonomous Cars in the Snow (and That's Pretty Damn Tough),Gizmodo,0.9891543436115816,0
+1,1,2453472,"SoftBank's massive investments in tech ventures, including WeWork",Business Insider,0.9778736672390873,1
+1,2,471675,"Vroom nabs $146M from AutoNation, VCs for its used car site – TechCrunch",TechCrunch,0.843115176711723,1
+1,3,2399493,"FACTBOX-Snakes and ladders: SoftBank Vision Fund's climbing, sliding valuations",CNBC,0.8158759241512687,1
+2,1,350083,How self-driving cars will help solve America’s parking problem,Axios,0.9923057798287721,2
+2,2,672188,A chance to transform urban planning - The new autopia,Economist,0.9676153627964235,2
+2,3,302791,Many cities hope self-driving vehicles can fix transit gaps,Axios,0.9566854227020918,2
+3,1,1365942,"Uber plans smaller, more cautious self-driving car launch",Reuters,0.9957535732838065,3
+3,2,110861,Uber will not reapply for its permit to test self-driving cars in California,Vox,0.9953358475963965,3
+3,3,2788503,Uber has resumed testing its self-driving cars in San Francisco,The Verge,0.9953115835195327,3
+4,1,1720393,Overnight Regulation: FDA puts new nutrition labels on hold | TheHill,The Hill,0.998507089152618,4
+4,2,2645390,Bipartisan lawmakers introduce bill to combat cyberattacks on state and local governments | TheHill,The Hill,0.9979587318057839,4
+4,3,1778040,Coalition presses Transportation Dept. for stricter oversight of driverless cars | TheHill,The Hill,0.997782772770193,4
+5,1,1651888,"UPDATE 6-VW zooms ahead in extension of alliance with Ford to electric, automated cars",CNBC,0.9978669733498559,5
+5,2,253602,"Volkswagen zooms ahead in extension of alliance with Ford to electric, automated cars",Reuters,0.9977552631177267,5
+5,3,47374,"VW, Ford to reveal deeper alliance next week: sources",Reuters,0.9977438824475212,5
+6,1,466029,The healing power of AI – TechCrunch,TechCrunch,0.9521416848803175,6
+6,2,439902,"Learning effects, network effects, and runaway leaders – TechCrunch",TechCrunch,0.9155965383886875,6
+6,3,1850658,The renaissance of silicon will create industry giants – TechCrunch,TechCrunch,0.9085831943733813,6
+7,1,61037,Alphabet says the executive at the center of its lawsuit against Uber had a deal before he left the company,Vox,0.9980888100378691,7
+7,2,107625,Here’s the due diligence report Alphabet wants to use in its lawsuit against Uber,Vox,0.9980473570374626,7
+7,3,1118052,The Due Diligence Report on Otto and Anthony Levandowski Is Finally Public,Gizmodo,0.9980387921021158,7
+8,1,52281,Full transcript: Glenn Beck live onstage for Recode Media at SXSW,Vox,0.9563359906345046,8
+8,2,7959,Full transcript: The Too Embarrassed to Ask team counts down the Top 10 stories of 2017,Vox,0.8861470273520858,8
+8,3,28936,Patagonia CEO Rose Marcario onstage for Recode Decode: transcript,Vox,0.8599893538715823,8
+9,1,1998925,Autopilot Cited in Death of Chinese Tesla Driver,The New York Times,0.9977989213106507,9
+9,2,2700232,UPDATE 4-Tesla and U.S. regulators strongly criticized over role of Autopilot in crash,CNBC,0.997631100862614,9
+9,3,2695528,Tesla and U.S. regulators strongly criticized over role of Autopilot in crash,Reuters,0.9975995143730454,9

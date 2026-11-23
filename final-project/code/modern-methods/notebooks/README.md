@@ -73,7 +73,7 @@ For each assigned topic, fill in `proposed_label` and `evidence_notes`, then set
 
 ## Laura's handoff
 
-Save these four files in `Results/classical/`:
+The [classical notebooks](../../classical-methods/README.md) generate these four files in `Results/classical/` after team model selection. Classical notebook 03 validates the handoff before publishing it:
 
 | File | Required fields |
 | --- | --- |

@@ -1,0 +1,16 @@
+{
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "completed_grid_runs": [
+    "lda_k10_s42",
+    "lda_k20_s42",
+    "lda_k30_s42",
+    "lda_k40_s42",
+    "lda_k50_s42",
+    "lda_k60_s42",
+    "lda_k70_s42"
+  ],
+  "selected_run": null,
+  "labels_confirmed": false,
+  "handoff_ready": false,
+  "selected_seeds_ready": false
+}

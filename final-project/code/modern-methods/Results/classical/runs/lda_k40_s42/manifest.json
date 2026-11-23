@@ -1,0 +1,91 @@
+{
+  "identity": {
+    "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+    "article_ids_hash": "3f56b1cb2e18087dc18be59af3809a29fc420c8d5c34a5c3d6fb2649756736b9",
+    "representation_hash": "df0881b8fbd05cd6f635d28dcdf925ebaf7e8b2bdedc207bfd93e5fed022991a",
+    "parameters": {
+      "k": 40,
+      "seed": 42,
+      "max_iter": 100,
+      "learning_method": "batch",
+      "doc_topic_prior": null,
+      "topic_word_prior": null,
+      "n_jobs": 1,
+      "min_df": 5,
+      "max_df": 0.5,
+      "top_n_words": 10,
+      "representative_count": 3
+    },
+    "implementation_hash": "11fbfa8df15efdeb195d472432fdb0abcedbbcff533db67282a57889cb077f62",
+    "review_reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+    "versions": {
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "parameters": {
+    "k": 40,
+    "seed": 42,
+    "max_iter": 100,
+    "learning_method": "batch",
+    "doc_topic_prior": null,
+    "topic_word_prior": null,
+    "n_jobs": 1,
+    "min_df": 5,
+    "max_df": 0.5,
+    "top_n_words": 10,
+    "representative_count": 3
+  },
+  "metrics": {
+    "run_id": "lda_k40_s42",
+    "k": 40,
+    "seed": 42,
+    "perplexity": 3223.6586672115704,
+    "coherence": 0.6545852202384772,
+    "vocabulary_coverage": 1.0,
+    "keyword_diversity": 0.7075,
+    "n_iter": 100,
+    "doc_topic_prior": 0.025,
+    "topic_word_prior": 0.025,
+    "fit_seconds": 170.23084550001658,
+    "evaluation_seconds": 16.773967124987394,
+    "topic_count": 40,
+    "outlier_fraction": 0.0,
+    "max_iter": 100
+  },
+  "timings": {
+    "preprocessing_seconds": 1.2953545419732109,
+    "representation_seconds": 0.42794029193464667,
+    "fit_seconds": 170.23084550001658,
+    "evaluation_seconds": 16.773967124987394,
+    "interpretation_export_seconds": 3.8607892090221867
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "logical_cpu_count": 10,
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "files": {
+    "model.pkl": "95fbebc69adaee4f6fd7dc352497d65e1aed928e0380c79cc861052dc54cb850",
+    "assignments.csv": "da940f67d95c252870f8ab9f0b15c19fe53d203381ed50b9cbb34dd2995c36be",
+    "terms.csv": "7974d3bffe5d6482ada7d27057191251fd0e6443a9658d184e4a31054d4bb13f",
+    "topics.csv": "d9c815c856b9794770263093f98a8611bd40951e1418f037ccabd34e420bafff",
+    "coherence.csv": "5f086242c4eda024fa298af4ec4b3c7f130854cfb1ede02dc2fcda2022cf9f76",
+    "representative_ids.csv": "de4d970d1ac22ae46f52fd20d4871f4dc26b6a75e92fe12a7961e4693d6910fe",
+    "representatives.csv": "baeb1f62bb9333e3e04fcab52e5de6a8661f6428fabc01e3b9bc6f5ee5c4e1ad",
+    "mixtures.npy": "3debdc2d4dcea6ff4b8a3cf91265de28b6f180b24adee502016e55b7fc0a97d2"
+  }
+}

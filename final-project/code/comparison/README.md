@@ -4,7 +4,7 @@
 
 ## When to run it
 
-Run modern notebooks 01–03, record our model choice, and add Laura's four LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
+Run modern notebooks 01–03 and the [classical notebooks](../classical-methods/README.md), record both model choices, and publish the LDA handoff with classical notebook 03. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
 
 We can compare the numerical results before topic naming or human review is finished. Once both sets of labels are final, run the notebook to prepare the review files. After both reviewers finish, set `RUN_HUMAN_SUMMARY = True` and rerun it to add their scores.
 
@@ -20,7 +20,7 @@ uv run python final-project/code/modern-methods/verify_notebooks.py --execute co
 - Top-ten-word Jaccard overlap, with LDA topics in rows and BERTopic topics in columns. Best matches include ties.
 - How often the models assign the same articles to each pair of topics.
 - Topic shares by publication, using heatmaps and complete CSV tables.
-- Recorded runtimes, with the hardware and stages included.
+- Recorded runtimes, with the hardware and stages included; selected seed-stability tables when exported.
 - Each reviewer's mean score, exact agreement, agreement within one point, and quadratic-weighted kappa with a 1,000-resample bootstrap interval.
 
 Unassigned BERTopic articles are excluded from fit scores and agreement, and discussed separately. The notebook includes questions to help us interpret the tables and write the report.
@@ -42,3 +42,5 @@ The saved manifests check that the outputs use the same data and model runs. Rer
 Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) for independent ratings. The [coordinator notebook](../human-review/review_coordinator.ipynb) checks progress and summarizes the reviews.
 
 Modern notebook 03 covers modern results only. This notebook covers the comparison. Held-out testing and comparisons over shared date ranges are still planned for the final report.
+
+Classical notebook exports include file hashes, which the comparison checks before use. If labels or other exports change after a provisional comparison, preserve the entire active comparison directory under `Results/comparison/archive/` before publishing again. Never overwrite frozen review packets or answers. See the [classical handoff instructions](../classical-methods/README.md#comparison-and-review-boundaries).

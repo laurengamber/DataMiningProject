@@ -18,14 +18,15 @@ DOC_TOPIC_PRIOR = None
 TOPIC_WORD_PRIOR = None
 OUT = Path(__file__).resolve().parents[1]/'modern-methods/Results/classical'
 
-def fit_lda(X, k, seed):
+def fit_lda(X, k, seed, max_iter=MAX_ITER, learning_method=LEARNING_METHOD,
+            doc_topic_prior=DOC_TOPIC_PRIOR, topic_word_prior=TOPIC_WORD_PRIOR):
     """Fit one LDA model with k topics; return (model, fit_seconds)."""
-    model = LatentDirichletAllocation(n_components=k, random_state=seed, learning_method=LEARNING_METHOD,
-                                      max_iter=MAX_ITER, doc_topic_prior=DOC_TOPIC_PRIOR,
-                                      topic_word_prior=TOPIC_WORD_PRIOR)
-    start = time.time()
+    model = LatentDirichletAllocation(n_components=k, random_state=seed, learning_method=learning_method,
+                                      max_iter=max_iter, doc_topic_prior=doc_topic_prior,
+                                      topic_word_prior=topic_word_prior, n_jobs=1)
+    start = time.perf_counter()
     model.fit(X)
-    return model, time.time() - start
+    return model, time.perf_counter() - start
 
 def top_terms(model, vocab, n=10):
     """Top n words per topic as topic_id, rank (from 1), term, weight, the terms.csv schema."""
@@ -36,10 +37,11 @@ def top_terms(model, vocab, n=10):
             rows.append(dict(topic_id=topic_id, rank=rank, term=vocab[index], weight=float(weights[index])))
     return pd.DataFrame(rows)
 
-def score_run(model, X, terms, texts, dictionary, k, seed, fit_seconds):
+def score_run(model, X, terms, texts, dictionary, k, seed, fit_seconds, per_topic=None):
     """Perplexity, mean c_v coherence, and keyword diversity for one fitted model."""
     start = time.time()
-    per_topic = coherence(terms, texts, dictionary)
+    if per_topic is None:
+        per_topic = coherence(terms, texts, dictionary)
     top = terms[terms['rank'] <= 10]
     metrics = dict(run_id=f'lda_k{k}_s{seed}', k=k, seed=seed,
                    perplexity=float(model.perplexity(X)),
