@@ -1,0 +1,9 @@
+evidence,status,artifact
+Shared corpus and representation,complete,representation_summary.json
+Seven-configuration 100-iteration grid,complete,experiments.csv; runs/*/manifest.json
+Team model choice,pending team,selection.json
+Selected seeds 7 and 21,pending selection/rerun,selected/<run>/stability.csv
+Confirmed names and evidence,pending team,selected/<run>/topic_labels.csv
+Validated comparison exports,pending selection,assignments.csv; terms.csv; topics.csv; manifest.json
+Joint comparison and independent ratings,pending both methods and reviewers,../comparison; ../human-review
+Held-out and shared-date studies,deferred,Final-report follow-up

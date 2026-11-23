@@ -17,6 +17,9 @@ def main():
         "coordinator": review_root / "review_coordinator.ipynb",
         "reviewer_1": review_root / "reviewer_1.ipynb",
         "reviewer_2": review_root / "reviewer_2.ipynb",
+        "classical_01": root.parent / "classical-methods/notebooks/01_corpus_and_representation.ipynb",
+        "classical_02": root.parent / "classical-methods/notebooks/02_classical_topic_modeling.ipynb",
+        "classical_03": root.parent / "classical-methods/notebooks/03_classical_results_and_exports.ipynb",
     }
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(

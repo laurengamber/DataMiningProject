@@ -13,6 +13,8 @@ __pycache__/
 # Models, full article evidence, and editable individual review packets stay local.
 /final-project/code/modern-methods/Results/**/*.pkl
 /final-project/code/modern-methods/Results/**/*.npy
+/final-project/code/modern-methods/Results/classical/**/mixtures.csv
+/final-project/code/modern-methods/Results/classical/**/model.pkl.tmp
 /final-project/code/modern-methods/Results/**/representatives.csv
 /final-project/code/modern-methods/Results/**/review_packet.csv
 /final-project/code/modern-methods/Results/**/reviewer_*.csv
