@@ -1,29 +1,35 @@
 # Final-project code
 
-All project pipeline code lives here. The former repository-root `modern-methods/project/` contained only empty directories and has been removed; no source files or saved results needed moving.
+This folder contains the code for our LDA and BERTopic analyses, their comparison, and the human review.
 
-| Folder | Purpose |
+| Folder | Contents |
 | --- | --- |
-| [classical-methods](classical-methods/) | LDA preprocessing, representation, fitting, interpretation, and exports |
-| [modern-methods](modern-methods/notebooks/README.md) | Corpus preparation, embeddings, BERTopic experiments, and modern publication analysis |
-| [shared](shared/) | Common corpus, evaluation, and human-review utilities |
-| [comparison](comparison/README.md) | Joint BERTopic–LDA metrics, publication comparisons, and human-review results |
-| [human-review](human-review/README.md) | Coordinator workflow and separate independent reviewer notebooks |
+| [classical-methods](classical-methods/) | LDA preprocessing, fitting, topic interpretation, and saved results |
+| [modern-methods](modern-methods/notebooks/README.md) | Article embeddings, BERTopic experiments, and publication results |
+| [shared](shared/) | Functions both methods use for the dataset and evaluation |
+| [comparison](comparison/README.md) | Comparisons of the models and human-review results |
+| [human-review](human-review/README.md) | Separate reviewer notebooks and a coordinator notebook |
 
-Start Jupyter from the repository root with `uv run jupyter lab`. Run modern notebooks 01–03, document the team model choice, and supply the classical exports. Use [pipeline_comparison.ipynb](comparison/pipeline_comparison.ipynb) to compare outputs and prepare the frozen review packet once both label sets are confirmed. Each reviewer then uses their assigned notebook; rerun the comparison after both finish to include human results.
+## Running the project
 
-Existing data and output locations are unchanged:
+Start Jupyter from the repository root with `uv run jupyter lab`. Run modern notebooks 01–03, choose a model as a team, and add Laura's LDA exports. Then use [pipeline_comparison.ipynb](comparison/pipeline_comparison.ipynb) to compare the results.
 
-- Raw articles: repository-root `data/self_driving_articles.csv`.
-- Shared deduplicated corpus: `final-project/data/corpus.csv`.
-- Modern runs and caches: `final-project/code/modern-methods/Results/modern/`.
-- Classical handoff: `final-project/code/modern-methods/Results/classical/`.
-- Joint results and review packets: `final-project/code/modern-methods/Results/comparison/`.
+Once both sets of topic labels are final, the comparison notebook prepares the human-review files. Each reviewer uses their own notebook. After both finish, rerun the comparison to include their ratings.
 
-From the repository root, validate the notebook collection with:
+## Data and results
+
+These paths start at the repository root:
+
+- `data/self_driving_articles.csv`: source articles.
+- `final-project/data/corpus.csv`: shared dataset after removing duplicates.
+- `final-project/code/modern-methods/Results/modern/`: modern runs and saved embeddings.
+- `final-project/code/modern-methods/Results/classical/`: Laura's LDA exports.
+- `final-project/code/modern-methods/Results/comparison/`: comparison results and review files.
+
+To check the notebook files without running the analysis:
 
 ```sh
 uv run python final-project/code/modern-methods/verify_notebooks.py
 ```
 
-See each folder's instructions before executing analyses or entering ratings. Missing team inputs remain pending; the notebooks do not edit the PR3 manuscript.
+The folder READMEs explain the individual steps. Missing inputs show as pending. We update the PR3 manuscript separately.

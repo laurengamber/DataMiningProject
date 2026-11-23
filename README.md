@@ -30,18 +30,18 @@ example also requires an API key. The R Markdown file uses R packages
 environment.
 Lecture Proposal: 
 
-### Final-project code and workflow
+### Final-project analysis
 
-All pipeline code is consolidated under [final-project/code](final-project/code/README.md),
-including classical methods, modern methods, shared utilities, comparison, and human review.
+Our project code is in [final-project/code](final-project/code/README.md).
+We compare LDA and BERTopic on the same 7,332 articles after removing duplicates.
+The source data are in `data/self_driving_articles.csv`.
 
-The [modern-methods notebooks](final-project/code/modern-methods/notebooks/README.md)
-cover corpus/embeddings, a six-configuration BERTopic study, and modern publication outputs.
-The [comparison notebook](final-project/code/comparison/README.md) handles joint LDA–BERTopic
-evaluation, while the separate [human-review notebooks](final-project/code/human-review/README.md)
-provide commented rating-entry cells for reviewer 1 and reviewer 2.
-Run them in order. The source dataset is `data/self_driving_articles.csv`; both pipelines use
-the shared deduplicated 7,332-article corpus. Notebook 01 reserves human-evaluation IDs before
-development review. Choose a run with a written rationale, confirm topic labels, and provide
-Laura's exports to enable the joint comparison. Missing team inputs are explicitly pending.
-The notebooks generate PR3 evidence without editing the manuscript.
+Start with the [modern notebooks](final-project/code/modern-methods/notebooks/README.md)
+for article embeddings, six BERTopic settings, and publication results. Notebook 01 reserves
+100 articles for human review before we choose topic names. After choosing a modern model
+and adding Laura's LDA exports, use the [comparison notebook](final-project/code/comparison/README.md)
+to compare the methods.
+
+Once both sets of labels are final, the [reviewer notebooks](final-project/code/human-review/README.md)
+guide the independent ratings. Missing inputs show as pending. The notebooks save tables and
+figures for PR3; we write the report separately.

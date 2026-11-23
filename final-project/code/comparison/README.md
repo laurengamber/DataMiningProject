@@ -1,23 +1,44 @@
-# Pipeline comparison
+# Compare the methods
 
-[pipeline_comparison.ipynb](pipeline_comparison.ipynb) implements the comparison in [PR2](../../progress-report-2/pr2-submission.tex). It compares BERTopic and LDA using the same corpus and adds the independent human evaluation of each model.
+[pipeline_comparison.ipynb](pipeline_comparison.ipynb) brings together the BERTopic, LDA, and human-review results planned in [PR2](../../progress-report-2/pr2-submission.tex).
 
-Run the modern notebooks 01–03, document the team model choice, and supply Laura's four exports. Run this notebook before independent review to prepare packets after both label sets are confirmed. After both reviewers submit, rerun it with `RUN_HUMAN_SUMMARY = True` to refresh the combined table. Missing inputs remain pending; invalid artifacts fail validation. The notebook reads exports without loading fitted models or embeddings.
+## When to run it
+
+Run modern notebooks 01–03, record our model choice, and add Laura's four LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
+
+We can compare the numerical results before topic naming or human review is finished. Once both sets of labels are final, run the notebook to prepare the review files. After both reviewers finish, set `RUN_HUMAN_SUMMARY = True` and rerun it to add their scores.
+
+From the repository root:
 
 ```sh
 uv run python final-project/code/modern-methods/verify_notebooks.py --execute comparison
 ```
 
-The comparison covers shared/per-topic coherence, vocabulary coverage, keyword diversity, outlier frequency, top-ten Jaccard overlap (LDA rows, modern columns), best matches with ties, article-assignment contingency, both publication heatmaps, and matched publication shares. Runtime tables preserve measured stages and hardware context. Human summaries report reviewer means, denominators, exact/within-one agreement, quadratic-weighted kappa, and a 1,000-resample interval; modern outliers are reviewed separately.
+## What we compare
 
-For compatibility, the existing paths remain relative to `../modern-methods/`:
+- Coherence, keyword diversity, vocabulary coverage, and the share of unassigned articles.
+- Top-ten-word Jaccard overlap, with LDA topics in rows and BERTopic topics in columns. Best matches include ties.
+- How often the models assign the same articles to each pair of topics.
+- Topic shares by publication, using heatmaps and complete CSV tables.
+- Recorded runtimes, with the hardware and stages included.
+- Each reviewer's mean score, exact agreement, agreement within one point, and quadratic-weighted kappa with a 1,000-resample bootstrap interval.
 
-- `Results/classical/`: Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`. See the [handoff schema](../modern-methods/notebooks/README.md#lauras-handoff).
-- `Results/modern/`: common review reservation, selected modern run, label table, and measured artifacts.
-- `Results/comparison/<modern-run>/`: comparison identity, metrics, CSV matrices, PDF/PNG figures, `pipeline_comparison.csv`, runtime context, and evidence/completion checklists.
-- `Results/comparison/<modern-run>/human_review/`: frozen packet and separate reviewer CSVs. These remain ignored; reruns preserve answers and reject changed freezes.
-- `Results/comparison/status.json`: current input status even when no modern model is selected. Check it before using older run outputs.
+Unassigned BERTopic articles are excluded from fit scores and agreement, and discussed separately. The notebook includes questions to help us interpret the tables and write the report.
 
-Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) independently; use [review_coordinator.ipynb](../human-review/review_coordinator.ipynb) for progress and qualitative interpretation. No scores are generated. The numeric comparison can finish before labels or human ratings are supplied.
+## File locations
 
-Modern notebook 03 now owns only modern topic inventories, publication exports, and its own evidence checklist. This notebook owns the joint comparison. Neither edits the PR3 manuscript. Model choice, labels, independent ratings, and substantive interpretation remain team decisions; held-out and shared-period analyses remain final-report work.
+Paths below are relative to `../modern-methods/`:
+
+| Path | Contents |
+| --- | --- |
+| `Results/classical/` | Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`; see the [required format](../modern-methods/notebooks/README.md#lauras-handoff) |
+| `Results/modern/` | Reserved review sample, modern runs, model choice, and topic labels |
+| `Results/comparison/<modern-run>/` | Comparison tables, PNG/PDF figures, runtime details, and report checklists |
+| `Results/comparison/<modern-run>/human_review/` | Review packet and separate answer CSVs |
+| `Results/comparison/status.json` | Current inputs and pending work; check this before using older results |
+
+The saved manifests check that the outputs use the same data and model runs. Rerunning keeps existing reviewer answers and stops if the review inputs have changed. Full article text and individual answers are ignored by Git.
+
+Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) for independent ratings. The [coordinator notebook](../human-review/review_coordinator.ipynb) checks progress and summarizes the reviews.
+
+Modern notebook 03 covers modern results only. This notebook covers the comparison. Held-out testing and comparisons over shared date ranges are still planned for the final report.
