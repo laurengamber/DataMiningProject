@@ -1,0 +1,201 @@
+topic_id,rank,article_id,publication,title,theta
+0,1,354378,Axios,Testing out Ford's autonomous vehicles,0.84795100041692
+0,2,1071107,Mashable,Mercedes-Benz's 2017 E-Class won't let you nap behind the wheel,0.8357804491830586
+0,3,834089,Mashable,"Really, you don't want a steering wheel in your self-driving car",0.8307493153367477
+0,4,1340018,Wired,Cadillac Challenges Tesla With the Super Cruise Self-Driving System,0.8114118856480615
+0,5,1945070,Mashable,Golf balls programmed with Nissan’s self-driving tech always find the hole,0.8043383671063655
+1,1,1819183,The Hill,"Tech exec says merging 5G, artificial intelligence will allow cities to develop | TheHill",0.9908441810027523
+1,2,1816307,The Hill,Tech expert says merging 5G and artificial intelligence will make humans better problem solvers | TheHill,0.9905328178395401
+1,3,1817789,The Hill,Computer science expert says smart farming will increase access to food | TheHill,0.9904870317569227
+1,4,1825156,The Hill,Autonomous vehicle expert says 5G will make driverless cars safer | TheHill,0.9904633377895055
+1,5,1815057,The Hill,Emergency medicine doctor says telemedicine devices are key to health-care advancement | TheHill,0.9903695963729806
+2,1,1176973,Reuters,UPDATE 3-Obama administration to announce efforts to boost self-driving cars,0.9489467951711368
+2,2,1238961,Reuters,President Obama to talk self-driving cars in State of the Union speech,0.9461892803820371
+2,3,1267035,Reuters,Obama administration to announce efforts to boost self-driving cars,0.9448014818086642
+2,4,221300,Reuters,RPT-U.S. regulators could waive some safety rules for self-driving cars,0.9370958381856226
+2,5,730651,Reuters,U.S. regulators could waive some safety rules for self-driving cars,0.9345168221712394
+3,1,33732,Vice News,Human driver of self-driving car wasn’t watching the road,0.9818559222631633
+3,2,2735919,TechCrunch,Uber self-driving cars are back testing on San Francisco streets – TechCrunch,0.9754668721814749
+3,3,320592,TechCrunch,Uber will not re-apply for self-driving car permit in California – TechCrunch,0.9736426481402976
+3,4,1664667,Fox News,Uber announces end of self-driving car operations in Arizona,0.9702239414434257
+3,5,778092,Mashable,Uber's self-driving car program won't be renewed in California,0.9663752887835143
+4,1,1861945,The Hill,Congress looks to rev up discussion around self-driving car legislation | TheHill,0.9888877977659112
+4,2,1859703,The Hill,Senate Commerce chair to renew push for regs on self-driving vehicles | TheHill,0.9826566516998323
+4,3,1750939,The Hill,Senators plot bipartisan bill on self-driving cars | TheHill,0.9535666617415245
+4,4,2462311,The Hill,Senate Democrats unveil priorities for federal privacy bill | TheHill,0.9454005893929684
+4,5,1788669,The Hill,More than 100 stakeholders press Senate for action on driverless car bill | TheHill,0.9119787509929501
+5,1,1524974,CNBC,Porsche's US dealers will offer fast charging stations for its Tesla-fighting Mission E sedan,0.7129792369124504
+5,2,2774572,CNN,GM's new electric car battery tops Tesla's,0.6827559332284595
+5,3,213962,Reuters,Race-track rivalry moves to boardroom as VW brands battle for electric car jobs,0.6731199697678033
+5,4,666200,Economist,The death of the internal combustion engine - Electric cars,0.6721660768932132
+5,5,791899,Mashable,"Porsche won't offer self-driving cars, report says",0.6681249873457792
+6,1,466029,TechCrunch,The healing power of AI – TechCrunch,0.8869919108521943
+6,2,446064,TechCrunch,Deep learning with synthetic data will democratize the tech industry – TechCrunch,0.8027234560619946
+6,3,439902,TechCrunch,"Learning effects, network effects, and runaway leaders – TechCrunch",0.7690308898602262
+6,4,2547383,The Verge,Why video games and board games aren’t a good measure of AI intelligence,0.7021976158166241
+6,5,514057,The Verge,"What counts as artificially intelligent? AI and deep learning, explained | The Verge",0.6994059388751606
+7,1,61037,Vox,Alphabet says the executive at the center of its lawsuit against Uber had a deal before he left the company,0.9917707599107569
+7,2,331985,TechCrunch,The due diligence report commissioned by Uber before acquiring Otto is now public – TechCrunch,0.9915382211003679
+7,3,1115380,Gizmodo,Uber Reveals $120 Million Bonus Dispute Between Fired Engineer and Google,0.9912538385344829
+7,4,1927201,Buzzfeed News,Uber's Internal Investigation Into Allegedly Stolen Trade Secrets Was Just Made Public,0.9900992652351561
+7,5,1922205,Buzzfeed News,Uber Fires Engineer Accused Of Stealing Self-Driving Car Secrets From Google,0.9900237289299593
+8,1,1488073,CNBC,Google X founder Sebastian Thrun: Why I gave up 97 percent of my salary to try to change the world,0.6214486804551689
+8,2,514974,The Verge,George Hotz promised to end capitalism in a manic sermon at SXSW,0.5229205407356884
+8,3,300559,Axios,"Udacity adding new degrees on self-driving and ""flying"" cars",0.4605131395390304
+8,4,2458041,Business Insider,ADIPEC 2019: Sebastian Thrun discusses future of energy disruption,0.44014699797173634
+8,5,1342200,Wired,Inside Artificial Intelligence's First Church,0.4317600487861414
+9,1,335766,TechCrunch,Elon Musk: Tesla will ‘most likely’ begin computer chip upgrades this year – TechCrunch,0.9790292104452968
+9,2,387235,TechCrunch,Tesla is raising the price of its full self-driving option – TechCrunch,0.9787925587080462
+9,3,912821,Mashable,"Tesla's self-driving system got an upgrade, which is kind of awkward",0.9762139042405503
+9,4,500196,TechCrunch,"Elon Musk is raising the price of Tesla’s ‘full self-driving’ feature by another $1,000 – TechCrunch",0.9679541911636089
+9,5,2374166,TechCrunch,Elon Musk says Tesla “early access” full self-driving could arrive by end of year – TechCrunch,0.9455658394130003
+10,1,524536,The Verge,Google’s self-driving car CTO Chris Urmson departs,0.9209167460794074
+10,2,304215,TechCrunch,Google’s self-driving car CTO departs the project – TechCrunch,0.8725142004951748
+10,3,2524988,Business Insider,Introducing the rising stars of autonomous driving,0.8672826587380835
+10,4,183087,Vox,Google's self-driving car unit is losing three key execs,0.8467090448807431
+10,5,1994982,The New York Times,Latest to Quit Google’s Self-Driving Car Unit: Top Roboticist,0.7688803061667998
+11,1,1850605,TechCrunch,"Self-driving truck startup Starsky launches Hutch, its API and nerve center – TechCrunch",0.7668876714977481
+11,2,1411519,CNBC,'Driverless' beer run; Bud makes shipment with self-driving truck,0.6874624232582022
+11,3,814542,Mashable,Uber Freight is now hauling cargo with self-driving trucks,0.6292003154754635
+11,4,456011,TechCrunch,Uber self-driving trucks are now moving cargo for Uber Freight customers – TechCrunch,0.6181863570096495
+11,5,2440714,Business Insider,UPS buys minority stake in autonomous trucker TuSimple,0.6104972646575224
+12,1,1593360,CNBC,Amazon launches new self-driving delivery called Scout,0.8553156527641843
+12,2,1637962,CNBC,This walking robot could soon be delivering your packages,0.8450292015514203
+12,3,345405,TechCrunch,Ford tests autonomous on-demand delivery with Postmates – TechCrunch,0.8435691055322861
+12,4,2498188,Business Insider,Walmart to roll out driverless grocery delivery with Nuro,0.8380467291886103
+12,5,450227,TechCrunch,Nuro deploys autonomous delivery cars without safety drivers – TechCrunch,0.8195435473263636
+13,1,2534432,CNN,Trump made 96 false claims over the last two weeks,0.593741709422085
+13,2,1676225,Fox News,President Trump reveals his dream 2020 matchup,0.5851848939937525
+13,3,624005,Reuters,"China's Neolix to trial autonomous vehicles in Saudi, UAE",0.5184188014290267
+13,4,172291,Reuters,GM's Washington charm offensive sidelined by Wall Street's push for profit,0.5103137828139442
+13,5,622146,Reuters,"REFILE-China's Neolix to trial autonomous vehicles in Saudi, UAE",0.5059744118840386
+14,1,477459,TechCrunch,Delphi’s autonomous driving business is being renamed ‘Aptiv’ – TechCrunch,0.9086503942803301
+14,2,1516649,Reuters,Nvidia says new self-driving platform to hit streets next year,0.8502695261951789
+14,3,1296775,Reuters,"REFILE--Nvidia partners with Volvo, auto suppliers, in self-driving deals",0.8123982177295568
+14,4,1263492,Reuters,Chipmaker Nvidia to supply computer for Volvo's upcoming vehicles,0.7944894628590847
+14,5,1620477,CNBC,UPDATE 1-Daimler buys Torc Robotics stake for self-driving trucks,0.7853560355128456
+15,1,1098259,Gizmodo,How Self-Driving Cars Could Make Traffic Worse,0.9088579087593877
+15,2,1020917,Mashable,"400 million people to rely on robotic car sharing by 2030, analysis shows",0.7795458555426031
+15,3,455502,TechCrunch,"25% of U.S. driving could be done by self-driving cars by 2030, study finds – TechCrunch",0.6803542743300746
+15,4,89410,Vox,New study: fully automating self-driving cars could actually be worse for carbon emissions,0.6657955547680947
+15,5,316231,TechCrunch,Transportation technology will be the next Internet protocol – TechCrunch,0.615382879901053
+16,1,2009473,The New York Times,Are Self-Driving Vehicles the Wave of the Future?,0.6456736530271092
+16,2,1495239,CNBC,Michelin 3D printed tire could be ideal for self-driving cars,0.5696274223030107
+16,3,544945,The Verge,Michelin wants to reinvent the wheel for the driverless age,0.5657187077242705
+16,4,2700547,CNBC,UPDATE 2-U.S. agency slams brakes on self-driving EasyMile shuttles after passenger injury,0.5246433607716238
+16,5,2700223,CNBC,UPDATE 1-U.S. agency suspends self-driving shuttle EasyMile in 10 U.S. states,0.5057357138535598
+17,1,2281329,CNBC,"UPDATE 1-U.S. safety regulator cites driver error, Tesla Autopilot design in crash report",0.9837484321742012
+17,2,2270568,Reuters,Tesla Autopilot engaged in 2018 California crash; driver's hands off wheel: NTSB,0.9779986487160619
+17,3,2281596,CNBC,UPDATE 3-U.S. safety agency cites Tesla Autopilot design as factor in 2018 California crash,0.9762980662469747
+17,4,2270064,Reuters,U.S. safety agency cites Tesla Autopilot design as factor in 2018 California crash,0.9751909378638643
+17,5,2281139,CNBC,"Tesla autopilot engaged before 2018 California crash, NTSB says",0.9745417002865768
+18,1,1559538,CNBC,Tesla allegedly hired former Uber employees accused of surveillance,0.7464265524294441
+18,2,307852,Axios,Here's the ex-Uber employee's letter that delayed the Waymo trial,0.744179333861862
+18,3,2074983,The New York Times,"Uber Under Criminal Investigation, Justice Dept. Confirms in Letter to Court",0.7044820930185419
+18,4,1515274,CNBC,Current and former Uber security staffers cast doubt on spying claims,0.6879974634977981
+18,5,465781,Reuters,Tesla sues ex-Autopilot head over recruiting Tesla engineers for new gig,0.6455337942914456
+19,1,49182,Reuters,"China tech giant Baidu partners with Geely, Toyota in self-driving push",0.9461494703248482
+19,2,190212,Reuters,"China tech giant Baidu partners with Geely, Toyota",0.9356174518728992
+19,3,975756,Reuters,"Daimler, Volvo Cars executives skeptical over Geely alliance plan",0.9125313480059104
+19,4,1571143,CNBC,Toyota and SoftBank are teaming up to target self-driving car services,0.7869211474881893
+19,5,83020,Reuters,"Toyota, SoftBank in first-ever alliance, target self-driving car services",0.7853152472791043
+20,1,1010446,CNN,What is 5G?,0.4649718210927585
+20,2,541848,The Verge,Comcast says it should be able to create internet fast lanes for self-driving cars,0.3838300892836078
+20,3,512924,The Verge,It looks like Google wants to charge its self-driving cars wirelessly,0.36340109596830417
+20,4,1596086,CNBC,Here's what the major analysts had to say about Alphabet's earnings,0.36083907790947595
+20,5,551022,The Verge,Lighthouse is taking on Amazon and Nest with its new AI-powered security camera,0.35515551466087447
+21,1,1370734,CNBC,Lyft Will Subsidize Car Rentals for Drivers Who Do 65 Rides a Week,0.6314166860222543
+21,2,1106279,Gizmodo,Is Google's New Ride-Sharing Service an Uber Killer?,0.6270193227300391
+21,3,41150,Vox,Lyft and GM are expanding their car rental program into three more cities,0.5712278288535705
+21,4,185802,Reuters,"At IPO road show, Lyft executives look to lower insurance costs",0.5700522537720152
+21,5,1615573,CNBC,"UPDATE 2-At IPO road show, Lyft executives look to lower insurance costs",0.5679797133882921
+22,1,301249,TechCrunch,Cruise acquires Strobe to help dramatically reduce LiDAR costs – TechCrunch,0.8489032655203428
+22,2,143578,Vox,Ford and Baidu invest $150 million into self-driving technology company Velodyne,0.8189745109183213
+22,3,296721,TechCrunch,Delphi and LiDAR-maker Innoviz partner on self-driving tech – TechCrunch,0.8168762719121483
+22,4,545605,The Verge,GM’s self-driving unit just bought its own LIDAR manufacturer,0.8153482307240364
+22,5,478016,TechCrunch,Magna taps Innoviz for LiDAR to add to its autonomous driving system – TechCrunch,0.8152943910359013
+23,1,563870,The Verge,Apple shrinks autonomous vehicle team by 200 employees,0.8810615945271965
+23,2,293607,Axios,Tim Cook confirms Apple is working on self-driving cars,0.805857030526054
+23,3,2052862,The New York Times,Apple Scales Back Its Ambitions for a Self-Driving Car,0.8008873406926076
+23,4,1486861,CNBC,Apple scales back its ambitions for a self-driving car,0.8008873406926076
+23,5,1593802,CNBC,Apple lays off over 200 from Project Titan autonomous vehicle group,0.7953633141052862
+24,1,477437,TechCrunch,Drive.ai is launching an autonomous ride-hailing network in Texas – TechCrunch,0.9243792187356044
+24,2,833507,Mashable,Lyft and Drive.ai will bring self-driving rides to the Bay Area,0.8189681339477931
+24,3,527245,The Verge,Singapore’s self-driving cars can now be hailed with a smartphone,0.7505375014985701
+24,4,532245,The Verge,Boston’s first self-driving car tests will start next week,0.7200197727517889
+24,5,720256,Mashable,Boston's self-driving Lyft cars are now in service,0.7166368165821918
+25,1,466492,TechCrunch,Let’s start getting excited about robots taking our jobs – TechCrunch,0.6594506480436
+25,2,148461,Vox,It’s time to explode the myth of “McJobs”,0.6093695074725266
+25,3,1495775,CNBC,Will your job be automated? 70 percent of Americans say no,0.6034511291564555
+25,4,647749,Economist,Automation and anxiety - The impact on jobs,0.595505127054582
+25,5,302281,Axios,Americans just don't fear robots,0.573999004909309
+26,1,548736,The Verge,CES 2018: what to expect from the year’s biggest tech show,0.8830098810888347
+26,2,850916,Mashable,I sat in Peugeot's Instinct concept car and it told me to relax,0.869672114852314
+26,3,532278,The Verge,CES 2017: What to expect at the biggest tech trade show of the year,0.8655610972818621
+26,4,999384,CNN,"Preview from CES 2019: friendly robots, oddball cars and a lot of artificial intelligence",0.7948226921160396
+26,5,1513871,CNBC,Here's what to expect at CES 2018,0.7885533934725266
+27,1,1568922,CNBC,Dow set to drop after seeing first 5-day win streak since July,0.622889366112703
+27,2,2348972,The New York Times,DealBook Briefing: Can Two Tobacco Giants Save Themselves by Merging?,0.6207966293201808
+27,3,2490256,The Hill,The Hill's Morning Report - Dem impeachment report highlights phone records | TheHill,0.5815081711863198
+27,4,2083754,The New York Times,"White House, Winter Olympics, New York Fashion Week: Your Monday Briefing",0.5676460889088046
+27,5,2025132,The New York Times,"Kim Jong-nam, Uber, Donald Trump: Your Friday Evening Briefing",0.5548849820960337
+28,1,1102677,Gizmodo,How San Francisco Plans to Use Self-Driving Cars to Fix Its Housing Crisis,0.7734530222797289
+28,2,2335539,Axios,Autonomous vehicles won't save cities without sharing,0.7460247646540027
+28,3,237316,Vice,Here's What the Future of City Planning Looks Like,0.7217240216521266
+28,4,390533,Vice,How Big Can Los Angeles Get?,0.6870029184410971
+28,5,375824,Axios,Cities help AVs decipher local rules of the road,0.5994078169846997
+29,1,477658,TechCrunch,Google’s Self-Driving Car Gets Into A Minor Accident While The AI Was Driving – TechCrunch,0.9512795514197435
+29,2,301907,TechCrunch,Conan O’Brien takes a look at Waymo’s “earlier” self-driving van tests – TechCrunch,0.9467253500357083
+29,3,514133,The Verge,A Google self-driving car caused a crash for the first time,0.9060702670378173
+29,4,467945,TechCrunch,Equity podcast: Instagram copies Snap again and Greycroft’s Ellie Wheeler on self-driving cars – TechCrunch,0.875294684572497
+29,5,362027,Axios,By the numbers: How often self-driving cars disengage,0.8202824364688959
+30,1,1651888,CNBC,"UPDATE 6-VW zooms ahead in extension of alliance with Ford to electric, automated cars",0.9908222144454666
+30,2,253602,Reuters,"Volkswagen zooms ahead in extension of alliance with Ford to electric, automated cars",0.9903451288157136
+30,3,47374,Reuters,"VW, Ford to reveal deeper alliance next week: sources",0.9902970812421875
+30,4,987483,Reuters,"VW, Ford to reveal deeper alliance next week -sources",0.9902241518805965
+30,5,1651902,CNBC,"UPDATE 3-Ford, VW extend multibillion-dollar alliance to electric, automated cars",0.9841443997958288
+31,1,1161665,Reuters,AutoNation profit gets a boost from used vehicle sales,0.8025325529059872
+31,2,1462192,CNBC,"Early movers: GOOS, LULU, RH, WDAY, AVGO, VMW, KKR, GOOGL, BWLD & more",0.7843386112880948
+31,3,152618,Reuters,"Lyft sees 'peak losses' this year, says ride hailing has path to profit",0.7457065359032822
+31,4,1633050,CNBC,"UPDATE 5-Lyft sees 'peak losses' this year, says ride hailing has path to profit",0.7436161220124095
+31,5,1633144,CNBC,UPDATE 3-Lyft sees growth slowing after revenue tops expectations in first results as public company,0.7302286533181547
+32,1,2453472,Business Insider,"SoftBank's massive investments in tech ventures, including WeWork",0.9970314655719614
+32,2,2399493,CNBC,"FACTBOX-Snakes and ladders: SoftBank Vision Fund's climbing, sliding valuations",0.9897086100470922
+32,3,2402204,Reuters,"Factbox: Snakes and ladders- SoftBank Vision Fund's climbing, sliding valuations",0.9703635903445101
+32,4,2363066,Reuters,"Snakes and ladders: SoftBank Vision Fund's climbing, sliding valuations",0.9665477601932205
+32,5,2325883,Reuters,"Factbox: Snakes and ladders - SoftBank Vision Fund's climbing, sliding valuations",0.9646003668940607
+33,1,244200,Reuters,CIA 'mission' on cars shows concern about next-generation vehicles,0.7383532423169894
+33,2,446581,Reuters,RPT-CIA 'mission' on cars shows concern about next-generation vehicles,0.7275068519266429
+33,3,89830,Vice News,Chinese hackers remotely attacked the Tesla Model S,0.5425456242790002
+33,4,1558528,CNBC,Elon Musk: Tesla to open-source some self-driving software for safety,0.534811782496199
+33,5,1458275,CNBC,10 Israeli high-tech areas making waves,0.5295074761292061
+34,1,404356,TechCrunch,Our self-flying car future – TechCrunch,0.6055863733678835
+34,2,1117698,Gizmodo,The 'Godfather' of Autonomous Driving: We Gotta Wreck the Sky,0.561374013809975
+34,3,1335569,Wired,Hyperloop One to Combine Tubes with Self-Driving Cars in Dubai,0.508497308720828
+34,4,498063,TechCrunch,"Sorry Elon, driverless passenger drones will be the vehicular disruption of the future – TechCrunch",0.4963832538291051
+34,5,405488,TechCrunch,Autonomous driving’s godfather and tech investors say the world is ready for flying cars – TechCrunch,0.4856318332264714
+35,1,2340111,TechCrunch,Waymo to customers: ‘Completely driverless Waymo cars are on the way’ – TechCrunch,0.9793615592051856
+35,2,334772,TechCrunch,Waymo is gearing up to put a lot more self-driving cars on the road – TechCrunch,0.9778354557291702
+35,3,319625,TechCrunch,Waymo’s self-driving Jaguar I-Pace vehicles are now testing on public roads – TechCrunch,0.9624925055646372
+35,4,2736175,TechCrunch,Waymo suspends robotaxi service except for its truly driverless vehicles – TechCrunch,0.7821519468718288
+35,5,1065448,Mashable,Thousands of new Waymo self-driving cars are coming to American roads,0.7650468575258389
+36,1,1605083,CNBC,It will be a while before self-driving cars are mainstream says CEO,0.8468972420782708
+36,2,1622181,CNBC,Autonomous vehicle tests underway in London,0.8053206055757222
+36,3,1560368,CNBC,Hyundai's autonomous truck just made a 40-kilometer trip on a highway,0.4655424634086592
+36,4,1364107,CNBC,New driverless vehicles head for London’s roads,0.46064418980495725
+36,5,682792,Mashable,Driverless cars could be tested on UK motorways in 2017,0.4562382905820014
+37,1,28936,Vox,Patagonia CEO Rose Marcario onstage for Recode Decode: transcript,0.6801077733707905
+37,2,24876,Vox,Elon Musk: The Recode interview,0.6766902227746422
+37,3,52032,Vox,Full Q&A: Tesla and SpaceX CEO Elon Musk on Recode Decode,0.6676422870023242
+37,4,167700,Vox,Full transcript: Greylock partner Reid Hoffman on Recode Decode,0.6621647127878059
+37,5,7082,Vox,Journalist and author Annie Lowrey book ‘Give People Money’,0.6524796012559139
+38,1,1436382,CNBC,Full Transcript: Billionaire Investor Warren Buffett Speaks with CNBC’s Becky Quick on “Squawk Box” Today,0.7616499184662893
+38,2,1436761,CNBC,Here is the full transcript of billionaire investor Warren Buffett's interview with CNBC,0.7124818463075758
+38,3,1539403,CNBC,"FULL TRANSCRIPT: BILLIONAIRE INVESTOR WARREN BUFFETT SPEAKS WITH CNBC’S BECKY QUICK ON ""SQUAWK BOX"" TODAY",0.7030064862660831
+38,4,1539324,CNBC,Warren Buffett: Autonomous driving cars 'will be bad' for insurance industry,0.6219585267687641
+38,5,1354073,Wired,Is Tesla's Autopilot Safe? Finding Out Demands Better Data,0.4841033646025242
+39,1,115008,Vice News,Uber's new CEO is cool with diversity but not with Trump,0.832088559664417
+39,2,1922977,Buzzfeed News,Here Are All The Ways Uber Is Hoping To Change Its Culture Problems,0.8219271101662866
+39,3,130075,Vox,"Why it'll be hard for Uber to fire CEO Travis Kalanick, no matter how bad things get",0.8186827007392105
+39,4,159915,Vox,"Uber CEO Travis Kalanick has resigned due to investor pressure, and a search for a new leader is on",0.8138285968029495
+39,5,185781,Vice News,Uber CEO finally resigns after pressure from investors,0.8068772700837656

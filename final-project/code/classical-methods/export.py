@@ -1,40 +1,44 @@
 """Write the classical handoff files that the joint comparison notebook reads."""
+from pathlib import Path
+import sys
 
-# TODO: output folder
-#   - OUT = Path(__file__).resolve().parents[1]/'modern-methods/Results/classical', which is where
-#     notebook 03 looks for Laura's four classical artifacts (see modern-methods/STATUS.md).
+import pandas as pd
 
-# TODO: assignments.csv
-#   - Columns: article_id (str), model='lda', run_id, topic_id (int), plus optionally
-#     membership_strength = dominant probability, matching the modern assignments.csv.
-#   - Exactly one row per article in the shared corpus. Read article_id as str everywhere.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from shared.corpus import SEED, corpus_hash, write_json
+from shared.evaluation import validate_classical
 
-# TODO: mixtures.csv
-#   - The full theta matrix: article_id plus one column per topic (topic_0 ... topic_{K-1}).
-#     Not required by the validator, but it keeps the mixed-membership information that
-#     dominant-topic assignment throws away.
+from lda import CONFIG, OUT, LEARNING_METHOD, top_terms
 
-# TODO: terms.csv
-#   - topic_id, rank (starting at 1), term, weight: the top_terms() output for the selected model.
-#     Use at least the top 10 per topic, since coherence and jaccard_table both use the top 10.
+def export_classical(df, model, theta, assignments, vocab, out=OUT):
+    """Write assignments, mixtures, terms, topics, labels and manifest to out, then validate them."""
+    out = Path(out); out.mkdir(parents=True, exist_ok=True)
+    k = theta.shape[1]
+    run_id = f"lda_k{k}_s{SEED}"
 
-# TODO: topics.csv
-#   - topic_id, label, count. Use your hand label if it exists, otherwise a keyword label like
-#     the modern '0_tesla_autopilot_musk_teslas'.
+    # One row per article, in the row order of df.
+    assignments = assignments.assign(article_id=df.article_id.astype(str).values, model='lda', run_id=run_id)
+    assignments[['article_id', 'model', 'run_id', 'topic_id', 'membership_strength']].to_csv(out/'assignments.csv', index=False)
 
-# TODO: manifest.json (use shared.corpus.write_json and corpus_hash)
-#   - corpus_hash: corpus_hash(df), so the comparison can confirm both pipelines used the same 7,332 articles.
-#   - parameters: k, seed, learning_method, max_iter, doc_topic_prior, topic_word_prior,
-#     min_df, max_df, custom stopword list.
-#   - metrics: perplexity, coherence, keyword_diversity, topic_count.
-#   - hardware: platform.platform(); also note CPU/RAM by hand for the paper's compute section.
-#   - versions: importlib.metadata.version() for scikit-learn, gensim, numpy, pandas.
-#   - stage timings: preprocessing_seconds, representation_seconds, fit_seconds, evaluation_seconds.
-#     Record first-run and rerun times separately.
+    # Full topic mixture per article, which the dominant topic alone throws away.
+    mixtures = pd.DataFrame(theta, columns=[f'topic_{i}' for i in range(k)])
+    mixtures.insert(0, 'article_id', df.article_id.astype(str).values)
+    mixtures.to_csv(out/'mixtures.csv', index=False)
 
-# TODO: validate before handing off
-#   - shared.evaluation.validate_classical(OUT, df.article_id) must run without raising.
+    terms = top_terms(model, vocab)
+    terms.to_csv(out/'terms.csv', index=False)
 
-# TODO (optional): publication breakdowns
-#   - shared.evaluation.publication_exports(df, assignments, OUT) writes the publication heat map
-#     with the same layout as the modern one, ready to put side by side in the paper.
+    counts = assignments.topic_id.value_counts().reindex(range(k), fill_value=0)
+    keywords = terms[terms['rank'] <= 4].groupby('topic_id').term.apply(lambda t: '_'.join(t))
+    topics = pd.DataFrame(dict(topic_id=range(k), keyword_label=[f'{i}_{keywords[i]}' for i in range(k)],
+                               count=counts.values))
+    labels_path = out/'topic_labels.csv'
+    if not labels_path.exists():
+        topics.assign(manual_label='', evidence_notes='').to_csv(labels_path, index=False)
+    manual = pd.read_csv(labels_path, keep_default_na=False).set_index('topic_id').manual_label
+    topics['label'] = [manual.get(i, '').strip() or topics.keyword_label[i] for i in range(k)]
+    topics[['topic_id', 'label', 'count']].to_csv(out/'topics.csv', index=False)
+
+    write_json(out/'manifest.json', dict(corpus_hash=corpus_hash(df), run_id=run_id, seed=SEED,
+                                         learning_method=LEARNING_METHOD, parameters=CONFIG))
+    validate_classical(out, df.article_id.astype(str))

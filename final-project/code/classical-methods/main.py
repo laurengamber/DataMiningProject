@@ -6,10 +6,13 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from shared.corpus import CORPUS_DIR, load_corpus
 from shared.evaluation import reference_texts
+from shared.corpus import SEED
 
 from preprocessing import tokenize, filter_tokens, analyze_tokens
 from representation import build_dtm
-from lda import run_grid, stability_check
+from lda import fit_lda, stability_check, K_CHOSEN, OUT
+from interpret import document_topics, representatives
+from export import export_classical
 
 def load(folder=CORPUS_DIR):
     """Return the audited corpus, verified against the shared manifest's IDs and hash."""
@@ -37,24 +40,26 @@ if __name__ == '__main__':
     print(f'Median token per article count: {statistics.median(token_lengths)}')
     print(f'Mean token per article count: {statistics.mean(token_lengths)}')
 
-    # Identify any necessary custom stop words
-    # analyze_tokens(filtered_tokenized_articles)
-
     texts, dictionary = reference_texts(df) # shared coherence reference
 
     start = time.time()
-    X, vectorizer = build_dtm(filtered_tokenized_articles)
+    X, vectorizer = build_dtm(filtered_tokenized_articles) # x is a vocabulary matrix
     end = time.time()
     print(f"Building the document term matrix took {end-start} seconds")
 
-    # Anaylze different options for k
-    # vocab = vectorizer.get_feature_names_out()
-    # grid = run_grid(X, vocab, texts, dictionary) # creates experiments.csv
-   
-    K_CHOSEN = 40
-    stability_check(X, K_CHOSEN) # Creates stability.csv (seeds 7, 21)
-    
-    # theta, assignments = document_topics(model, X)  # interpret.py
-    #   7. Write representatives, then label topics by hand.
-    #   8. Export the files and run validate_classical()   # export.py
+    start = time.time()
+    model, fit_seconds = fit_lda(X, K_CHOSEN, SEED)
+    end = time.time()
+    print(f"Fitting the LDA model took {end-start} seconds")
 
+    stability_check(X, K_CHOSEN, base_model=model) # Creates stability.csv (seeds 7, 21)
+
+    theta, assignments = document_topics(model, X)  # interpret.py
+
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    representatives(df, theta).to_csv(OUT/'representatives.csv', index=False)  # read these to label topics by hand
+
+    # Writes assignments, mixtures, terms, topics, topic_labels (created once) and manifest, then validates.
+    # Fill in manual_label in topic_labels.csv, then rerun to put your labels in topics.csv.
+    export_classical(df, model, theta, assignments, vectorizer.get_feature_names_out())

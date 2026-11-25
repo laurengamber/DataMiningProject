@@ -1,0 +1,12 @@
+{
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "run_id": "lda_k40_s42",
+  "seed": 42,
+  "learning_method": "batch",
+  "parameters": {
+    "K": 40,
+    "max_iter": 50,
+    "doc_topic_prior": 0.1,
+    "topic_word_prior": 0.025
+  }
+}
