@@ -54,6 +54,13 @@ Small tables, figures, and manifests can go in Git. Models, embeddings, full art
 
 ## Choose a model and name the topics
 
+The team selected `n30_c25_s42` on November 25, 2026. The
+[current selection review](../selection_review/current_shortlist_review.md)
+documents the recommendation and its limitations. Selected-model seed checks are
+complete. Draft labels for both pipelines live in the comparison folder and are
+summarized in the [PR3 notes](../../../progress-report-3/pr3-results-notes.md);
+team-confirmed labels and independent ratings remain pending.
+
 After notebook 02 finishes, read `experiments.csv`, the coherence results, topic-size plots, and each run's `representatives.csv`. The examples are articles closest to each topic's average embedding, excluding the reserved sample. Read small and weak topics as well as the largest ones. These examples help us choose and name topics; they are not a random evaluation sample.
 
 Fill in `Results/modern/selection.json`:
@@ -73,7 +80,7 @@ For each assigned topic, fill in `proposed_label` and `evidence_notes`, then set
 
 ## Laura's handoff
 
-Save these four files in `Results/classical/`:
+Save these four files in `../classical-methods/results/`:
 
 | File | Required fields |
 | --- | --- |

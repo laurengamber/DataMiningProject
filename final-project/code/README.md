@@ -2,6 +2,11 @@
 
 This folder contains the code for our LDA and BERTopic analyses, their comparison, and the human review.
 
+The selected comparison is BERTopic `n30_c25_s42` versus LDA `lda_k40_s42`.
+Quantitative results, draft labels, and interpretation are in the separate
+[PR3 results notes](../progress-report-3/pr3-results-notes.md). Human ratings and
+team label confirmation remain pending.
+
 | Folder | Contents |
 | --- | --- |
 | [classical-methods](classical-methods/) | LDA preprocessing, fitting, topic interpretation, and saved results |
@@ -12,7 +17,7 @@ This folder contains the code for our LDA and BERTopic analyses, their compariso
 
 ## Running the project
 
-Start Jupyter from the repository root with `uv run jupyter lab`. Run modern notebooks 01–03, choose a model as a team, and add Laura's LDA exports. Then use [pipeline_comparison.ipynb](comparison/pipeline_comparison.ipynb) to compare the results.
+Start Jupyter from the repository root with `uv run jupyter lab`. Run modern notebooks 01–03, choose a model as a team, and validate the saved LDA exports. Then use [pipeline_comparison.ipynb](comparison/pipeline_comparison.ipynb) to compare the results.
 
 Once both sets of topic labels are final, the comparison notebook prepares the human-review files. Each reviewer uses their own notebook. After both finish, rerun the comparison to include their ratings.
 
@@ -23,7 +28,7 @@ These paths start at the repository root:
 - `data/self_driving_articles.csv`: source articles.
 - `final-project/data/corpus.csv`: shared dataset after removing duplicates.
 - `final-project/code/modern-methods/Results/modern/`: modern runs and saved embeddings.
-- `final-project/code/modern-methods/Results/classical/`: Laura's LDA exports.
+- `final-project/code/classical-methods/results/`: Laura's LDA exports.
 - `final-project/code/modern-methods/Results/comparison/`: comparison results and review files.
 
 To check the notebook files without running the analysis:

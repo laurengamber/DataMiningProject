@@ -2,9 +2,25 @@
 
 [pipeline_comparison.ipynb](pipeline_comparison.ipynb) brings together the BERTopic, LDA, and human-review results planned in [PR2](../../progress-report-2/pr2-submission.tex).
 
+## Current results — November 25, 2026
+
+Mary Kate selected `n30_c25_s42`. Quantitative comparison with `lda_k40_s42`
+and both models' seed summaries are complete. Start with the separate
+[PR3 results notes](../../progress-report-3/pr3-results-notes.md).
+LDA timing information and independent human evaluation remain unavailable.
+
+The selected comparison folder contains `modern_draft_labels.csv` and
+`classical_draft_labels.csv`, plus derived draft inventories. These are assistant
+suggestions with nonreserved evidence IDs, not team-confirmed labels. Edit their
+`proposed_label`, `evidence_ids`, and `evidence_notes` fields; reruns preserve edits
+and validate the evidence. They do not enable review packets. Team confirmation
+continues through the existing modern label table and classical manifest workflow.
+The LDA full-mixture checks are saved in `classical_validation.json`; publication
+comparisons use dominant assignments, not mean mixture weights.
+
 ## When to run it
 
-Run modern notebooks 01–03, record our model choice, and add Laura's four LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
+Run modern notebooks 01–03, record our model choice, and validate the saved LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
 
 We can compare the numerical results before topic naming or human review is finished. Once both sets of labels are final, run the notebook to prepare the review files. After both reviewers finish, set `RUN_HUMAN_SUMMARY = True` and rerun it to add their scores.
 
@@ -31,7 +47,7 @@ Paths below are relative to `../modern-methods/`:
 
 | Path | Contents |
 | --- | --- |
-| `Results/classical/` | Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`; see the [required format](../modern-methods/notebooks/README.md#lauras-handoff) |
+| `../classical-methods/results/` | Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`; see the [required format](../modern-methods/notebooks/README.md#lauras-handoff) |
 | `Results/modern/` | Reserved review sample, modern runs, model choice, and topic labels |
 | `Results/comparison/<modern-run>/` | Comparison tables, PNG/PDF figures, runtime details, and report checklists |
 | `Results/comparison/<modern-run>/human_review/` | Review packet and separate answer CSVs |

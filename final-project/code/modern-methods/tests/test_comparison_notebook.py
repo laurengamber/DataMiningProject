@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import matplotlib
+matplotlib.use('Agg')  # Notebook plt.show() must not enter a desktop event loop in tests.
 import pandas as pd
 from src import artifacts as a
 from shared.corpus import corpus_hash, digest, write_json
@@ -249,6 +251,58 @@ class ComparisonNotebookTests(unittest.TestCase):
         self.run_cell("review-packet")
         self.assertIsNotNone(self.ctx["comparison_metrics"])
         self.assertIsNone(self.ctx["review_folder"])
+
+    def test_canonical_classical_path(self):
+        self.assertIn("CLASSICAL = ROOT.parent/'classical-methods/results'", self.cells['setup'])
+        source = (NOTEBOOK.parent.parent / 'classical-methods/lda.py').read_text()
+        self.assertIn("OUT = Path(__file__).resolve().parent/'results'", source)
+
+    def test_missing_timings_and_drafts_do_not_enable_human_review(self):
+        manifest = json.loads((self.lda / 'manifest.json').read_text())
+        manifest.pop('timings')
+        manifest['labels_confirmed'] = False
+        write_json(self.lda / 'manifest.json', manifest)
+        path = self.out / 'selected/m/topic_labels.csv'
+        labels = pd.read_csv(path)
+        labels['confirmed'] = False
+        labels.to_csv(path, index=False)
+        self.load_models()
+        for tag in ['metrics', 'runtime', 'review-packet', 'human-summary', 'evidence']:
+            self.run_cell(tag)
+        out = self.ctx['COMPARISON']
+        draft = out / 'modern_draft_labels.csv'
+        labels = pd.read_csv(draft, keep_default_na=False)
+        labels.loc[0, ['proposed_label', 'evidence_notes']] = ['Draft road theme', 'Synthetic representative evidence']
+        labels.to_csv(draft, index=False)
+        before = draft.read_bytes()
+        self.run_cell('metrics')
+        self.assertEqual(before, draft.read_bytes())
+        self.assertIsNone(self.ctx['review_folder'])
+        self.assertFalse((out / 'human_review').exists())
+        self.assertTrue(self.ctx['pipeline_comparison'].mean_1.isna().all())
+        self.assertFalse(self.ctx['runtime_table'].model.eq('lda').any())
+        checklist = pd.read_csv(out / 'comparison_evidence_checklist.csv').set_index('evidence')
+        self.assertIn('incomplete', checklist.loc['Comparable measured runtimes', 'status'])
+        self.assertIn('provisional', checklist.loc['Topic labels', 'status'])
+        # A reserved article cannot be silently used as development evidence.
+        reps = pd.read_csv(self.run / 'representative_ids.csv', dtype={'article_id':str})
+        reps.loc[0, 'article_id'] = '0'
+        with self.assertRaisesRegex(ValueError, 'Reserved review'):
+            self.ctx['draft_inventory']('modern', pd.read_csv(self.run/'topics.csv'),
+                self.ctx['terms'], pd.read_csv(self.run/'coherence.csv'), reps, out, ['0'])
+
+    def test_mixture_validation_aligns_ids_and_rejects_changed_probabilities(self):
+        self.load_models()
+        mixtures = pd.DataFrame({'article_id':self.df.article_id,
+                                'topic_10':[.8 if i%2==0 else .2 for i in range(60)],
+                                'topic_20':[.2 if i%2==0 else .8 for i in range(60)]})
+        mixtures.iloc[::-1].to_csv(self.lda/'mixtures.csv', index=False)
+        self.run_cell('classical-input')
+        self.assertEqual(self.ctx['classical_validation']['mixtures_status'], 'validated')
+        mixtures.loc[0, 'topic_10'] = .1
+        mixtures.to_csv(self.lda/'mixtures.csv', index=False)
+        with self.assertRaisesRegex(ValueError, 'mixture probabilities'):
+            self.run_cell('classical-input')
 
     def test_invalid_supplied_handoffs_raise(self):
         manifest = json.loads((self.lda / "manifest.json").read_text())

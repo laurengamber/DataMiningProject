@@ -62,3 +62,13 @@ The coordinator notebook executed successfully in a fresh kernel with pending in
 Existing `Results/classical/` and `Results/comparison/<run>/human_review/` paths remain unchanged. The new notebook validates exported artifacts without loading model pickles or embeddings, preserves reviewer answers, and rejects mismatched comparison identities. Use `verify_notebooks.py --execute comparison`. Model selection, LDA exports, confirmed labels, and genuine ratings are still pending; no current joint empirical findings are claimed.
 
 All 28 tests pass. Modern notebook 03 and the new comparison notebook executed in fresh kernels with the actual available inputs. A separate fresh-kernel execution on temporary synthetic exports and ratings exercised the complete comparison path; those fixture ratings were never written to study outputs. The classical implementation, modern fitting helpers, six fitted runs, and PR3 manuscript are unchanged.
+
+## Selected comparison completed — November 25, 2026
+
+Mary Kate selected `n30_c25_s42` after reviewing the current shortlist. The existing six seed-42 fits and embeddings were reused; selected seeds 7 and 21 are complete. Shared quantitative comparison now reads LDA directly from `../classical-methods/results/`. Older entries above describe historical pending states.
+
+The selected BERTopic model has 70 topics, c_v=0.704696, diversity=0.651429 and 18.0442% unassigned; LDA has 40 topics, c_v=0.655233 and diversity=0.710000. BERTopic seed ARIs are 0.961365 and 0.976049 on 77.70% and 77.44% of articles, respectively; LDA ARIs are 0.323033 and 0.346897 on all articles. These denominators must accompany comparisons.
+
+Comparison tables, plots, draft inventories and both seed summaries are saved under `Results/comparison/n30_c25_s42/`. Assistant draft labels remain separate from confirmed-label inputs, and no human-review packet or scores were created. LDA timing context remains unavailable. The current selection evidence explicitly describes passage-based development review, not independent human scores.
+
+See [PR3 results notes](../../progress-report-3/pr3-results-notes.md) for all research-question findings, limitations, evidence links and reproduction commands. The existing PR3 manuscript, tables and figures remain unchanged.

@@ -39,7 +39,7 @@ The source data are in `data/self_driving_articles.csv`.
 Start with the [modern notebooks](final-project/code/modern-methods/notebooks/README.md)
 for article embeddings, six BERTopic settings, and publication results. Notebook 01 reserves
 100 articles for human review before we choose topic names. After choosing a modern model
-and adding Laura's LDA exports, use the [comparison notebook](final-project/code/comparison/README.md)
+and validating the saved LDA exports, use the [comparison notebook](final-project/code/comparison/README.md)
 to compare the methods.
 
 Once both sets of labels are final, the [reviewer notebooks](final-project/code/human-review/README.md)

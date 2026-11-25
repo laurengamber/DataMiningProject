@@ -22,7 +22,7 @@ K_GRID = [10, 20, 30, 40, 50, 60, 70]
 SEEDS = [SEED, 7, 21]
 LEARNING_METHOD = 'batch'
 
-OUT = Path(__file__).resolve().parents[1]/'modern-methods/Results/classical'
+OUT = Path(__file__).resolve().parent/'results'
 
 def fit_lda(X, k, seed):
     """Fit one LDA model with k topics; return (model, fit_seconds)."""
