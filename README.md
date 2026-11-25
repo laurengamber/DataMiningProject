@@ -30,6 +30,18 @@ example also requires an API key. The R Markdown file uses R packages
 environment.
 Lecture Proposal: 
 
-### Modern project workflow
+### Final-project analysis
 
-Mary Kate’s implementation is in three numbered [project notebooks](final-project/code/modern-methods/notebooks/README.md): corpus and full-text embeddings, BERTopic experiments, and modern/classical evaluation. Run them in order; model selection, topic naming, and two-person evaluation use explicit human review files. Laura’s classical export contract and project milestones are documented there.
+Our project code is in [final-project/code](final-project/code/README.md).
+We compare LDA and BERTopic on the same 7,332 articles after removing duplicates.
+The source data are in `data/self_driving_articles.csv`.
+
+Start with the [modern notebooks](final-project/code/modern-methods/notebooks/README.md)
+for article embeddings, six BERTopic settings, and publication results. Notebook 01 reserves
+100 articles for human review before we choose topic names. After choosing a modern model
+and adding Laura's LDA exports, use the [comparison notebook](final-project/code/comparison/README.md)
+to compare the methods.
+
+Once both sets of labels are final, the [reviewer notebooks](final-project/code/human-review/README.md)
+guide the independent ratings. Missing inputs show as pending. The notebooks save tables and
+figures for PR3; we write the report separately.

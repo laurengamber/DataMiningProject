@@ -2,9 +2,23 @@
 .ipynb_checkpoints/
 __pycache__/
 .DS_Store
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
 
-# Modern pipeline results: embeddings cache, model runs, figures, and tables (regenerate from notebooks 01–03)
-/final-project/code/modern-methods/Results/
+# Cache directories at any depth (e.g., cached embeddings and downloaded models)
+**/cache/
+
+# Keep small modern result tables, figures, and manifests reviewable.
+# Models, full article evidence, and editable individual review packets stay local.
+/final-project/code/modern-methods/Results/**/*.pkl
+/final-project/code/modern-methods/Results/**/*.npy
+/final-project/code/modern-methods/Results/**/representatives.csv
+/final-project/code/modern-methods/Results/**/review_packet.csv
+/final-project/code/modern-methods/Results/**/reviewer_*.csv
+/final-project/code/modern-methods/Results/**/reviewer_*.ipynb
+/final-project/code/modern-methods/Results/**/outlier_review.csv
+/final-project/code/modern-methods/Results/**/review_examples.csv
 
 # Generated large corpus (regenerate with shared.corpus.audit_corpus)
 /final-project/data/corpus.csv
