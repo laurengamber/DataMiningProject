@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{enumitem}
+\usepackage{array}
 \usepackage{float}             % needed for [H] placement
 \usepackage{listings}
 \usepackage{csquotes}          % recommended by biblatex
@@ -348,7 +349,25 @@ which ranges from 0 (no shared terms) to 1 (identical term sets). BERTopic's out
 
 \textbf{Required evidence:} final configurations for both pipelines fit on the deduplicated corpus, topic labels, and completed human ratings.
 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/heatmap_lda_column.pdf}
+\caption{Average LDA topic proportions by publication ($K = 40$, N = 7,332). Each cell is the mean topic share of that publication's articles; article counts are in parentheses. Only the 16 publications with at least 50 articles are shown, and Vice and Vice News are combined.}
+\label{fig:lda-heatmap}
+\end{figure}
+
+
+
+\input{tables/lda_table.tex}
+
+
+
 \textbf{Anticipated tables and figures:} a table of topic labels, top keywords, and sizes for each pipeline; heat maps of topic proportions by publication, one per pipeline; a heat map of Jaccard overlap between LDA and BERTopic topics (Eq.~\ref{eq:jaccard}); a pipeline-comparison table (mean $c_v$, keyword diversity, mean human rating, reviewer agreement, and runtime); and a robustness table (seed ARI and the date-restricted publication comparison).
+
+\section*{Human Review}
+\textbf{To do: Ordinal Regression}
+
 
 
 \section*{Discussion}

@@ -2,6 +2,7 @@
 
 Outputs of `classical-methods/main.py` for the selected LDA run (`lda_k40_s42`: K=40, seed 42). Hyperparameters are in `../selected_configuration.json`.
 
+
 | File | What it is |
 |---|---|
 | `assignments.csv` | One row per article: `article_id`, `model`, `run_id`, dominant `topic_id`, and `membership_strength` (that topic's probability). |
