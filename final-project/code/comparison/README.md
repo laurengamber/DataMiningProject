@@ -4,7 +4,7 @@
 
 ## When to run it
 
-Run modern notebooks 01–03 and the [classical notebooks](../classical-methods/README.md), record both model choices, and publish the LDA handoff with classical notebook 03. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
+Run modern notebooks 01–03, record the modern model choice, and run the [selected LDA pipeline](../classical-methods/README.md) with `classical-methods/main.py`. The separate 100-iteration classical notebooks write to `Results/classical_exploration/` and do not replace this handoff. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
 
 We can compare the numerical results before topic naming or human review is finished. Once both sets of labels are final, run the notebook to prepare the review files. After both reviewers finish, set `RUN_HUMAN_SUMMARY = True` and rerun it to add their scores.
 

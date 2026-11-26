@@ -1,0 +1,89 @@
+{
+  "comparison": {
+    "model_metrics.csv": {
+      "rows": 2,
+      "exact_table_match": true
+    },
+    "classical_coherence.csv": {
+      "rows": 40,
+      "exact_table_match": true
+    },
+    "modern_coherence.csv": {
+      "rows": 70,
+      "exact_table_match": true
+    },
+    "jaccard.csv": {
+      "rows": 40,
+      "exact_table_match": true
+    },
+    "assignment_contingency.csv": {
+      "rows": 40,
+      "exact_table_match": true
+    },
+    "best_lexical_matches.csv": {
+      "rows": 40,
+      "exact_table_match": true
+    },
+    "matched_publication_proportions.csv": {
+      "rows": 1000,
+      "exact_table_match": true
+    },
+    "classical/publication_counts.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    },
+    "classical/publication_proportions.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    },
+    "classical/publication_sample_sizes.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    },
+    "modern/publication_counts.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    },
+    "modern/publication_proportions.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    },
+    "modern/publication_sample_sizes.csv": {
+      "rows": 25,
+      "exact_table_match": true
+    }
+  },
+  "robustness": {
+    "csv_files_checked": 76,
+    "all_tables_exact_match": true,
+    "serialization_only_changes": []
+  },
+  "review_files": {
+    "unchanged_files": 21,
+    "original_and_archived_baseline_byte_identical": true,
+    "refit_has_no_frozen_packet": true
+  },
+  "metrics": [
+    {
+      "model": "bertopic",
+      "topic_count": 70,
+      "coherence": 0.7046959390830402,
+      "vocabulary_coverage": 1.0,
+      "keyword_diversity": 0.6514285714285715,
+      "outlier_fraction": 0.1804418985270049
+    },
+    {
+      "model": "lda",
+      "topic_count": 40,
+      "coherence": 0.6552333188655197,
+      "vocabulary_coverage": 1.0,
+      "keyword_diversity": 0.71,
+      "outlier_fraction": 0.0
+    }
+  ],
+  "source_commits": {
+    "comparison": "f348d955aa02b7369481d8d119078a7c16fff520",
+    "incoming_main": "f3474af8048614420aafd455f35d95679f667e1c",
+    "original_pr_head": "7a03385999728b41c6a3f920f1624eadf21fb61d"
+  }
+}

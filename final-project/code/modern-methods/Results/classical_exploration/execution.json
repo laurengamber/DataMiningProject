@@ -1,0 +1,37 @@
+[
+  {
+    "run_id": "lda_k10_s42",
+    "action": "fit and evaluate",
+    "seconds": 140.10083358292468
+  },
+  {
+    "run_id": "lda_k20_s42",
+    "action": "fit and evaluate",
+    "seconds": 163.21334641601425
+  },
+  {
+    "run_id": "lda_k30_s42",
+    "action": "fit and evaluate",
+    "seconds": 171.9483004999347
+  },
+  {
+    "run_id": "lda_k40_s42",
+    "action": "fit and evaluate",
+    "seconds": 190.47016858297866
+  },
+  {
+    "run_id": "lda_k50_s42",
+    "action": "fit and evaluate",
+    "seconds": 210.69684445799794
+  },
+  {
+    "run_id": "lda_k60_s42",
+    "action": "fit and evaluate",
+    "seconds": 215.56599433301017
+  },
+  {
+    "run_id": "lda_k70_s42",
+    "action": "verified cache load",
+    "seconds": 0.033986708032898605
+  }
+]

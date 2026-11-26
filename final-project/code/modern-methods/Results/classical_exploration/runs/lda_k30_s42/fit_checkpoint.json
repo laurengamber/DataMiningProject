@@ -1,0 +1,47 @@
+{
+  "identity": {
+    "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+    "article_ids_hash": "3f56b1cb2e18087dc18be59af3809a29fc420c8d5c34a5c3d6fb2649756736b9",
+    "representation_hash": "3f55af33a46a747b2af523b903d1a83fb67079b09e86c2bde9647cffaca3e8ad",
+    "parameters": {
+      "k": 30,
+      "seed": 42,
+      "max_iter": 100,
+      "learning_method": "batch",
+      "doc_topic_prior": null,
+      "topic_word_prior": null,
+      "n_jobs": 1,
+      "min_df": 5,
+      "max_df": 0.5,
+      "top_n_words": 10,
+      "representative_count": 3
+    },
+    "implementation_hash": "2c0b2bb8b199281f118fe03cd800c4bb2179f08b9735a5af4a7853a231dc48d4",
+    "review_reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+    "versions": {
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "fit_seconds": 153.93843912507873,
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "logical_cpu_count": 10,
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "files": {
+    "model.pkl": "8bfa08b7d6091829ef87a9e85648e6d2dbbe65f689353d29acf80eea87b5629a"
+  }
+}

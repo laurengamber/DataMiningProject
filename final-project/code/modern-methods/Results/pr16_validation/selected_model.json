@@ -1,0 +1,72 @@
+{
+  "assignments.csv": {
+    "rows": 7332,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 4.025113575778505e-13,
+    "byte_identical": false
+  },
+  "terms.csv": {
+    "rows": 400,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 1.0998146837692957e-15,
+    "byte_identical": false
+  },
+  "topics.csv": {
+    "rows": 40,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 0.0,
+    "byte_identical": true
+  },
+  "mixtures.csv": {
+    "rows": 7332,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 1.5943982245580912e-12,
+    "byte_identical": false
+  },
+  "representatives.csv": {
+    "rows": 200,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 4.007905118896815e-14,
+    "byte_identical": false
+  },
+  "stability.csv": {
+    "rows": 2,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 0.0,
+    "byte_identical": true
+  },
+  "topic_labels.csv": {
+    "rows": 40,
+    "match_with_absolute_tolerance_1e_10": true,
+    "max_absolute_numeric_difference": 0.0,
+    "byte_identical": true
+  },
+  "manifest.json": {
+    "exact_object_match": true,
+    "byte_identical": true
+  },
+  "articles": 7332,
+  "topics": 40,
+  "stability": [
+    {
+      "seed": 7,
+      "adjusted_rand_index": 0.323033218014039,
+      "evaluated_count": 7332,
+      "evaluated_fraction": 1.0,
+      "outlier_agreement": 1.0
+    },
+    {
+      "seed": 21,
+      "adjusted_rand_index": 0.3468972677173021,
+      "evaluated_count": 7332,
+      "evaluated_fraction": 1.0,
+      "outlier_agreement": 1.0
+    }
+  ],
+  "configuration": {
+    "K": 40,
+    "max_iter": 50,
+    "doc_topic_prior": 0.1,
+    "topic_word_prior": 0.025
+  }
+}

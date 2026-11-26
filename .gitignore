@@ -24,3 +24,7 @@ __pycache__/
 
 # Generated large corpus (regenerate with shared.corpus.audit_corpus)
 /final-project/data/corpus.csv
+
+# Separate historical notebook exploration, with the same local-only large artifacts.
+/final-project/code/modern-methods/Results/classical_exploration/**/mixtures.csv
+/final-project/code/modern-methods/Results/classical_exploration/**/model.pkl.tmp

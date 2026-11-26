@@ -1,7 +1,7 @@
 {
   "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
   "modern_run": null,
-  "classical_run": null,
+  "classical_run": "lda_k40_s42",
   "comparison_folder": null,
   "human_status": "Pending frozen labels and complete LDA handoff."
 }

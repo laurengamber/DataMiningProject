@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT.parent)]
 import lda as ld
 import representation as rep
-import interpret as interpretation
-import export as artifacts
+import notebook_interpret as interpretation
+import notebook_artifacts as artifacts
 from shared import evaluation as ev
 from shared.corpus import corpus_hash, digest, write_json
 
@@ -53,6 +53,28 @@ class ClassicalPipelineTests(unittest.TestCase):
         identity = dict(run_id=run_id, corpus_hash=corpus_hash(self.df), run_identity_hash=digest(manifest['identity']))
         labels = interpretation.labels_table(folder, selected, identity)
         return folder, selected, labels, identity
+
+    def test_incoming_selected_api_exports_and_preserves_manual_labels(self):
+        import export as selected_export
+        import interpret as selected_interpret
+        model, _ = ld.fit_lda(self.X, 2, 42, max_iter=2)
+        theta, assignments = selected_interpret.document_topics(model, self.X)
+        self.assertEqual(assignments.topic_id.tolist(), theta.argmax(axis=1).tolist())
+        out = Path(self.temp.name)/'selected_cli'
+        selected_export.export_classical(self.df, model, theta, assignments,
+                                         np.asarray(self.vocabulary), out=out)
+        ev.validate_classical(out, self.df.article_id.tolist())
+        labels = pd.read_csv(out/'topic_labels.csv', keep_default_na=False)
+        labels.loc[0, 'manual_label'] = 'Existing team label'
+        labels.loc[0, 'evidence_notes'] = 'Synthetic evidence'
+        labels.to_csv(out/'topic_labels.csv', index=False)
+        before = (out/'topic_labels.csv').read_bytes()
+        selected_export.export_classical(self.df, model, theta, assignments,
+                                         np.asarray(self.vocabulary), out=out)
+        self.assertEqual((out/'topic_labels.csv').read_bytes(), before)
+        topics = pd.read_csv(out/'topics.csv')
+        self.assertEqual(topics.loc[0, 'label'], 'Existing team label')
+        self.assertTrue(np.allclose(pd.read_csv(out/'mixtures.csv').iloc[:, 1:], theta))
 
     def test_real_fit_reload_resume_and_stale_identity(self):
         model, manifest = self.fit()

@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "articles": 7332,
+    "vocabulary": 21528,
+    "sparsity": 0.989736580259956,
+    "empty_rows": 0,
+    "token_min": 56,
+    "token_median": 227.5,
+    "token_mean": 339.5615111838516,
+    "token_max": 10353
+  },
+  "timings": {
+    "preprocessing_seconds": 1.060019209049642,
+    "representation_seconds": 0.38448529096785933
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "logical_cpu_count": 10,
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "versions": {
+      "scikit-learn": "1.9.1",
+      "gensim": "4.4.0",
+      "numpy": "2.5.3",
+      "pandas": "2.3.3",
+      "scipy": "1.18.1"
+    }
+  },
+  "representation_hash": "3f55af33a46a747b2af523b903d1a83fb67079b09e86c2bde9647cffaca3e8ad",
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99"
+}

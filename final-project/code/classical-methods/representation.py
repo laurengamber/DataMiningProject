@@ -42,7 +42,7 @@ def preparation_identity(df, min_df=5, max_df=0.5):
     from shared.corpus import corpus_hash, digest
     from preprocessing import CUSTOM_STOPWORDS
     from pathlib import Path
-    from export import environment
+    from notebook_artifacts import environment
     root = Path(__file__).resolve().parent
     return dict(corpus_hash=corpus_hash(df), article_ids=df.article_id.tolist(),
                 min_df=min_df, max_df=max_df, custom_stopwords=sorted(CUSTOM_STOPWORDS),
@@ -55,7 +55,7 @@ def load_representation(df, out, min_df=5, max_df=0.5):
     import json
     from pathlib import Path
     from scipy.sparse import load_npz
-    from export import verify_files
+    from notebook_artifacts import verify_files
     out = Path(out)
     manifest = json.loads((out/'manifest.json').read_text())
     if manifest['identity'] != preparation_identity(df, min_df, max_df):
@@ -77,7 +77,7 @@ def prepare_representation(df, out, min_df=5, max_df=0.5):
     from scipy.sparse import save_npz
     from shared.corpus import write_json
     from preprocessing import tokenize, filter_tokens
-    from export import file_hash, environment
+    from notebook_artifacts import file_hash, environment
     out = Path(out)
     if (out/'manifest.json').exists():
         return load_representation(df, out, min_df, max_df)

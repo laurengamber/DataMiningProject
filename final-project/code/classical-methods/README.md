@@ -1,8 +1,22 @@
 # Classical topic-modeling notebooks
 
 These notebooks reuse the classical preprocessing and scikit-learn LDA implementation, then
-produce the artifacts consumed by the joint comparison. Run from the repository root in the
+retain the separate 100-iteration exploration introduced by PR #16. Run from the repository root in the
 project's `uv` environment.
+
+## Selected model from main
+
+Run `uv run python final-project/code/classical-methods/main.py` to reproduce the selected
+K=40 model with 50 iterations, document-topic prior 0.1, and topic-word prior 0.025.
+`selected_configuration.json` is authoritative. The incoming `main.py`, `interpret.py`, and
+`export.py` are retained unchanged. The CLI writes `modern-methods/Results/classical/`;
+`classical-methods/results/` contains the checked-in reference exports from the same configuration.
+The joint comparison reads the CLI destination on this branch.
+
+The notebooks below retain the different 100-iteration/default-prior experiment in
+`modern-methods/Results/classical_exploration/`. Its run IDs alone do not distinguish it
+from the selected model: use the directory and manifest parameters as well. It has no team
+selection yet and cannot overwrite the selected model, its topic names, or comparison inputs.
 
 ## Notebook order
 
@@ -13,14 +27,15 @@ project's `uv` environment.
    topic counts, displays metrics and inventories, and waits for team selection. After selection,
    rerun it for seeds 7 and 21 and the editable topic-label table.
 3. **[03_classical_results_and_exports.ipynb](notebooks/03_classical_results_and_exports.ipynb)**
-   exports publication summaries and, once selected, the validated comparison handoff.
-4. Use the **[comparison notebook](../comparison/README.md)** after choosing both models. Confirm
-   both sets of topic names before preparing the independent human-review packets.
+   exports publication summaries and, once selected, a handoff inside the exploration directory.
+4. Use the **[comparison notebook](../comparison/README.md)** with the selected CLI exports.
+   The exploration is not automatically promoted into that comparison.
 
 The settings, loops, selection, and analysis are visible in the notebooks. `preprocessing.py`
-and `representation.py` prepare counts; `lda.py` fits and scores models; `interpret.py` handles
-mixtures, evidence, and labels; `export.py` validates caches and writes handoffs. `main.py` is a
-thin fresh-kernel notebook runner. The older `run_grid` and `stability_check` functions remain
+and `representation.py` prepare counts; `lda.py` fits and scores models; `notebook_interpret.py` handles
+nonreserved evidence and labels; `notebook_artifacts.py` validates notebook caches and writes
+exploratory handoffs. The notebook interpretation adapter uses the incoming `interpret.py`
+to calculate mixtures and dominant assignments. `main.py` runs the selected CLI pipeline. The older `run_grid` and `stability_check` functions remain
 available for compatibility, but the notebooks provide resumable, provenance-checked execution.
 
 ## Experimental choices
@@ -48,9 +63,9 @@ uv run jupyter lab
 # Structure and syntax checks for all analysis/review notebooks.
 uv run python final-project/code/modern-methods/verify_notebooks.py
 
-# Fresh kernels; the grid may take substantial time. Completed fits are checkpointed.
+# Selected model and seeds 7/21:
 uv run python final-project/code/classical-methods/main.py
-# Or run particular notebooks:
+# Separate exploratory grid in fresh kernels; completed fits are checkpointed:
 uv run python final-project/code/modern-methods/verify_notebooks.py --execute classical_01 classical_02 classical_03 --timeout 86400
 
 # Headless tests: no interactive plot windows.
@@ -64,8 +79,8 @@ as complete. Reuse valid caches when resuming. Load only trusted locally generat
 
 ## Saved artifacts and selection
 
-All paths below are relative to `../modern-methods/Results/classical/`, retaining the comparison's
-existing export destination.
+All paths below are relative to `../modern-methods/Results/classical_exploration/`, separate from the selected comparison's
+export destination.
 
 | Path | Purpose |
 | --- | --- |
@@ -75,7 +90,7 @@ existing export destination.
 | `experiments.csv` | Completed seed-42 grid metrics; updated after each completed run |
 | `selection.json` | Team-selected run, rationale, selector, and corpus hash |
 | `selected/<run>/` | Editable labels, inventory, publication results, and seed comparisons |
-| `assignments.csv`, `terms.csv`, `topics.csv`, `manifest.json` | Selected handoff read by the comparison |
+| `assignments.csv`, `terms.csv`, `topics.csv`, `manifest.json` | Optional exploratory handoff; not the selected comparison input |
 | `mixtures.csv` | Full selected article-topic probabilities, retained locally |
 | `stability.csv` | Selected seed summary, included in the handoff when available |
 | `status.json`, `evidence_checklist.csv` | Current readiness and remaining team work |
@@ -111,7 +126,7 @@ or naming. The reservation was drawn **before** naming, correcting the old class
 
 ## Comparison and review boundaries
 
-The handoff retains one dominant assignment per article and all K topics, including zero-count topics.
+The exploratory handoff retains one dominant assignment per article and all K topics, including zero-count topics.
 The complete publication CSVs retain all topics and all outlets. Main figures follow the modern layout:
 15 largest topics, outlets with at least 50 articles, all-article denominators, and an all-zero unassigned
 column. Topics omitted from a figure still contribute to its denominator.
@@ -132,4 +147,4 @@ Never overwrite frozen packets or answers: finish the original review or explici
 The archive retains the old identity, results, packet, and answers. Identical reruns require no archive.
 
 Held-out evaluation, common-date coverage sensitivity, manuscript revisions, final theme interpretation,
-and genuine ratings remain follow-up work. The modern model still needs its own team selection and labels.
+and genuine ratings remain follow-up work. The modern model still needs its own team selection and labels on this PR branch.

@@ -73,7 +73,7 @@ For each assigned topic, fill in `proposed_label` and `evidence_notes`, then set
 
 ## Laura's handoff
 
-The [classical notebooks](../../classical-methods/README.md) generate these four files in `Results/classical/` after team model selection. Classical notebook 03 validates the handoff before publishing it:
+The [selected classical CLI pipeline](../../classical-methods/README.md), `classical-methods/main.py`, generates these four files in `Results/classical/`. Its configuration is recorded in `selected_configuration.json`; the classical notebooks retain a separate exploration in `Results/classical_exploration/`:
 
 | File | Required fields |
 | --- | --- |

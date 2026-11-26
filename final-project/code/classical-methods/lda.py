@@ -1,4 +1,5 @@
 """Fit LDA over a grid of topic counts and score each run with the shared metrics."""
+import json
 from pathlib import Path
 import sys
 import time
@@ -10,12 +11,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from shared.corpus import SEED
 from shared.evaluation import coherence, stability
 
+# Hyperparameters chosen through exploration (explore_configuration.py).
+CONFIG = json.loads((Path(__file__).resolve().parent/'selected_configuration.json').read_text())
+K_CHOSEN = CONFIG['K']
+MAX_ITER = CONFIG['max_iter']
+DOC_TOPIC_PRIOR = CONFIG.get('doc_topic_prior')  # None -> scikit-learn default, 1/K
+TOPIC_WORD_PRIOR = CONFIG.get('topic_word_prior')  # None -> scikit-learn default, 1/K
+
 K_GRID = [10, 20, 30, 40, 50, 60, 70]
 SEEDS = [SEED, 7, 21]
 LEARNING_METHOD = 'batch'
-MAX_ITER = 100
-DOC_TOPIC_PRIOR = None
-TOPIC_WORD_PRIOR = None
+
 OUT = Path(__file__).resolve().parents[1]/'modern-methods/Results/classical'
 
 def fit_lda(X, k, seed, max_iter=MAX_ITER, learning_method=LEARNING_METHOD,

@@ -38,7 +38,7 @@ The source data are in `data/self_driving_articles.csv`.
 
 Start with the [modern notebooks](final-project/code/modern-methods/notebooks/README.md)
 for article embeddings, six BERTopic settings, and publication results. Notebook 01 reserves
-100 articles for human review before we choose topic names. Run the [classical notebooks](final-project/code/classical-methods/README.md) for the LDA grid and exports.
+100 articles for human review before we choose topic names. Run the [classical CLI pipeline](final-project/code/classical-methods/README.md) for the selected LDA exports; its notebooks retain a separate exploratory grid.
 After choosing both models, use the [comparison notebook](final-project/code/comparison/README.md)
 to compare the methods.
 
