@@ -70,11 +70,11 @@ This report addresses each comment on Progress Report 2:
     \item \textbf{Testing decisions.} The completed 80/20 split is an exploratory robustness check. Configuration and stopword development used the full corpus before the split, so it is not an untouched test set.
 
 \end{itemize}
-Major changes since Progress Report 2: completed model comparison and robustness checks, approval of all 110 topic labels, and a new dated corpus audit that corrects the earlier unsupported clean-audit claim.
+Major changes since Progress Report 2: completed model comparison and robustness checks, 110 approved interpretive labels, and a new corpus audit correcting the unsupported clean-audit claim. Classical exports remain unchanged; descriptive LDA names are comparison annotations.
 
 \begin{center}\large\textbf{Implementation Progress and Findings}\end{center}
 
-Since Progress Report 2, both selected pipelines have been fit to the same 7,332 articles. Topic labeling, publication comparisons, seed and configuration checks, a shared-period comparison, and an exploratory split are complete. The remaining analytical dependency is the independent human-fit review.
+Since Progress Report 2, both selected pipelines have been fit to the same 7,332 articles. Comparison naming, publication comparisons, seed and configuration checks, a shared-period comparison, and an exploratory split are complete. The remaining analytical dependency is the independent human-fit review.
 
 \textbf{Classical pipeline configuration.}  For the classical pipeline, we chose a K of 40 during previous exploratory work. For this progress report, we explored configuration choices for \texttt{max\_iter}, document topic prior, and topic word prior. 
 
@@ -155,7 +155,7 @@ We selected $\eta = 0.025$, which is also the scikit-learn default of $1/K$. Wit
 \wip~started, partially complete; \planned~not yet started.
 
 \section*{Abstract}
-Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, keyword diversity, seed stability, and topic overlap; a two-reviewer human evaluation of topic assignments is pending. On the deduplicated corpus, LDA produced 40 topics with mean $c_v=0.6552$, and BERTopic produced 70 topics with mean $c_v=0.7047$, leaving 18.04\% of articles unassigned. Approved labels identify deployment, safety, litigation, and policy themes, alongside mixed and format-driven topics. Selected publication differences persist across models and coverage checks, but their magnitudes depend on topic definitions and some LDA comparisons change across seeds. These results provide a matched comparison of how model choice changes the themes identified in AV coverage.
+Autonomous vehicle (AV) news coverage was extensive between 2016 and 2020, but the themes it emphasized, and whether they differ across publications, remain poorly characterized. We apply two topic modeling pipelines to 7,332 AV-related articles from 25 publications in the ``All the News'' dataset~\cite{mckinley2021}: a Latent Dirichlet Allocation (LDA) baseline and BERTopic, which embeds articles with GTE-small, reduces dimensionality with UMAP, and clusters them with HDBSCAN. We evaluate both pipelines with $c_v$ topic coherence, keyword diversity, seed stability, and topic overlap; a two-reviewer human evaluation of topic assignments is pending. On the deduplicated corpus, LDA produced 40 topics with mean $c_v=0.6552$, and BERTopic produced 70 topics with mean $c_v=0.7047$, leaving 18.04\% of articles unassigned. Approved interpretive labels identify deployment, safety, litigation, and policy themes, alongside mixed and format-driven topics. Selected publication differences persist across models and coverage checks, but their magnitudes depend on topic definitions and some LDA comparisons change across seeds. These results provide a matched comparison of how model choice changes the themes identified in AV coverage.
 
 \section*{Introduction}
 In recent years, autonomous vehicles (AVs) have received extensive news coverage spanning technological development, safety, regulation, and commercial usage. Because news coverage shapes how the public perceives emerging technologies~\cite{christen2007media, anania2018effects}, understanding what this coverage emphasizes matters for researchers, policymakers, and the public. However, AV coverage spans many news outlets and consists of large volumes of unstructured text, making recurring themes difficult to identify. Topic modeling is a method that can identify those themes. 
@@ -294,7 +294,7 @@ z_{dn} \sim \mathrm{Mult}(\theta_d), \qquad w_{dn} \sim \mathrm{Mult}(\phi_{z_{d
 \end{equation}
 where $z_{dn}$ is the topic of the $n$th word $w_{dn}$ in article $d$. An article's dominant topic is $\arg\max_k \hat{\theta}_{dk}$, where $\hat{\theta}_d$ is its inferred topic mixture.
 
-\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}). The $K$ grid used \texttt{max\_iter}$=20$; the final $K=40$ model uses \texttt{max\_iter}$=50$, $\alpha=0.1$, and $\eta=0.025$, following the iteration and prior comparisons above. The priors are fixed rather than learned. The selected fit uses seed 42, with seeds 7 and 21 compared by ARI. Article mixtures $\hat{\theta}_d$, dominant-topic assignments, and all 40 topic labels are complete.
+\textbf{Implementation.} We use scikit-learn's \texttt{LatentDirichletAllocation}, which approximates the posterior with batch variational Bayes (\texttt{learning\_method='batch'}). The $K$ grid used \texttt{max\_iter}$=20$; the final $K=40$ model uses \texttt{max\_iter}$=50$, $\alpha=0.1$, and $\eta=0.025$, following the iteration and prior comparisons above. The priors are fixed rather than learned. The selected fit uses seed 42, with seeds 7 and 21 compared by ARI. Completed article mixtures $\hat{\theta}_d$, dominant assignments, terms and original keyword names are preserved. Descriptive LDA names are separately approved comparison annotations.
 
 \textbf{Rationale.} LDA is our baseline for three reasons. Its topic-word distributions and article-level mixtures are directly interpretable, and unlike BERTopic it lets an article belong to several topics. It is the standard reference model in topic-modeling comparisons, including the original BERTopic evaluation~\cite{grootendorst2022bertopic}. 
 
@@ -325,7 +325,7 @@ Both pipelines run in Python 3.13, with dependency versions pinned by a \texttt{
 
 \section*{Experimental Design}
 \begin{enumerate}
-    \item \textbf{Select configurations and label topics.} We considered $c_v$ coherence~\cite{roder2015coherence}, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and all 110 labels are finalized before independent human evaluation. The 100 evaluation articles and duplicate copies were reserved from development review and topic naming, with the reservation attested by Mary Kate. They were not excluded from unsupervised model fitting.
+    \item \textbf{Select configurations and label topics.} We considered $c_v$ coherence~\cite{roder2015coherence}, topic sizes, keywords, and representative articles when selecting one configuration per pipeline. Configurations and 110 interpretive labels are finalized before independent evaluation. The 40 LDA names belong to the comparison; the 70 BERTopic names belong to the selected modern run. Naming leaves numerical results unchanged. The 100 evaluation articles and duplicate copies were reserved from development review and topic naming, with the reservation attested by Mary Kate. They were not excluded from unsupervised model fitting.
     \item \textbf{Independent human evaluation.} Two reviewers will independently rate the same 100 articles, sampled once with seed 42 before topic labels are finalized, on a 1--5 scale for how well the assigned topic describes the article, separately for each model. We will report exact agreement (the share of identical ratings), agreement within one point, and quadratic-weighted Cohen's $\kappa$, which penalizes large disagreements more heavily than near-misses on the ordinal scale. Articles that BERTopic leaves unassigned will be reported separately and excluded from $\kappa$. A 95\% bootstrap interval for $\kappa$ (1,000 resamples of articles) will quantify uncertainty given the small sample.
     \item \textbf{Compare topics across publications.} For each pipeline, we calculated the proportion of each publication's articles assigned to each topic. Heat maps and representative articles identify shared themes and differences in thematic emphasis. We report publication sample sizes, include BERTopic's unassigned category, and interpret differences descriptively, considering unequal date coverage.
     \item \textbf{Compare pipeline outputs.} We compared coherence, keyword diversity, computational cost, and topic overlap; human ratings remain pending. We also examined whether both methods support similar conclusions about publication differences, accounting for differences in topic granularity. Success means identifying article-supported themes, characterizing their prevalence across publications, and explaining how these findings depend on the model.
@@ -348,7 +348,7 @@ which ranges from 0 (no shared terms) to 1 (identical term sets). BERTopic's out
 
 \textbf{Content and status:}
 \begin{itemize}
-    \item \textbf{Topic labels and examples.} All 40 LDA and 70 BERTopic labels were approved by Mary Kate during assisted review. Table~\ref{tab:selected-topics} gives paired examples and representative articles. Both models recover Waymo deployment, Uber--Waymo litigation, and congressional legislation. Both also assign the same 27 articles to Hill.TV interview coverage, a source-associated format rather than necessarily a distinct AV theme. \done
+    \item \textbf{Topic labels and examples.} Mary Kate approved 40 comparison-specific LDA names and 70 BERTopic names during assisted review. Table~\ref{tab:selected-topics} gives paired examples and representative articles. Both models recover Waymo deployment, Uber--Waymo litigation, and congressional legislation. Both also assign the same 27 articles to Hill.TV interview coverage, a source-associated format rather than necessarily a distinct AV theme. \done
     \item \textbf{Publication comparisons.} Figure~\ref{fig:publication-examples} shows selected examples using all articles from each outlet as the denominator, including BERTopic outliers. The Verge's Waymo share exceeds TechCrunch's in both selected models (6.14\% versus 3.05\% for LDA; 9.28\% versus 7.00\% for BERTopic). Vox's litigation share exceeds Reuters' (9.40\% versus 5.04\%; 8.80\% versus 4.33\%). The Hill's congressional share is 33.99\% under LDA but 8.22\% under BERTopic; Wired's urban-mobility share is 14.06\% versus 2.01\%. These are illustrative corpus comparisons, not rankings of all outlet output. \done
     \item \textbf{Quantitative evaluation.} Table~\ref{tab:model-comparison} reports coherence, diversity, and seed stability. BERTopic has higher coherence, while LDA has higher keyword diversity and assigns every article. LDA's mean dominant probability is 0.4382, and 68.71\% of articles have a maximum probability below 0.5, so dominant-topic summaries discard substantial mixture information. Human-fit results remain pending. \wip
     \item \textbf{Agreement and differences.} Figure~\ref{fig:split-merge} shows LDA's Uber testing/crash topic divided among several BERTopic event clusters. Conversely, BERTopic's Tesla topic combines articles from LDA's product and crash-investigation topics. More topics do not imply finer distinctions everywhere. \done
@@ -358,13 +358,13 @@ which ranges from 0 (no shared terms) to 1 (identical term sets). BERTopic's out
 
 \begin{table*}[t]
 \centering
-\caption{Selected approved topics, article counts, top three keywords, and representative articles. Representative articles come from the naming evidence and are outside the independent fit-review sample. Complete inventories remain supporting material.}
+\caption{Selected interpretive labels, counts, top keywords and representative articles. LDA names annotate unchanged classical topics; BERTopic names come from the selected modern label table. Examples are outside the independent fit-review sample. Complete inventories remain supporting material.}
 \label{tab:selected-topics}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lp{0.40\textwidth}rlc}
 \toprule
-Model/topic & Approved label & Articles & Keywords & Example \\
+Model/topic & Interpretive label & Articles & Keywords & Example \\
 \midrule
 LDA 35 & Waymo driverless-service rollout & 211 & waymo, waymos, phoenix & \cite{example2340111} \\
 BERTopic 1 & Waymo autonomous-driving development and deployment & 438 & waymo, waymos, krafcik & \cite{example546719} \\
@@ -420,7 +420,7 @@ Independent human fit & Pending & Pending \\
 
 \section*{Human Review}
 \begin{itemize}
-    \item \textbf{Completed preparation.} All labels and the reservation attestation are recorded, and the 100-article packets are frozen. Label and interpretation approvals are assisted decisions by Mary Kate, separate from independent fit ratings. \done
+    \item \textbf{Completed preparation.} Interpretive labels and the reservation attestation are recorded. Moving LDA annotations into the comparison preserves the frozen 100-article packet. Label and interpretation approvals are assisted decisions by Mary Kate, separate from independent fit ratings. \done
     \item \textbf{Independent ratings.} Each reviewer has 200 model/article items: 100 LDA ratings, 76 assigned BERTopic ratings, and 24 unassigned BERTopic items for qualitative review with blank fit scores. Both independent submissions remain pending. \wip
     \item \textbf{Planned summaries.} Report per-reviewer fit scores, exact and within-one-point agreement, and quadratic-weighted $\kappa$ with 1,000 article-bootstrap resamples. Exclude unassigned BERTopic items from numerical fit ratings and agreement. \planned
 \end{itemize}
@@ -454,8 +454,6 @@ Both pipelines depend on preprocessing and modeling choices. LDA's dominant-topi
     \item Explain how model choice changes topic boundaries and publication shares; retain the complementary-model interpretation. \done
     \item Incorporate independent human-fit results and revise conclusions if warranted. \planned
 \end{itemize}
-
-\textbf{Required evidence and figures:} summarizes the Results and Discussion; no tables or figures are planned.
 
 \newpage
 \section*{References}

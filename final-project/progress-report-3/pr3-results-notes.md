@@ -1,24 +1,33 @@
 # PR3 results and interpretation notes
 
-Prepared November 25, 2026; updated November 26, 2026 following approval of the substantive interpretations on `mkc/model-comparison`. This is a separate handoff document; the PR3 manuscript, existing tables and figures have not been edited.
+Prepared November 25, 2026; updated November 26, 2026 to reflect the current comparison artifacts and preservation of the original classical pipeline. These notes and [the generated PR3 manuscript](pr3-submission-generated.tex) report the same results. The original `pr3-submission.tex` and classical pipeline remain unchanged.
 
 ## Current status and main findings
 
-Mary Kate explicitly selected **BERTopic n30_c25_s42** after reviewing the shortlist recommendation. Both selected pipelines have now been evaluated on the same 7,332-article corpus. The six original BERTopic seed-42 fits and original LDA numerical exports were reused. BERTopic seeds 7 and 21 were added. The complete inventories below now use the 40 approved LDA labels and 70 approved BERTopic labels; original assistant drafts remain preserved in separate CSVs. **Mary Kate has now explicitly approved all 110 labels during guided review; no naming decisions remain pending**, as recorded in the follow-up section. These naming decisions are not independent ratings. Frozen review packets are now prepared after Mary Kate’s reservation attestation; independent human ratings remain pending.
+Mary Kate explicitly selected **BERTopic n30_c25_s42** after reviewing the shortlist recommendation. Both selected pipelines have now been evaluated on the same 7,332-article corpus. The six original BERTopic seed-42 fits and original LDA numerical exports were reused. BERTopic seeds 7 and 21 were added. The complete inventories below use 40 approved comparison-specific LDA labels and 70 approved BERTopic labels; original assistant drafts remain preserved in separate CSVs. **Mary Kate has now explicitly approved all 110 labels during guided review; no naming decisions remain pending**, as recorded in the follow-up section. These naming decisions are not independent ratings. Frozen review packets are now prepared after Mary Kate’s reservation attestation; independent human ratings remain pending.
 
 The two methods recover recognizable deployment, regulation, safety, litigation, supply-chain and mobility themes. BERTopic has higher mean coherence, while LDA has higher keyword diversity and assigns every article. BERTopic retains a substantial unassigned group. Neither model is uniformly superior on these measures, and these exploratory results do not establish human-perceived accuracy or out-of-sample generalization.
 
 | Work item | Current status as of November 26, 2026 |
 | --- | --- |
 | Selected models and computational comparison | Complete for LDA `lda_k40_s42` and BERTopic `n30_c25_s42`; robustness findings and limitations documented below |
-| Topic naming | All 40 LDA and 70 BERTopic labels approved by Mary Kate and transferred |
+| Topic naming | All 110 names approved by Mary Kate; 40 LDA names stored as comparison annotations and 70 BERTopic names in the selected modern label table |
+| Classical pipeline and exports | Unchanged from the PR base, including original keyword labels, topic IDs, counts, assignments, mixtures, terms and manifest |
 | Shared-reservation attestation and frozen packet | Complete; the same 100 articles are fixed for both reviewers |
 | Three substantive conclusions | Approved by Mary Kate, including their qualifications, on November 26 |
 | Independent article-fit evaluation | Genuine completed submissions and subsequent agreement analysis remain pending |
 | New 30-article corpus audit | Complete November 26: 30/30 assisted judgments; 24 central, 5 peripheral, 1 not relevant; 7 boilerplate present; 4 malformed present and 2 uncertain |
-| Report preparation | Main examples, figures and tables selected; [response to PR2 feedback](pr2-feedback.md) prepared November 26; manuscript integration and independent human results remain |
+| Report preparation | Current results, selected examples, figures, audit and qualifications integrated into [the generated manuscript](pr3-submission-generated.tex); independent human results and final editorial review remain |
 
 The November 26 approval completes Mary Kate’s review of the three interpretations below. It does not require another approval of the same conclusions. Any additional team review is separate and has not been inferred.
+
+## Classical inputs and comparison labels
+
+Laura’s completed classical pipeline and saved results are unchanged from the PR base. The original [topics export](../code/classical-methods/results/topics.csv) retains its keyword-derived names; the original [label table](../code/classical-methods/results/topic_labels.csv) and [manifest](../code/classical-methods/results/manifest.json) are also preserved. No topic was reassigned, renumbered or refitted to apply the descriptive names used in this report.
+
+The 40 descriptive LDA names and evidence notes belong to the comparison: [approved comparison labels](../code/modern-methods/Results/comparison/n30_c25_s42/classical_labels.csv). Their [identity and approval record](../code/modern-methods/Results/comparison/n30_c25_s42/classical_labels_identity.json) binds them to the unchanged source exports and shared review reservation. The comparison validates those hashes and applies the names in memory. The 70 BERTopic names remain in the [selected modern label table](../code/modern-methods/Results/modern/selected/n30_c25_s42/topic_labels.csv).
+
+Moving the LDA annotations into comparison-owned files did **not change any numerical findings**: both models’ assignments, topic counts, coherence, diversity, publication shares and overlap results remain the same. The effective labels and frozen review packet also remain unchanged. The [migration record](../code/modern-methods/Results/comparison/n30_c25_s42/classical_label_migration.json) preserves the previous comparison binding. Historical notes about transferring names into classical files describe the earlier state and are superseded by this arrangement.
 
 ## Approved substantive interpretations — November 26, 2026
 
@@ -28,7 +37,7 @@ Mary Kate explicitly approved all three interpretations and their presented qual
 2. **Publication differences depend on topic definition and model stability.** The Verge’s higher Waymo share than TechCrunch’s is comparatively persistent across the checked configurations, LDA seeds and shared period, although matched topics differ in breadth. Vox’s higher litigation share than Reuters’ persists across the six BERTopic configurations and the shared period but reverses under LDA seed 7. The Hill’s congressional share (33.99% LDA versus 8.22% BERTopic) and Wired’s urban-mobility share (14.06% versus 2.01%) illustrate substantial model dependence. These are corpus-specific shares, not measures of all outlet output, editorial intentions or public attitudes.
 3. **Model choice changes topic boundaries and coverage without establishing an overall winner.** LDA and BERTopic provide complementary descriptions of this corpus. Their differences in topic boundaries, assignment coverage, and stability affect publication comparisons, so conclusions should be evaluated across models rather than selected solely by coherence. BERTopic’s stronger assigned-both seed agreement accompanies 18.04% unassigned articles; LDA provides complete assignment coverage and mixtures but greater initialization sensitivity. Event splitting and Tesla-topic merging show that more topics do not guarantee finer distinctions everywhere. Superior human-rated fit remains unestablished.
 
-These three conclusions are approved for use in the report with their qualifications. Independent ratings, the new corpus audit, remaining report preparation and any separate team review are distinct tasks. The frozen evaluation inputs remain unchanged.
+These three conclusions are approved for use in the report with their qualifications. Independent ratings and remaining report preparation are separate from the completed assisted corpus audit and any additional team review. The frozen evaluation inputs remain unchanged.
 
 ## Model selection and development evidence
 
@@ -63,11 +72,11 @@ The shared filtered corpus contains **7,332 articles from 25 publications**, dat
 - **Publication shares:** dominant-topic article counts divided by all corpus articles from that publication. All 25 outlets remain separate, including Vice and Vice News. BERTopic outliers stay in denominators. Main heatmaps show the 15 largest topics plus unassigned for outlets with at least 50 articles; displayed subsets need not sum to one.
 - **LDA mixture shares:** the existing PR3 heatmap averages full topic probabilities. It answers a different question from dominant-assignment proportions and must be captioned separately. Its outlet grouping also differs from these comparison tables.
 
-## LDA results
+## LDA results from the unchanged classical exports
 
 The selected **lda_k40_s42** model produces 40 topics and assigns all 7,332 articles. Topic sizes range from 22 to 685 articles when each article is counted under its highest-probability topic. Its mean c_v is **0.6552**, with keyword diversity **0.7100** (284 distinct terms across 400 top-ten slots). The five largest dominant-assignment topics are:
 
-| Topic | Approved label | Articles | Share of all 7,332 articles |
+| Topic | Approved comparison label | Articles | Share of all 7,332 articles |
 | --- | --- | ---: | ---: |
 | 0 | Driving automation and human control | 685 | 9.34% |
 | 22 | Lidar and autonomous-driving suppliers | 511 | 6.97% |
@@ -75,7 +84,7 @@ The selected **lda_k40_s42** model produces 40 topics and assigns all 7,332 arti
 | 7 | Uber-Waymo trade-secret litigation | 409 | 5.58% |
 | 3 | Uber testing and crash response | 356 | 4.86% |
 
-The largest topics combine broad driving/human-control discussion, suppliers, federal policy, litigation and Uber testing/crash coverage. LDA also separates Tesla product/upgrades (topic 9, 257 articles) from Tesla crash investigations (topic 17, 192 articles). Full mixtures retain information beyond this dominant assignment: the mean largest topic probability is 0.4382, and 68.71% of articles have a largest probability below 0.5. These figures indicate diffuse topic mixtures, not classification errors. [Approved LDA topics](../code/classical-methods/results/topics.csv), [metrics](../code/modern-methods/Results/comparison/n30_c25_s42/model_metrics.csv), [mixture validation](../code/modern-methods/Results/comparison/n30_c25_s42/classical_validation.json).
+The largest topics combine broad driving/human-control discussion, suppliers, federal policy, litigation and Uber testing/crash coverage. LDA also separates Tesla product/upgrades (topic 9, 257 articles) from Tesla crash investigations (topic 17, 192 articles). Full mixtures retain information beyond this dominant assignment: the mean largest topic probability is 0.4382, and 68.71% of articles have a largest probability below 0.5. These figures indicate diffuse topic mixtures, not classification errors. [Approved LDA comparison labels](../code/modern-methods/Results/comparison/n30_c25_s42/classical_labels.csv), [metrics](../code/modern-methods/Results/comparison/n30_c25_s42/model_metrics.csv), [mixture validation](../code/modern-methods/Results/comparison/n30_c25_s42/classical_validation.json).
 
 LDA’s principal limitation in this study is initialization sensitivity: ARI against seed 42 is 0.3230 for seed 7 and 0.3469 for seed 21 across all articles. The Vox–Reuters litigation ordering reverses under seed 7, so full assignment coverage does not establish stable publication conclusions. Mixed interviews, newsletters and peripheral coverage remain among its approved labels.
 
@@ -169,7 +178,7 @@ Sources: [assignment contingency](../code/modern-methods/Results/comparison/n30_
 
 ## Selected main-report examples and figures — November 26, 2026
 
-The [PR3 assignment](pr3-assignment.md) limits the manuscript to eight pages excluding references. Use **two focused results figures and two compact results tables**, plus a short audit paragraph in Data/Limitations. These are editorial selections based on the approved conclusions; they do not constitute new human ratings or additional approvals. The source files, counts and example metadata are recorded in the [selection record](../code/modern-methods/Results/robustness/2026-11-26/report_selection/selection.json). Existing manuscript, tables and figures remain untouched; new figure assets are saved separately.
+The [PR3 assignment](pr3-assignment.md) limits the manuscript to eight pages excluding references. Use **two focused results figures and two compact results tables**, plus a short audit paragraph in Data/Limitations. These are editorial selections based on the approved conclusions; they do not constitute new human ratings or additional approvals. The source files, counts and example metadata are recorded in the [selection record](../code/modern-methods/Results/robustness/2026-11-26/report_selection/selection.json). These examples and figure assets are now included in the generated manuscript; the original manuscript and its assets remain preserved.
 
 ### Main examples and their purpose
 
@@ -247,27 +256,25 @@ Use **article 15792, Vice News**, as the concrete extraction-quality example: it
 - Keep the full [LDA publication heatmap](../code/modern-methods/Results/comparison/n30_c25_s42/classical/publication_proportions.pdf), [BERTopic publication heatmap](../code/modern-methods/Results/comparison/n30_c25_s42/modern/publication_proportions.pdf), and [40-by-70 Jaccard matrix](../code/modern-methods/Results/comparison/n30_c25_s42/jaccard.pdf) in the linked supporting results. Their dense labels and different heatmap color scales make them less suitable for the main eight-page narrative. Jaccard is lexical overlap, not semantic equivalence.
 - Keep the complete 110-topic inventories, all six BERTopic configurations, detailed match diagnostics, shared-period coverage tables and exploratory-split results in supporting material. Briefly report the LDA seed-7 reversal and BERTopic’s 454/1,466 held-out outliers (30.97%) in the main discussion, with the earlier full-corpus-development limitation.
 - The existing monthly article-count figure may remain as a small Data-section figure if space permits; it does not replace either selected results figure. Do not substitute the existing LDA mean-mixture heatmap for a dominant-assignment comparison without explicitly changing the estimand and outlet-grouping explanation.
-- Keep a compact completion-plan table as required by the assignment. The remaining analytical dependency is independent fit evaluation; audit completion and Mary Kate’s interpretation approval should no longer appear as unfinished. The [response to PR2 feedback](pr2-feedback.md) is prepared; report integration remains a task.
+- Keep a compact completion-plan table as required by the assignment. The remaining analytical dependency is independent fit evaluation; audit completion and Mary Kate’s interpretation approval should no longer appear as unfinished. The [response to PR2 feedback](pr2-feedback.md) is prepared and the generated manuscript includes a response section; final editorial review remains.
 
-These choices are ready for manuscript integration. Final numbering and page fit should be checked in the conference template; this pass did not edit or render the manuscript itself.
+These choices are integrated into [the generated manuscript](pr3-submission-generated.tex). Check final numbering and page fit after any later edits or addition of independent human results.
 
 ## Runtime and reproducibility boundaries
 
 The selected BERTopic seed-42 run records 10.05 seconds for fitting/representation and 22.61 seconds for evaluation. Shared embedding preparation records 100.68 seconds for embeddings and 0.31 seconds for model loading/download-stage accounting; the latter does not establish a fresh network-download cost. Embeddings are reused by all configurations. Historical LDA stage timings and original hardware context are unavailable. New documented executions now supply stage measurements (below), but do not establish an end-to-end speed ranking. [Timing table](../code/modern-methods/Results/comparison/n30_c25_s42/runtime_comparison.csv); [hardware/stage context](../code/modern-methods/Results/comparison/n30_c25_s42/runtime_context.json).
 
-## Corrections and remaining work for PR3
+## Report updates and remaining work for PR3
 
-Model selection, all 110 topic labels, the reservation attestation, packet freezing, and Mary Kate’s approval of the three substantive conclusions are complete. The items below concern report integration, remaining human evidence, and unresolved methodological descriptions.
+The generated manuscript now includes the selected configurations, completed numerical comparison, approved interpretations, topic examples, publication and split/merge figures, the new assisted corpus audit, and the shared-period and exploratory split results. Its LDA descriptions distinguish the unchanged classical exports from comparison-specific descriptive names. The original prior-search tables are retained; they were not refitted for this report update.
 
-1. Replace the older methodology statement of 100 iterations and symmetric default priors with the selected LDA settings: 50 iterations, alpha=0.1, eta=0.025. Preserve the distinction between historical tuning runs and the final fit.
-2. Update statements that assignments, topic mixtures, model selection or numerical comparison are planned; they are now available. All 110 topic names are approved and transferred, and the shared review packet is frozen; independent human ratings are pending.
-3. The prior-search prose lists four values while its tables include 1.0; reconcile the description. Describe the choice of alpha as an exploratory interpretability tradeoff, not validated assignment confidence. The supplied training-perplexity/prior tables were not independently refitted here.
-4. Distinguish the existing average-mixture heatmap from the new dominant-topic comparison; document different Vice/Vice News grouping. Never combine the two estimands in a single unlabeled metric.
-5. Integrate the prepared [response to PR2 feedback](pr2-feedback.md), which addresses substantive themes/publication comparisons and the exploratory status of the retrospective split. Incorporate the three approved conclusions and the selected topic table, publication comparison and split/merge figures below, retaining the complete inventories as supporting material. The response distinguishes completed analyses from pending manuscript integration and independent ratings.
-6. Assign the two reviewers and collect their independent ratings using the already frozen 100-article packet and separate workbooks. Labels and Mary Kate’s reservation attestation are complete. Human-result columns remain blank; no kappa, fit-rating averages or intervals can be reported yet. Report the separately completed November 26 corpus audit with its assisted-review scope and uncertainties; it does not substantiate the historical PR2 claim.
-7. Incorporate the completed shared-period and exploratory split results below into the final report. Full-corpus tuning preceded the split; it is not untouched final testing. Training-only vocabularies and fitting, fixed configurations, and the singleton-stratum policy are recorded.
-8. Treat the ordinal-regression placeholder as unimplemented until its research purpose and design are agreed. Do not imply it was completed.
-9. Disclose assistant use for code, developmental passage review, draft labeling and writing support. The team remains responsible for interpretation, references and final manuscript claims. The verified Kang et al. comparison and remaining novelty-claim caveat appear below.
+The comparison still reports LDA mean c_v **0.6552**, diversity **0.7100** and complete assignment coverage, versus BERTopic mean c_v **0.7047**, diversity **0.6514** and **18.04% unassigned**. The ownership correction does not change these values or the qualified publication conclusions.
+
+1. Assign two reviewers and collect independent ratings using the frozen 100-article packet and separate workbooks. All naming approvals and Mary Kate’s reservation attestation are complete. Human-result columns remain blank; fit averages, agreement, kappa and intervals must wait for complete submissions.
+2. Integrate the human results and revise the discussion if warranted. Retain the distinctions between assisted naming, the separately completed assisted corpus audit, and independent article-fit evaluation.
+3. Complete the comparison with prior AV research and final editorial review. Retain the exploratory split disclosure: full-corpus development preceded the split, so it is not untouched final testing.
+4. Keep the original average-mixture heatmap distinct from dominant-assignment shares, including the different outlet grouping. The generated comparison figures use the latter, with BERTopic outliers retained in outlet denominators.
+5. Confirm responsibilities and dates, check the page limit and references, and disclose assistant support for code, developmental passage review, draft naming and writing. Unimplemented analyses, including the earlier ordinal-regression placeholder, are not results.
 
 ## Reproduction and checks
 
@@ -285,11 +292,11 @@ Draft edits live in [modern draft labels](../code/modern-methods/Results/compari
 
 ## Completed follow-up experiments and guided review — November 25, 2026
 
-All new experiments live in the [separate robustness directory](../code/modern-methods/Results/robustness/2026-11-25/README.md). The original full-corpus selections remain fixed. The PR3 manuscript, its existing tables and figures have not been edited. Original model numerical exports and the 100-article review reservation remain unchanged. Approved label inputs and refreshed derivative exports have byte-exact earlier copies in the [label-update archive](../code/modern-methods/Results/robustness/2026-11-25/label_confirmation_archive/first_three/original_locations.json); the earlier comparison was archived before its bound inputs changed.
+All new experiments live in the [separate robustness directory](../code/modern-methods/Results/robustness/2026-11-25/README.md). The original full-corpus selections remain fixed. The generated PR3 manuscript incorporates these findings; the original manuscript and its assets remain preserved. Original model numerical exports and the 100-article review reservation remain unchanged. Approved label inputs and refreshed derivative exports have byte-exact earlier copies in the [label-update archive](../code/modern-methods/Results/robustness/2026-11-25/label_confirmation_archive/first_three/original_locations.json); the earlier comparison was archived before its bound inputs changed.
 
 ### Genuine human decisions and remaining validation
 
-**All 110 topic labels are approved and transferred: 40 LDA and 70 BERTopic.** Mary Kate approved the labels and their stated qualifications during assisted review, then explicitly attested that the shared 100-article reservation was excluded from naming and development decisions. The reservation permits unsupervised fitting. These records establish Mary Kate’s decisions; they do not establish separate review by other team members or independent fit scores. Sources: [decision ledger](../code/modern-methods/Results/robustness/2026-11-25/label_review/team_decisions.csv), [dated attestation](../code/modern-methods/Results/robustness/2026-11-25/label_review/reservation_attestation_2026-11-25.json), and [transfer record](../code/modern-methods/Results/robustness/2026-11-25/label_review/authoritative_transfer_2026-11-25.json).
+**All 110 topic names are approved: 40 comparison-specific LDA annotations and 70 selected BERTopic labels.** Mary Kate approved the labels and their stated qualifications during assisted review, then explicitly attested that the shared 100-article reservation was excluded from naming and development decisions. The reservation permits unsupervised fitting. These records establish Mary Kate’s decisions; they do not establish separate review by other team members or independent fit scores. Sources: [decision ledger](../code/modern-methods/Results/robustness/2026-11-25/label_review/team_decisions.csv), [dated attestation](../code/modern-methods/Results/robustness/2026-11-25/label_review/reservation_attestation_2026-11-25.json), and [transfer record](../code/modern-methods/Results/robustness/2026-11-25/label_review/authoritative_transfer_2026-11-25.json).
 
 As of the November 26 ownership correction, the comparison-owned `classical_labels_identity.json` records all 40 confirmed IDs, `labels_confirmed=true`, and the digest of the unchanged reservation. The original classical manifest and keyword labels are restored unchanged; approved descriptive LDA names live in the comparison’s `classical_labels.csv`. All 70 assigned BERTopic label rows are confirmed. Earlier inputs and comparison artifacts were preserved before rebuilding through the existing comparison notebook with its identity checks intact. The [preservation archive](../code/modern-methods/Results/robustness/2026-11-25/label_confirmation_archive/all_labels_approved_before_transfer/) retains the prior state and original assistant drafts.
 
@@ -316,7 +323,7 @@ The relevance total is **29/30 central or peripheral (96.7%)**. Defect dimension
 
 Examples include a gallery shortcode in 363606 (minor interference), joined text boundaries in 1106821 (minor but repeated), a duplicated opening report in 15792 (substantial repetition), and an apparently missing conclusion in 118371 (material loss of unknown extent). Site-footer contamination in 1767208 and newsletter promotion in 2316736 illustrate boilerplate. The borderline `not_relevant` decision for 446324 reflects an AV mention in an investment list without developed AV coverage. Five peripheral items retain substantive AV coverage within broader articles.
 
-These are descriptive findings for the reused 30-article sample, not established corpus-wide prevalence estimates. One assisted human decision-maker accepted assistant recommendations; no direct human full-article reading or independent second audit is claimed. Publisher-original completeness, missing media and factual accuracy were not verified. Normal attribution and relevant editorial quotations were not automatically boilerplate. Possible cleaning/relevance-rule changes are documented separately in the [audit follow-up section](../code/modern-methods/Results/robustness/2026-11-25/audit_review/2026-11-25/README.md#possible-data-follow-up-not-executed); none was executed. The fixed corpus, selected models, labels, assignments, reservation, frozen packets and reviewer answers remain unchanged. The PR3 manuscript, existing tables and figures have not been edited.
+These are descriptive findings for the reused 30-article sample, not established corpus-wide prevalence estimates. One assisted human decision-maker accepted assistant recommendations; no direct human full-article reading or independent second audit is claimed. Publisher-original completeness, missing media and factual accuracy were not verified. Normal attribution and relevant editorial quotations were not automatically boilerplate. Possible cleaning/relevance-rule changes are documented separately in the [audit follow-up section](../code/modern-methods/Results/robustness/2026-11-25/audit_review/2026-11-25/README.md#possible-data-follow-up-not-executed); none was executed. The fixed corpus, selected models, labels, assignments, reservation, frozen packets and reviewer answers remain unchanged. These audit findings are included in the generated PR3 manuscript; the fitted corpus and original classical results remain unchanged.
 
 ### LDA seed and publication sensitivity
 
@@ -417,17 +424,19 @@ The retained corpus includes syndicated/near-duplicate stories, newsletters, tra
 
 ### Reproduction, status and remaining manuscript corrections
 
-Use the [follow-up reproduction commands](../code/modern-methods/Results/robustness/2026-11-25/README.md) and [fresh-kernel results notebook](../code/comparison/robustness_results.ipynb). New fits are separately identity/checksum-bound and safely reused; reporting does not alter the model-cache helpers. Status hooks in notebooks 03 and comparison retain the completed computational evidence when those notebooks are rerun. They never promote pending labels or ratings. The original draft label files remain distinct from approved authoritative label inputs.
+Use the [follow-up reproduction commands](../code/modern-methods/Results/robustness/2026-11-25/README.md) and [fresh-kernel results notebook](../code/comparison/robustness_results.ipynb). New fits are separately identity/checksum-bound and safely reused; reporting does not alter the model-cache helpers. Status hooks in notebooks 03 and comparison retain the completed computational evidence when those notebooks are rerun. They never promote pending labels or ratings. The original draft label files remain distinct from the approved comparison-owned LDA names and selected modern label inputs.
 
 Earlier computational validation: **37 tests passed**. Notebooks 03, comparison and robustness executed successfully in fresh kernels with outputs saved. Both training-only vocabularies were independently reconstructed and matched their saved artifacts; all six new run manifests/checksums, original numerical exports, archived earlier inputs, reservation separation and preservation of the initial three genuine decisions on rerun were verified at that stage. After all 110 labels were transferred, the 37-test suite passed again, six focused tests passed after a reporting correction, and the comparison notebook completed in a fresh kernel with the frozen packet verified. See the [current packet verification](../code/modern-methods/Results/robustness/2026-11-25/label_review/packet_preparation_verification.json). See [verification.json](../code/modern-methods/Results/robustness/2026-11-25/verification.json) and [execution logs](../code/modern-methods/Results/robustness/2026-11-25/validation_logs/).
 
-Remaining human work is precise: assign two reviewers and independently rate the same 100 articles with the frozen packet; and obtain any additional team review needed beyond Mary Kate’s November 26 approval of the three substantive conclusions. All 110 naming approvals, their authoritative transfer, Mary Kate’s reservation attestation and packet freezing are complete. Report per-reviewer denominators, means, exact and within-one agreement, weighted kappa and bootstrap interval only after real complete ratings. The PR3 manuscript still needs the earlier configuration/estimand corrections, this retrospective-split disclosure, the selection-method change, qualified robustness claims and updated future-tense passages. It has deliberately not been edited here.
+Following the November 26 ownership correction, **39 tests passed** and the comparison notebook completed in a fresh kernel. The classical files, checked numerical comparison tables and frozen review files were preserved byte-for-byte. The generated manuscript now reflects the corrected label ownership and current results.
+
+Remaining human work is to assign two reviewers and independently rate the same 100 articles, plus any additional team review beyond Mary Kate’s approval of the three substantive conclusions. All 110 naming approvals, Mary Kate’s reservation attestation and packet freezing are complete. Report per-reviewer denominators, means, exact and within-one agreement, weighted kappa and bootstrap intervals only after real complete ratings.
 
 ## Complete approved topic inventories
 
 The following tables use the exact labels approved by Mary Kate, with article counts, top keywords and original nonreserved evidence IDs. Approval followed assisted review of full short articles or selected passages, with the reading scope and qualifications recorded for each topic in the [decision ledger](../code/modern-methods/Results/robustness/2026-11-25/label_review/team_decisions.csv). These samples do not establish uniform fit across every article. Preserve mixed, peripheral, source-specific and format-driven caveats when interpreting the labels. All shares use the complete 7,332-article denominator, including BERTopic outliers. Original assistant drafts are preserved separately and do not override these approved names.
 
-### LDA approved inventory
+### LDA comparison-label inventory
 
 | Topic | Approved label | Articles | Corpus share | Top keywords | Evidence IDs |
 | --- | --- | --- | --- | --- | --- |
@@ -472,7 +481,7 @@ The following tables use the exact labels approved by Mary Kate, with article co
 | 38 | Interviews, commentary and discussions (mixed themes) | 61 | 0.83% | know, quick, people, buffett, warren | 1436382  /  1436761  /  1539403 |
 | 39 | Uber leadership and corporate culture | 156 | 2.13% | uber, ubers, kalanick, ceo, khosrowshahi | 115008  /  1922977  /  130075 |
 
-Approved labels and evidence notes: [LDA label table](../code/classical-methods/results/topic_labels.csv). Full keywords and coherence remain in the [classical inventory](../code/modern-methods/Results/comparison/n30_c25_s42/classical_draft_inventory.csv), whose separate proposed-label column preserves historical drafts.
+Approved descriptive names and evidence notes: [comparison-owned LDA label table](../code/modern-methods/Results/comparison/n30_c25_s42/classical_labels.csv). These annotations do not replace the keyword labels in the original classical export. Full keywords and coherence remain in the [classical inventory](../code/modern-methods/Results/comparison/n30_c25_s42/classical_draft_inventory.csv), whose separate proposed-label column preserves historical drafts.
 
 ### BERTopic approved inventory
 
@@ -555,7 +564,7 @@ Full ten-term keywords, coherence and approved labels: [BERTopic inventory](../c
 
 ## Review history (historical snapshots)
 
-The entries below preserve the sequence of earlier decisions. Counts and statements about pending labels, attestations or packets describe their stage in the review and are superseded by the current results and validation status above.
+The entries below preserve the sequence of earlier decisions. Counts and statements about pending labels, attestations, packets or audit judgments describe their stage in the review and are superseded by the current status above. Earlier transfers into classical files were reversed: the original classical files are preserved, and descriptive LDA names and approval metadata now belong to the comparison.
 
 <details>
 <summary>Expand the dated approval and validation history</summary>
@@ -657,7 +666,3 @@ The frozen packet contains 100 reserved articles and 200 model/article items per
 Validation of this completed label transfer: the existing 37-test suite passed; after the checklist correction, all six focused reporting/robustness tests passed. The comparison notebook completed again in a fresh kernel, retained the same frozen packet hash and blank reviewer files, and preserved the pending interpretation task. Modern checklists were refreshed from authoritative labels without rerunning modern experiments. Logs are in `Results/robustness/2026-11-25/label_confirmation_verification/`. Git whitespace validation passed with standard CRLF CSV line endings recognized.
 
 </details>
-
-## Classical ownership correction — November 26, 2026
-
-The classical pipeline and saved results are restored exactly to the PR base. Assisted LDA names are comparison-specific annotations, stored with approval metadata under `Results/comparison/n30_c25_s42/`. The comparison checks hashes of the untouched classical inputs and applies names in memory. Numerical comparison results and the effective labels used by the frozen review packet are unchanged. The comparison’s `classical_label_migration.json` preserves the previous input binding and documents the relocation. Earlier progress entries about editing the classical manifest or transferring names into classical exports are historical and superseded.
