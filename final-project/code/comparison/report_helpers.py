@@ -46,65 +46,19 @@ def comparison_classical_labels(folder, source, topics, manifest, reservation_ha
     return result, ready, binding
 
 
-def followup_checklists(evidence, completion, root, corpus_hash, scope='comparison'):
-    """Reflect separate follow-up results without promoting labels or human ratings."""
-    folder = Path(root) / 'Results/robustness/2026-11-25'
-    required = ['lda_full_s42', 'lda_full_s7', 'lda_full_s21',
-                'lda_split_s42', 'bertopic_full_s42_timing', 'bertopic_split_s42']
-    manifests = []
-    for name in required:
-        path = folder / name / 'manifest.json'
-        if not path.exists():
-            return evidence, completion
-        record = json.loads(path.read_text())
-        if record['identity']['corpus_hash'] != corpus_hash:
-            raise ValueError('Follow-up evidence belongs to a different corpus')
-        manifests.append(record)
-    if not all((folder/name).exists() for name in ['split_metrics.csv', 'sensitivity_summary.csv',
-                                                   'shared_period/protocol.json']):
-        return evidence, completion
-    evidence = evidence.copy()
-    timing = evidence.evidence.eq('Comparable measured runtimes')
-    evidence.loc[timing, 'status'] = 'new stage measurements available; historical LDA timing unavailable; no end-to-end speed ranking'
-    evidence.loc[timing, 'artifact'] = 'Results/robustness/2026-11-25/new_stage_timings.csv'
-    ledger_path = folder / 'label_review/team_decisions.csv'
-    approved = int(pd.read_csv(ledger_path, keep_default_na=False).decision.eq('approve').sum()) if ledger_path.exists() else 0
-    naming_status = (f'{approved}/110 approved in assisted human review; naming decisions complete'
-                     if approved == 110 else
-                     f'11 batches ready; {approved}/110 approved in assisted human review; complete labels pending')
-    audit_status = 'saved judgments blank; original or new human review required'
-    audit_path = folder / 'audit_review/2026-11-25/human_judgments.csv'
-    if audit_path.exists():
-        audit = pd.read_csv(audit_path, keep_default_na=False)
-        complete = audit[['reviewer_name', 'review_date', 'relevance', 'boilerplate', 'malformed']].ne('').all(axis=1).sum()
-        audit_status = f'original judgments unavailable; new dated audit {complete}/{len(audit)} submitted; historical claim unsupported'
-    rows = [
-        ('Robustness', 'Exploratory 80/20 split', 'computed; prior full-corpus development disclosed', 'split_metrics.csv; split_protocol.json'),
-        ('Robustness', 'Shared-period publication sensitivity', 'computed; existing fits restricted to coverage period', 'shared_period/'),
-        ('Robustness', 'Seed/publication and hyperparameter sensitivity', 'computed; automatic matches require interpretation', 'sensitivity_summary.csv; principal_theme_sensitivity.csv'),
-        ('Human validation', '110-topic label review preparation', naming_status, 'label_review/README.md; label_review/team_decisions.csv'),
-        ('Data audit', '30-article manual audit evidence', audit_status, 'final-project/data/corpus_review.csv'),
-    ]
-    extra = pd.DataFrame(rows, columns=evidence.columns)
-    extra['artifact'] = extra.artifact.map(lambda s: 'Results/robustness/2026-11-25/' + s if not s.startswith('final-project/') else s)
-    evidence = pd.concat([evidence.loc[~evidence.evidence.isin(extra.evidence)], extra], ignore_index=True)
-    done = ['Supply measured LDA runtime context', 'Held-out and shared-period sensitivity',
-            'Modern held-out evaluation with rare-stratum policy', 'Modern shared-period publication sensitivity']
-    completion = completion.loc[~completion.remaining_task.isin(done)].copy().reset_index(drop=True)
-    # The notebook's authoritative input checks, not ledger count alone, establish readiness.
-    labels_ready = evidence.loc[evidence.evidence.eq('Topic labels'), 'status'].eq('team confirmed').any()
-    if labels_ready and approved == 110:
-        completion = completion.loc[~completion.remaining_task.eq('Confirm both label sets')].copy().reset_index(drop=True)
-        mask = evidence.evidence.eq('Topic labels')
-        evidence.loc[mask, 'status'] = 'confirmed by Mary Kate during assisted naming; reservation attested'
-        evidence.loc[mask, 'artifact'] = 'label_review/team_decisions.csv; label_review/reservation_attestation_2026-11-25.json; authoritative model label tables'
-    modern_labels_ready = evidence.loc[evidence.evidence.eq('Topic labels and article support'), 'status'].eq('complete').any()
-    if modern_labels_ready and approved == 110:
-        completion = completion.loc[~completion.remaining_task.eq('Confirm modern topic labels')].copy().reset_index(drop=True)
-    if not completion.remaining_task.eq('Resolve 30-article audit evidence').any():
-        completion.loc[len(completion)] = ['Resolve 30-article audit evidence', 'PR2 claim lacks saved judgments',
-            'Team', 'original judgments or new dated human audit', 'Team to confirm']
-    return evidence, completion.reset_index(drop=True)
+# Status rows for the completed November 25 follow-up (paths relative to modern-methods/).
+ROBUSTNESS_EVIDENCE = [
+    ('Robustness', 'Exploratory 80/20 split', 'computed; prior full-corpus development disclosed',
+     'Results/robustness/2026-11-25/split_metrics.csv; split_protocol.json'),
+    ('Robustness', 'Shared-period publication sensitivity', 'computed; existing fits restricted to coverage period',
+     'Results/robustness/2026-11-25/shared_period/'),
+    ('Robustness', 'Seed/publication and hyperparameter sensitivity', 'computed; automatic matches require interpretation',
+     'Results/robustness/2026-11-25/sensitivity_summary.csv; principal_theme_sensitivity.csv'),
+    ('Human validation', '110-topic label review', '110/110 approved in assisted naming review',
+     'Results/robustness/2026-11-25/label_review/team_decisions.csv'),
+    ('Data audit', '30-article corpus audit', 'new dated assisted audit complete (30/30); original PR2 judgments unavailable',
+     'Results/robustness/2026-11-25/audit_review/2026-11-25/human_judgments.csv'),
+]
 
 
 def validate_mixtures(folder, assignments, topics):

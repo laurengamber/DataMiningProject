@@ -1,5 +1,0 @@
-seed,adjusted_rand_index,evaluated_count,evaluated_fraction,outlier_agreement,split_merge_threshold,model
-7,0.961364510859076,5697,0.7770049099836334,0.910392798690671,At least two overlaps each covering >=10% of the source/target topic; descriptive flag only,bertopic
-21,0.9760488234467076,5678,0.7744135297326786,0.9113475177304964,At least two overlaps each covering >=10% of the source/target topic; descriptive flag only,bertopic
-7,0.323033218014039,7332,1.0,1.0,,lda
-21,0.3468972677173021,7332,1.0,1.0,,lda

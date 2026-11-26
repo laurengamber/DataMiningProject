@@ -23,7 +23,7 @@ OUT = MODERN / 'Results/robustness/2026-11-25'
 sys.path[:0] = [str(CODE), str(MODERN), str(CODE / 'classical-methods')]
 from shared.corpus import load_corpus, corpus_hash, digest, write_json
 from shared.evaluation import (aligned_assignments, coherence, reference_texts,
-                               representation_text, seed_publication_comparison, stability)
+                               representation_text, stability)
 
 
 def checksum(path):

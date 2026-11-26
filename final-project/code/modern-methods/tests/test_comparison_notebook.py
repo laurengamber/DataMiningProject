@@ -253,9 +253,6 @@ class ComparisonNotebookTests(unittest.TestCase):
         self.assertIsNotNone(self.ctx["comparison_metrics"])
         self.assertIsNone(self.ctx["review_folder"])
 
-    def test_canonical_classical_path(self):
-        self.assertIn("CLASSICAL = ROOT.parent/'classical-methods/results'", self.cells['setup'])
-
     def comparison_label_fixture(self):
         # An unmodified teammate handoff needs no naming/approval metadata.
         manifest_path = self.lda / 'manifest.json'

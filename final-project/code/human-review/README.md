@@ -1,13 +1,9 @@
 # Human review
 
-Before independent ratings, consult the completed
-[topic-label review batches](../modern-methods/Results/robustness/2026-11-25/label_review/README.md).
-Mary Kate has approved all 110 labels during assisted naming review.
-Mary Kate supplied the shared-reservation attestation, all labels were transferred, and the comparison was rebuilt.
-These naming decisions are not independent fit ratings. The 100-article packet is frozen.
-Separate blank working copies and personal notebooks are in
+All 110 topic labels are approved ([label review](../modern-methods/Results/robustness/2026-11-25/label_review/README.md))
+and the 100-article packet is frozen. Blank working copies for each reviewer are in
 `../modern-methods/Results/comparison/n30_c25_s42/human_review/handoff/reviewer_1/` and `reviewer_2/`.
-Reviewer identities and both independent submissions remain pending. The new dated corpus audit is 0/30 complete; original judgments are unavailable.
+Both independent submissions are pending.
 
 Each reviewer has a separate notebook and answer file:
 

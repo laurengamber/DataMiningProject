@@ -2,41 +2,16 @@
 
 [pipeline_comparison.ipynb](pipeline_comparison.ipynb) brings together the BERTopic, LDA, and human-review results planned in [PR2](../../progress-report-2/pr2-submission.tex).
 
-## Current results — November 25, 2026
+## Current results
 
-Mary Kate selected `n30_c25_s42`. Quantitative comparison with `lda_k40_s42`
-and both models' seed summaries are complete. Start with the separate
-[PR3 results notes](../../progress-report-3/pr3-results-notes.md).
-New stage timing and robustness evidence are available in the
-[follow-up results](../modern-methods/Results/robustness/2026-11-25/README.md).
-Historical LDA timing and independent human evaluation remain unavailable.
-Mary Kate approved all 110 labels during guided review. Mary Kate supplied the shared-reservation
-attestation. Modern labels were transferred to the modern label table; LDA names are
-comparison-only annotations. Prior comparison artifacts were preserved,
-and the comparison rebuilt with a frozen 100-article packet. Both independent reviews remain pending.
+The selected comparison is BERTopic `n30_c25_s42` versus LDA `lda_k40_s42`; see the
+[PR3 results notes](../../progress-report-3/pr3-results-notes.md). All 110 topic labels are
+approved and the review packet is frozen; both independent reviews are pending.
 
-Mary Kate approved the three substantive interpretations and their qualifications on November 26, 2026. See the [dated interpretation record](../modern-methods/Results/robustness/2026-11-26/interpretation_review/approved_interpretations.json) and the approved conclusions in the results notes. This approval is separate from independent fit ratings and any additional team review.
-
-The selected comparison folder contains `modern_draft_labels.csv` and
-`classical_draft_labels.csv`, plus derived draft inventories. These are assistant
-suggestions with nonreserved evidence IDs, not team-confirmed labels. Edit their
-`proposed_label`, `evidence_ids`, and `evidence_notes` fields; reruns preserve edits
-and validate the evidence. They do not enable review packets. Team confirmation
-uses the modern label table and comparison-owned `classical_labels.csv` plus
-`classical_labels_identity.json`. The classical pipeline and its saved exports stay unchanged.
-The LDA full-mixture checks are saved in `classical_validation.json`; publication
-comparisons use dominant assignments, not mean mixture weights.
-
-## Classical input ownership
-
-Treat `classical-methods/` as read-only. The comparison reads the teammate's original
-exports and applies approved descriptive LDA names from its own `classical_labels.csv`
-to an in-memory copy. `classical_labels_identity.json` binds those names and their
-approval/reservation metadata to the corpus, run, and original export hashes.
-`classical_label_migration.json` preserves the prior binding and records the November 26
-restoration to the PR base. Numerical results, effective comparison labels, and the
-frozen review packet are unchanged by that relocation. Do not rerun or edit the
-classical pipeline to prepare comparison labels.
+LDA exports in `classical-methods/` are read-only. Approved LDA names live in
+`Results/comparison/<modern-run>/classical_labels.csv`, bound to the original exports by
+`classical_labels_identity.json`, and are applied in memory only. The `*_draft_labels.csv`
+files are the original assistant drafts; they never enable review packets.
 
 ## When to run it
 
@@ -78,9 +53,6 @@ The saved manifests check that the outputs use the same data and model runs. Rer
 Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) for independent ratings. The [coordinator notebook](../human-review/review_coordinator.ipynb) checks progress and summarizes the reviews.
 
 Modern notebook 03 covers modern results only. This notebook covers the comparison.
-[robustness_results.ipynb](robustness_results.ipynb) reads the separately completed
-seed/publication, six-setting sensitivity, shared-period, exploratory 80/20 and
-timing artifacts. Run it with `verify_notebooks.py --execute robustness`.
+[robustness_results.ipynb](robustness_results.ipynb) reports the seed, sensitivity,
+shared-period, exploratory 80/20 and timing checks (`verify_notebooks.py --execute robustness`).
 The split follows earlier full-corpus development and is not untouched testing.
-The [label review guide](../modern-methods/Results/robustness/2026-11-25/label_review/README.md)
-records actual approvals and the remaining steps before independent ratings.

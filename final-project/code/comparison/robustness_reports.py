@@ -1,12 +1,10 @@
 """Reports from fixed exports, kept outside the model/cache identity helpers."""
 from pathlib import Path
-import argparse
 import json
-import re
-import numpy as np
 import pandas as pd
-from robustness import (CODE, ROOT, MODERN, OUT, checksum, load_corpus, corpus_hash,
-                        write_json, aligned_assignments, seed_publication_comparison)
+from robustness import CODE, ROOT, MODERN, OUT, checksum
+from shared.corpus import load_corpus, corpus_hash, write_json
+from shared.evaluation import aligned_assignments, seed_publication_comparison
 
 BASE = MODERN/'Results/modern/runs/n30_c25_s42'
 CLASSICAL = CODE/'classical-methods/results'
@@ -182,29 +180,13 @@ def split_reports(df):
         pd.DataFrame(pubshifts).to_csv(OUT/'split_publication_shifts.csv',index=False)
 
 
-def historical_evidence():
-    """Preserve verbatim table fragments with source hashes, not fabricated run logs."""
-    folder=OUT/'historical_lda';folder.mkdir(exist_ok=True)
-    source=ROOT/'final-project/progress-report-3/pr3-submission.tex'
-    text=source.read_text()
-    for name in ['max-iter','alpha','eta']:
-        table=next(t for t in re.findall(r'\\begin\{table\}.*?\\end\{table\}',text,re.S) if f'\\label{{tab:{name}}}' in t)
-        (folder/f'{name}_source_table.tex').write_text(table+'\n')
-    write_json(folder/'provenance.json',dict(source=str(source.relative_to(ROOT)),sha256=checksum(source),
-        evidence_status='Historical manuscript tables only; not independently rerun; rounded values, no raw search logs recovered',
-        k_search='PR2/PR3 document K=10,20,...,70 at max_iter=20; no raw per-K numerical results recovered in tracked files or local result folders',
-        code_caveat='Current explore_configuration.py reads the selected configuration, so rerunning it is NOT reproduction of historical defaults',
-        prior_caveat='Prior tables contain 1.0, omitted from prose grid; alpha 0.5 has higher rounded coherence than selected alpha 0.1. Dominant probability is not assignment accuracy.'))
-
-
 def main():
     df=load_corpus();OUT.mkdir(parents=True,exist_ok=True)
-    shared_period(df);sensitivity(df);split_reports(df);historical_evidence()
+    shared_period(df);sensitivity(df);split_reports(df)
     write_json(OUT/'report_provenance.json',dict(corpus_hash=corpus_hash(df),
         reporting_code_sha256=checksum(Path(__file__)),
-        sources={str(p.relative_to(ROOT)):checksum(p) for p in [BASE/'manifest.json',CLASSICAL/'manifest.json']},
-        human_status='Awaiting actual label confirmations and independent ratings; none generated'))
-    print('Saved coverage, matching, split/timing (when complete), and historical-evidence reports',flush=True)
+        sources={str(p.relative_to(ROOT)):checksum(p) for p in [BASE/'manifest.json',CLASSICAL/'manifest.json']}))
+    print('Saved coverage, matching, and split/timing reports',flush=True)
 
 
 if __name__=='__main__': main()

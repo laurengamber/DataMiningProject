@@ -4,13 +4,11 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
-import numpy as np
 import pandas as pd
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/'comparison'))
 from robustness import stratified_split, cached, checksum
 from robustness_reports import coverage_rule, publication_shares
-from report_helpers import followup_checklists
 
 
 class RobustnessTests(unittest.TestCase):
@@ -60,34 +58,6 @@ class RobustnessTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             folder=Path(temp);(folder/'terms.csv').write_text('partial')
             with self.assertRaises(ValueError):cached(folder,{})
-
-    def test_status_refresh_preserves_pending_human_work(self):
-        with tempfile.TemporaryDirectory() as temp:
-            root=Path(temp);folder=root/'Results/robustness/2026-11-25'
-            for name in ['lda_full_s42','lda_full_s7','lda_full_s21','lda_split_s42','bertopic_full_s42_timing','bertopic_split_s42']:
-                path=folder/name;path.mkdir(parents=True)
-                (path/'manifest.json').write_text(json.dumps({'identity':{'corpus_hash':'fixture'}}))
-            (folder/'shared_period').mkdir()
-            for name in ['split_metrics.csv','sensitivity_summary.csv','shared_period/protocol.json']:
-                (folder/name).write_text('temporary test fixture')
-            evidence=pd.DataFrame([['Evaluation','Independent reviewer results','pending','none']],columns=['manuscript_section','evidence','status','artifact'])
-            tasks=['Confirm both label sets','Supply measured LDA runtime context','Complete independent ratings and qualitative outlier review','Interpret cross-model publication patterns','Held-out and shared-period sensitivity']
-            completion=pd.DataFrame([[t,'reason','team','output','pending'] for t in tasks],columns=['remaining_task','reason','responsible_member','expected_output','completion_date'])
-            updated,remaining=followup_checklists(evidence,completion,root,'fixture')
-            self.assertIn('Interpret cross-model publication patterns',set(remaining.remaining_task))
-            self.assertIn('Complete independent ratings and qualitative outlier review',set(remaining.remaining_task))
-            self.assertEqual(updated.loc[updated.evidence.eq('Independent reviewer results'),'status'].iloc[0],'pending')
-            self.assertIn('Resolve 30-article audit evidence',set(remaining.remaining_task))
-
-            # Removing completed naming must not let the audit row overwrite another pending task.
-            (folder/'label_review').mkdir()
-            pd.DataFrame({'decision':['approve']*110}).to_csv(folder/'label_review/team_decisions.csv',index=False)
-            evidence.loc[len(evidence)]=['Interpretation','Topic labels','team confirmed','labels']
-            updated,remaining=followup_checklists(evidence,completion,root,'fixture')
-            self.assertNotIn('Confirm both label sets',set(remaining.remaining_task))
-            self.assertIn('Interpret cross-model publication patterns',set(remaining.remaining_task))
-            self.assertIn('Complete independent ratings and qualitative outlier review',set(remaining.remaining_task))
-            self.assertIn('Resolve 30-article audit evidence',set(remaining.remaining_task))
 
 
 if __name__=='__main__':unittest.main()

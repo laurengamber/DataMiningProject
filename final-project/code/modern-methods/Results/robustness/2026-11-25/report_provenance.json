@@ -1,9 +1,8 @@
 {
   "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
-  "reporting_code_sha256": "189ead196a03fb7b7056ca2164912b400b77be7861790da83b028ecbb0b814d9",
+  "reporting_code_sha256": "0e8b361ecd126f6e2d371eb71c25d4549ddde28be1958e6c3e55a59063504dde",
   "sources": {
     "final-project/code/modern-methods/Results/modern/runs/n30_c25_s42/manifest.json": "d24c06b2c3b8874b56131042db5b8363f970ede0d9f9a3ddca27fda403019a2a",
-    "final-project/code/classical-methods/results/manifest.json": "3b2d1b59e727c66ebabf1a7806a2351cb823ba8295049b87f18e83ae30f12073"
-  },
-  "human_status": "Awaiting actual label confirmations and independent ratings; none generated"
+    "final-project/code/classical-methods/results/manifest.json": "98e3d51f651114c60dcc23e74a3bd4c9eab69ab24b4a8c641598d150705e080a"
+  }
 }

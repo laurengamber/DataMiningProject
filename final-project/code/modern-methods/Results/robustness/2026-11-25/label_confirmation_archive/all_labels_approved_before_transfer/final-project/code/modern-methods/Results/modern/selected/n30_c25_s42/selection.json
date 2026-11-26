@@ -1,6 +1,0 @@
-{
-  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
-  "run_id": "n30_c25_s42",
-  "rationale": "Team selected n30_c25_s42 after reviewing the assistant recommendation: highest grid mean c_v (0.704696), 70 topics, and 18.04% unassigned, versus n15_c25 (76 topics, 0.692091, 20.24%) and n15_c50 (40 topics, 0.662209, 19.93%). Current representative passages support distinct litigation, Waymo deployment, racing and ride-service themes; transcript/newsletter clusters and near-duplicate stories remain limitations. The 33-topic shortlist review is developmental assistant evidence, not independent human ratings. Equal topic counts with LDA were not a selection criterion.",
-  "selected_by": "Mary Kate (explicit selection in Codex chat, 2026-11-25)"
-}

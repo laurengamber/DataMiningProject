@@ -13,10 +13,8 @@ These artifacts extend the selected full-corpus comparison without replacing its
 | `lda_seed/`, `bertopic_grid/` | Shared maximum-overlap matching, all overlap edges, unmatched topics, split/merge diagnostics and publication changes |
 | `shared_period/` | Coverage-driven common period, retained IDs/outlets/date ranges/counts, and restricted existing-fit shares |
 | `new_stage_timings.csv` | New measurements; separate stages and cache conditions in each manifest |
-| `historical_lda/` | Preserved manuscript table fragments and hashes; not rerun search results |
-| [label_review/README.md](label_review/README.md) | Eleven manageable batches, three explicit assisted naming approvals in the preserved decision ledger, and local full-text evidence cards |
-| `audit_status.json` | Blank original 30-article audit fields; human evidence remains required |
-| `protected_inputs.json` | Before-work hashes for selected artifacts, reservation, fitting helpers and existing PR3 material |
+| [label_review/](label_review/README.md) | 110-topic naming review: batch index, decision ledger (`team_decisions.csv`), reservation attestation, and local full-text cards |
+| [audit_review/2026-11-25/](audit_review/2026-11-25/README.md) | New dated 30-article corpus audit (complete); original PR2 judgments unavailable |
 
 The split is an **exploratory robustness check**, not untouched testing. Full-corpus development previously influenced settings and stopword choices. Training-only vocabularies, LDA, UMAP and clustering are fitted with the selected configurations held fixed; pretrained embeddings are reused. Near duplicates and syndicated stories can cross the split. The human sample is reserved from naming, not unsupervised fitting.
 
@@ -35,6 +33,6 @@ MPLBACKEND=Agg .venv/bin/python final-project/code/modern-methods/verify_noteboo
 PYTHONPATH=final-project/code/modern-methods:final-project/code MPLBACKEND=Agg .venv/bin/python -m unittest discover -s final-project/code/modern-methods/tests -v
 ```
 
-Completed experiment directories are checksum-bound and reused only with matching input/code identities. Changed identities or incomplete outputs stop execution: preserve the old directory before starting a new experiment. Reporting code is separate from fitting code. Label-review preparation preserves the decision ledger. The computational scripts do not write original full-corpus models, labels, reservation or reviewer answers; only status checklists are refreshed by the result notebook. Separately, three explicit user approvals were transferred into the authoritative naming workflow. Original label inputs and the earlier comparison are preserved in `label_confirmation_archive/first_three/`, with exact provenance in `original_locations.json` and `preservation_note.json`.
+Completed experiment directories are checksum-bound and reused only with matching input/code identities; a changed identity or incomplete output stops execution. Reporting code is separate from fitting code, and none of these scripts write the original full-corpus models, labels, reservation or reviewer answers.
 
-Mary Kate approved LDA 22 and BERTopic 4/5 during guided review; the latter is now “Uber leadership and corporate culture.” These are assisted naming decisions, not independent fit ratings. The other 107 labels, a genuine reservation attestation, independent ratings and the corpus audit remain outstanding. No human fit scores, agreement estimates or audit judgments were generated. See `verification.json` for the checked safeguards and the main results notes for findings.
+Mary Kate approved all 110 topic labels in assisted naming review; these are naming decisions, not independent fit ratings. Independent ratings remain pending. See the [PR3 results notes](../../../../../progress-report-3/pr3-results-notes.md) for findings.

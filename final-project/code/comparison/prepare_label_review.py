@@ -1,10 +1,10 @@
-"""Prepare manageable development-label review; never confirm labels or create ratings."""
+"""Build the 110-topic label-review index, decision ledger, and local HTML article cards."""
 from html import escape
 import json
 import re
-from pathlib import Path
 import pandas as pd
-from robustness import CODE, ROOT, MODERN, OUT, load_corpus, checksum, write_json
+from robustness import ROOT, MODERN, OUT, checksum
+from shared.corpus import load_corpus, write_json
 from robustness_reports import COMPARISON, BASE, CLASSICAL, read_assignments
 
 
@@ -83,24 +83,13 @@ def prepare():
             f'<h1>Label review batch {batch}</h1><p>Assistant drafts; actual team decisions required. '
             'Development evidence only, not the reserved evaluation packet.</p>'+''.join(cards))
         lines.append(f'| {batch} | {len(group)} | [{filename}]({filename}) |')
-    lines += ['', '## After the team confirms all labels', '',
-        '1. Preserve a dated copy of the existing selected comparison directory and its `comparison_identity.json` before changing bound label inputs. Keep original reviewer files untouched if any exist.',
-        '2. Transfer only genuinely approved modern labels/evidence to `Results/modern/selected/n30_c25_s42/topic_labels.csv`, then set `confirmed=true` for those rows. Preserve its companion identity.',
-        '3. Keep all `classical-methods/` files unchanged. Store approved LDA names and evidence in `Results/comparison/<modern-run>/classical_labels.csv` (`topic_id`, `manual_label`, `evidence_notes`). Store approval and reservation metadata in `classical_labels_identity.json`, including corpus/run IDs, confirmed topic IDs, the table SHA-256, and SHA-256 hashes of the original assignments, terms, topics and manifest. The comparison applies these names to an in-memory copy only. Preserve the decision ledger as evidence; approval describes assisted comparison naming, not changes to the classical results.',
-        '4. The comparison identity deliberately rejects changed bound inputs. Archive the prior comparison folder, retaining draft edits, before regenerating it through the existing comparison notebook. Reconcile draft copies with approved labels instead of silently losing edits.',
-        '5. Run the comparison notebook to freeze packets; give each reviewer the same packet/freeze/status files and only their own answer CSV. Each independently rates all 100 articles for both models. No cross-reviewer answer exposure. Leave BERTopic unassigned fit scores blank.',
-        '6. Only after both genuine submissions are complete, enable the existing human summary: per-reviewer means, exact and within-one agreement, quadratic-weighted kappa, and 1,000 article-bootstrap resamples. Report assigned denominators, outlier exclusions and unusable resamples.',
-        '', '## Missing corpus audit', '',
-        'PR2 claims a manual 30-article audit, but saved relevance, boilerplate, malformed and notes fields are blank. '
-        'The original `final-project/data/corpus_review.csv` is preserved. Ask the team for original judgments; otherwise perform a new dated human audit of those 30 articles and identify it as new. Do not backdate judgments or substitute assistant assessments.']
     (folder/'README.md').write_text('\n'.join(lines)+'\n')
     write_json(folder/'provenance.json',dict(sources=sources,topic_count=len(table),batch_count=int(table.batch.max()),
         evidence_unique_ids=len({i.strip() for v in table.evidence_ids for i in v.split('|')}),
         reserved_intersection=0,reservation_sha256=checksum(MODERN/'Results/modern/review_sample.json'),
         approved_labels=approved, pending_labels=110-approved,
-        status='Partial assisted human naming decisions recorded; complete labels, reservation attestation and independent ratings pending',
         full_text='Local HTML cards ignored by Git; regenerate with prepare_label_review.py'))
-    print(f'Prepared {len(table)} topics in {table.batch.max()} batches; preserved decisions and reservation.')
+    print(f'Prepared {len(table)} topics in {table.batch.max()} batches; {approved} approved.')
 
 
 if __name__=='__main__':prepare()

@@ -1,4 +1,4 @@
-# New human corpus audit — prepared November 25, 2026
+# New human corpus audit — November 2026
 
 Mary Kate explicitly reported that original judgments are unavailable and requested a new dated human audit in Codex chat on November 25, 2026. Completed November 26, 2026: all 30/30 explicit assisted human judgments are recorded. This does not substantiate or replace the historical PR2 assertion that all 30 articles passed.
 
@@ -58,16 +58,8 @@ Limitations: one assisted reviewer accepted assistant assessments; no independen
 
 **This new audit does not substantiate PR2's historical claim or establish that the earlier review occurred.** The original blank judgment fields remain unchanged. The separate two-reviewer model-fit evaluation remains pending. No models, labels, assignments, reservation, frozen packets, reviewer answers, or PR3 manuscript/tables/figures were changed.
 
-Records: [completed ledger](human_judgments.csv), [items 1–3 acceptance](accepted_decisions_2026-11-26_items_01-03.json), [items 4–30 acceptance](accepted_decisions_2026-11-26_items_04-30.json), [machine-readable summary](completed_audit_summary_2026-11-26.json), and [completion verification](completion_verification_2026-11-26.json). The original assistant proposal file and preparation-time provenance remain unchanged historical records; their earlier pending/blank wording is superseded by the acceptance records and current ledger.
+Records: [completed ledger](human_judgments.csv) and [machine-readable summary](completed_audit_summary_2026-11-26.json).
 
 ## Possible data follow-up (not executed)
 
 Consider a separate, versioned cleaning study: verify the suspected missing conclusion and two ambiguous wording defects against originals; remove demonstrably extraneous footers/prompts/shortcodes; repair repeated boundary joins and within-article duplicated blocks; and clarify the substantive-relevance threshold before reconsidering borderline item 16. Any proposed removals or corrections need an explicit change log and a separately versioned corpus, with downstream model sensitivity assessed separately. Acceptance of this audit authorizes recording findings, not these data/model changes. The existing corpus and fitted results remain unchanged.
-
-## Earlier review progress — November 26, 2026 (historical snapshot; superseded above)
-
-Mary Kate explicitly accepted the suggestions and rationales for items 1–3 in chat. The ledger records the actual review date, November 26, 2026, and assisted review following the assistant's full-stored-text inspection. Mary Kate's direct reading scope was not confirmed; no full-article human reading is claimed. Item 2 retains `uncertain` for malformed text. The [acceptance record](accepted_decisions_2026-11-26_items_01-03.json) preserves the explicit message and accepted rows.
-
-At Mary Kate's request, the assistant read all remaining 27 stored articles in full and prepared [suggestions for items 4–30](assistant_suggestions_2026-11-26.json). These are proposals only: the remaining human fields stay blank until explicit decisions arrive. All 30 HTML text cards match the original CSV text. Publisher-original completeness was not verified.
-
-The preparation-time `provenance.json`, original CSV, snapshot and full-text cards remain preserved. Their preparation-time blank-status statements are historical; the current ledger and `audit_status.json` track progress. This is a new audit and cannot substantiate the historical PR2 assertion. Final category counts, proportions and interpretations await the remaining human decisions. No corpus or fitted-model changes are proposed or implemented at this stage.

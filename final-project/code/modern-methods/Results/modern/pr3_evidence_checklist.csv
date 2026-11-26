@@ -10,5 +10,5 @@ Response to feedback,PR2 feedback,available; response memo pending,final-project
 Robustness,Exploratory 80/20 split,computed; prior full-corpus development disclosed,Results/robustness/2026-11-25/split_metrics.csv; split_protocol.json
 Robustness,Shared-period publication sensitivity,computed; existing fits restricted to coverage period,Results/robustness/2026-11-25/shared_period/
 Robustness,Seed/publication and hyperparameter sensitivity,computed; automatic matches require interpretation,Results/robustness/2026-11-25/sensitivity_summary.csv; principal_theme_sensitivity.csv
-Human validation,110-topic label review preparation,110/110 approved in assisted human review; naming decisions complete,Results/robustness/2026-11-25/label_review/README.md; label_review/team_decisions.csv
-Data audit,30-article manual audit evidence,original judgments unavailable; new dated audit 0/30 submitted; historical claim unsupported,final-project/data/corpus_review.csv
+Human validation,110-topic label review,110/110 approved in assisted naming review,Results/robustness/2026-11-25/label_review/team_decisions.csv
+Data audit,30-article corpus audit,new dated assisted audit complete (30/30); original PR2 judgments unavailable,Results/robustness/2026-11-25/audit_review/2026-11-25/human_judgments.csv

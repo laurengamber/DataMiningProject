@@ -1,6 +1,6 @@
 {
   "prepared_date": "2026-11-25",
-  "status": "Prepared; 0 of 30 articles judged",
+  "status": "Prepared 2026-11-25; completed 2026-11-26 (see completed_audit_summary_2026-11-26.json)",
   "authorization": "Mary Kate: No \u2014 arrange a new dated human audit (Codex chat, 2026-11-25)",
   "historical_judgments_available": false,
   "source": "final-project/data/corpus_review.csv",

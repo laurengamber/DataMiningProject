@@ -3,13 +3,10 @@
 This folder contains the code for our LDA and BERTopic analyses, their comparison, and the human review.
 
 The selected comparison is BERTopic `n30_c25_s42` versus LDA `lda_k40_s42`.
-Quantitative results, draft labels, and interpretation are in the separate
-[PR3 results notes](../progress-report-3/pr3-results-notes.md). Human ratings and
-complete team label confirmation remain pending; three labels have explicit
-assisted human approval. The separate
-[robustness follow-up](modern-methods/Results/robustness/2026-11-25/README.md)
-now includes seed/publication sensitivity, the six-setting BERTopic comparison,
-shared-period coverage, an exploratory 80/20 split, and new timing measurements.
+Results and interpretation are in the
+[PR3 results notes](../progress-report-3/pr3-results-notes.md); robustness checks are in the
+[follow-up results](modern-methods/Results/robustness/2026-11-25/README.md). All 110 topic
+labels are approved; independent human ratings are pending.
 
 | Folder | Contents |
 | --- | --- |
