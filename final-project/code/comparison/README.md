@@ -11,7 +11,8 @@ New stage timing and robustness evidence are available in the
 [follow-up results](../modern-methods/Results/robustness/2026-11-25/README.md).
 Historical LDA timing and independent human evaluation remain unavailable.
 Mary Kate approved all 110 labels during guided review. Mary Kate supplied the shared-reservation
-attestation. Approved labels were transferred, prior comparison artifacts preserved,
+attestation. Modern labels were transferred to the modern label table; LDA names are
+comparison-only annotations. Prior comparison artifacts were preserved,
 and the comparison rebuilt with a frozen 100-article packet. Both independent reviews remain pending.
 
 Mary Kate approved the three substantive interpretations and their qualifications on November 26, 2026. See the [dated interpretation record](../modern-methods/Results/robustness/2026-11-26/interpretation_review/approved_interpretations.json) and the approved conclusions in the results notes. This approval is separate from independent fit ratings and any additional team review.
@@ -21,9 +22,21 @@ The selected comparison folder contains `modern_draft_labels.csv` and
 suggestions with nonreserved evidence IDs, not team-confirmed labels. Edit their
 `proposed_label`, `evidence_ids`, and `evidence_notes` fields; reruns preserve edits
 and validate the evidence. They do not enable review packets. Team confirmation
-continues through the existing modern label table and classical manifest workflow.
+uses the modern label table and comparison-owned `classical_labels.csv` plus
+`classical_labels_identity.json`. The classical pipeline and its saved exports stay unchanged.
 The LDA full-mixture checks are saved in `classical_validation.json`; publication
 comparisons use dominant assignments, not mean mixture weights.
+
+## Classical input ownership
+
+Treat `classical-methods/` as read-only. The comparison reads the teammate's original
+exports and applies approved descriptive LDA names from its own `classical_labels.csv`
+to an in-memory copy. `classical_labels_identity.json` binds those names and their
+approval/reservation metadata to the corpus, run, and original export hashes.
+`classical_label_migration.json` preserves the prior binding and records the November 26
+restoration to the PR base. Numerical results, effective comparison labels, and the
+frozen review packet are unchanged by that relocation. Do not rerun or edit the
+classical pipeline to prepare comparison labels.
 
 ## When to run it
 

@@ -2,7 +2,7 @@
   "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
   "modern_run": "n30_c25_s42",
   "classical_run": "lda_k40_s42",
-  "classical_manifest_hash": "4177ddad46eb1bebc8bcc9a5b6a26269114c204697ae96b934e9bbb58d991263",
+  "classical_manifest_hash": "69922206527287dc70e00e9af945bf41194bed7138085b822d6cc4b52162fa40",
   "modern_identity_hash": "73b63bab0e216f772d2a838b893868cb805ba3d066f7cfa694bca5b9e3388646",
   "modern_files": {
     "assignments.csv": "8bfbd3bdfa641d5d2a3646cdb00b6bb6559441834ac13e1aa1eea04d575f80d3",
@@ -15,8 +15,12 @@
   "classical_files": {
     "assignments.csv": "7ab66c647f7bb08c2ea246907acd71788b438710f07465ae259427e1f27c039b",
     "terms.csv": "d45f1ab6c799a9a0c68975d7cbef574f4328392e24230ba78d5d53936bf03ed3",
-    "topics.csv": "6979a93009726037f4a1983b3866d8ddd7c2e9264fe5c11fdfe8015476dde7cc",
-    "manifest.json": "293662c4a698d08e89e5ca398fe80a038ea17b31f1b11f7d08558c3348f2a853"
+    "topics.csv": "90f4713139dc7dbe090f4b1f2246ff71897233182c5959afbdf0a08ae22bb6ce",
+    "manifest.json": "98e3d51f651114c60dcc23e74a3bd4c9eab69ab24b4a8c641598d150705e080a"
   },
-  "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce"
+  "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+  "classical_label_files": {
+    "classical_labels.csv": "0aaf0ba0598113d81a77da5f2559318ec8bd20457b56e967fc25a57cc1a81a1a",
+    "classical_labels_identity.json": "e31f53105f94c45f70b796b879c7acafed5adcbb928f3ec2fb4f48cfd6463be5"
+  }
 }

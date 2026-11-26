@@ -115,6 +115,7 @@ class ComparisonNotebookTests(unittest.TestCase):
         write_json(
             self.lda / "manifest.json",
             dict(
+                run_id="c",
                 corpus_hash=corpus_hash(self.df),
                 review_reservation_hash=digest(self.reservation),
                 labels_confirmed=True,
@@ -254,8 +255,61 @@ class ComparisonNotebookTests(unittest.TestCase):
 
     def test_canonical_classical_path(self):
         self.assertIn("CLASSICAL = ROOT.parent/'classical-methods/results'", self.cells['setup'])
-        source = (NOTEBOOK.parent.parent / 'classical-methods/lda.py').read_text()
-        self.assertIn("OUT = Path(__file__).resolve().parent/'results'", source)
+
+    def comparison_label_fixture(self):
+        # An unmodified teammate handoff needs no naming/approval metadata.
+        manifest_path = self.lda / 'manifest.json'
+        manifest = json.loads(manifest_path.read_text())
+        for key in ['labels_confirmed', 'review_reservation_hash']:
+            manifest.pop(key)
+        write_json(manifest_path, manifest)
+        folder = self.ctx['COMPARISON_ROOT'] / 'm'
+        folder.mkdir(exist_ok=True)
+        pd.DataFrame(dict(topic_id=[20, 10], manual_label=['Policy comparison', 'Road comparison'],
+                          evidence_notes=['Synthetic development evidence'] * 2)).to_csv(
+                              folder / 'classical_labels.csv', index=False)
+        sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+        write_json(folder / 'classical_labels_identity.json', dict(
+            corpus_hash=manifest['corpus_hash'], run_id='c',
+            review_reservation_hash=digest(self.reservation), labels_confirmed=True,
+            confirmed_topic_ids=[10, 20], labels_sha256=sha(folder / 'classical_labels.csv'),
+            source_files={n: sha(self.lda / n) for n in
+                          ['assignments.csv', 'terms.csv', 'topics.csv', 'manifest.json']}))
+        return folder
+
+    def test_comparison_labels_preserve_source_exports_and_enable_review(self):
+        folder = self.comparison_label_fixture()
+        before = {p: p.read_bytes() for p in self.lda.iterdir()}
+        self.load_models()
+        self.run_cell('review-packet')
+        self.assertTrue(self.ctx['classical_labels_ready'])
+        self.assertEqual(self.ctx['review_folder'], folder / 'human_review')
+        labels = self.ctx['classical_topics'].set_index('topic_id').label.to_dict()
+        self.assertEqual(labels, {10: 'Road comparison', 20: 'Policy comparison'})
+        self.assertEqual(before, {p: p.read_bytes() for p in self.lda.iterdir()})
+        self.assertIn('classical_label_files', self.ctx['comparison_identity'])
+        # Changing the overlay cannot silently reuse an existing review/result binding.
+        path = folder / 'classical_labels.csv'
+        path.write_text(path.read_text().replace('Road comparison', 'Different name'))
+        with self.assertRaisesRegex(ValueError, 'changed after confirmation'):
+            self.run_cell('classical-input')
+
+    def test_comparison_labels_reject_wrong_source_and_reservation(self):
+        folder = self.comparison_label_fixture()
+        path = folder / 'classical_labels_identity.json'
+        identity = json.loads(path.read_text())
+        for update in [{'review_reservation_hash': 'wrong'}, {'source_files': {}},
+                       {'confirmed_topic_ids': [10]}]:
+            with self.subTest(update=update):
+                write_json(path, dict(identity, **update))
+                with self.assertRaises(ValueError):
+                    self.run_cell('classical-input')
+        write_json(path, dict(identity, labels_confirmed=False))
+        self.load_models()
+        self.run_cell('review-packet')
+        self.assertFalse(self.ctx['classical_labels_ready'])
+        self.assertIsNone(self.ctx['review_folder'])
+        self.assertTrue(self.ctx['classical_topics'].label.str.startswith('Synthetic topic').all())
 
     def test_missing_timings_and_drafts_do_not_enable_human_review(self):
         manifest = json.loads((self.lda / 'manifest.json').read_text())

@@ -13,4 +13,4 @@ Robustness,Exploratory 80/20 split,computed; prior full-corpus development discl
 Robustness,Shared-period publication sensitivity,computed; existing fits restricted to coverage period,Results/robustness/2026-11-25/shared_period/
 Robustness,Seed/publication and hyperparameter sensitivity,computed; automatic matches require interpretation,Results/robustness/2026-11-25/sensitivity_summary.csv; principal_theme_sensitivity.csv
 Human validation,110-topic label review preparation,110/110 approved in assisted human review; naming decisions complete,Results/robustness/2026-11-25/label_review/README.md; label_review/team_decisions.csv
-Data audit,30-article manual audit evidence,original judgments unavailable; new dated audit 0/30 submitted; historical claim unsupported,final-project/data/corpus_review.csv
+Data audit,30-article manual audit evidence,original judgments unavailable; new dated audit 30/30 submitted; historical claim unsupported,final-project/data/corpus_review.csv

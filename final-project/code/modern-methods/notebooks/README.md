@@ -91,7 +91,7 @@ Save these four files in `../classical-methods/results/`:
 
 Keep LDA's full topic mixtures separately. The two methods can use different modeling vocabularies; coherence uses the same reference articles and tokenizer, and we report vocabulary coverage.
 
-For human review, the manifest also needs `labels_confirmed: true` and `review_reservation_hash` equal to `shared.corpus.digest(reservation)`. These confirm that the labels are final and that the reserved articles were not used to choose names. The numerical comparison can run before these two fields are completed.
+Keep these classical exports unchanged. For human review, store comparison-specific LDA names in `Results/comparison/<modern-run>/classical_labels.csv` and approval/reservation metadata in `classical_labels_identity.json`; see the [comparison ownership rules](../../comparison/README.md#classical-input-ownership). These bind the labels to the original export hashes and the shared reservation without editing the classical manifest. Numerical comparison can run while naming is pending.
 
 ## Human evaluation
 
