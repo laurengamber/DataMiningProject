@@ -1,0 +1,101 @@
+publication,year,n,train,heldout,singleton_train_only
+Axios,2017,126,101,25,False
+Axios,2018,110,88,22,False
+Axios,2019,124,99,25,False
+Business Insider,2016,19,15,4,False
+Business Insider,2017,12,10,2,False
+Business Insider,2018,7,6,1,False
+Business Insider,2019,111,89,22,False
+Business Insider,2020,51,41,10,False
+Buzzfeed News,2016,32,26,6,False
+Buzzfeed News,2017,56,45,11,False
+Buzzfeed News,2018,10,8,2,False
+Buzzfeed News,2019,1,1,0,True
+CNBC,2016,113,90,23,False
+CNBC,2017,296,237,59,False
+CNBC,2018,218,174,44,False
+CNBC,2019,303,242,61,False
+CNBC,2020,47,38,9,False
+CNN,2016,8,6,2,False
+CNN,2017,6,5,1,False
+CNN,2018,21,17,4,False
+CNN,2019,69,55,14,False
+CNN,2020,12,10,2,False
+Economist,2016,17,14,3,False
+Economist,2017,22,18,4,False
+Economist,2018,33,26,7,False
+Economist,2019,12,10,2,False
+Fox News,2017,2,1,1,False
+Fox News,2018,21,17,4,False
+Gizmodo,2016,89,71,18,False
+Gizmodo,2017,59,47,12,False
+Gizmodo,2018,37,30,7,False
+Gizmodo,2019,30,24,6,False
+Hyperallergic,2016,1,1,0,True
+Mashable,2016,153,122,31,False
+Mashable,2017,180,144,36,False
+Mashable,2018,112,90,22,False
+Mashable,2019,95,76,19,False
+Mashable,2020,14,11,3,False
+New Republic,2016,3,2,1,False
+New Republic,2017,1,1,0,True
+New Republic,2018,3,2,1,False
+New Yorker,2016,3,2,1,False
+New Yorker,2017,2,1,1,False
+New Yorker,2018,3,2,1,False
+New Yorker,2019,1,1,0,True
+People,2016,3,2,1,False
+People,2017,1,1,0,True
+People,2018,1,1,0,True
+People,2019,1,1,0,True
+Politico,2016,2,1,1,False
+Politico,2017,5,4,1,False
+Politico,2019,1,1,0,True
+Politico,2020,1,1,0,True
+Refinery 29,2016,3,2,1,False
+Refinery 29,2017,1,1,0,True
+Reuters,2016,177,142,35,False
+Reuters,2017,221,177,44,False
+Reuters,2018,207,166,41,False
+Reuters,2019,209,167,42,False
+Reuters,2020,40,32,8,False
+TechCrunch,2016,271,217,54,False
+TechCrunch,2017,390,312,78,False
+TechCrunch,2018,250,200,50,False
+TechCrunch,2019,261,209,52,False
+TechCrunch,2020,42,34,8,False
+The Hill,2016,87,70,17,False
+The Hill,2017,118,94,24,False
+The Hill,2018,79,63,16,False
+The Hill,2019,60,48,12,False
+The Hill,2020,9,7,2,False
+The New York Times,2016,118,94,24,False
+The New York Times,2017,182,146,36,False
+The New York Times,2018,118,94,24,False
+The New York Times,2019,70,56,14,False
+The New York Times,2020,13,10,3,False
+The Verge,2016,225,180,45,False
+The Verge,2017,248,198,50,False
+The Verge,2018,205,164,41,False
+The Verge,2019,116,93,23,False
+The Verge,2020,36,29,7,False
+Vice,2016,52,42,10,False
+Vice,2017,46,37,9,False
+Vice,2018,27,22,5,False
+Vice,2019,3,2,1,False
+Vice,2020,2,1,1,False
+Vice News,2016,7,6,1,False
+Vice News,2017,12,10,2,False
+Vice News,2018,8,6,2,False
+Vox,2016,171,137,34,False
+Vox,2017,215,172,43,False
+Vox,2018,88,70,18,False
+Vox,2019,21,17,4,False
+Vox,2020,5,4,1,False
+Washington Post,2017,7,6,1,False
+Washington Post,2020,3,2,1,False
+Wired,2016,29,23,6,False
+Wired,2017,56,45,11,False
+Wired,2018,94,75,19,False
+Wired,2019,47,38,9,False
+Wired,2020,23,18,5,False

@@ -1,0 +1,50 @@
+[
+  {
+    "batch": "1",
+    "model": "classical",
+    "topic_id": "23",
+    "draft_label": "Apple Project Titan strategy",
+    "evidence_ids": "563870 | 293607 | 2052862",
+    "decision": "approve",
+    "approved_label": "Apple Project Titan strategy",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Read full stored articles 563870 (The Verge, 286 words) and 293607 (Axios, 190 words), plus opening/middle/ending passages of 2052862 (NYT). Project restructuring, autonomous-systems/software focus and changing vehicle ambitions support strategy label. Historical reports and plans do not establish realized capability; consistency beyond representatives remains uncertain.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approve all three, to LDA 23, LDA 25 and BERTopic 12 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  },
+  {
+    "batch": "2",
+    "model": "classical",
+    "topic_id": "25",
+    "draft_label": "Automation, jobs and labor",
+    "evidence_ids": "466492 | 148461 | 1495775",
+    "decision": "approve",
+    "approved_label": "Automation, jobs and labor",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Read selected opening/middle/ending passages of 466492, 148461 and 1495775. TechCrunch commentary on technological unemployment, Vox argument about changing job composition, and CNBC report on a Pew automation survey support broad labor theme. AVs are one example, not the sole subject. Opinions and survey reporting are distinct; this news corpus does not itself measure public opinion.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approve all three, to LDA 23, LDA 25 and BERTopic 12 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  },
+  {
+    "batch": "2",
+    "model": "modern",
+    "topic_id": "12",
+    "draft_label": "Uber passenger trials in Pittsburgh",
+    "evidence_ids": "1928645 | 55997 | 83576",
+    "decision": "approve",
+    "approved_label": "Uber passenger trials in Pittsburgh",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Read selected opening/middle/ending passages of 1928645 (Buzzfeed News), 55997 (Vox) and 83576 (Vice News). Ride experiences and early passenger rollout support Pittsburgh trial label; human supervision/interventions and limited operating conditions matter. These examples do not establish fully driverless deployment or measured system safety. Vice News remains distinct from Vice.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approve all three, to LDA 23, LDA 25 and BERTopic 12 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  }
+]

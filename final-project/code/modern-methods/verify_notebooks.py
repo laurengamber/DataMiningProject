@@ -14,6 +14,7 @@ def main():
         "02": root / "notebooks/02_modern_topic_modeling.ipynb",
         "03": root / "notebooks/03_evaluation_and_comparison.ipynb",
         "comparison": root.parent / "comparison/pipeline_comparison.ipynb",
+        "robustness": root.parent / "comparison/robustness_results.ipynb",
         "coordinator": review_root / "review_coordinator.ipynb",
         "reviewer_1": review_root / "reviewer_1.ipynb",
         "reviewer_2": review_root / "reviewer_2.ipynb",

@@ -1,0 +1,50 @@
+[
+  {
+    "batch": "3",
+    "model": "modern",
+    "topic_id": "58",
+    "draft_label": "Car ownership and mobility services",
+    "evidence_ids": "672259 | 45601 | 533196",
+    "decision": "approve",
+    "approved_label": "Car ownership and mobility services",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Selected opening/middle/ending passages of 672259 (Economist robotaxis and ownership implications), 45601 (Vox autonomy/electrification/car-sharing convergence), 533196 (Verge automaker mobility-service strategies and profitability concerns). Ownership, shared services and industry business-model change supported. Includes projections and uncertain economic claims; does not show that private ownership actually disappeared or services became profitable.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approval all three, to BERTopic 58, BERTopic 59 and BERTopic 60 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  },
+  {
+    "batch": "3",
+    "model": "modern",
+    "topic_id": "59",
+    "draft_label": "Public trust and acceptance surveys",
+    "evidence_ids": "554685 | 952202 | 527538",
+    "decision": "approve",
+    "approved_label": "Survey reporting on AV trust and acceptance",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Selected opening/middle/ending passages of 554685 (Verge) and 952202 (Mashable) reporting the same May 2018 AAA survey, plus 527538 (Verge) on a 2016 Kelley Blue Book survey about control/autonomy preferences. Themes are reported trust, fear, acceptance and desire for human control. Two AAA articles are not independent surveys. News corpus topic prevalence is not public-opinion prevalence; no causal claim that crashes caused changes in trust, no pooled survey estimate, and survey methods not independently audited.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approval all three, to BERTopic 58, BERTopic 59 and BERTopic 60 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  },
+  {
+    "batch": "3",
+    "model": "modern",
+    "topic_id": "60",
+    "draft_label": "TechCrunch news roundups",
+    "evidence_ids": "411242 | 323085 | 360683",
+    "decision": "approve",
+    "approved_label": "TechCrunch news roundups",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved label and qualifications during assisted chat review. Assistant evidence: Selected opening/middle/ending passages of 411242, 323085, 360683. Weekly TechCrunch story lists combine Tesla/Uber developments with phones/apps, politics, business and other technology. TechCrunch supplies 86.7% of topic, not every article. Source-associated roundup/newsletter format with mixed themes and AVs often one item among many. Historical company promises are coverage evidence, not demonstrated capabilities.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response: approval all three, to BERTopic 58, BERTopic 59 and BERTopic 60 questions in chat",
+    "independent_rating": false,
+    "authoritative_transfer_status": "pending; bound comparison inputs unchanged"
+  }
+]

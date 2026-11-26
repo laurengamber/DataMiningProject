@@ -109,6 +109,14 @@ Seed ARI includes only articles assigned in both runs. Report the count and frac
 
 Fitting time combines UMAP, HDBSCAN, and keyword calculation. Evaluation, embedding, and model loading are timed separately. Loading an already downloaded model is not a measurement of download time. Compare LDA and modern runtimes only after checking their stages and hardware.
 
-Held-out testing and comparisons over shared date ranges remain final-report tasks. Some publication/year groups have only one article, so we need a splitting rule. A held-out test must build the vocabulary, choose settings, and fit models using training data only.
+The [November 25 follow-up](../Results/robustness/2026-11-25/README.md) completes
+shared-period sensitivity and an exploratory split with training-only vocabularies
+and fitting, fixed selected configurations, and singleton strata retained in training.
+Earlier full-corpus development is disclosed; this is not untouched testing.
+Use `verify_notebooks.py --execute robustness` for the saved-result notebook.
 
-We still need the actual PR2 feedback before writing a response to it. The completion table leaves dates for the team to confirm. We should document AI help with coding and planning separately from our model choices, interpretations, and independent ratings.
+Actual PR2 feedback is available and addressed in the separate results notes;
+the formal manuscript response remains for the team. Three labels have explicit
+assisted human approval, with 107 and independent ratings pending. Document AI
+help with coding and developmental interpretation separately from genuine naming
+decisions and independent ratings.

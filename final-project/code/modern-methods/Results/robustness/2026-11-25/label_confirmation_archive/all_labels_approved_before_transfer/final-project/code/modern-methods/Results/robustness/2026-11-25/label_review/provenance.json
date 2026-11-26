@@ -1,0 +1,17 @@
+{
+  "sources": {
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/classical_draft_inventory.csv": "2a7089d1d5672485adcee5d7762ad2137dede7d9634f836642b7998c79d33cfe",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/modern_draft_inventory.csv": "3fc5d9cd47f79a56213b0fa8d48e62e8c89549313b22debe945bae0a9cf6ee98"
+  },
+  "topic_count": 110,
+  "batch_count": 11,
+  "evidence_unique_ids": 325,
+  "reserved_intersection": 0,
+  "reservation_sha256": "52378336abc289607027badb03a7a2985c6d26b2becc7c3c859638dfde85e2a4",
+  "approved_labels": 39,
+  "pending_labels": 71,
+  "status": "Partial assisted human naming decisions recorded; complete labels, reservation attestation and independent ratings pending",
+  "full_text": "Local HTML cards ignored by Git; regenerate with prepare_label_review.py",
+  "authoritative_labels_transferred": 3,
+  "approved_labels_pending_transfer": 36
+}

@@ -1,0 +1,16 @@
+\begin{table}[ht]
+\centering
+\caption{LDA results for the document-topic prior $\alpha$ ($K=40$, \texttt{max\_iter}~$=50$, seed 42, $\eta$ at its default). Coherence is mean $c_v$ over topics; diversity is the fraction of unique terms among the top 10 terms of all topics; dominant probability is the mean over articles of the highest topic probability.}
+\label{tab:alpha}
+\begin{tabular}{rrrrr}
+\hline
+$\alpha$ & Coherence ($c_v$) & Diversity & Perplexity & Mean dominant prob. \\
+\hline
+0.01  & 0.650 & 0.695 & 3279 & 0.452 \\
+0.025 & 0.652 & 0.705 & 3241 & 0.450 \\
+0.1   & 0.655 & 0.710 & 3246 & 0.438 \\
+0.5   & 0.657 & 0.748 & 3378 & 0.361 \\
+1.0   & 0.636 & 0.787 & 3458 & 0.293 \\
+\hline
+\end{tabular}
+\end{table}

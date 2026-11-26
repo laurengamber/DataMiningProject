@@ -1,0 +1,47 @@
+[
+  {
+    "batch": 1,
+    "model": "classical",
+    "topic_id": 22,
+    "draft_label": "Lidar and autonomous-driving suppliers",
+    "evidence_ids": "301249 | 143578 | 296721",
+    "decision": "approve",
+    "approved_label": "Lidar and autonomous-driving suppliers",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved in guided chat review; assistant evidence: Three full short representative articles read: Strobe/Cruise acquisition; Ford/Baidu investment in Velodyne; Delphi/Innoviz partnership. Topic breadth remains uncertain beyond representatives.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response to individual approval question in Codex chat",
+    "independent_rating": false
+  },
+  {
+    "batch": 1,
+    "model": "modern",
+    "topic_id": 4,
+    "draft_label": "Technology interviews and essays (mixed themes)",
+    "evidence_ids": "218059 | 1335182 | 138257",
+    "decision": "approve",
+    "approved_label": "Technology interviews and essays (mixed themes)",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved in guided chat review; assistant evidence: Selected passages and titles from broad technology essays, Obama industry challenges, and PARC interview transcript; conversational keywords. Not a clean AV theme.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response to individual approval question in Codex chat",
+    "independent_rating": false
+  },
+  {
+    "batch": 1,
+    "model": "modern",
+    "topic_id": 5,
+    "draft_label": "Uber leadership and corporate governance",
+    "evidence_ids": "1231901 | 535564 | 1353575",
+    "decision": "approve",
+    "approved_label": "Uber leadership and corporate culture",
+    "reviewer_names": "Mary Kate",
+    "review_date": "2026-11-25",
+    "evidence_notes": "Approved in guided chat review; assistant evidence: Selected passages from New Yorker CEO profile, Verge scandal article, and Wired Khosrowshahi profile support leadership and culture emphasis.",
+    "reservation_attestation": "",
+    "approval_source": "Explicit user response to individual approval question in Codex chat",
+    "independent_rating": false
+  }
+]

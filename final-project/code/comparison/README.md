@@ -7,7 +7,14 @@
 Mary Kate selected `n30_c25_s42`. Quantitative comparison with `lda_k40_s42`
 and both models' seed summaries are complete. Start with the separate
 [PR3 results notes](../../progress-report-3/pr3-results-notes.md).
-LDA timing information and independent human evaluation remain unavailable.
+New stage timing and robustness evidence are available in the
+[follow-up results](../modern-methods/Results/robustness/2026-11-25/README.md).
+Historical LDA timing and independent human evaluation remain unavailable.
+Mary Kate approved all 110 labels during guided review. Mary Kate supplied the shared-reservation
+attestation. Approved labels were transferred, prior comparison artifacts preserved,
+and the comparison rebuilt with a frozen 100-article packet. Both independent reviews remain pending.
+
+Mary Kate approved the three substantive interpretations and their qualifications on November 26, 2026. See the [dated interpretation record](../modern-methods/Results/robustness/2026-11-26/interpretation_review/approved_interpretations.json) and the approved conclusions in the results notes. This approval is separate from independent fit ratings and any additional team review.
 
 The selected comparison folder contains `modern_draft_labels.csv` and
 `classical_draft_labels.csv`, plus derived draft inventories. These are assistant
@@ -57,4 +64,10 @@ The saved manifests check that the outputs use the same data and model runs. Rer
 
 Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) for independent ratings. The [coordinator notebook](../human-review/review_coordinator.ipynb) checks progress and summarizes the reviews.
 
-Modern notebook 03 covers modern results only. This notebook covers the comparison. Held-out testing and comparisons over shared date ranges are still planned for the final report.
+Modern notebook 03 covers modern results only. This notebook covers the comparison.
+[robustness_results.ipynb](robustness_results.ipynb) reads the separately completed
+seed/publication, six-setting sensitivity, shared-period, exploratory 80/20 and
+timing artifacts. Run it with `verify_notebooks.py --execute robustness`.
+The split follows earlier full-corpus development and is not untouched testing.
+The [label review guide](../modern-methods/Results/robustness/2026-11-25/label_review/README.md)
+records actual approvals and the remaining steps before independent ratings.

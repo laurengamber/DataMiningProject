@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-25",
+  "reviewer": "Mary Kate",
+  "labels_transferred": 110,
+  "lda": 40,
+  "bertopic": 70,
+  "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+  "ledger_sha256": "0cbebea3744bb7348c714c2dbffc02b5d68981e0110eb89ed6bf6d48fde0be2a",
+  "preservation_archive": "final-project/code/modern-methods/Results/robustness/2026-11-25/label_confirmation_archive/all_labels_approved_before_transfer",
+  "comparison_status": "Existing comparison notebook rebuilt successfully with identity checks intact; frozen packet verified.",
+  "input_sha256": {
+    "final-project/code/classical-methods/results/manifest.json": "293662c4a698d08e89e5ca398fe80a038ea17b31f1b11f7d08558c3348f2a853",
+    "final-project/code/classical-methods/results/topics.csv": "6979a93009726037f4a1983b3866d8ddd7c2e9264fe5c11fdfe8015476dde7cc",
+    "final-project/code/classical-methods/results/topic_labels.csv": "0aaf0ba0598113d81a77da5f2559318ec8bd20457b56e967fc25a57cc1a81a1a",
+    "final-project/code/modern-methods/Results/modern/selected/n30_c25_s42/topic_labels.csv": "92e1746e9c927a5a3107616d66d2617a29d26ff6efb66b410da3e5294feef502"
+  },
+  "verification_record": "packet_preparation_verification.json"
+}

@@ -1,0 +1,8 @@
+Two reviewers work independently before discussing disagreements.
+Rate how well the assigned topic label describes the article:
+1 = unrelated/misleading; 2 = weak or incidental fit; 3 = partial/mixed fit;
+4 = good fit with minor omissions; 5 = clear central-theme fit.
+Set irrelevant and ambiguous_label to true or false and add evidence notes.
+For topic -1, leave fit_rating blank; review relevance/ambiguity qualitatively.
+Membership strengths are not calibrated probabilities. Do not infer a rating from them.
+The reserved sample is independent of development review, not held out from fitting.

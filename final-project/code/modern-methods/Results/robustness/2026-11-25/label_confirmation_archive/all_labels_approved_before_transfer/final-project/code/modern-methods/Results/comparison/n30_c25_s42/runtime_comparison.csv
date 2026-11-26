@@ -1,0 +1,5 @@
+model,stage,seconds
+bertopic,fitting and representation,10.049606709042564
+bertopic,evaluation,22.608060457976535
+bertopic,shared embedding preparation: model_load_download_seconds,0.3063348749419674
+bertopic,shared embedding preparation: embedding_seconds,100.67693650000729

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-25",
+  "approved": 110,
+  "pending": 0,
+  "new_approvals": 71,
+  "ledger_sha256": "9564ed51750f7169946a41ff49663d61ac55d162618d379db668ec7e830784f3",
+  "proposal_sha256": "375b213b62b27348fb550d9bcb29e7977757b08bd59ad0807c5c6c7978683a9f",
+  "prior_ledger_preserved": true,
+  "archive_files_hash_verified": 66,
+  "bound_inputs_unchanged": true,
+  "reservation_attestations_recorded": 0,
+  "independent_ratings_created": 0
+}

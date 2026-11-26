@@ -1,0 +1,238 @@
+{
+  "status": "Complete: 30/30 explicit assisted human decisions",
+  "completion_date": "2026-11-26",
+  "reviewer_name": "Mary Kate",
+  "review_mode": "Assisted review: Mary Kate explicitly accepted assistant suggestions and rationales following assistant review of the full stored text; direct human reading scope not confirmed.",
+  "assistant_reading_scope": "Full stored text of all 30 articles, not selected passages; publisher originals not inspected.",
+  "source_sha256": "54b9c1b48d3f7be63797dedd91b2b2f7ced044bb36193b7d5c284d212b10edf1",
+  "article_ids": [
+    "294717",
+    "221300",
+    "334550",
+    "321565",
+    "786573",
+    "508115",
+    "56838",
+    "684367",
+    "422047",
+    "2375414",
+    "719093",
+    "363606",
+    "1106821",
+    "1237170",
+    "829443",
+    "446324",
+    "1654474",
+    "441480",
+    "552167",
+    "15792",
+    "2025463",
+    "852157",
+    "61634",
+    "1767208",
+    "1637484",
+    "2340428",
+    "2316736",
+    "118371",
+    "871970",
+    "2117965"
+  ],
+  "categories": {
+    "relevance": {
+      "central": {
+        "count": 24,
+        "denominator": 30,
+        "proportion": 0.8,
+        "percent": 80.0,
+        "article_ids": [
+          "294717",
+          "221300",
+          "334550",
+          "786573",
+          "508115",
+          "56838",
+          "684367",
+          "422047",
+          "2375414",
+          "719093",
+          "363606",
+          "1106821",
+          "1237170",
+          "1654474",
+          "441480",
+          "552167",
+          "15792",
+          "852157",
+          "61634",
+          "1767208",
+          "1637484",
+          "2340428",
+          "2316736",
+          "2117965"
+        ]
+      },
+      "peripheral": {
+        "count": 5,
+        "denominator": 30,
+        "proportion": 0.16666666666666666,
+        "percent": 16.7,
+        "article_ids": [
+          "321565",
+          "829443",
+          "2025463",
+          "118371",
+          "871970"
+        ]
+      },
+      "not_relevant": {
+        "count": 1,
+        "denominator": 30,
+        "proportion": 0.03333333333333333,
+        "percent": 3.3,
+        "article_ids": [
+          "446324"
+        ]
+      },
+      "uncertain": {
+        "count": 0,
+        "denominator": 30,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "article_ids": []
+      }
+    },
+    "boilerplate": {
+      "present": {
+        "count": 7,
+        "denominator": 30,
+        "proportion": 0.23333333333333334,
+        "percent": 23.3,
+        "article_ids": [
+          "221300",
+          "684367",
+          "363606",
+          "1654474",
+          "15792",
+          "1767208",
+          "2316736"
+        ]
+      },
+      "absent": {
+        "count": 23,
+        "denominator": 30,
+        "proportion": 0.7666666666666667,
+        "percent": 76.7,
+        "article_ids": [
+          "294717",
+          "334550",
+          "321565",
+          "786573",
+          "508115",
+          "56838",
+          "422047",
+          "2375414",
+          "719093",
+          "1106821",
+          "1237170",
+          "829443",
+          "446324",
+          "441480",
+          "552167",
+          "2025463",
+          "852157",
+          "61634",
+          "1637484",
+          "2340428",
+          "118371",
+          "871970",
+          "2117965"
+        ]
+      },
+      "uncertain": {
+        "count": 0,
+        "denominator": 30,
+        "proportion": 0.0,
+        "percent": 0.0,
+        "article_ids": []
+      }
+    },
+    "malformed": {
+      "present": {
+        "count": 4,
+        "denominator": 30,
+        "proportion": 0.13333333333333333,
+        "percent": 13.3,
+        "article_ids": [
+          "363606",
+          "1106821",
+          "15792",
+          "118371"
+        ]
+      },
+      "absent": {
+        "count": 24,
+        "denominator": 30,
+        "proportion": 0.8,
+        "percent": 80.0,
+        "article_ids": [
+          "294717",
+          "334550",
+          "321565",
+          "786573",
+          "508115",
+          "56838",
+          "684367",
+          "422047",
+          "2375414",
+          "719093",
+          "1237170",
+          "829443",
+          "446324",
+          "1654474",
+          "441480",
+          "552167",
+          "2025463",
+          "852157",
+          "61634",
+          "1767208",
+          "2340428",
+          "2316736",
+          "871970",
+          "2117965"
+        ]
+      },
+      "uncertain": {
+        "count": 2,
+        "denominator": 30,
+        "proportion": 0.06666666666666667,
+        "percent": 6.7,
+        "article_ids": [
+          "221300",
+          "1637484"
+        ]
+      }
+    }
+  },
+  "central_or_peripheral": {
+    "count": 29,
+    "denominator": 30,
+    "percent": 96.7
+  },
+  "any_present_boilerplate_or_malformed": {
+    "count": 9,
+    "denominator": 30,
+    "percent": 30.0
+  },
+  "reserved_fit_review_overlap": 0,
+  "limitations": [
+    "One assisted human decision-maker; direct human full-article reading is unconfirmed, and no independent second audit or inter-rater agreement is available.",
+    "The same historical 30 IDs and order were reused; these descriptive proportions are not established prevalence estimates for all 7,332 corpus articles or 25 publications.",
+    "Absent means no obvious issue detected in stored text; completeness against publisher originals, media and factual accuracy were not verified.",
+    "The two uncertain malformed judgments remain uncertain; defect categories overlap and should not be summed as unique-article counts.",
+    "Borderline relevance for article 446324 remains documented in the accepted notes.",
+    "This is a new audit completed November 26, 2026; it does not substantiate the historical PR2 claim or establish that the earlier review occurred.",
+    "The separate two-reviewer 100-article model-fit evaluation remains pending."
+  ],
+  "data_changes_executed": false,
+  "proposed_followup_location": "README.md#possible-data-follow-up-not-executed"
+}

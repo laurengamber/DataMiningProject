@@ -1,0 +1,30 @@
+{
+  "adjusted_rand_index": 0.9613645108590759,
+  "evaluated_count": 5697,
+  "evaluated_fraction": 0.7770049099836334,
+  "outlier_agreement": 0.910392798690671,
+  "unmatched_baseline_topics": [
+    "27",
+    "32",
+    "45",
+    "60",
+    "62",
+    "64"
+  ],
+  "unmatched_other_topics": [
+    "40",
+    "60"
+  ],
+  "split_candidates": [
+    "7",
+    "11",
+    "12"
+  ],
+  "merge_candidates": [
+    "3",
+    "6",
+    "20",
+    "23"
+  ],
+  "split_merge_threshold": "At least two overlaps each covering >=10% of the source/target topic; descriptive flag only"
+}

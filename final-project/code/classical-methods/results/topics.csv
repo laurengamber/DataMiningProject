@@ -1,41 +1,41 @@
 topic_id,label,count
-0,0_driving_driver_road_drivers,685
-1,1_boundless_aired_smart_hilltvs,27
-2,2_safety_federal_transportation_rules,431
-3,3_uber_testing_arizona_ubers,356
-4,4_hill_house_senate_trump,131
-5,5_electric_model_industry_market,198
-6,6_data_learning_intelligence_machine,201
-7,7_uber_levandowski_waymo_ubers,409
-8,8_robotics_thrun_udacity_students,32
-9,9_tesla_musk_teslas_autopilot,257
-10,10_google_googles_business_team,198
-11,11_trucks_truck_trucking_otto,111
-12,12_delivery_customers_amazon_nuro,187
-13,13_trump_president_trumps_campaign,49
-14,14_intel_nvidia_mobileye_driving,290
-15,15_transportation_driving_driverless_industry,166
-16,16_city_university_bus_local,70
-17,17_autopilot_tesla_crash_driver,192
-18,18_letter_jacobs_reuters_information,67
-19,19_china_chinese_baidu_driving,345
-20,20_amazon_users_internet_cloud,50
-21,21_lyft_uber_drivers_ridehailing,83
-22,22_lidar_cruise_sensors_tech,511
-23,23_apple_apples_project_iphone,130
-24,24_service_ride_passengers_rides,171
-25,25_people_jobs_work_percent,121
-26,26_ces_tech_future_smart,141
-27,27_facebook_trump_news_president,141
-28,28_cities_city_transportation_parking,176
-29,29_miles_testing_test_roads,173
-30,30_ford_fords_detroit_auto,224
-31,31_percent_billion_market_revenue,201
-32,32_billion_million_investment_raised,106
-33,33_security_systems_cybersecurity_military,53
-34,34_flying_air_transportation_drones,67
-35,35_waymo_waymos_phoenix_service,211
-36,36_london_transport_driverless_trial,22
-37,37_people_really_know_yeah,132
-38,38_know_quick_people_buffett,61
-39,39_uber_ubers_kalanick_ceo,156
+0,Driving automation and human control,685
+1,Hill.TV Boundless technology interview coverage,27
+2,Federal AV policy and safety regulation,431
+3,Uber testing and crash response,356
+4,Congressional AV legislation,131
+5,Electric-vehicle products and industry,198
+6,Artificial intelligence and machine learning,201
+7,Uber-Waymo trade-secret litigation,409
+8,Robotics education and entrepreneurs,32
+9,Tesla Autopilot products and upgrades,257
+10,Google AV teams and technology careers,198
+11,Autonomous trucking and freight,111
+12,Autonomous delivery robots and services,187
+13,Politics and peripheral coverage (mixed),49
+14,AV computing platforms and suppliers,290
+15,"Autonomous mobility adoption, costs and traffic",166
+16,Autonomous shuttles and future vehicle concepts (mixed themes),70
+17,Tesla Autopilot crash investigations,192
+18,Uber Jacobs letter and surveillance allegations,67
+19,China-focused AV industry and automotive partnerships,345
+20,Internet platforms and connected technologies (mixed themes),50
+21,Ride-hailing services and partnerships,83
+22,Lidar and autonomous-driving suppliers,511
+23,Apple Project Titan strategy,130
+24,Autonomous passenger-service pilots,171
+25,"Automation, jobs and labor",121
+26,CES technology previews and vehicle concepts (mixed themes),141
+27,Business and political news roundups (mixed themes),141
+28,Urban planning and shared mobility,176
+29,AV road testing and incidents,173
+30,Ford and automaker alliances,224
+31,Corporate financial performance,201
+32,Technology investment and funding,106
+33,Connected-vehicle cybersecurity,53
+34,Flying vehicles and future transportation,67
+35,Waymo driverless-service rollout,211
+36,International AV trials and readiness,22
+37,Interviews and conversational transcripts (mixed themes),132
+38,"Interviews, commentary and discussions (mixed themes)",61
+39,Uber leadership and corporate culture,156

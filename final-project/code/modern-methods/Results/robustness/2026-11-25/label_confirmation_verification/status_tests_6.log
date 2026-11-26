@@ -1,0 +1,12 @@
+test_completed_run_rejects_tampering_and_changed_identity (test_robustness.RobustnessTests.test_completed_run_rejects_tampering_and_changed_identity) ... Reused verified exports: tmpoliqnyg6
+ok
+test_coverage_uses_complete_years_and_separate_outlets (test_robustness.RobustnessTests.test_coverage_uses_complete_years_and_separate_outlets) ... ok
+test_outliers_remain_in_publication_denominators (test_robustness.RobustnessTests.test_outliers_remain_in_publication_denominators) ... ok
+test_partial_run_is_not_silently_overwritten (test_robustness.RobustnessTests.test_partial_run_is_not_silently_overwritten) ... ok
+test_split_rare_strata_and_order_independence (test_robustness.RobustnessTests.test_split_rare_strata_and_order_independence) ... ok
+test_status_refresh_preserves_pending_human_work (test_robustness.RobustnessTests.test_status_refresh_preserves_pending_human_work) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.025s
+
+OK

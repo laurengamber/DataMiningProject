@@ -1,0 +1,111 @@
+model,topic_id,preserved_assistant_draft,approved_label,same_wording,precedence
+classical,0,Driving automation and human control,Driving automation and human control,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,1,Hill.TV Boundless technology interviews,Hill.TV Boundless technology interview coverage,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,2,Federal AV policy and safety regulation,Federal AV policy and safety regulation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,3,Uber testing and crash response,Uber testing and crash response,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,4,Congressional AV legislation,Congressional AV legislation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,5,Electric-vehicle products and industry,Electric-vehicle products and industry,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,6,Artificial intelligence and machine learning,Artificial intelligence and machine learning,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,7,Uber-Waymo trade-secret litigation,Uber-Waymo trade-secret litigation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,8,Robotics education and entrepreneurs,Robotics education and entrepreneurs,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,9,Tesla Autopilot products and upgrades,Tesla Autopilot products and upgrades,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,10,Google AV teams and technology careers,Google AV teams and technology careers,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,11,Autonomous trucking and freight,Autonomous trucking and freight,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,12,Autonomous delivery robots and services,Autonomous delivery robots and services,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,13,Politics and peripheral coverage (mixed),Politics and peripheral coverage (mixed),True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,14,AV computing platforms and suppliers,AV computing platforms and suppliers,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,15,"Mobility adoption, costs and traffic","Autonomous mobility adoption, costs and traffic",False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,16,Future urban vehicles (mixed examples),Autonomous shuttles and future vehicle concepts (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,17,Tesla Autopilot crash investigations,Tesla Autopilot crash investigations,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,18,Uber Jacobs letter and surveillance allegations,Uber Jacobs letter and surveillance allegations,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,19,China autonomous-vehicle industry,China-focused AV industry and automotive partnerships,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,20,Cloud and internet technology (mixed),Internet platforms and connected technologies (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,21,Ride-hailing services and partnerships,Ride-hailing services and partnerships,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,22,Lidar and autonomous-driving suppliers,Lidar and autonomous-driving suppliers,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,23,Apple Project Titan strategy,Apple Project Titan strategy,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,24,Autonomous passenger-service pilots,Autonomous passenger-service pilots,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,25,"Automation, jobs and labor","Automation, jobs and labor",True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,26,CES and future vehicle concepts,CES technology previews and vehicle concepts (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,27,Business and political news roundups,Business and political news roundups (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,28,Urban planning and shared mobility,Urban planning and shared mobility,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,29,AV road testing and incidents,AV road testing and incidents,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,30,Ford and automaker alliances,Ford and automaker alliances,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,31,Corporate financial performance,Corporate financial performance,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,32,Technology investment and funding,Technology investment and funding,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,33,Connected-vehicle cybersecurity,Connected-vehicle cybersecurity,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,34,Flying vehicles and future transportation,Flying vehicles and future transportation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,35,Waymo driverless-service rollout,Waymo driverless-service rollout,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,36,International AV trials and readiness,International AV trials and readiness,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,37,Interviews and conversational transcripts,Interviews and conversational transcripts (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,38,Warren Buffett and business interviews,"Interviews, commentary and discussions (mixed themes)",False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+classical,39,Uber leadership and corporate culture,Uber leadership and corporate culture,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,0,Tesla Autopilot capabilities and safety promises,"Tesla Autopilot development, claims and safety",False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,1,Waymo driverless-service development,Waymo autonomous-driving development and deployment,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,2,Uber-Waymo trade-secret litigation,Uber-Waymo trade-secret litigation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,3,AV safety and deployment readiness,AV safety and deployment readiness,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,4,Technology interviews and essays (mixed themes),Technology interviews and essays (mixed themes),True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,5,Uber leadership and corporate governance,Uber leadership and corporate culture,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,6,Apple Project Titan strategy,Apple Project Titan strategy,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,7,Autonomous trucking and freight,Autonomous trucking and freight,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,8,GM Cruise development and partnerships,GM Cruise development and partnerships,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,9,Future vehicle design and CES concepts,Future vehicle design and CES concepts,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,10,Lidar sensing technology,Lidar sensing technology,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,11,Ford autonomous-vehicle deployment,Ford autonomous-vehicle deployment plans,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,12,Uber passenger trials in Pittsburgh,Uber passenger trials in Pittsburgh,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,13,DealBook business-news roundups,Business and financial news (mixed formats),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,14,Lyft autonomous-driving partnerships,Lyft autonomous-driving development and partnerships,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,15,Hillicon Valley policy newsletters,Technology policy newsletters (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,16,"Urban planning, parking and mobility","Urban planning, parking and mobility",True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,17,Autonomous grocery and goods delivery,Autonomous grocery and goods delivery,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,18,Federal AV safety guidance,Federal AV safety guidance,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,19,Intel-Mobileye acquisition and technology,Intel-Mobileye acquisition and technology,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,20,Congressional AV legislation,Congressional AV legislation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,21,Ford-Volkswagen autonomous and EV alliance,Ford-Volkswagen autonomous and EV alliance,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,22,Transportation newsletters (mixed themes),Transportation news roundups (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,23,Toyota autonomous-driving research,Toyota autonomous-driving research and partnerships,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,24,Nvidia autonomous-driving computing,Nvidia autonomous-driving computing,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,25,Daimler-Bosch autonomous taxis,Daimler-Bosch autonomous-taxi development,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,26,Uber California testing-permit dispute,Uber California testing-permit dispute,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,27,Fatal Uber pedestrian crash in Tempe,Fatal Uber pedestrian crash in Tempe,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,28,Baidu Apollo platform,Baidu Apollo platform,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,29,Ford leadership transition,Ford leadership transition,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,30,Autonomous-driving startups and funding,Autonomous-driving companies and investment,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,31,Ride-hailing competition and IPOs,Ride-hailing competition and IPOs,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,32,Uber testing suspension and restart,Uber testing suspension and restart,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,33,Alphabet corporate structure and earnings,Alphabet corporate structure and earnings,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,34,Google self-driving bus collision,Google self-driving car collision with a bus,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,35,Aurora financing and Amazon investment,Aurora financing and Amazon investment,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,36,Flying vehicles and future transportation,Flying vehicles and future transportation,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,37,Singapore autonomous-taxi trials,Singapore autonomous-taxi trials,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,38,UK driverless-vehicle trials,UK driverless-vehicle trials,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,39,GM electric and autonomous strategy,GM electric and autonomous strategy,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,40,Didi autonomous ride services in China,Didi autonomous ride services in China,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,41,Driver-assistance levels and deployment,Driver-assistance levels and deployment,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,42,China autonomous-vehicle industry,China autonomous-vehicle industry,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,43,SoftBank mobility investments,SoftBank mobility investments,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,44,Hyundai autonomous-driving investments,Hyundai autonomous-driving investments,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,45,NTSB investigation of Uber fatal crash,NTSB investigation of Uber fatal crash,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,46,Startup demo-day roundups,Startup and technology roundups (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,47,TechCrunch event promotion and page artifacts,TechCrunch event promotion and page artifacts,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,48,CES technology previews,CES consumer-technology coverage (mixed themes),False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,49,Uber Jacobs letter and litigation evidence,Uber Jacobs letter and litigation evidence,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,50,Volvo autonomous-driving program,Volvo autonomous-driving program,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,51,CNBC stock-market commentary,Technology stocks and market commentary,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,52,Levandowski criminal indictment,Levandowski criminal indictment,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,53,California driverless-testing regulations,California driverless-testing regulations,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,54,Ethical dilemmas and AV safety,Ethical dilemmas and AV safety,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,55,Vehicle electrification and energy,Vehicle electrification and energy,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,56,TuSimple autonomous freight delivery,TuSimple autonomous freight trials and partnerships,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,57,Udacity autonomous-driving education,Udacity autonomous-driving education,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,58,Car ownership and mobility services,Car ownership and mobility services,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,59,Public trust and acceptance surveys,Survey reporting on AV trust and acceptance,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,60,TechCrunch news roundups,TechCrunch news roundups,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,61,High-definition mapping for AVs,High-definition mapping for AVs,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,62,Michigan autonomous-vehicle test sites,Michigan autonomous-vehicle test sites,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,63,California disengagement reports,California disengagement reports,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,64,NYT Week in Tech discussions,NYT Week in Tech discussions,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,65,Uber-Volvo autonomous XC90 partnership,Uber-Volvo autonomous XC90 partnership,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,66,Automaker mergers and alliances,Automaker mergers and alliances,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,67,Hill.TV Boundless technology interviews,Hill.TV Boundless technology interview coverage,False,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,68,Las Vegas autonomous rides,Las Vegas autonomous rides,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.
+modern,69,Roborace autonomous racing,Roborace autonomous racing,True,Authoritative label table and explicit decision ledger take precedence; original assistant draft retained.

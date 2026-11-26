@@ -1,0 +1,22 @@
+{
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "modern_run": "n30_c25_s42",
+  "classical_run": "lda_k40_s42",
+  "classical_manifest_hash": "b91305f490c1ae51ee95458b9fc7dc2ba1818f62acc05f5f3c9ead0cd96a37c1",
+  "modern_identity_hash": "73b63bab0e216f772d2a838b893868cb805ba3d066f7cfa694bca5b9e3388646",
+  "modern_files": {
+    "assignments.csv": "8bfbd3bdfa641d5d2a3646cdb00b6bb6559441834ac13e1aa1eea04d575f80d3",
+    "terms.csv": "7ee22bf9b9cf07fff7c14ee35dd4ff7a74852ac0e5c7cf03c1aea81329cec585",
+    "topics.csv": "88ea77db5f31180439914e61dacf50bcad235f8d08ddb1cc97d6b6cd451f4ab1",
+    "representative_ids.csv": "c2ae3ac2a8fdaf71c9b542cfa00b462d7a913daa315f0211e7f2d194a947e342",
+    "coherence.csv": "a3d922de7a43fbfc0db841d7ae7abb892e40d65da20e32acc2bc4bc8e6ac15fe",
+    "model.pkl": "7369044cde7146cdb5e9e19f80cb641c76e2f94a9bfc0bc2ba5eaba8848f3a54"
+  },
+  "classical_files": {
+    "assignments.csv": "7ab66c647f7bb08c2ea246907acd71788b438710f07465ae259427e1f27c039b",
+    "terms.csv": "d45f1ab6c799a9a0c68975d7cbef574f4328392e24230ba78d5d53936bf03ed3",
+    "topics.csv": "af02f7ae95739300f0cb95181dc7edc3002fe9ceda10d6e8a6640704864d75d1",
+    "manifest.json": "3b2d1b59e727c66ebabf1a7806a2351cb823ba8295049b87f18e83ae30f12073"
+  },
+  "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce"
+}

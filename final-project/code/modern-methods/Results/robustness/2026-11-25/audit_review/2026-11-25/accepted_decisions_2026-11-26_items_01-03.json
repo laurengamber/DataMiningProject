@@ -1,0 +1,53 @@
+{
+  "reviewer_name": "Mary Kate",
+  "review_date": "2026-11-26",
+  "date_basis": "Current Codex client date in America/Denver; preparation date is not review date.",
+  "explicit_user_message": "I accept all three suggestions. Please read the remaining 27 in completion and make suggestions for all of them",
+  "scope_of_acceptance": "Previously presented suggestions and rationales for items 1–3 only. The request for remaining suggestions is not acceptance of them.",
+  "direct_human_reading_scope": "Not confirmed. No claim that Mary Kate personally read full articles.",
+  "source_sha256": "54b9c1b48d3f7be63797dedd91b2b2f7ced044bb36193b7d5c284d212b10edf1",
+  "decisions": [
+    {
+      "item": "1",
+      "batch": "1",
+      "article_id": "294717",
+      "publication": "TechCrunch",
+      "title": "Udacity open sources its self-driving car simulator for anyone to use – TechCrunch",
+      "reviewer_name": "Mary Kate",
+      "review_date": "2026-11-26",
+      "relevance": "central",
+      "boilerplate": "absent",
+      "malformed": "absent",
+      "notes": "Autonomous-driving simulation and development are the main subject. Discussion of Udacity's program is substantive reporting. No obvious page furniture, code, truncation or encoding damage. 'Gab the assets' is an isolated apparent typo with little effect on comprehension; not classified as malformed.",
+      "review_mode": "Assisted review: Mary Kate explicitly accepted assistant suggestions and rationales following assistant review of the full stored text; direct human reading scope not confirmed."
+    },
+    {
+      "item": "2",
+      "batch": "1",
+      "article_id": "221300",
+      "publication": "Reuters",
+      "title": "RPT-U.S. regulators could waive some safety rules for self-driving cars",
+      "reviewer_name": "Mary Kate",
+      "review_date": "2026-11-26",
+      "relevance": "central",
+      "boilerplate": "present",
+      "malformed": "uncertain",
+      "notes": "AV policy dominates the article. The opening subscriber-repeat instruction is extraneous distribution boilerplate with negligible interference. 'NHTSA said Thursday said it confirmed' contains a duplicated phrase; uncertain whether editorial or extraction-related. No obvious truncation or broader garbling.",
+      "review_mode": "Assisted review: Mary Kate explicitly accepted assistant suggestions and rationales following assistant review of the full stored text; direct human reading scope not confirmed."
+    },
+    {
+      "item": "3",
+      "batch": "1",
+      "article_id": "334550",
+      "publication": "Reuters",
+      "title": "Fiat Chrysler may add more self-driving supplier partners: CEO",
+      "reviewer_name": "Mary Kate",
+      "review_date": "2026-11-26",
+      "relevance": "central",
+      "boilerplate": "absent",
+      "malformed": "absent",
+      "notes": "AV partnerships are one main subject, leading the article with sustained discussion alongside earnings, production and emissions coverage. The text ends coherently with emissions strategy and reporting credits. No obvious boilerplate or extraction damage.",
+      "review_mode": "Assisted review: Mary Kate explicitly accepted assistant suggestions and rationales following assistant review of the full stored text; direct human reading scope not confirmed."
+    }
+  ]
+}

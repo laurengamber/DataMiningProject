@@ -1,0 +1,20 @@
+{
+  "sources": {
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/classical_draft_inventory.csv": "2a7089d1d5672485adcee5d7762ad2137dede7d9634f836642b7998c79d33cfe",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/modern_draft_inventory.csv": "3fc5d9cd47f79a56213b0fa8d48e62e8c89549313b22debe945bae0a9cf6ee98"
+  },
+  "topic_count": 110,
+  "batch_count": 11,
+  "evidence_unique_ids": 325,
+  "reserved_intersection": 0,
+  "reservation_sha256": "52378336abc289607027badb03a7a2985c6d26b2becc7c3c859638dfde85e2a4",
+  "approved_labels": 110,
+  "pending_labels": 0,
+  "status": "All 110 labels explicitly approved by Mary Kate and transferred. Mary Kate supplied shared-reservation attestation. Comparison rebuilt and packets frozen; two independent rating submissions and new 30-article audit pending.",
+  "full_text": "Local HTML cards ignored by Git; regenerate with prepare_label_review.py",
+  "authoritative_labels_transferred": 110,
+  "approved_labels_pending_transfer": 0,
+  "final_approval_record": "approved_decisions_remaining_71.json",
+  "reservation_attestation_record": "reservation_attestation_2026-11-25.json",
+  "frozen_packet_path": "final-project/code/modern-methods/Results/comparison/n30_c25_s42/human_review"
+}

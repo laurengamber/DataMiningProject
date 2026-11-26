@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-26",
+  "selection_type": "Assistant editorial selection requested by Mary Kate; not an additional human approval",
+  "page_limit_excluding_references": 8,
+  "main_figures": [
+    "publication_examples.pdf",
+    "topic_split_merge.pdf"
+  ],
+  "main_tables": [
+    "Eight approved topics with keywords, counts and representative citations",
+    "Two-model metrics and qualified seed stability"
+  ],
+  "topic_examples": [
+    {
+      "model": "classical",
+      "topic_id": 35,
+      "label": "Waymo driverless-service rollout",
+      "count": 211,
+      "keywords": "waymo, waymos, phoenix",
+      "article_id": "2340111",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Waymo to customers: ‘Completely driverless Waymo cars are on the way’ – TechCrunch",
+      "publication": "TechCrunch"
+    },
+    {
+      "model": "modern",
+      "topic_id": 1,
+      "label": "Waymo autonomous-driving development and deployment",
+      "count": 438,
+      "keywords": "waymo, waymos, krafcik",
+      "article_id": "546719",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Waymo is first to put fully self-driving cars on US roads without a safety driver",
+      "publication": "The Verge"
+    },
+    {
+      "model": "classical",
+      "topic_id": 7,
+      "label": "Uber-Waymo trade-secret litigation",
+      "count": 409,
+      "keywords": "uber, levandowski, waymo",
+      "article_id": "61037",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Alphabet says the executive at the center of its lawsuit against Uber had a deal before he left the company",
+      "publication": "Vox"
+    },
+    {
+      "model": "modern",
+      "topic_id": 2,
+      "label": "Uber-Waymo trade-secret litigation",
+      "count": 334,
+      "keywords": "levandowski, uber, waymo",
+      "article_id": "1341648",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Uber Self-Driving Case: Google's Waymo May Not Need a Smoking Gun",
+      "publication": "Wired"
+    },
+    {
+      "model": "classical",
+      "topic_id": 4,
+      "label": "Congressional AV legislation",
+      "count": 131,
+      "keywords": "hill, house, senate",
+      "article_id": "1861945",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Congress looks to rev up discussion around self-driving car legislation | TheHill",
+      "publication": "The Hill"
+    },
+    {
+      "model": "modern",
+      "topic_id": 20,
+      "label": "Congressional AV legislation",
+      "count": 85,
+      "keywords": "legislation, senate, safety",
+      "article_id": "2490394",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Advocates rally on Capitol Hill for self-driving car legislation | TheHill",
+      "publication": "The Hill"
+    },
+    {
+      "model": "classical",
+      "topic_id": 1,
+      "label": "Hill.TV Boundless technology interview coverage",
+      "count": 27,
+      "keywords": "boundless, aired, smart",
+      "article_id": "1819183",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Tech exec says merging 5G, artificial intelligence will allow cities to develop | TheHill",
+      "publication": "The Hill"
+    },
+    {
+      "model": "modern",
+      "topic_id": 67,
+      "label": "Hill.TV Boundless technology interview coverage",
+      "count": 27,
+      "keywords": "boundless, aired, hilltvs",
+      "article_id": "1814127",
+      "reading_scope": "Selected from previously approved naming evidence; this report-selection pass verified metadata and topic membership, not a new full-article review.",
+      "title": "Wireless tech expert says companies, government need to address privacy in smart home devices | TheHill",
+      "publication": "The Hill"
+    }
+  ],
+  "audit_examples": [
+    "15792",
+    "446324"
+  ],
+  "audit_completed": true,
+  "audit_reviewer_mode": "Assisted review: Mary Kate explicitly accepted assistant suggestions and rationales following assistant review of the full stored text; direct human reading scope not confirmed.",
+  "audit_sample_size": 30,
+  "audit_categories": {
+    "relevance": {
+      "central": 24,
+      "peripheral": 5,
+      "not_relevant": 1,
+      "uncertain": 0
+    },
+    "boilerplate": {
+      "present": 7,
+      "absent": 23,
+      "uncertain": 0
+    },
+    "malformed": {
+      "present": 4,
+      "absent": 24,
+      "uncertain": 2
+    }
+  },
+  "audit_overlap_with_reserved_fit_sample": 0,
+  "supplement": [
+    "Full 110-topic inventories",
+    "Full publication heatmaps",
+    "Full Jaccard matrix",
+    "Detailed robustness and runtime tables"
+  ],
+  "scope": "Existing PR3 manuscript/tables/figures, numerical model artifacts, review reservations and frozen packets unchanged.",
+  "source_sha256": {
+    "final-project/code/modern-methods/Results/robustness/2026-11-25/audit_review/2026-11-25/human_judgments.csv": "8875ecca4b0d7dab2b0d97313ae0f66b540fcab241e9461c91ddf22dc6443141",
+    "final-project/code/modern-methods/Results/robustness/2026-11-25/audit_review/2026-11-25/completed_audit_summary_2026-11-26.json": "7cbfa41755cae026165f6e6616d9e531fbac561ec1928ef94bc09dcac68c8c15",
+    "final-project/code/modern-methods/Results/robustness/2026-11-26/interpretation_review/approved_interpretations.json": "8162f5b0d76267ffc589ea848dce7487a6447b29ace758e4c96061986ab90c79"
+  },
+  "verified_existing_files_unchanged": 30
+}

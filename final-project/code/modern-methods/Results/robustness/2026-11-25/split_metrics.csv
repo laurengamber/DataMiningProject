@@ -1,0 +1,3 @@
+model,run,n_train,n_reference,topic_count,coherence,vocabulary_coverage,train_outlier_fraction,heldout_outlier_fraction,vocabulary_size,total_variation,max_topic_change_pp,n_heldout,heldout_outlier_count,perplexity,perplexity_reference,empty_train_rows,empty_reference_rows,n_iter
+bertopic,bertopic_split_s42,5866,1466,56,0.6336966103878751,1.0,0.23371974087964542,0.3096862210095498,19918,0.11410705389906176,7.596648012990437,1466,454,,,,,
+lda,lda_split_s42,5866,1466,40,0.6130300863686073,1.0,0.0,0.0,19158,0.07995691870603552,1.4013979326374535,1466,0,6922.23737165803,heldout,0.0,0.0,50.0

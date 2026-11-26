@@ -1,0 +1,89 @@
+{
+  "identity": {
+    "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+    "kind": "bertopic_full_s42_timing",
+    "split_hash": null,
+    "sources": {
+      "final-project/code/comparison/robustness.py": "5d63ed52ea07d995b922efeeb0e04d86cb77409fffa34d1abe222967fc414fa4",
+      "final-project/code/classical-methods/preprocessing.py": "38bd36524bd8d8407d122aa44be51eb25a9dff6ffc599ba6a7f1e98e49d1ffbe",
+      "final-project/code/classical-methods/representation.py": "214139f7194ed2a6f8f8fe5b03a549bf642722b468b4e31e2488dc721b76ced0",
+      "final-project/code/classical-methods/lda.py": "cb4c330ae47b444fb5a963900e2fa88b1f6ab29bdef3109a0349647856d5ba0d",
+      "final-project/code/shared/evaluation.py": "4f7c88bf55e0e34c831c68f1a7e32761e03ca212d1ba01f3cfa0c0ee1af7fff9",
+      "final-project/code/modern-methods/src/topic_helpers.py": "7d1a44ab84f223c2ce063670256983c90941ce48ec3353cec1d4f095beeab9cd"
+    },
+    "selected_lda": {
+      "K": 40,
+      "max_iter": 50,
+      "doc_topic_prior": 0.1,
+      "topic_word_prior": 0.025
+    },
+    "embedding_pointer_hash": "2325f74d5343370ad4c6a5c33ce6ac5396ecc4dd19b1504413d2655f473e3d66"
+  },
+  "metrics": {
+    "n_train": 7332,
+    "n_reference": 7332,
+    "topic_count": 70,
+    "coherence": 0.7046959390830402,
+    "vocabulary_coverage": 1.0,
+    "train_outlier_fraction": 0.1804418985270049,
+    "heldout_outlier_fraction": null,
+    "vocabulary_size": 22399,
+    "adjusted_rand_index": 1.0,
+    "evaluated_count": 6009,
+    "evaluated_fraction": 0.8195581014729951,
+    "outlier_agreement": 1.0
+  },
+  "timings": {
+    "embedding_cache_load_validation_seconds": 0.589008167036809,
+    "embedding_compute_seconds": null,
+    "preprocessing_train_seconds": 0.2640218749875203,
+    "vocabulary_train_seconds": 0.8185137499822304,
+    "fit_representation_seconds": 14.901173959020525,
+    "heldout_assignment_seconds": 1.25030055642128e-07,
+    "evaluation_seconds": 23.63359208300244
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 10,
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "bertopic": "0.17.4",
+      "hdbscan": "0.8.44",
+      "umap-learn": "0.5.12",
+      "gensim": "4.4.0"
+    },
+    "threadpools": [
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libomp",
+        "filepath": "/Users/marykate/Desktop/F26/DataMiningProject/.venv/lib/python3.13/site-packages/sklearn/.dylibs/libomp.dylib",
+        "version": null
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libomp",
+        "filepath": "/Users/marykate/Desktop/F26/DataMiningProject/.venv/lib/python3.13/site-packages/torch/lib/libomp.dylib",
+        "version": null
+      }
+    ],
+    "thread_limit": 1,
+    "cache": "Pretrained article embeddings reused; no fitted topic model reused",
+    "timing": "New wall-clock measurements, serial fits; imports and file writes excluded"
+  },
+  "files": {
+    "vocabulary.json": "508f6e1e96eff110f1ded7a95038da99fa37989cdb8dbe9d9790673bd79c4392",
+    "assignments.csv": "67fbc5a7ef6dd440d1505f74e1bb70fd163eb09beec382079d6d31dc1907500e",
+    "coherence.csv": "a3d922de7a43fbfc0db841d7ae7abb892e40d65da20e32acc2bc4bc8e6ac15fe",
+    "terms.csv": "7ee22bf9b9cf07fff7c14ee35dd4ff7a74852ac0e5c7cf03c1aea81329cec585"
+  },
+  "warmup": "First fit includes possible UMAP JIT compilation; second fit has warm process caches. No speed ranking from these single executions."
+}

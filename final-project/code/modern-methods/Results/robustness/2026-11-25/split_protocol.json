@@ -1,0 +1,12 @@
+{
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "seed": 42,
+  "split_hash": "b5af9a7de19f42145d8c5cbd8e3af236bc7e042d622b076e62701b6b867675ca",
+  "n_train": 5866,
+  "n_heldout": 1466,
+  "singleton_strata": 10,
+  "rule": "Sorted publication/year strata and IDs; numpy default_rng(42); round half up 20%, clamp to 1..n-1; singletons training only",
+  "disclosure": "Exploratory robustness check, not untouched testing: full-corpus vocabulary/configuration development preceded this split. Fixed selected settings, no held-out tuning. Cached pretrained per-article embeddings allowed; training-only fitted vocabulary, UMAP, clustering and LDA.",
+  "reservation": "100 human-review IDs unchanged; reserved from naming, not unsupervised fitting",
+  "duplicate_limit": "Near duplicates and syndicated stories can cross partitions; this is not a story-group holdout"
+}

@@ -1,0 +1,8 @@
+{
+  "source": "final-project/progress-report-3/pr3-submission.tex",
+  "sha256": "cda99ea2c57335357938b4ed88b669e5dfdb6ffff978ed1e8e02eacbb456abcf",
+  "evidence_status": "Historical manuscript tables only; not independently rerun; rounded values, no raw search logs recovered",
+  "k_search": "PR2/PR3 document K=10,20,...,70 at max_iter=20; no raw per-K numerical results recovered in tracked files or local result folders",
+  "code_caveat": "Current explore_configuration.py reads the selected configuration, so rerunning it is NOT reproduction of historical defaults",
+  "prior_caveat": "Prior tables contain 1.0, omitted from prose grid; alpha 0.5 has higher rounded coherence than selected alpha 0.1. Dominant probability is not assignment accuracy."
+}

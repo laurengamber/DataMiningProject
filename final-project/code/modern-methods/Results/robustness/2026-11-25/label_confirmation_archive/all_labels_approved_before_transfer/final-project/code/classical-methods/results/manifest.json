@@ -1,0 +1,18 @@
+{
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "run_id": "lda_k40_s42",
+  "seed": 42,
+  "learning_method": "batch",
+  "parameters": {
+    "K": 40,
+    "max_iter": 50,
+    "doc_topic_prior": 0.1,
+    "topic_word_prior": 0.025
+  },
+  "labels_confirmed": false,
+  "confirmed_topic_ids": [
+    22
+  ],
+  "label_confirmation_status": "1 of 40 approved by Mary Kate during assisted review; remaining labels and human reservation attestation pending",
+  "label_decisions_path": "final-project/code/modern-methods/Results/robustness/2026-11-25/label_review/approved_decisions_first_three.json"
+}
