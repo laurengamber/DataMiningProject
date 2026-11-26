@@ -1,0 +1,42 @@
+{
+  "adjusted_rand_index": 0.9451226361171757,
+  "evaluated_count": 5444,
+  "evaluated_fraction": 0.7424986361156574,
+  "outlier_agreement": 0.8678396072013094,
+  "unmatched_baseline_topics": [
+    "58",
+    "69"
+  ],
+  "unmatched_other_topics": [
+    "32",
+    "34",
+    "36",
+    "39",
+    "52",
+    "67",
+    "70",
+    "73"
+  ],
+  "split_candidates": [
+    "3",
+    "4",
+    "7",
+    "8",
+    "13",
+    "15",
+    "23",
+    "40"
+  ],
+  "merge_candidates": [
+    "10",
+    "23",
+    "43",
+    "47"
+  ],
+  "split_merge_threshold": "At least two overlaps each covering >=10% of the source/target topic; descriptive flag only",
+  "matched_topic_count": 68,
+  "matched_publication_rows_n_ge_50": 1088,
+  "median_abs_change_pp": 0.0,
+  "p95_abs_change_pp": 1.01010101010101,
+  "max_abs_change_pp": 10.71428571428571
+}

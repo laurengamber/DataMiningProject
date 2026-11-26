@@ -22,3 +22,6 @@ __pycache__/
 
 # Generated large corpus (regenerate with shared.corpus.audit_corpus)
 /final-project/data/corpus.csv
+
+# Local full-text development review cards; regenerate from the shared corpus.
+/final-project/code/modern-methods/Results/robustness/**/label_review/batch_*.html

@@ -1,0 +1,149 @@
+{
+  "prepared_date": "2026-11-26",
+  "purpose": "Main-report figure selection; illustrative, not exhaustive outlet rankings",
+  "publication_examples": [
+    {
+      "panel": "A  Waymo",
+      "model": "LDA",
+      "topic_id": 35,
+      "publication": "The Verge",
+      "count": 51,
+      "denominator": 830,
+      "percent": 6.144578313253012
+    },
+    {
+      "panel": "A  Waymo",
+      "model": "BERTopic",
+      "topic_id": 1,
+      "publication": "The Verge",
+      "count": 77,
+      "denominator": 830,
+      "percent": 9.27710843373494
+    },
+    {
+      "panel": "A  Waymo",
+      "model": "LDA",
+      "topic_id": 35,
+      "publication": "TechCrunch",
+      "count": 37,
+      "denominator": 1214,
+      "percent": 3.047775947281713
+    },
+    {
+      "panel": "A  Waymo",
+      "model": "BERTopic",
+      "topic_id": 1,
+      "publication": "TechCrunch",
+      "count": 85,
+      "denominator": 1214,
+      "percent": 7.00164744645799
+    },
+    {
+      "panel": "B  Uber\u2013Waymo litigation",
+      "model": "LDA",
+      "topic_id": 7,
+      "publication": "Vox",
+      "count": 47,
+      "denominator": 500,
+      "percent": 9.4
+    },
+    {
+      "panel": "B  Uber\u2013Waymo litigation",
+      "model": "BERTopic",
+      "topic_id": 2,
+      "publication": "Vox",
+      "count": 44,
+      "denominator": 500,
+      "percent": 8.799999999999999
+    },
+    {
+      "panel": "B  Uber\u2013Waymo litigation",
+      "model": "LDA",
+      "topic_id": 7,
+      "publication": "Reuters",
+      "count": 43,
+      "denominator": 854,
+      "percent": 5.035128805620609
+    },
+    {
+      "panel": "B  Uber\u2013Waymo litigation",
+      "model": "BERTopic",
+      "topic_id": 2,
+      "publication": "Reuters",
+      "count": 37,
+      "denominator": 854,
+      "percent": 4.332552693208431
+    },
+    {
+      "panel": "C  Congressional legislation",
+      "model": "LDA",
+      "topic_id": 4,
+      "publication": "The Hill",
+      "count": 120,
+      "denominator": 353,
+      "percent": 33.994334277620396
+    },
+    {
+      "panel": "C  Congressional legislation",
+      "model": "BERTopic",
+      "topic_id": 20,
+      "publication": "The Hill",
+      "count": 29,
+      "denominator": 353,
+      "percent": 8.21529745042493
+    },
+    {
+      "panel": "D  Urban mobility",
+      "model": "LDA",
+      "topic_id": 28,
+      "publication": "Wired",
+      "count": 35,
+      "denominator": 249,
+      "percent": 14.056224899598394
+    },
+    {
+      "panel": "D  Urban mobility",
+      "model": "BERTopic",
+      "topic_id": 16,
+      "publication": "Wired",
+      "count": 5,
+      "denominator": 249,
+      "percent": 2.0080321285140563
+    }
+  ],
+  "split_example": {
+    "source_model": "LDA",
+    "source_topic": 3,
+    "denominator": 356,
+    "destinations": {
+      "Tempe crash (B27)": 68,
+      "CA permit dispute (B26)": 66,
+      "Testing restart (B32)": 57,
+      "NTSB investigation (B45)": 30,
+      "Other assigned topics": 74,
+      "Unassigned (B\u22121)": 61
+    }
+  },
+  "merge_example": {
+    "destination_model": "BERTopic",
+    "destination_topic": 0,
+    "denominator": 538,
+    "sources": {
+      "Products/upgrades (L9)": 227,
+      "Crash investigations (L17)": 152,
+      "Other LDA topics": 159
+    }
+  },
+  "source_sha256": {
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/classical/publication_counts.csv": "84839369774d8d731e4ca9f5c70b287dbd48cd2adf096cde6c41acf7c836960a",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/modern/publication_counts.csv": "271ed9c706ffec1c7c15af4e2a1f24977ff0f3d2291206ce7a3526a835731f17",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/assignment_contingency.csv": "7b2de609ede0dc4360f72f2565d4c0ce02383ffed87441f1f555a9c3565d6042",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/comparison_identity.json": "677da02d336735859426c1117c080e8aa7c499fd86f492fe8fca5f8b71a65d63"
+  },
+  "qualifications": [
+    "Publication denominators include BERTopic outliers.",
+    "Topic matches do not establish semantic equivalence.",
+    "Figure 2 panels use different denominators and axis ranges; each accounts for its full selected topic.",
+    "No uncertainty intervals or independent fit ratings are implied."
+  ]
+}

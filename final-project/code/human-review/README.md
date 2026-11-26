@@ -1,5 +1,10 @@
 # Human review
 
+All 110 topic labels are approved ([label review](../modern-methods/Results/robustness/2026-11-25/label_review/README.md))
+and the 100-article packet is frozen. Blank working copies for each reviewer are in
+`../modern-methods/Results/comparison/n30_c25_s42/human_review/handoff/reviewer_1/` and `reviewer_2/`.
+Both independent submissions are pending.
+
 Each reviewer has a separate notebook and answer file:
 
 | Notebook | Used by | Answer file |

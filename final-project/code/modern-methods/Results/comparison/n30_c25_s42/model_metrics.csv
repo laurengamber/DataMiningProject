@@ -1,0 +1,3 @@
+model,topic_count,coherence,vocabulary_coverage,keyword_diversity,outlier_fraction
+bertopic,70,0.7046959390830402,1.0,0.6514285714285715,0.1804418985270049
+lda,40,0.6552333188655197,1.0,0.71,0.0

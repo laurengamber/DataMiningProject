@@ -1,0 +1,6 @@
+{
+  "joint_comparison_ready": true,
+  "sampled_articles": 100,
+  "modern_unassigned_in_sample": 24,
+  "instructions": "Two reviewers work independently before discussing disagreements.\nRate how well the assigned topic label describes the article:\n1 = unrelated/misleading; 2 = weak or incidental fit; 3 = partial/mixed fit;\n4 = good fit with minor omissions; 5 = clear central-theme fit.\nSet irrelevant and ambiguous_label to true or false and add evidence notes.\nFor topic -1, leave fit_rating blank; review relevance/ambiguity qualitatively.\nMembership strengths are not calibrated probabilities. Do not infer a rating from them.\nThe reserved sample is independent of development review, not held out from fitting.\n"
+}

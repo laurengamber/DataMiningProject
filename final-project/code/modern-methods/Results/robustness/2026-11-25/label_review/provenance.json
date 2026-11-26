@@ -1,0 +1,14 @@
+{
+  "sources": {
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/classical_draft_inventory.csv": "f244ef78f8e1004ef02567ebcd96b644ac08125cbb153747620910784be668a2",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/modern_draft_inventory.csv": "3fc5d9cd47f79a56213b0fa8d48e62e8c89549313b22debe945bae0a9cf6ee98"
+  },
+  "topic_count": 110,
+  "batch_count": 11,
+  "evidence_unique_ids": 325,
+  "reserved_intersection": 0,
+  "reservation_sha256": "52378336abc289607027badb03a7a2985c6d26b2becc7c3c859638dfde85e2a4",
+  "approved_labels": 110,
+  "pending_labels": 0,
+  "full_text": "Local HTML cards ignored by Git; regenerate with prepare_label_review.py"
+}

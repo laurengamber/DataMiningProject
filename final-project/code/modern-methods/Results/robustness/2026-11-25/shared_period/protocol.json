@@ -1,0 +1,24 @@
+{
+  "start": 2016,
+  "end": 2018,
+  "years": 3,
+  "publications": 11,
+  "retained_publications": [
+    "CNBC",
+    "Gizmodo",
+    "Mashable",
+    "Reuters",
+    "TechCrunch",
+    "The Hill",
+    "The New York Times",
+    "The Verge",
+    "Vice",
+    "Vox",
+    "Wired"
+  ],
+  "n_retained": 4931,
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "minimum_articles_each_year": 20,
+  "rule": "Complete calendar-year blocks of at least 3 years; maximize eligible outlets (>=20 articles in every year), then longest block, then earliest start; determined from coverage only",
+  "limitation": "Coverage sensitivity using existing fitted assignments; not temporal refitting or coverage of all outlet output; Vice and Vice News never grouped"
+}

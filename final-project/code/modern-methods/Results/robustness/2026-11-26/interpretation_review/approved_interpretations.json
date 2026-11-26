@@ -1,0 +1,96 @@
+{
+  "reviewer": "Mary Kate",
+  "review_date": "2026-11-26",
+  "decision": "approve",
+  "user_statement": "I approve these interpretations",
+  "approval_context": "Explicit response to the three substantive interpretations and qualifications presented in this chat, aligned with the research questions.",
+  "review_mode": "assisted interpretation review of saved results",
+  "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+  "models": [
+    "lda_k40_s42",
+    "n30_c25_s42"
+  ],
+  "independent_fit_rating": false,
+  "other_team_members_approval_inferred": false,
+  "interpretations": [
+    {
+      "id": 1,
+      "conclusion": "AV coverage contains recurring business, technology, safety, and policy themes, alongside clusters driven by writing format.",
+      "approved_report_wording": "Both pipelines recover recognizable themes concerning autonomous-vehicle development, commercialization, safety, and governance. Some clusters instead reflect publication-specific formats or mixed coverage, limiting their interpretation as distinct substantive themes.",
+      "qualifications": [
+        "Approved labels do not establish uniformly coherent topics or independent article-label fit.",
+        "Interviews, newsletters and mixed technology coverage remain explicit limitations."
+      ]
+    },
+    {
+      "id": 2,
+      "conclusion": "Publication differences are visible, but their strength depends on topic definition and model stability.",
+      "examples": [
+        {
+          "finding": "The Verge has a higher Waymo share than TechCrunch.",
+          "lda_shares_percent": [
+            6.14,
+            3.05
+          ],
+          "bertopic_shares_percent": [
+            9.28,
+            7.0
+          ],
+          "qualification": "Comparatively persistent direction across checked configurations, LDA seeds and shared period; matched topics still differ in breadth."
+        },
+        {
+          "finding": "Vox has a higher litigation share than Reuters in the selected fits.",
+          "lda_shares_percent": [
+            9.4,
+            5.04
+          ],
+          "bertopic_shares_percent": [
+            8.8,
+            4.33
+          ],
+          "qualification": "Persists across all six BERTopic configurations and the shared period, but reverses under LDA seed 7."
+        },
+        {
+          "finding": "The Hill has congressional coverage in both models.",
+          "lda_share_percent": 33.99,
+          "bertopic_share_percent": 8.22,
+          "qualification": "Estimated share is strongly model-dependent."
+        },
+        {
+          "finding": "Wired urban-mobility share differs sharply.",
+          "lda_share_percent": 14.06,
+          "bertopic_share_percent": 2.01,
+          "qualification": "Illustrates how model choice changes the substantive picture."
+        }
+      ],
+      "qualifications": [
+        "Shares describe articles within the collected corpus, not each outlet’s entire output, editorial intentions, or audience attitudes."
+      ]
+    },
+    {
+      "id": 3,
+      "conclusion": "Model choice changes both topic boundaries and coverage; the evidence does not establish one overall winner.",
+      "approved_report_wording": "LDA and BERTopic provide complementary descriptions of this corpus. Their differences in topic boundaries, assignment coverage, and stability affect publication comparisons, so conclusions should be evaluated across models rather than selected solely by coherence.",
+      "qualifications": [
+        "BERTopic has higher coherence and stronger seed agreement among articles assigned in both runs, but leaves 18.04% unassigned.",
+        "LDA assigns every article and preserves mixtures, but dominant assignments are more initialization-sensitive.",
+        "BERTopic separates several Uber crash/testing events that LDA groups together, yet combines much of LDA’s separate Tesla product and crash coverage.",
+        "More topics do not guarantee finer distinctions everywhere; superior human-rated fit remains unestablished."
+      ]
+    }
+  ],
+  "scope_limits": [
+    "This decision does not supply independent reviewer ratings, corpus-audit judgments, or approval by other team members.",
+    "The approval does not alter frozen labels, packets, reservation or numerical model results.",
+    "The existing PR3 manuscript, tables and figures are outside this update."
+  ],
+  "source_sha256": {
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/comparison_identity.json": "677da02d336735859426c1117c080e8aa7c499fd86f492fe8fca5f8b71a65d63",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/model_metrics.csv": "46d3ef98b82e52de0e85dbb4d44240921cade07508f59174291c932d90e1b870",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/assignment_contingency.csv": "7b2de609ede0dc4360f72f2565d4c0ce02383ffed87441f1f555a9c3565d6042",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/classical/publication_counts.csv": "84839369774d8d731e4ca9f5c70b287dbd48cd2adf096cde6c41acf7c836960a",
+    "final-project/code/modern-methods/Results/comparison/n30_c25_s42/modern/publication_counts.csv": "271ed9c706ffec1c7c15af4e2a1f24977ff0f3d2291206ce7a3526a835731f17",
+    "final-project/code/modern-methods/Results/robustness/2026-11-25/principal_theme_sensitivity.csv": "fb2d8985ff9331b936de643bd6e495779aa4dee28bd2137de4867987ee8a5d6f",
+    "final-project/code/modern-methods/Results/robustness/2026-11-25/shared_period/principal_theme_shares.csv": "4d2ed5b490acfb4c76401e0d7531c4e9c066aa3cba715cfcd573b18a4e6f876d"
+  }
+}

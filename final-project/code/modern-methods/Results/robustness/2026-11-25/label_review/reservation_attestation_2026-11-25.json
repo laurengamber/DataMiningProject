@@ -1,0 +1,15 @@
+{
+  "attestor": "Mary Kate",
+  "date": "2026-11-25",
+  "user_statement": "I attest that this is true",
+  "statement_attested": "The 100 articles reserved for independent evaluation were not used to choose or refine topic labels or other development decisions. They were allowed in unsupervised model fitting.",
+  "context": "Explicit response to the explanation of the shared-reservation attestation, following approval of all 110 labels for LDA lda_k40_s42 and BERTopic n30_c25_s42.",
+  "models": [
+    "lda_k40_s42",
+    "n30_c25_s42"
+  ],
+  "reservation_path": "final-project/code/modern-methods/Results/modern/review_sample.json",
+  "reservation_hash": "73b997390a820be3064878f5a8a88ce15d7b80760ae830f91f87c0dc579736ce",
+  "reservation_sha256": "52378336abc289607027badb03a7a2985c6d26b2becc7c3c859638dfde85e2a4",
+  "scope_note": "Statement supplied by Mary Kate. No separate attestation or label review by other team members is inferred. This is not an independent article-fit rating or an untouched held-out-fitting claim."
+}

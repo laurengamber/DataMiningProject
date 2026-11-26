@@ -2,9 +2,20 @@
 
 [pipeline_comparison.ipynb](pipeline_comparison.ipynb) brings together the BERTopic, LDA, and human-review results planned in [PR2](../../progress-report-2/pr2-submission.tex).
 
+## Current results
+
+The selected comparison is BERTopic `n30_c25_s42` versus LDA `lda_k40_s42`; see the
+[PR3 results notes](../../progress-report-3/pr3-results-notes.md). All 110 topic labels are
+approved and the review packet is frozen; both independent reviews are pending.
+
+LDA exports in `classical-methods/` are read-only. Approved LDA names live in
+`Results/comparison/<modern-run>/classical_labels.csv`, bound to the original exports by
+`classical_labels_identity.json`, and are applied in memory only. The `*_draft_labels.csv`
+files are the original assistant drafts; they never enable review packets.
+
 ## When to run it
 
-Run modern notebooks 01–03, record our model choice, and add Laura's four LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
+Run modern notebooks 01–03, record our model choice, and validate the saved LDA exports. The comparison notebook uses those saved results without refitting the models. Missing files show as pending; files that do not match the dataset or selected runs cause an error.
 
 We can compare the numerical results before topic naming or human review is finished. Once both sets of labels are final, run the notebook to prepare the review files. After both reviewers finish, set `RUN_HUMAN_SUMMARY = True` and rerun it to add their scores.
 
@@ -31,7 +42,7 @@ Paths below are relative to `../modern-methods/`:
 
 | Path | Contents |
 | --- | --- |
-| `Results/classical/` | Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`; see the [required format](../modern-methods/notebooks/README.md#lauras-handoff) |
+| `../classical-methods/results/` | Laura's `assignments.csv`, `terms.csv`, `topics.csv`, and `manifest.json`; see the [required format](../modern-methods/notebooks/README.md#lauras-handoff) |
 | `Results/modern/` | Reserved review sample, modern runs, model choice, and topic labels |
 | `Results/comparison/<modern-run>/` | Comparison tables, PNG/PDF figures, runtime details, and report checklists |
 | `Results/comparison/<modern-run>/human_review/` | Review packet and separate answer CSVs |
@@ -41,4 +52,7 @@ The saved manifests check that the outputs use the same data and model runs. Rer
 
 Use [reviewer 1](../human-review/reviewer_1.ipynb) and [reviewer 2](../human-review/reviewer_2.ipynb) for independent ratings. The [coordinator notebook](../human-review/review_coordinator.ipynb) checks progress and summarizes the reviews.
 
-Modern notebook 03 covers modern results only. This notebook covers the comparison. Held-out testing and comparisons over shared date ranges are still planned for the final report.
+Modern notebook 03 covers modern results only. This notebook covers the comparison.
+[robustness_results.ipynb](robustness_results.ipynb) reports the seed, sensitivity,
+shared-period, exploratory 80/20 and timing checks (`verify_notebooks.py --execute robustness`).
+The split follows earlier full-corpus development and is not untouched testing.

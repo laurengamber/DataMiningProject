@@ -62,3 +62,18 @@ The coordinator notebook executed successfully in a fresh kernel with pending in
 Existing `Results/classical/` and `Results/comparison/<run>/human_review/` paths remain unchanged. The new notebook validates exported artifacts without loading model pickles or embeddings, preserves reviewer answers, and rejects mismatched comparison identities. Use `verify_notebooks.py --execute comparison`. Model selection, LDA exports, confirmed labels, and genuine ratings are still pending; no current joint empirical findings are claimed.
 
 All 28 tests pass. Modern notebook 03 and the new comparison notebook executed in fresh kernels with the actual available inputs. A separate fresh-kernel execution on temporary synthetic exports and ratings exercised the complete comparison path; those fixture ratings were never written to study outputs. The classical implementation, modern fitting helpers, six fitted runs, and PR3 manuscript are unchanged.
+
+## Current status — November 26, 2026
+
+Mary Kate selected `n30_c25_s42`; seeds 7 and 21 are complete. The comparison reads LDA directly from `../classical-methods/results/` without modifying it.
+
+| Model | Topics | Mean c_v | Keyword diversity | Unassigned | Seed ARIs (fraction compared) |
+| --- | ---: | ---: | ---: | ---: | --- |
+| BERTopic `n30_c25_s42` | 70 | 0.705 | 0.651 | 18.0% | 0.961 (77.7%), 0.976 (77.4%) |
+| LDA `lda_k40_s42` | 40 | 0.655 | 0.710 | 0% | 0.323, 0.347 (all articles) |
+
+Comparison outputs are in `Results/comparison/n30_c25_s42/`. The robustness follow-up (LDA seeds, six-setting BERTopic sensitivity, shared-period coverage, exploratory 80/20 split, new stage timings) is in [Results/robustness/2026-11-25](Results/robustness/2026-11-25/README.md).
+
+Mary Kate approved all 110 labels in assisted naming review ([decision ledger](Results/robustness/2026-11-25/label_review/team_decisions.csv)) and attested that the reserved 100 articles were not used for naming. Modern labels are in `Results/modern/selected/n30_c25_s42/topic_labels.csv`; LDA names are comparison-only, in `Results/comparison/n30_c25_s42/classical_labels.csv`. The 100-article review packet is frozen with blank answer files in `human_review/handoff/`. A new dated 30-article corpus audit is complete; the original PR2 audit judgments are unavailable.
+
+Still pending: two independent reviewer submissions and the team's interpretation. See the [PR3 results notes](../../progress-report-3/pr3-results-notes.md) for findings, limitations and reproduction commands.

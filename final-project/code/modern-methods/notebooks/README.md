@@ -54,6 +54,13 @@ Small tables, figures, and manifests can go in Git. Models, embeddings, full art
 
 ## Choose a model and name the topics
 
+The team selected `n30_c25_s42` on November 25, 2026. The
+[current selection review](../selection_review/current_shortlist_review.md)
+documents the recommendation and its limitations. Selected-model seed checks are
+complete. Draft labels for both pipelines live in the comparison folder and are
+summarized in the [PR3 notes](../../../progress-report-3/pr3-results-notes.md);
+team-confirmed labels and independent ratings remain pending.
+
 After notebook 02 finishes, read `experiments.csv`, the coherence results, topic-size plots, and each run's `representatives.csv`. The examples are articles closest to each topic's average embedding, excluding the reserved sample. Read small and weak topics as well as the largest ones. These examples help us choose and name topics; they are not a random evaluation sample.
 
 Fill in `Results/modern/selection.json`:
@@ -73,7 +80,7 @@ For each assigned topic, fill in `proposed_label` and `evidence_notes`, then set
 
 ## Laura's handoff
 
-Save these four files in `Results/classical/`:
+Save these four files in `../classical-methods/results/`:
 
 | File | Required fields |
 | --- | --- |
@@ -84,7 +91,7 @@ Save these four files in `Results/classical/`:
 
 Keep LDA's full topic mixtures separately. The two methods can use different modeling vocabularies; coherence uses the same reference articles and tokenizer, and we report vocabulary coverage.
 
-For human review, the manifest also needs `labels_confirmed: true` and `review_reservation_hash` equal to `shared.corpus.digest(reservation)`. These confirm that the labels are final and that the reserved articles were not used to choose names. The numerical comparison can run before these two fields are completed.
+Keep these classical exports unchanged. For human review, store comparison-specific LDA names in `Results/comparison/<modern-run>/classical_labels.csv` and approval/reservation metadata in `classical_labels_identity.json`; see the [comparison ownership rules](../../comparison/README.md#classical-input-ownership). These bind the labels to the original export hashes and the shared reservation without editing the classical manifest. Numerical comparison can run while naming is pending.
 
 ## Human evaluation
 
@@ -102,6 +109,14 @@ Seed ARI includes only articles assigned in both runs. Report the count and frac
 
 Fitting time combines UMAP, HDBSCAN, and keyword calculation. Evaluation, embedding, and model loading are timed separately. Loading an already downloaded model is not a measurement of download time. Compare LDA and modern runtimes only after checking their stages and hardware.
 
-Held-out testing and comparisons over shared date ranges remain final-report tasks. Some publication/year groups have only one article, so we need a splitting rule. A held-out test must build the vocabulary, choose settings, and fit models using training data only.
+The [November 25 follow-up](../Results/robustness/2026-11-25/README.md) completes
+shared-period sensitivity and an exploratory split with training-only vocabularies
+and fitting, fixed selected configurations, and singleton strata retained in training.
+Earlier full-corpus development is disclosed; this is not untouched testing.
+Use `verify_notebooks.py --execute robustness` for the saved-result notebook.
 
-We still need the actual PR2 feedback before writing a response to it. The completion table leaves dates for the team to confirm. We should document AI help with coding and planning separately from our model choices, interpretations, and independent ratings.
+Actual PR2 feedback is available and addressed in the separate results notes;
+the formal manuscript response remains for the team. Three labels have explicit
+assisted human approval, with 107 and independent ratings pending. Document AI
+help with coding and developmental interpretation separately from genuine naming
+decisions and independent ratings.

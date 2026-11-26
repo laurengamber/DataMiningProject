@@ -1,0 +1,79 @@
+{
+  "identity": {
+    "corpus_hash": "c73293f76ba4b0a18d685e5724f75b1123a86c9012497fc324090989642a8f99",
+    "kind": "lda_split_s42",
+    "split_hash": "b5af9a7de19f42145d8c5cbd8e3af236bc7e042d622b076e62701b6b867675ca",
+    "sources": {
+      "final-project/code/comparison/robustness.py": "5d63ed52ea07d995b922efeeb0e04d86cb77409fffa34d1abe222967fc414fa4",
+      "final-project/code/classical-methods/preprocessing.py": "38bd36524bd8d8407d122aa44be51eb25a9dff6ffc599ba6a7f1e98e49d1ffbe",
+      "final-project/code/classical-methods/representation.py": "214139f7194ed2a6f8f8fe5b03a549bf642722b468b4e31e2488dc721b76ced0",
+      "final-project/code/classical-methods/lda.py": "cb4c330ae47b444fb5a963900e2fa88b1f6ab29bdef3109a0349647856d5ba0d",
+      "final-project/code/shared/evaluation.py": "4f7c88bf55e0e34c831c68f1a7e32761e03ca212d1ba01f3cfa0c0ee1af7fff9",
+      "final-project/code/modern-methods/src/topic_helpers.py": "7d1a44ab84f223c2ce063670256983c90941ce48ec3353cec1d4f095beeab9cd"
+    },
+    "selected_lda": {
+      "K": 40,
+      "max_iter": 50,
+      "doc_topic_prior": 0.1,
+      "topic_word_prior": 0.025
+    }
+  },
+  "metrics": {
+    "n_train": 5866,
+    "n_reference": 1466,
+    "topic_count": 40,
+    "coherence": 0.6130300863686073,
+    "vocabulary_coverage": 1.0,
+    "perplexity": 6922.23737165803,
+    "perplexity_reference": "heldout",
+    "empty_train_rows": 0,
+    "empty_reference_rows": 0,
+    "vocabulary_size": 19158,
+    "n_iter": 50
+  },
+  "timings": {
+    "preprocessing_seconds": 0.9673537499038503,
+    "representation_train_seconds": 0.35218045907095075,
+    "representation_all_transform_seconds": 0.2621770000550896,
+    "fit_seconds": 74.39863419532776,
+    "assignment_all_seconds": 1.553358625038527,
+    "evaluation_seconds": 4.957484042039141
+  },
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "processor": "arm",
+    "cpu_count": 10,
+    "python": "3.13.11 (main, Jan 14 2026, 23:14:53) [Clang 21.1.4 ]",
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "bertopic": "0.17.4",
+      "hdbscan": "0.8.44",
+      "umap-learn": "0.5.12",
+      "gensim": "4.4.0"
+    },
+    "threadpools": [
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libomp",
+        "filepath": "/Users/marykate/Desktop/F26/DataMiningProject/.venv/lib/python3.13/site-packages/sklearn/.dylibs/libomp.dylib",
+        "version": null
+      }
+    ],
+    "thread_limit": 1,
+    "cache": "Pretrained article embeddings reused; no fitted topic model reused",
+    "timing": "New wall-clock measurements, serial fits; imports and file writes excluded"
+  },
+  "files": {
+    "components.npy": "46e4054f7d5957e4959e61d6c8e0b84366a349b9f66f3db6849b6224578d3655",
+    "vocabulary.json": "73b96f48a39ccbb71be15ffa51d2acda7cd65d93d52c8f61f5260378bb458bfb",
+    "mixtures.npy": "c337c1f7da6fe8e1640320faae9036c7a5bde1ac61288249aef28ee8e8090fd4",
+    "assignments.csv": "dc6ab35024c89f36883c8075599ad377098339d461784e9b9617f109924854a9",
+    "coherence.csv": "e4a1c7da04d4a867c97abd26c8a5048ef7c88be8d43f3915a6c8d8527a88a4c2",
+    "terms.csv": "7e862e38e2ccb53fc8001550409cb75e3580cd5e7d5d72096845059003b57ca9"
+  }
+}
