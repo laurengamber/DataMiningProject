@@ -1,0 +1,3 @@
+seed,adjusted_rand_index,evaluated_count,evaluated_fraction,outlier_agreement,split_merge_threshold
+7,0.9613645108590759,5697,0.7770049099836334,0.910392798690671,At least two overlaps each covering >=10% of the source/target topic; descriptive flag only
+21,0.9760488234467075,5678,0.7744135297326786,0.9113475177304965,At least two overlaps each covering >=10% of the source/target topic; descriptive flag only

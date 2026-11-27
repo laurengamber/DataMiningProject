@@ -38,6 +38,14 @@ The source file is `data/self_driving_articles.csv` at the repository root. Both
 
 Paths below start in `final-project/code/modern-methods`:
 
+The [consolidated selected-model CSVs](../Results/README.md) live directly in
+`Results/`, similar to the classical pipeline's results folder. Notebook 03
+refreshes them, or run `uv run python final-project/code/modern-methods/export_results.py`
+from the repository root to export saved results without refitting or loading a model.
+Edit labels in `Results/modern/selected/<run>/topic_labels.csv`; the consolidated
+label file is an overwritten snapshot. Full-text representatives stay local and
+are ignored by Git. This BERTopic configuration has no full topic-mixture CSV.
+
 | Path | Contents |
 | --- | --- |
 | `Results/modern/review_sample.json` | Reserved article IDs, eligible articles, exclusions, seed, and corpus hash; share with Laura before topic naming |

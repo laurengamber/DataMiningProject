@@ -29,6 +29,7 @@ These paths start at the repository root:
 - `data/self_driving_articles.csv`: source articles.
 - `final-project/data/corpus.csv`: shared dataset after removing duplicates.
 - `final-project/code/modern-methods/Results/modern/`: modern runs and saved embeddings.
+- [Modern consolidated results](modern-methods/Results/README.md): selected-model CSVs directly in `modern-methods/Results/`; refresh with `uv run python final-project/code/modern-methods/export_results.py`.
 - `final-project/code/classical-methods/results/`: Laura's LDA exports.
 - `final-project/code/modern-methods/Results/comparison/`: comparison results and review files.
 
